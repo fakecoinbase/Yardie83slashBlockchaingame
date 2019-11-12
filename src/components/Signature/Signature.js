@@ -1,5 +1,4 @@
 import React, { } from 'react';
-import { } from './SignatureStyles.js';
 import { Textarea } from 'rendition';
 import Button from '@material-ui/core/Button';
 import Title from '../util/Title/Title'

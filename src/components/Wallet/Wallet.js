@@ -23,7 +23,7 @@ const Wallet = (props) => {
 				<Heading.h6 style={{ fontFamily: 'Source Sans Pro', color: "#4D4F5C", paddingBottom: "5px" }}>Send Coins</Heading.h6>
 				<LabeledInput label={"To"} placeholder={"Address"}/>
 				<LabeledInput label={"Amount"} placeholder={"Amount"}/>
-				<div style={{ display: "flex", justifyContent: "right", paddingBottom: "10px", paddingTop: "10px" }}>
+				<div style={{ display: "flex", justifyContent: "right", paddingBottom: "10px", paddingTop: "0px" }}>
 					<Button variant="contained" color="primary" size="small">Send</Button>
 				</div>
 			</div>
