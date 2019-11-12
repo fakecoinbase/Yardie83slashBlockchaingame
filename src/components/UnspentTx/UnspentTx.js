@@ -128,7 +128,7 @@ const UnspentTx = () => {
 	]
 
 	return (
-		<div style={{ padding: "5px" }}>
+		<>
 			<Title title="Unspent Transactions (UTXO)"></Title>
 			<Provider>
 				<Box m={3}>
@@ -138,7 +138,7 @@ const UnspentTx = () => {
 					/>
 				</Box>
 			</Provider>
-		</div>
+		</>
 	);
 };
 

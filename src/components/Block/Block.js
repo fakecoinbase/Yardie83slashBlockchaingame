@@ -8,7 +8,7 @@ const Block = () => {
 	// const [hook, setHook] = useState(hook);
 
 	return (
-		<div style={{ padding: "5px, 0px, 5px, 0px" }}>
+		<>
 			<Title title="Block" subTitle="Block Header"></Title>
 			<div style={{paddingLeft: "10px", paddingRight: "10px"}}>
 				<div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
@@ -49,7 +49,7 @@ const Block = () => {
 				<Title subTitle="Selected Transactions"></Title>
 
 			</div>
-		</div>
+		</>
 	);
 };
 

@@ -15,9 +15,9 @@ const Blockchain = () => {
 	)
 
 	return (
-		<div style={{ padding: "5px" }}>
+		<>
 			<Title subTitle={subTitle} />
-		</div>
+		</>
 	);
 };
 

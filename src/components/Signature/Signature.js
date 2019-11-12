@@ -8,7 +8,7 @@ const Signature = () => {
 	// const [hook, setHook] = useState(hook);
 
 	return (
-		<div style={{ padding: "5px" }}>
+		<>
 			<Title title="Signature" />
 			<div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
 			<div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
@@ -31,7 +31,7 @@ const Signature = () => {
 						<Textarea style={{ height: "70px", minHeight: "70px" }}></Textarea>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

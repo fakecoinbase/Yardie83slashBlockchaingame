@@ -14,7 +14,7 @@ const Hasher = (props) => {
 
 
 	return (
-		<div style={{ padding: "5px" }}>
+		<>
 			<Title title="Hasher" />
 			<div style={{padding: "5px"}}>
 			<div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
@@ -37,7 +37,7 @@ const Hasher = (props) => {
 				</div>
 			</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

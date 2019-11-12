@@ -128,7 +128,7 @@ const Mempool = () => {
 	]
 
 	return (
-		<div style={{ padding: "5px" }}>
+		<>
 			<Title title="Mempool"></Title>
 			<Provider>
 				<Box m={3}>
@@ -141,7 +141,7 @@ const Mempool = () => {
 					/>
 				</Box>
 			</Provider>
-		</div>
+		</>
 	);
 };
 

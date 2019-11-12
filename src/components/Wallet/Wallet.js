@@ -13,7 +13,7 @@ const Wallet = (props) => {
 	)
 
 	return (
-		<div style={{ padding: "5px, 0px, 5px, 0px" }}>
+		<>
 			<Title title="Wallet" subTitle={subTitle}></Title>
 			<div style={{ paddingLeft: "10px", paddingRight: "10px"}}>
 			<Heading.h6 style={{fontFamily: 'Source Sans Pro', color:"#4D4F5C", paddingBottom:"5px"}}>My Address: vrkefwlk34ksac</Heading.h6>
@@ -31,7 +31,7 @@ const Wallet = (props) => {
 				<Button variant="contained" color="primary">Send</Button>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
