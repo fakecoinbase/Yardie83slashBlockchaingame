@@ -16,13 +16,12 @@ const Nodes = (props) => {
 			{ name: "nodeName", pubKey: "ds6LKJd8hlk2jfe", address: "ljkvc8nv54rsd" }
 		]
 
-	// const [balance, setBalance] = useState(0);
-
 	return (
-		<div>
+		// TODO Make subtitle dynamic
+		<>
 			<Title title="Available Nodes" subTitle="Total: 18"></Title>
 			<NodeList nodes={nodes}></NodeList>
-		</div>
+		</>
 	);
 };
 
