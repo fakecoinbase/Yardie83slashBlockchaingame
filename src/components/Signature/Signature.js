@@ -4,8 +4,6 @@ import Button from '@material-ui/core/Button';
 import Title from '../util/Title/Title'
 import LabeledInput from '../util/LabeledInput';
 
-// TODO add tab 1. sign {remove check button} 2. check {3 parameters; 1 output and check button} in general make output one line height
-
 const Signature = () => {
 	return (
 		<>
@@ -22,7 +20,7 @@ const Signature = () => {
 						</div>
 						<div style={{ float: "right", width: "100%", paddingBottom: "10px" }}>
 							<span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>Output</span>
-							<Input value="" readonly={true}></Input>
+							<Input value="" readonly={true} style={{ height: "30px" }}></Input>
 						</div>
 					</div>
 				</Tab>
@@ -38,7 +36,7 @@ const Signature = () => {
 						</div>
 						<div style={{ float: "right", width: "100%", paddingBottom: "10px" }}>
 							<span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>Output</span>
-							<Input value="" readonly={true} ></Input>
+							<Input value="" readonly={true} style={{ height: "30px" }}></Input>
 						</div>
 					</div>
 				</Tab>
