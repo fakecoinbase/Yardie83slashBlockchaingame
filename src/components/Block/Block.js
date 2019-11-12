@@ -14,7 +14,7 @@ const Block = () => {
 				<LabeledInput label={"Merkle Root"} />
 				<LabeledInput label={"Timestamp"} />
 				<LabeledInput label={"Difficulty"} />
-				<LabeledInput label={"Transaction"} />
+				<LabeledInput label={"Coinbase Tx"} />
 				<LabeledInput label={"Nonce"} />
 				<div style={{ display: "flex", justifyContent: "right", paddingBottom: "10px", paddingTop: "10px" }}>
 					<Button variant="contained" color="primary">Generate Nonce</Button>
