@@ -28,7 +28,7 @@ const Wallet = (props) => {
 					<div style={{ display: "inline-block", boxSizing: "border-box", width: "70%" }}><Input style={{ height: "30px" }} placeholder="Amount"></Input></div>
 				</div>
 				<div style={{ display: "flex", justifyContent: "right", paddingBottom: "10px", paddingTop: "10px" }}>
-				<Button variant="contained" color="primary">Send</Button>
+				<Button variant="contained" color="primary" size="small">Send</Button>
 				</div>
 			</div>
 		</>
