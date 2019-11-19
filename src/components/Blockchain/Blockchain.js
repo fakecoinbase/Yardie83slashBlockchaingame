@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { } from './BlockchainStyles.js';
 import Title from '../util/Title/Title'
 

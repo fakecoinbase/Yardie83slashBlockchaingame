@@ -30,7 +30,7 @@ const TopNavbar = () => {
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						Logo
+						Documentation
 					</Txt>
 				</Navbar>
 			</Provider>
