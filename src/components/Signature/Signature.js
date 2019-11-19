@@ -1,10 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import { Input, Tabs, Tab } from "rendition";
 import Button from "@material-ui/core/Button";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput";
+import {sign, check} from '../../services/signature';
 
 const Signature = () => {
+
+
+	const [parameter, setInput] = useState({para1: '', para2: ''});
+	// const [output, setOutput] = useState();
+
+	// const signInput = () => {
+  //   const hashedInput = hash(input);
+    
+	// 	setOutput(hashedInput);
+	// }
+
+
+
   return (
     <>
       <Title title="Signature" />
