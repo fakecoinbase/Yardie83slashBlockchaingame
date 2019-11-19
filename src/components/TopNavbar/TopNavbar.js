@@ -22,11 +22,11 @@ const TopNavbar = () => {
 				<Navbar brand={brand} style={{ background: "#43425D", height: "70px" }}>
 					<span>|</span>
 					<Txt color='white'>
-						My NodeName
+						My Public Key: fdgsdf4354
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						Nodeinfo
+						My Address: tg34df5361fe1546e
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>

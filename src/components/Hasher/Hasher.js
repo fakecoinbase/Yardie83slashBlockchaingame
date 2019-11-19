@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { } from './HasherStyles.js';
 import { Input, Textarea } from 'rendition';
 import Title from '../util/Title/Title'
 import Button from '@material-ui/core/Button';
+import hash from '../../services/hasher'
 
 const Hasher = (props) => {
-	const [balance, setBalance] = useState(0);
-	const [height, setHeight] = useState();
 
-	useEffect(() => {
-		setHeight(props.height)
-	}, [props.height]);
+	const [input, setInput] = useState();
+	const [output, setOutput] = useState();
 
+	const hashInput = () => {
+		const hashedInput = hash(input);
+		setOutput(hashedInput);
+	}
 
 	return (
 		<>
@@ -21,20 +23,17 @@ const Hasher = (props) => {
 					<div style={{ display: "inline-block", boxSizing: "border-box", width: "20%" }}>
 						<span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>Input</span>
 					</div>
-					<div style={{ display: "inline-block", boxSizing: "border-box", width: "80%" }}><Input style={{ height: "30px" }} placeholder="Input"></Input></div>
+					<div style={{ display: "inline-block", boxSizing: "border-box", width: "80%" }}><Input style={{ height: "30px" }} placeholder="Input" onChange={(e) => { setInput(e.target.value); console.log(input) }}></Input></div>
 				</div>
 				<div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
 					<div style={{ float: "right", width: "100%", paddingBottom: "10px" }}>
 						<span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>Output</span>
-						<Textarea style={{ height: "100px", minHeight: "100px" }}></Textarea>
+						<Textarea value={output} style={{ height: "100px", minHeight: "100px" }}></Textarea>
 					</div>
 				</div>
 				<div style={{ float: "right", paddingBottom: "10px" }}>
 					<div style={{ float: "left", paddingRight: "10px" }}>
-						<Button variant="contained" color="primary" size="small">Hash</Button>
-					</div>
-					<div style={{ float: "right" }}>
-						<Button variant="contained" color="primary" size="small">Copy</Button>
+						<Button onClick={hashInput} variant="contained" color="primary" size="small">Hash</Button>
 					</div>
 				</div>
 			</div>
@@ -43,3 +42,16 @@ const Hasher = (props) => {
 };
 
 export default Hasher;
+
+
+// const mymethod = () => {
+// 	let a = 0;
+// 	const setA = (newValue) => {
+// 		a = newValue;
+// 	}
+
+// 	return [
+// 		a, 
+// 		setA
+// 	]
+// }
