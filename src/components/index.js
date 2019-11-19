@@ -6,7 +6,6 @@ import UnspentTx from './UnspentTx'
 import Mempool from './Mempool'
 import Blockchain from './Blockchain'
 import Block from './Block'
-import Publish from './Publish'
 
 export {
     Nodes,
@@ -17,7 +16,6 @@ export {
     Mempool,
     Blockchain,
     Block,
-    Publish
 }
 
 

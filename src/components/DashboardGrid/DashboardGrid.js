@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import { Nodes, Hasher, Signature, Wallet, UnspentTx, Mempool, Blockchain, Block, Publish } from '../index'
+import { Nodes, Hasher, Signature, Wallet, UnspentTx, Mempool, Blockchain, Block } from '../index'
 import { Provider} from 'rendition';
 import {GridCard} from './DashboardGridStyles'
 import {layouts, breakpoints, cols} from './gridLayout'
@@ -27,7 +27,6 @@ export default class DashboardGrid extends Component {
 					<GridCard key="mempool"><Mempool /></GridCard>
 					<GridCard key="blockchain"><Blockchain /></GridCard>
 					<GridCard key="block"><Block /></GridCard>
-					<GridCard key="publish"><Publish /></GridCard>
 					<GridCard key="wallet"><Wallet /></GridCard>
 				</ResponsiveGridLayout>
 			</Provider>
