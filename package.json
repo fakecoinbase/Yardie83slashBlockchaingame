@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.6.0",
     "@types/react-grid-layout": "^0.16.7",
+    "big-integer": "^1.6.48",
     "docz": "^2.0.0-rc.71",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
