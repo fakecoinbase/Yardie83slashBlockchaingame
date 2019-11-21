@@ -23,7 +23,7 @@ const Hasher = (props) => {
 					<div style={{ display: "inline-block", boxSizing: "border-box", width: "20%" }}>
 						<span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>Input</span>
 					</div>
-					<div style={{ display: "inline-block", boxSizing: "border-box", width: "80%" }}><Input style={{ height: "30px" }} placeholder="Input" onChange={(e) => { setInput(e.target.value); console.log(input) }}></Input></div>
+					<div style={{ display: "inline-block", boxSizing: "border-box", width: "80%" }}><Input style={{ height: "30px" }} placeholder="Input" onChange={(e) => { setInput(e.target.value);  }}></Input></div>
 				</div>
 				<div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
 					<div style={{ float: "right", width: "100%", paddingBottom: "10px" }}>
