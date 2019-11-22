@@ -6,7 +6,6 @@ import UnspentTx from "./UnspentTx";
 import Mempool from "./Mempool";
 import Blockchain from "./Blockchain";
 import Block from "./Block";
-import Keygenerator from "../services/keyGenerator";
 
 export {
   Nodes,
@@ -16,6 +15,5 @@ export {
   UnspentTx,
   Mempool,
   Blockchain,
-  Block,
-  Keygenerator
+  Block
 };

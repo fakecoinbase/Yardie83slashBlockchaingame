@@ -8,8 +8,7 @@ import {
   UnspentTx,
   Mempool,
   Blockchain,
-  Block,
-  Keygenerator
+  Block
 } from "../index";
 import { Provider } from "rendition";
 import { GridCard } from "./DashboardGridStyles";
@@ -54,9 +53,6 @@ export default class DashboardGrid extends Component {
           </GridCard>
           <GridCard key="wallet">
             <Wallet />
-          </GridCard>
-          <GridCard key="keygenerator">
-            <Keygenerator />
           </GridCard>
         </ResponsiveGridLayout>
       </Provider>
