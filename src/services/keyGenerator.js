@@ -3,13 +3,16 @@ import hash from "./hasher";
 import RSA from "./rsa";
 
 export const keyPair = () => {
-  let keys = RSA.generate();
+  let keys = RSA.generate(128);
+  console.log("private key", keys.d, "publick key", keys.n, "e>", keys.e);
 
-  let msg = "ABC";
+  let msg = "Mother Fucker";
 
-  let encryptedMSG = RSA.encrypt(msg, keys.n, keys.e);
+  let encodedMsg = RSA.encode(msg);
+  console.log("encoded msg", encodedMsg);
 
-  console.log("encoded hello", encryptedMSG);
+  let encryptedMSG = RSA.encrypt(encodedMsg, keys.n, keys.e);
+  console.log("encrypted msg", encryptedMSG);
 
   let decryptedMg = RSA.decrypt(encryptedMSG, keys.d, keys.n);
 
