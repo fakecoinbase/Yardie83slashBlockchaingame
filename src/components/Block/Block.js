@@ -1,5 +1,5 @@
-import React from "react";
-import {} from "./BlockStyles.js";
+import React, { useState, useEffect } from "react";
+import { } from "./BlockStyles.js";
 import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput";
@@ -14,19 +14,24 @@ const Block = () => {
         <LabeledInput label={"Previous Block"} />
         <LabeledInput label={"Merkle Root"} />
         <LabeledInput label={"Timestamp"} />
-        <LabeledInput label={"Difficulty"} />
+        <LabeledInput label={"Difficulty"} readOnly />
         <LabeledInput label={"Coinbase Tx"} />
         <LabeledInput label={"Nonce"} />
         <div
           style={{
             display: "flex",
-            justifyContent: "right",
+            flexDirection: "row",
+            justifyContent: "space-around",
             paddingBottom: "10px",
-            paddingTop: "10px"
+            paddingTop: "10px",
+            marginLeft: "30%",
           }}
         >
-          <Button variant="contained" color="primary">
-            Generate Nonce
+          <Button variant="contained" size="small">
+            Solve Nonce
+          </Button>
+          <Button variant="contained" color="primary" size="small" onClick={() => { }}>
+            {"Generate Nonce"}
           </Button>
         </div>
         <LabeledInput label={"Block Hash"} />
