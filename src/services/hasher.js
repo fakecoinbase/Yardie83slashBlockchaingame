@@ -134,7 +134,7 @@ const Hashed = msg => {
 
   word_array.push(i);
 
-  while (word_array.length % 16 != 14) word_array.push(0);
+  while (word_array.length % 16 !== 14) word_array.push(0);
 
   word_array.push(msg_len >>> 29);
 
