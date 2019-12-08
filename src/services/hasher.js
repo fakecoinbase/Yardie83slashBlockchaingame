@@ -236,7 +236,8 @@ const Hashed = msg => {
   var temp =
     cvt_hex(H0) + cvt_hex(H1) + cvt_hex(H2) + cvt_hex(H3) + cvt_hex(H4);
 
-  return temp.toLowerCase().substr(30);
+  return temp.toLowerCase();
+  //.substr(30);
 };
 
 export default Hashed;

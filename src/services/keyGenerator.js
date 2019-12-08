@@ -2,13 +2,31 @@
 import hash from "./hasher";
 import RSA from "./rsa";
 
-export const keyPair = () => {
-  let keys = RSA.generate(128);
+const KJUR = require("jsrsasign");
 
+/*export const keyPair = () => {
+  let keys = RSA.generate(512);
+  console.log("keys>", keys);
   const publicKey = keys.n;
   const privateKey = keys.d;
   const exp = keys.e;
 
   return [publicKey, privateKey, exp];
+};*/
+
+export const keyPair = () => {
+  let keys = KJUR.KEYUTIL.generateKeypair("RSA", 512);
+
+  const publicKey = keys.pubKeyObj;
+  const privateKey = keys.prvKeyObj;
+
+  const formPub = KJUR.KEYUTIL.getPEM(publicKey);
+  const formPriv = KJUR.KEYUTIL.getPEM(privateKey, "PKCS8PRV");
+
+  console.log("form pub key>" + formPub);
+  console.log("form priv key>", formPriv);
+
+  return [publicKey, privateKey];
 };
+
 export default keyPair;
