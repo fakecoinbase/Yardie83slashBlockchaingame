@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Table } from 'rendition'
 import { } from "./BlockStyles.js";
 import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput";
 import Publish from "./Publish";
+import useMempoolTransactions from "../../customHooks/useMempoolTransactions/useMempoolTransactions.js";
 
 const Block = () => {
+
+  const [selectedTransactions,] = useMempoolTransactions();
+  const [timestamp, setTimestamp] = useState(Date.now())
+
+  // setTimeout(() => {
+  //   setTimestamp(Date.now())
+  // }, 100);
+
+  console.log("selectedTransactions", selectedTransactions)
+
   return (
     <>
       <Title title="Block" subTitle="Block Header"></Title>
@@ -13,9 +25,9 @@ const Block = () => {
         <LabeledInput label={"Block#"} />
         <LabeledInput label={"Previous Block"} />
         <LabeledInput label={"Merkle Root"} />
-        <LabeledInput label={"Timestamp"} />
-        <LabeledInput label={"Difficulty"} readOnly />
-        <LabeledInput label={"Coinbase Tx"} />
+        <LabeledInput label={"Timestamp"} readOnly value={timestamp} />
+        <LabeledInput label={"Difficulty"} readOnly value={1} />
+        <LabeledInput label={"Block Hash"} />
         <LabeledInput label={"Nonce"} />
         <div
           style={{
@@ -34,11 +46,19 @@ const Block = () => {
             {"Generate Nonce"}
           </Button>
         </div>
-        <LabeledInput label={"Block Hash"} />
       </div>
       <Title subTitle="Transactions"></Title>
-      <div style={{ minHeight: "250px" }}></div>
-      <Publish></Publish>
+      <div style={{ minHeight: "250px" }}>
+        <Table
+          columns={[{
+            field: 'txHash',
+            label: 'Transaction Hash'}]
+          }
+          data={selectedTransactions}
+          rowKey='txHash'
+        />
+      </div>
+      <Publish/>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Heading } from 'rendition';
 import { Wrapper } from './HeaderbannerStyles.js';
 
@@ -7,7 +7,7 @@ const Headerbanner = (props) => {
 
 	return (
 		<Wrapper>
-			<Heading.h6 style={{fontFamily: 'Source Sans Pro', color:"#4D4F5C"}}>{props.children}</Heading.h6>
+			<Heading.h6 style={{fontFamily: 'Source Sans Pro', color:"#5e5e5e"}}>{props.children}</Heading.h6>
 		</Wrapper>
 	);
 };

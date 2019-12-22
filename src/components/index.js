@@ -6,6 +6,7 @@ import UnspentTx from "./UnspentTx";
 import Mempool from "./Mempool";
 import Blockchain from "./Blockchain";
 import Block from "./Block";
+import Modal from "./Modal"
 
 export {
   Nodes,
@@ -15,5 +16,6 @@ export {
   UnspentTx,
   Mempool,
   Blockchain,
-  Block
+  Block,
+  Modal
 };

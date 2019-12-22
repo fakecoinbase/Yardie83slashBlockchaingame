@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { } from './UnspentTxStyles.js';
 import { Provider, Box, Table, } from 'rendition'
 import Title from '../util/Title/Title'
 
 const UnspentTx = () => {
-
-	const prefixNum = num => (num.toString().length === 1 ? `0${num}` : num)
 
 	const data = [
 		{
@@ -77,41 +75,6 @@ const UnspentTx = () => {
 			field: 'amount',
 			label: 'Amount',
 			render: value => <code>{value}</code>
-		},
-		{
-			field: 'pubkey', label: "Public Key",
-			render: value => {
-				// shorten value to fit column width, then
-				const newValue = value
-				return (
-					// newValue
-					newValue
-				)
-			}
-		},
-		{
-			field: 'signature',
-			label: 'SIG(Tx)',
-			render: value => {
-				// shorten value to fit column width, then
-				const newValue = value
-				return (
-					// newValue
-					newValue
-				)
-			}
-		},
-		{
-			field: 'text',
-			label: 'Text',
-			render: value => {
-				// shorten value to fit column width, then
-				const newValue = value
-				return (
-					// newValue
-					newValue
-				)
-			}
 		},
 		{
 			field: 'txHash',

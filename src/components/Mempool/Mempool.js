@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { } from './MempoolStyles.js'
 import { Provider, Box, Table, } from 'rendition'
 import Title from '../util/Title/Title'
+import useMempoolTransactions from '../../customHooks/useMempoolTransactions/useMempoolTransactions.js';
 
 
 const Mempool = () => {
-	const prefixNum = num => (num.toString().length === 1 ? `0${num}` : num)
+
+	const [, setSelectedTransaction] = useMempoolTransactions();
 
 	const data = [
 		{
@@ -15,7 +17,7 @@ const Mempool = () => {
 			pubkey: '1215sadv8s',
 			signature: 'asg43vt5z332',
 			text: 'Some text',
-			txHash: '43ct3gc4n6767'
+			txHash: '43ct3g34c4n6767'
 		},
 		{
 			input: 'v43bc6543vr46',
@@ -24,7 +26,7 @@ const Mempool = () => {
 			pubkey: '1215sadv8s',
 			signature: 'asg43vt5z332',
 			text: 'Some text',
-			txHash: '43dfct3gc4n6767'
+			txHash: '43dfctgg3gc4n6767'
 		},
 		{
 			input: 'v43bc6543vr46',
@@ -33,7 +35,7 @@ const Mempool = () => {
 			pubkey: '1215sadv8s',
 			signature: 'asg43vt5z332',
 			text: 'Some text',
-			txHash: '43ct3gcjgf4n6767'
+			txHash: '43ct3gsscjgf4n6767'
 		},
 		{
 			input: 'v43bc6543vr46',
@@ -42,7 +44,7 @@ const Mempool = () => {
 			pubkey: '1215sadv8s',
 			signature: 'asg43vt5z332',
 			text: 'Some text',
-			txHash: '43ct3gttc4n6767'
+			txHash: '43ct3ghkjttc4n6767'
 		},
 		{
 			input: 'v43bc6543vr46',
@@ -51,7 +53,7 @@ const Mempool = () => {
 			pubkey: '1215sadv8s',
 			signature: 'asg43vt5z332',
 			text: 'Some text',
-			txHash: '43ct3gc4nlo767'
+			txHash: '43ctjih3gc4nlo767'
 		},
 		{
 			input: 'v43bc6543vr46',
@@ -60,7 +62,7 @@ const Mempool = () => {
 			pubkey: '1215sadv8s',
 			signature: 'asg43vt5z332',
 			text: 'Some text',
-			txHash: '43ct3gc4n67zgfd67'
+			txHash: '43ct3gc4n6kihg7zgfd67'
 		}
 	]
 
@@ -137,7 +139,9 @@ const Mempool = () => {
 						data={data}
 						// use TxHash for rowKey; because unique
 						rowKey='txHash'
-						onCheck={(checkedItem) => console.log(checkedItem)}
+						onCheck={(checkedItemsArray) =>
+							setSelectedTransaction(checkedItemsArray)
+						}
 					/>
 				</Box>
 			</Provider>

@@ -1,4 +1,4 @@
-const bigInt = require("big-integer");
+// const bigInt = require("big-integer");
 
 const KJUR = require("jsrsasign");
 const keys = require("./keyGenerator");
@@ -56,39 +56,39 @@ export const check = ({ para1, para2, para3 }) => {
   return isValidSig;
 };
 
-function decimalToHex(d, padding) {
-  let BigInt = bigInt;
-  var hex = BigInt(d).toString(16);
-  padding =
-    typeof padding === "undefined" || padding === null
-      ? (padding = 2)
-      : padding;
+// function decimalToHex(d, padding) {
+//   let BigInt = bigInt;
+//   var hex = BigInt(d).toString(16);
+//   padding =
+//     typeof padding === "undefined" || padding === null
+//       ? (padding = 2)
+//       : padding;
 
-  while (hex.length < padding) {
-    hex = "0" + hex;
-  }
+//   while (hex.length < padding) {
+//     hex = "0" + hex;
+//   }
 
-  return hex;
-}
+//   return hex;
+// }
 
-var b64map = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-var b64padchar = "=";
+// var b64map = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+// var b64padchar = "=";
 
-function hex2b64(h) {
-  var i;
-  var c;
-  var ret = "";
-  for (i = 0; i + 3 <= h.length; i += 3) {
-    c = parseInt(h.substring(i, i + 3), 16);
-    ret += b64map.charAt(c >> 6) + b64map.charAt(c & 63);
-  }
-  if (i + 1 == h.length) {
-    c = parseInt(h.substring(i, i + 1), 16);
-    ret += b64map.charAt(c << 2);
-  } else if (i + 2 == h.length) {
-    c = parseInt(h.substring(i, i + 2), 16);
-    ret += b64map.charAt(c >> 2) + b64map.charAt((c & 3) << 4);
-  }
-  while ((ret.length & 3) > 0) ret += b64padchar;
-  return ret;
-}
+// function hex2b64(h) {
+//   var i;
+//   var c;
+//   var ret = "";
+//   for (i = 0; i + 3 <= h.length; i += 3) {
+//     c = parseInt(h.substring(i, i + 3), 16);
+//     ret += b64map.charAt(c >> 6) + b64map.charAt(c & 63);
+//   }
+//   if (i + 1 == h.length) {
+//     c = parseInt(h.substring(i, i + 1), 16);
+//     ret += b64map.charAt(c << 2);
+//   } else if (i + 2 == h.length) {
+//     c = parseInt(h.substring(i, i + 2), 16);
+//     ret += b64map.charAt(c >> 2) + b64map.charAt((c & 3) << 4);
+//   }
+//   while ((ret.length & 3) > 0) ret += b64padchar;
+//   return ret;
+// }

@@ -55,7 +55,7 @@ const Signature = () => {
   return (
     <>
       <Title title="Signature" />
-      <Tabs>
+      <Tabs >
         <Tab title="Sign">
           <div
             style={{
@@ -77,13 +77,6 @@ const Signature = () => {
               id={"s2"}
               onChange={onChange}
               value={signParams.p2}
-            />
-            <LabeledInput
-              label={"Parameter 3"}
-              placeholder={"Parameter 3"}
-              id={"s3"}
-              onChange={onChange}
-              value={signParams.p3}
             />
             <div style={{ float: "right" }}>
               <div style={{ float: "left", paddingRight: "10px" }}>

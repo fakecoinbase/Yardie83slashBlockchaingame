@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import {
   Nodes,
@@ -8,18 +8,22 @@ import {
   UnspentTx,
   Mempool,
   Blockchain,
-  Block
+  Block,
+  Modal
 } from "../index";
 import { Provider } from "rendition";
 import { GridCard } from "./DashboardGridStyles";
 import { layouts, breakpoints, cols } from "./gridLayout";
 
-export default class DashboardGrid extends Component {
-  render() {
-    const ResponsiveGridLayout = WidthProvider(Responsive);
+const DashboardGrid = () => {
 
-    return (
-      <Provider>
+  const [showModal, setShowModal] = useState(true);
+
+  const ResponsiveGridLayout = WidthProvider(Responsive);
+
+  return (
+    <Provider>
+      {showModal ? (<Modal setShowModal={setShowModal} />) : (
         <ResponsiveGridLayout
           className="layout"
           layouts={layouts}
@@ -55,7 +59,9 @@ export default class DashboardGrid extends Component {
             <Wallet />
           </GridCard>
         </ResponsiveGridLayout>
-      </Provider>
-    );
-  }
+      )}
+    </Provider>
+  );
 }
+
+export default DashboardGrid;

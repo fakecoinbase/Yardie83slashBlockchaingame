@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { } from './TopNavbarStyles.js';
+import useUserInfo from '../../customHooks/useUserInfo'
 import { Provider, Navbar, Txt } from 'rendition';
 import Button from "@material-ui/core/Button";
 
 import Logo from '../../assets/img/logo.png'
 
 const TopNavbar = () => {
+
+	const [userInfo] = useUserInfo();
+
 	const [showPK, setShowPK] = useState(false);
 
 	const brand = (
@@ -24,22 +28,22 @@ const TopNavbar = () => {
 	return (
 		<>
 			<Provider>
-				<Navbar brand={brand} style={{ background: "#43425D", height: "70px", }}>
+				<Navbar brand={brand} style={{ background: "#282828", height: "70px", }}>
 					<span>|</span>
 					<Txt color='white'>
 						My Private Key:
 					</Txt>
 					<Button variant="contained" style={{ width: "30px", height: "15px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}>{showPK ? "Hide" : "Show"}</Button>
 					<Txt color='white' style={{ visibility: (showPK ? "visible" : "hidden"), color: "#e87474" }}>
-						565rbfgnbzt4se
+						{userInfo.privateKey && userInfo.privateKey}
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Public Key: fdgsdf4354
+						My Public Key: {userInfo.publicKey && userInfo.publicKey}
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Address: tg34df5361fe1546e
+						My Address: {userInfo.address && userInfo.address}
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>

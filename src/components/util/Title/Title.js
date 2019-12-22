@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyledWrapper } from './TitleStyles.js';
-import { Heading, Txt } from 'rendition';
+import { Heading } from 'rendition';
 import Headerbanner from '../Headerbanner/Headerbanner'
 
 
@@ -9,7 +9,7 @@ const Title = (props) => {
 
 	return (
 		<StyledWrapper>
-			{props.title ? <Heading.h3 style={{ fontFamily: 'Source Sans Pro', color: "#43425D", paddingLeft: "10px" }}>{props.title}</Heading.h3> : null}
+			{props.title ? <Heading.h3 style={{ fontFamily: 'Source Sans Pro', color: "#282828", paddingLeft: "10px" }}>{props.title}</Heading.h3> : null}
 			{props.subTitle ? <Headerbanner>{props.subTitle}</Headerbanner> : null}
 		</StyledWrapper>
 	);
