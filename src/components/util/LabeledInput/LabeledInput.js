@@ -11,7 +11,7 @@ const LabeledInput = (props) => {
 				<span>{label}</span>
 			</div>
 			<div style={{ display: "inline-block", boxSizing: "border-box", width: "70%" }}>
-				<Input readOnly={readOnly} value={value} onChange={(e) => {onChange && onChange(e.target.value, id)}} style={{ height: "30px" }} placeholder={placeholder ? placeholder : ''} />
+				<Input readOnly={readOnly} value={value} onChange={(e) => onChange(e)} id={id} style={{ height: "30px" }} placeholder={placeholder ? placeholder : ''} />
 			</div>
 		</div>
 	);

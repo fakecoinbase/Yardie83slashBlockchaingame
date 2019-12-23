@@ -3,7 +3,7 @@
 const KJUR = require("jsrsasign");
 const keys = require("./keyGenerator");
 
-export const sign = (para1, para2, para3) => {
+export const sign = (para1, para2) => {
   //for a sign function, we need hash of message (para1), secret key D (para2)
   /* const pair = keys.keyPair();
 
@@ -20,11 +20,10 @@ export const sign = (para1, para2, para3) => {
   sig.init(priv);
 
   sig.updateString(para1);
-
   return sig.sign();
 };
 
-export const check = ({ para1, para2, para3 }) => {
+export const check = (para1, para2, para3) => {
   // Load public key
   const pub = KJUR.KEYUTIL.getKey(para2);
 
