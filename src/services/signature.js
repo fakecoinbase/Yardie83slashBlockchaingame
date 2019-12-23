@@ -5,53 +5,38 @@ const keys = require("./keyGenerator");
 
 export const sign = (para1, para2, para3) => {
   //for a sign function, we need hash of message (para1), secret key D (para2)
-  const pair = keys.keyPair();
+  /* const pair = keys.keyPair();
 
   const pubKey = pair[0];
   console.log("pub Key from sign", pubKey);
 
   const privKey = pair[1];
-  console.log("priv Key from sign", privKey);
+  console.log("priv Key from sign", privKey);*/
 
   //load priv obj
-  const priv = KJUR.KEYUTIL.getKey(privKey);
+  const priv = KJUR.KEYUTIL.getKey(para2);
   let sig = new KJUR.crypto.Signature({ alg: "SHA1withRSA" });
 
-  console.log(priv);
-  console.log(sig);
   sig.init(priv);
 
   sig.updateString(para1);
-  //init sign
 
   return sig.sign();
 };
 
 export const check = ({ para1, para2, para3 }) => {
-  const pair = keys.keyPair();
-
-  const pubKey = pair[0];
-  console.log("pub Key from sign", pubKey);
-
-  const privKey = pair[1];
-  console.log("priv Key from sign", privKey);
-
   // Load public key
-  const pub = KJUR.KEYUTIL.getKey(pubKey);
+  const pub = KJUR.KEYUTIL.getKey(para2);
 
-  //load priv obj
-  const priv = KJUR.KEYUTIL.getKey(privKey);
+  console.log("got pub? ", pub);
 
   let sig = new KJUR.crypto.Signature({ alg: "SHA1withRSA" });
 
-  sig.init(priv);
-
-  sig.updateString("aa");
-
-  const results = sig.sign();
   sig.init(pub);
 
-  const isValidSig = sig.verify(results);
+  sig.updateString(para1);
+
+  const isValidSig = sig.verify(para3);
 
   return isValidSig;
 };

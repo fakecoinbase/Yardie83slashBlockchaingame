@@ -3,25 +3,27 @@ import { Modal as RModal } from "rendition";
 import useUserInfo from "../../customHooks/useUserInfo";
 import {} from "./ModalStyles.js";
 const keys = require("../../services/keyGenerator");
+const KJUR = require("jsrsasign");
 
 const Modal = props => {
-  const pair = keys.keyPair();
-  const pubKey = pair[0];
-  const privKey = pair[1];
-
   const [userInfo, setUserInfo] = useUserInfo();
 
   useEffect(() => {
     //FIXME put in actual key generator and check with DB if already existing
-    const result = Promise.resolve({
-      privateKey: "privKey",
-      publicKey: "pubKey",
-      address: "gervre3403v3"
-    });
-    result.then(userInfo => {
-      setUserInfo(userInfo);
-    });
-  }, [setUserInfo]);
+    const pair = keys.keyPair();
+    const pubKeyObject = pair[0];
+    const pubKey = KJUR.KEYUTIL.getPEM(pubKeyObject);
+
+    const privKeyObject = pair[1];
+    const privKey = KJUR.KEYUTIL.getPEM(privKeyObject, "PKCS8PRV");
+
+    const userInfo = {
+      privateKey: privKey,
+      publicKey: pubKey,
+      address: "whatever"
+    };
+    setUserInfo(userInfo);
+  }, []);
 
   return (
     <RModal

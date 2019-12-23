@@ -4,16 +4,6 @@
 
 const KJUR = require("jsrsasign");
 
-/*export const keyPair = () => {
-  let keys = RSA.generate(512);
-  console.log("keys>", keys);
-  const publicKey = keys.n;
-  const privateKey = keys.d;
-  const exp = keys.e;
-
-  return [publicKey, privateKey, exp];
-};*/
-
 export const keyPair = () => {
   let keys = KJUR.KEYUTIL.generateKeypair("RSA", 512);
 
