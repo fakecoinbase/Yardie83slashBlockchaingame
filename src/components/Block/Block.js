@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from 'rendition'
 import { } from "./BlockStyles.js";
 import { Button } from "@material-ui/core";
@@ -10,13 +10,7 @@ import useMempoolTransactions from "../../customHooks/useMempoolTransactions/use
 const Block = () => {
 
   const [selectedTransactions,] = useMempoolTransactions();
-  const [timestamp, setTimestamp] = useState(Date.now())
-
-  // setTimeout(() => {
-  //   setTimestamp(Date.now())
-  // }, 100);
-
-  console.log("selectedTransactions", selectedTransactions)
+  const [timestamp,] = useState(Date.now())
 
   return (
     <>
