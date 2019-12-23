@@ -36,7 +36,6 @@ const Block = () => {
             justifyContent: "space-around",
             paddingBottom: "10px",
             paddingTop: "10px",
-            marginLeft: "30%",
           }}
         >
            <Button variant="contained" size="small">
@@ -46,7 +45,7 @@ const Block = () => {
             Solve Nonce
           </Button>
           <Button variant="contained" color="primary" size="small" onClick={() => { }}>
-            {"Generate Nonce"}
+            Generate Nonce
           </Button>
         </div>
       </div>

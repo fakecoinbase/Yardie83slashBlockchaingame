@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { } from './TopNavbarStyles.js';
 import useUserInfo from '../../customHooks/useUserInfo'
-import { Provider, Navbar, Txt } from 'rendition';
+import { Provider, Navbar, Txt, TextWithCopy } from 'rendition';
 import Button from "@material-ui/core/Button";
 
 import Logo from '../../assets/img/logo.png'
@@ -33,17 +33,17 @@ const TopNavbar = () => {
 					<Txt color='white'>
 						My Private Key:
 					</Txt>
-					<Button variant="contained" style={{ width: "30px", height: "15px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}><strong>{showPK ? "Hide" : "Show"}</strong></Button>
+					<Button variant="contained" style={{ width: "30px", height: "20px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}><strong>{showPK ? "Hide" : "Show"}</strong></Button>
 					<Txt color='white' style={{ visibility: (showPK ? "visible" : "hidden"), color: "#e87474" }}>
-						{userInfo.privateKey && userInfo.privateKey}
+						<TextWithCopy copy={userInfo.privateKey} ><stong>{userInfo.privateKey && userInfo.privateKey.slice(27, 35)} </stong></TextWithCopy>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Public Key: <strong>{userInfo.publicKey && userInfo.publicKey}</strong>
+						My Public Key: <TextWithCopy showCopyButton={"always"} copy={userInfo.publicKey}><strong>{userInfo.publicKey && userInfo.publicKey.slice(27, 35)} </strong></TextWithCopy>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Address: <strong>{userInfo.address && userInfo.address}</strong>
+						My Address: <TextWithCopy showCopyButton={"always"} copy={userInfo.address}><strong>{userInfo.address && userInfo.address} </strong></TextWithCopy>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>

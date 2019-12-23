@@ -46,7 +46,10 @@ const Signature = () => {
   }, [checkParams]);
 
   useEffect(() => {
-    if (signParams.p1 === "" || signParams.p2 === "") {
+    if (
+      signParams.p1 === "" ||
+      signParams.p2 === ""
+    ) {
       setSignature("");
     }
   }, [signParams]);
