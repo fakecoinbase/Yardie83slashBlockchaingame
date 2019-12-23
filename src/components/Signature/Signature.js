@@ -56,7 +56,7 @@ const Signature = () => {
 
   return (
     <>
-      <Title title="Signature" />
+      <Title title="Sign & Check" />
       <Tabs >
         <Tab title="Sign">
           <div

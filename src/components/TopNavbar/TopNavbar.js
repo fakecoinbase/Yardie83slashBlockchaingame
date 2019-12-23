@@ -35,7 +35,7 @@ const TopNavbar = () => {
 					</Txt>
 					<Button variant="contained" style={{ width: "30px", height: "20px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}><strong>{showPK ? "Hide" : "Show"}</strong></Button>
 					<Txt color='white' style={{ visibility: (showPK ? "visible" : "hidden"), color: "#e87474" }}>
-						<TextWithCopy copy={userInfo.privateKey} ><stong>{userInfo.privateKey && userInfo.privateKey.slice(27, 35)} </stong></TextWithCopy>
+						<TextWithCopy copy={userInfo.privateKey} ><strong>{userInfo.privateKey && userInfo.privateKey.slice(27, 35)} </strong></TextWithCopy>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>

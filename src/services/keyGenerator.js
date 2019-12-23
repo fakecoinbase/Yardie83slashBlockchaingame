@@ -10,11 +10,11 @@ export const keyPair = () => {
   const publicKey = keys.pubKeyObj;
   const privateKey = keys.prvKeyObj;
 
-  const formPub = KJUR.KEYUTIL.getPEM(publicKey);
-  const formPriv = KJUR.KEYUTIL.getPEM(privateKey, "PKCS8PRV");
+  // const formPub = KJUR.KEYUTIL.getPEM(publicKey);
+  // const formPriv = KJUR.KEYUTIL.getPEM(privateKey, "PKCS8PRV");
 
-  console.log("form pub key>" + formPub);
-  console.log("form priv key>", formPriv);
+  // console.log("form pub key>" + formPub);
+  // console.log("form priv key>", formPriv);
 
   return [publicKey, privateKey];
 };

@@ -9,7 +9,7 @@ const Modal = props => {
   const [userInfo, setUserInfo] = useUserInfo();
 
   useEffect(() => {
-    //FIXME put in actual key generator and check with DB if already existing
+    //TODO: ALI can you move this logic somewhere else and just return the info object??
     const pair = keys.keyPair();
     const pubKeyObject = pair[0];
     const pubKey = KJUR.KEYUTIL.getPEM(pubKeyObject);
@@ -17,12 +17,12 @@ const Modal = props => {
     const privKeyObject = pair[1];
     const privKey = KJUR.KEYUTIL.getPEM(privKeyObject, "PKCS8PRV");
 
-    const userInfo = {
+    const info = {
       privateKey: privKey,
       publicKey: pubKey,
       address: "whatever"
     };
-    setUserInfo(userInfo);
+    setUserInfo(info);
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 // const bigInt = require("big-integer");
 
 const KJUR = require("jsrsasign");
-const keys = require("./keyGenerator");
+// const keys = require("./keyGenerator");
 
 export const sign = (para1, para2) => {
   //for a sign function, we need hash of message (para1), secret key D (para2)
