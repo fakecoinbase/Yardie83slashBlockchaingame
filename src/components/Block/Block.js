@@ -39,6 +39,9 @@ const Block = () => {
             marginLeft: "30%",
           }}
         >
+           <Button variant="contained" size="small">
+            Copy to Hasher
+          </Button>
           <Button variant="contained" size="small">
             Solve Nonce
           </Button>

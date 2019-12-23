@@ -40,7 +40,7 @@ const Hasher = (props) => {
 				</div>
 				<div style={{ float: "right", paddingBottom: "10px" }}>
 					<div style={{ float: "right", paddingRight: "10px" }}>
-						<Button onClick={hashInput} variant="contained" color="primary" size="small">Broadcast</Button>
+						<Button onClick={hashInput} variant="contained" color="primary" size="small">Copy</Button>
 					</div>
 				</div>				
 				<div style={{ float: "right", paddingBottom: "10px" }}>

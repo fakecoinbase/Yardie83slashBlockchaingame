@@ -104,18 +104,6 @@ const Mempool = () => {
 			}
 		},
 		{
-			field: 'text',
-			label: 'Text',
-			render: value => {
-				// shorten value to fit column width, then
-				const newValue = value
-				return (
-					// newValue
-					newValue
-				)
-			}
-		},
-		{
 			field: 'txHash',
 			label: 'Tx Hash',
 			render: value => {

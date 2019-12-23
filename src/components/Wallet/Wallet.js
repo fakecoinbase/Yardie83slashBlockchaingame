@@ -33,7 +33,7 @@ const Wallet = (props) => {
 				</div>				
 				<div style={{ float: "right", paddingBottom: "10px" }}>
 					<div style={{ float: "right", paddingRight: "10px" }}>
-						<Button onClick={onSend} variant="contained" color="primary" size="small">Send</Button>
+						<Button onClick={onSend} variant="contained" color="primary" size="small">Broadcast</Button>
 					</div>
 				</div>
 			</div>

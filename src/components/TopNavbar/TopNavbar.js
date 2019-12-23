@@ -33,17 +33,17 @@ const TopNavbar = () => {
 					<Txt color='white'>
 						My Private Key:
 					</Txt>
-					<Button variant="contained" style={{ width: "30px", height: "15px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}>{showPK ? "Hide" : "Show"}</Button>
+					<Button variant="contained" style={{ width: "30px", height: "15px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}><strong>{showPK ? "Hide" : "Show"}</strong></Button>
 					<Txt color='white' style={{ visibility: (showPK ? "visible" : "hidden"), color: "#e87474" }}>
 						{userInfo.privateKey && userInfo.privateKey}
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Public Key: {userInfo.publicKey && userInfo.publicKey}
+						My Public Key: <strong>{userInfo.publicKey && userInfo.publicKey}</strong>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Address: {userInfo.address && userInfo.address}
+						My Address: <strong>{userInfo.address && userInfo.address}</strong>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
