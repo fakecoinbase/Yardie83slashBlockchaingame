@@ -27,8 +27,6 @@ export const check = (para1, para2, para3) => {
   // Load public key
   const pub = KJUR.KEYUTIL.getKey(para2);
 
-  console.log("got pub? ", pub);
-
   let sig = new KJUR.crypto.Signature({ alg: "SHA1withRSA" });
 
   sig.init(pub);

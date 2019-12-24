@@ -4,6 +4,7 @@ import useUserInfo from "../../customHooks/useUserInfo";
 import {} from "./ModalStyles.js";
 const keys = require("../../services/keyGenerator");
 const KJUR = require("jsrsasign");
+const addressGenerator = require("../../services/addressGen");
 
 const Modal = props => {
   const [userInfo, setUserInfo] = useUserInfo();
@@ -16,11 +17,11 @@ const Modal = props => {
 
     const privKeyObject = pair[1];
     const privKey = KJUR.KEYUTIL.getPEM(privKeyObject, "PKCS8PRV");
-
+    const pubAddress = addressGenerator.address(pubKey);
     const info = {
       privateKey: privKey,
       publicKey: pubKey,
-      address: "whatever"
+      address: pubAddress
     };
     setUserInfo(info);
   }, []);
