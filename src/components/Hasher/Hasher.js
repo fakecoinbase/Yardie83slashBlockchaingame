@@ -3,7 +3,7 @@ import {} from "./HasherStyles.js";
 import { Input, Textarea } from "rendition";
 import Title from "../util/Title/Title";
 import Button from "@material-ui/core/Button";
-import hash from "../../services/hasher";
+import hash from "../../services/hasherService";
 
 const Hasher = props => {
   const [input, setInput] = useState("");

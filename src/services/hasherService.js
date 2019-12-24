@@ -107,7 +107,8 @@ const Hashed = msg => {
         0x80;
 
       break;
-    default: return
+    default:
+      return;
   }
 
   word_array.push(i);
@@ -186,7 +187,7 @@ const Hashed = msg => {
   }
 
   temp = cvt_hex(H0) + cvt_hex(H1) + cvt_hex(H2) + cvt_hex(H3) + cvt_hex(H4);
-  
+
   return temp.toLowerCase();
   //.substr(30);
 };

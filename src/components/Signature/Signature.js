@@ -3,7 +3,7 @@ import { Input, Tabs, Tab } from "rendition";
 import Button from "@material-ui/core/Button";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput";
-import { sign, check } from "../../services/signature";
+import { sign, check } from "../../services/signatureService";
 
 const Signature = () => {
   const [signParams, setSignParams] = useState({ p1: "", p2: "" });
@@ -12,12 +12,17 @@ const Signature = () => {
   const [checkedSignature, setCheckedSignature] = useState("");
   const [signatureIsValid, setSignatureIsValid] = useState(undefined);
 
-  const onChange = (e) => {
-    if (e.target.id === "s1") setSignParams({ ...signParams, p1: e.target.value });
-    if (e.target.id === "s2") setSignParams({ ...signParams, p2: e.target.value });
-    if (e.target.id === "c1") setCheckParams({ ...checkParams, p1: e.target.value });
-    if (e.target.id === "c2") setCheckParams({ ...checkParams, p2: e.target.value });
-    if (e.target.id === "c3") setCheckParams({ ...checkParams, p3: e.target.value });
+  const onChange = e => {
+    if (e.target.id === "s1")
+      setSignParams({ ...signParams, p1: e.target.value });
+    if (e.target.id === "s2")
+      setSignParams({ ...signParams, p2: e.target.value });
+    if (e.target.id === "c1")
+      setCheckParams({ ...checkParams, p1: e.target.value });
+    if (e.target.id === "c2")
+      setCheckParams({ ...checkParams, p2: e.target.value });
+    if (e.target.id === "c3")
+      setCheckParams({ ...checkParams, p3: e.target.value });
   };
 
   const signTX = () => {
@@ -46,10 +51,7 @@ const Signature = () => {
   }, [checkParams]);
 
   useEffect(() => {
-    if (
-      signParams.p1 === "" ||
-      signParams.p2 === ""
-    ) {
+    if (signParams.p1 === "" || signParams.p2 === "") {
       setSignature("");
     }
   }, [signParams]);
@@ -57,7 +59,7 @@ const Signature = () => {
   return (
     <>
       <Title title="Sign & Check" />
-      <Tabs >
+      <Tabs>
         <Tab title="Sign">
           <div
             style={{
