@@ -33,7 +33,7 @@ const TopNavbar = () => {
 					<Txt color='white'>
 						My Private Key:
 					</Txt>
-					<Button variant="contained" style={{ width: "30px", height: "20px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}><strong>{showPK ? "Hide" : "Show"}</strong></Button>
+					<Button variant="contained" style={{ width: "20px", height: "20px", paddingBottom:"20px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}><strong>{showPK ? "Hide" : "Show"}</strong></Button>
 					<Txt color='white' style={{ visibility: (showPK ? "visible" : "hidden"), color: "#e87474" }}>
 						<TextWithCopy copy={userInfo.privateKey} ><strong>{userInfo.privateKey && userInfo.privateKey.slice(27, 35)} </strong></TextWithCopy>
 					</Txt>
@@ -43,7 +43,7 @@ const TopNavbar = () => {
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Address: <TextWithCopy showCopyButton={"always"} copy={userInfo.address}><strong>{userInfo.address && userInfo.address} </strong></TextWithCopy>
+						My Address: <TextWithCopy showCopyButton={"always"} copy={userInfo.address}><strong>{userInfo.address && userInfo.address.slice(0, 8)} </strong></TextWithCopy>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
