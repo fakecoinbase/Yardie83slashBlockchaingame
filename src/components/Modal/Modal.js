@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { Modal as RModal } from "rendition";
 import useUserInfo from "../../customHooks/useUserInfo";
-import {} from "./ModalStyles.js";
+import { } from "./ModalStyles.js";
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+
 const keys = require("../../services/keyGenerator");
 const KJUR = require("jsrsasign");
 const addressGenerator = require("../../services/addressGen");
@@ -9,21 +12,58 @@ const addressGenerator = require("../../services/addressGen");
 const Modal = props => {
   const [userInfo, setUserInfo] = useUserInfo();
 
-  useEffect(() => {
-    //TODO: ALI can you move this logic somewhere else and just return the info object??
+  const ADD_NODE = gql`
+  mutation insertNode($publicKey: String, $privateKey: String, $address: String ) {
+    insert_bloxx_node(objects: {publicKey: $publicKey, privateKey: $privateKey, addresses: {data: {id: $address }}}) {
+      affected_rows
+      returning {
+        publicKey
+        privateKey
+        addresses {
+          id
+        }
+      }
+    }
+  }`;
+
+  const NODES = gql`
+    query Nodes {
+      bloxx_node {
+        publicKey
+        privateKey
+        addresses {
+          id
+        }
+      }
+    }`;
+
+  const [addNode] = useMutation(ADD_NODE);
+
+  function generateNode() {
     const pair = keys.keyPair();
     const pubKeyObject = pair[0];
-    const pubKey = KJUR.KEYUTIL.getPEM(pubKeyObject);
-
+    const publicKey = KJUR.KEYUTIL.getPEM(pubKeyObject);
     const privKeyObject = pair[1];
-    const privKey = KJUR.KEYUTIL.getPEM(privKeyObject, "PKCS8PRV");
-    const pubAddress = addressGenerator.address(pubKey);
+    const privateKey = KJUR.KEYUTIL.getPEM(privKeyObject, "PKCS8PRV");
+    const address = addressGenerator.address(publicKey);
     const info = {
-      privateKey: privKey,
-      publicKey: pubKey,
-      address: pubAddress
+      privateKey,
+      publicKey,
+      address
     };
-    setUserInfo(info);
+    return info;
+  }
+
+  useEffect(() => {
+    const info = generateNode();
+    const result = addNode({ variables: { publicKey: info.publicKey, privateKey: info.privateKey, address: info.address } });
+    result.then(res => {
+      return {
+        privateKey: res.data.insert_bloxx_node.returning[0].privateKey,
+        publicKey: res.data.insert_bloxx_node.returning[0].publicKey,
+        address: res.data.insert_bloxx_node.returning[0].addresses[0].id
+      }
+    }).then(userInfo => setUserInfo(userInfo))
   }, []);
 
   return (
@@ -41,7 +81,7 @@ const Modal = props => {
           {userInfo.privateKey && userInfo.privateKey}
         </p>
         <p>
-          <strong>Public Key: </strong>{" "}
+          <strong>Public Key: </strong>
           {userInfo.publicKey && userInfo.publicKey}
         </p>
         <p>
@@ -54,3 +94,4 @@ const Modal = props => {
 };
 
 export default Modal;
+
