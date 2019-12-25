@@ -3,7 +3,7 @@ import { Input } from 'rendition'
 import { } from './LabeledInputStyles.js';
 
 const LabeledInput = (props) => {
-	const { label, placeholder, id, onChange, value, readOnly } = props;
+	const { label, placeholder, id, onChange = () => { }, value, readOnly } = props;
 
 	return (
 		<div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
