@@ -7,9 +7,16 @@
     "@material-ui/core": "^4.6.0",
     "@types/react-grid-layout": "^0.16.7",
     "apollo-boost": "^0.4.7",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link": "^1.2.13",
+    "apollo-link-error": "^1.1.12",
+    "apollo-link-http": "^1.5.16",
+    "apollo-link-ws": "^1.0.19",
     "big-integer": "^1.6.48",
     "docz": "^2.0.0-rc.71",
     "graphql": "^14.5.8",
+    "graphql-tag": "^2.10.1",
     "jsrsasign": "^8.0.12",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
@@ -17,7 +24,8 @@
     "react-scripts": "3.2.0",
     "rendition": "^11.28.0",
     "reusable": "^1.0.0-alpha.12",
-    "styled-components": "^5.0.0-rc.1"
+    "styled-components": "^5.0.0-rc.1",
+    "subscriptions-transport-ws": "^0.9.16"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -18,7 +18,6 @@ import { layouts, breakpoints, cols } from "./gridLayout";
 const DashboardGrid = () => {
 
   const [showModal, setShowModal] = useState(true);
-
   const ResponsiveGridLayout = WidthProvider(Responsive);
 
   return (

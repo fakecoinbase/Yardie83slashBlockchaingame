@@ -1,7 +1,8 @@
 import React from 'react';
 import NodeItem from '../NodeItem'
 
-const NodeList = ({ nodes }) => 
+const NodeList = ({ nodes }) =>
+	nodes.length > 0 &&
 	nodes.map((node, index) => (
 		<NodeItem node={node} key={index} />
 	))

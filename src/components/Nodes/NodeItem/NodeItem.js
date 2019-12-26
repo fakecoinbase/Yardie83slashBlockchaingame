@@ -7,12 +7,18 @@ const NodeItem = ({ node }) => {
 	return (
 		<Styled.Container>
 			<Styled.NodePubKey>
-				<Styled.Labelspan>Public Key:</Styled.Labelspan>
-				<Styled.TextWithCopy copy={pubKey}>{pubKey}</Styled.TextWithCopy>
+				<Styled.Labelspan>Public Key: </Styled.Labelspan>
+				<br />
+				<Styled.TextWithCopy style={{
+					fontSize: "12px",
+					maxWidth: "230px",
+					wordWrap: "break-word"
+				}} copy={pubKey}>{pubKey}</Styled.TextWithCopy>
 			</Styled.NodePubKey>
 			<Styled.NodeAddress>
-				<Styled.Labelspan>Address:</Styled.Labelspan>
-				<Styled.TextWithCopy copy={address}>{address}</Styled.TextWithCopy>
+				<Styled.Labelspan>Address: </Styled.Labelspan>
+				<br />
+				<Styled.TextWithCopy style={{ fontSize: "12px" }} copy={address}>{address}</Styled.TextWithCopy>
 			</Styled.NodeAddress>
 			<Divider />
 		</Styled.Container>

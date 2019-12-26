@@ -19,22 +19,23 @@ width: 100%;
 `;
 
 const NodePubKey = styled.div`
-margin: auto; 
-width: 100%; 
+margin-right: 40px; 
+/* width: 80%;  */
 font-family: 'Source Sans Pro';
 `;
 
 const TextWithCopy = styled(TwC)`
+font-size: 10px;
 display: inline-block;
 box-sizing: border-box; 
-width: 50%;
 `;
 
 const Labelspan = styled.span`
-color: #4D4F5C;
+font-weight: bold;
+color: black;
 display: inline-block; 
 box-sizing: border-box; 
-width: 50%;
+/* width: 50%; */
 `;
 
 export const Styled = {
