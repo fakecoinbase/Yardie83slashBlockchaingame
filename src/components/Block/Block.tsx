@@ -5,22 +5,18 @@ import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput";
 import Publish from "./Publish";
-import useMempoolTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 import useBlock from "../../customHooks/useBlock";
+import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 
 const Block = () => {
   const [block, setBlock] = useBlock();
   const [timestamp] = useState(new Date());
   const [difficulty] = useState(1);
-  const [selectedTransactions] = useMempoolTransactions();
+  const [selectedTransactions] = useSelectedTransactions();
 
   const onChange = (key: string, value: any) => {
-    setBlock({ ...block, timestamp, difficulty, [key]: value });
+    setBlock({ ...block, timestamp, difficulty, blockStatus: "pending", [key]: value });
   };
-
-  useEffect(() => {
-    console.log("[Block] ", block);
-  }, [block]);
 
   useEffect(() => {
     setBlock({ ...block, transactions: selectedTransactions });
@@ -67,13 +63,12 @@ const Block = () => {
           </Button>
         </div>
       </div>
-      <Title subTitle="Transactions"></Title>
       <div style={{ minHeight: "250px" }}>
         <Table
           columns={[
             {
               field: "txHash",
-              label: "Transaction Hash"
+              label: "Selected Transactions [TxHash]"
             }
           ]}
           data={selectedTransactions}
