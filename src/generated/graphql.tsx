@@ -898,9 +898,10 @@ export type Bloxx_Transaction = {
   addressByInputaddress?: Maybe<Bloxx_Address>,
   /** An object relationship */
   block?: Maybe<Bloxx_Block>,
-  blockNum?: Maybe<Scalars['Int']>,
-  inputaddress?: Maybe<Scalars['String']>,
+  blockNumber?: Maybe<Scalars['Int']>,
+  inputAddress?: Maybe<Scalars['String']>,
   outputAddress: Scalars['String'],
+  signature: Scalars['String'],
   text?: Maybe<Scalars['String']>,
   txHash: Scalars['String'],
   value: Scalars['Int'],
@@ -960,13 +961,13 @@ export type Bloxx_Transaction_Arr_Rel_Insert_Input = {
 /** aggregate avg on columns */
 export type Bloxx_Transaction_Avg_Fields = {
    __typename?: 'bloxx_transaction_avg_fields',
-  blockNum?: Maybe<Scalars['Float']>,
+  blockNumber?: Maybe<Scalars['Float']>,
   value?: Maybe<Scalars['Float']>,
 };
 
 /** order by avg() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Avg_Order_By = {
-  blockNum?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
 
@@ -978,9 +979,10 @@ export type Bloxx_Transaction_Bool_Exp = {
   address?: Maybe<Bloxx_Address_Bool_Exp>,
   addressByInputaddress?: Maybe<Bloxx_Address_Bool_Exp>,
   block?: Maybe<Bloxx_Block_Bool_Exp>,
-  blockNum?: Maybe<Int_Comparison_Exp>,
-  inputaddress?: Maybe<String_Comparison_Exp>,
+  blockNumber?: Maybe<Int_Comparison_Exp>,
+  inputAddress?: Maybe<String_Comparison_Exp>,
   outputAddress?: Maybe<String_Comparison_Exp>,
+  signature?: Maybe<String_Comparison_Exp>,
   text?: Maybe<String_Comparison_Exp>,
   txHash?: Maybe<String_Comparison_Exp>,
   value?: Maybe<Int_Comparison_Exp>,
@@ -996,7 +998,7 @@ export enum Bloxx_Transaction_Constraint {
 
 /** input type for incrementing integer columne in table "bloxx.transaction" */
 export type Bloxx_Transaction_Inc_Input = {
-  blockNum?: Maybe<Scalars['Int']>,
+  blockNumber?: Maybe<Scalars['Int']>,
   value?: Maybe<Scalars['Int']>,
 };
 
@@ -1005,9 +1007,10 @@ export type Bloxx_Transaction_Insert_Input = {
   address?: Maybe<Bloxx_Address_Obj_Rel_Insert_Input>,
   addressByInputaddress?: Maybe<Bloxx_Address_Obj_Rel_Insert_Input>,
   block?: Maybe<Bloxx_Block_Obj_Rel_Insert_Input>,
-  blockNum?: Maybe<Scalars['Int']>,
-  inputaddress?: Maybe<Scalars['String']>,
+  blockNumber?: Maybe<Scalars['Int']>,
+  inputAddress?: Maybe<Scalars['String']>,
   outputAddress?: Maybe<Scalars['String']>,
+  signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
@@ -1016,9 +1019,10 @@ export type Bloxx_Transaction_Insert_Input = {
 /** aggregate max on columns */
 export type Bloxx_Transaction_Max_Fields = {
    __typename?: 'bloxx_transaction_max_fields',
-  blockNum?: Maybe<Scalars['Int']>,
-  inputaddress?: Maybe<Scalars['String']>,
+  blockNumber?: Maybe<Scalars['Int']>,
+  inputAddress?: Maybe<Scalars['String']>,
   outputAddress?: Maybe<Scalars['String']>,
+  signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
@@ -1026,9 +1030,10 @@ export type Bloxx_Transaction_Max_Fields = {
 
 /** order by max() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Max_Order_By = {
-  blockNum?: Maybe<Order_By>,
-  inputaddress?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
+  inputAddress?: Maybe<Order_By>,
   outputAddress?: Maybe<Order_By>,
+  signature?: Maybe<Order_By>,
   text?: Maybe<Order_By>,
   txHash?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
@@ -1037,9 +1042,10 @@ export type Bloxx_Transaction_Max_Order_By = {
 /** aggregate min on columns */
 export type Bloxx_Transaction_Min_Fields = {
    __typename?: 'bloxx_transaction_min_fields',
-  blockNum?: Maybe<Scalars['Int']>,
-  inputaddress?: Maybe<Scalars['String']>,
+  blockNumber?: Maybe<Scalars['Int']>,
+  inputAddress?: Maybe<Scalars['String']>,
   outputAddress?: Maybe<Scalars['String']>,
+  signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
@@ -1047,9 +1053,10 @@ export type Bloxx_Transaction_Min_Fields = {
 
 /** order by min() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Min_Order_By = {
-  blockNum?: Maybe<Order_By>,
-  inputaddress?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
+  inputAddress?: Maybe<Order_By>,
   outputAddress?: Maybe<Order_By>,
+  signature?: Maybe<Order_By>,
   text?: Maybe<Order_By>,
   txHash?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
@@ -1082,9 +1089,10 @@ export type Bloxx_Transaction_Order_By = {
   address?: Maybe<Bloxx_Address_Order_By>,
   addressByInputaddress?: Maybe<Bloxx_Address_Order_By>,
   block?: Maybe<Bloxx_Block_Order_By>,
-  blockNum?: Maybe<Order_By>,
-  inputaddress?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
+  inputAddress?: Maybe<Order_By>,
   outputAddress?: Maybe<Order_By>,
+  signature?: Maybe<Order_By>,
   text?: Maybe<Order_By>,
   txHash?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
@@ -1093,11 +1101,13 @@ export type Bloxx_Transaction_Order_By = {
 /** select columns of table "bloxx.transaction" */
 export enum Bloxx_Transaction_Select_Column {
   /** column name */
-  BlockNum = 'blockNum',
+  BlockNumber = 'blockNumber',
   /** column name */
-  Inputaddress = 'inputaddress',
+  InputAddress = 'inputAddress',
   /** column name */
   OutputAddress = 'outputAddress',
+  /** column name */
+  Signature = 'signature',
   /** column name */
   Text = 'text',
   /** column name */
@@ -1108,9 +1118,10 @@ export enum Bloxx_Transaction_Select_Column {
 
 /** input type for updating data in table "bloxx.transaction" */
 export type Bloxx_Transaction_Set_Input = {
-  blockNum?: Maybe<Scalars['Int']>,
-  inputaddress?: Maybe<Scalars['String']>,
+  blockNumber?: Maybe<Scalars['Int']>,
+  inputAddress?: Maybe<Scalars['String']>,
   outputAddress?: Maybe<Scalars['String']>,
+  signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
@@ -1119,63 +1130,65 @@ export type Bloxx_Transaction_Set_Input = {
 /** aggregate stddev on columns */
 export type Bloxx_Transaction_Stddev_Fields = {
    __typename?: 'bloxx_transaction_stddev_fields',
-  blockNum?: Maybe<Scalars['Float']>,
+  blockNumber?: Maybe<Scalars['Float']>,
   value?: Maybe<Scalars['Float']>,
 };
 
 /** order by stddev() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Stddev_Order_By = {
-  blockNum?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
 
 /** aggregate stddev_pop on columns */
 export type Bloxx_Transaction_Stddev_Pop_Fields = {
    __typename?: 'bloxx_transaction_stddev_pop_fields',
-  blockNum?: Maybe<Scalars['Float']>,
+  blockNumber?: Maybe<Scalars['Float']>,
   value?: Maybe<Scalars['Float']>,
 };
 
 /** order by stddev_pop() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Stddev_Pop_Order_By = {
-  blockNum?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
 
 /** aggregate stddev_samp on columns */
 export type Bloxx_Transaction_Stddev_Samp_Fields = {
    __typename?: 'bloxx_transaction_stddev_samp_fields',
-  blockNum?: Maybe<Scalars['Float']>,
+  blockNumber?: Maybe<Scalars['Float']>,
   value?: Maybe<Scalars['Float']>,
 };
 
 /** order by stddev_samp() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Stddev_Samp_Order_By = {
-  blockNum?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
 
 /** aggregate sum on columns */
 export type Bloxx_Transaction_Sum_Fields = {
    __typename?: 'bloxx_transaction_sum_fields',
-  blockNum?: Maybe<Scalars['Int']>,
+  blockNumber?: Maybe<Scalars['Int']>,
   value?: Maybe<Scalars['Int']>,
 };
 
 /** order by sum() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Sum_Order_By = {
-  blockNum?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
 
 /** update columns of table "bloxx.transaction" */
 export enum Bloxx_Transaction_Update_Column {
   /** column name */
-  BlockNum = 'blockNum',
+  BlockNumber = 'blockNumber',
   /** column name */
-  Inputaddress = 'inputaddress',
+  InputAddress = 'inputAddress',
   /** column name */
   OutputAddress = 'outputAddress',
+  /** column name */
+  Signature = 'signature',
   /** column name */
   Text = 'text',
   /** column name */
@@ -1187,39 +1200,39 @@ export enum Bloxx_Transaction_Update_Column {
 /** aggregate var_pop on columns */
 export type Bloxx_Transaction_Var_Pop_Fields = {
    __typename?: 'bloxx_transaction_var_pop_fields',
-  blockNum?: Maybe<Scalars['Float']>,
+  blockNumber?: Maybe<Scalars['Float']>,
   value?: Maybe<Scalars['Float']>,
 };
 
 /** order by var_pop() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Var_Pop_Order_By = {
-  blockNum?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
 
 /** aggregate var_samp on columns */
 export type Bloxx_Transaction_Var_Samp_Fields = {
    __typename?: 'bloxx_transaction_var_samp_fields',
-  blockNum?: Maybe<Scalars['Float']>,
+  blockNumber?: Maybe<Scalars['Float']>,
   value?: Maybe<Scalars['Float']>,
 };
 
 /** order by var_samp() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Var_Samp_Order_By = {
-  blockNum?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
 
 /** aggregate variance on columns */
 export type Bloxx_Transaction_Variance_Fields = {
    __typename?: 'bloxx_transaction_variance_fields',
-  blockNum?: Maybe<Scalars['Float']>,
+  blockNumber?: Maybe<Scalars['Float']>,
   value?: Maybe<Scalars['Float']>,
 };
 
 /** order by variance() on columns of table "bloxx.transaction" */
 export type Bloxx_Transaction_Variance_Order_By = {
-  blockNum?: Maybe<Order_By>,
+  blockNumber?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
 
@@ -1663,27 +1676,23 @@ export type Timestamp_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['timestamp']>>,
 };
 
-export type InsertBlockMutationVariables = {
-  blockHash?: Maybe<Scalars['String']>,
-  blockNumber?: Maybe<Scalars['Int']>,
-  blockStatus?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['timestamp']>,
-  difficulty?: Maybe<Scalars['Int']>,
-  merkleRoot?: Maybe<Scalars['String']>,
-  nonce?: Maybe<Scalars['Int']>,
-  previousBlockHash?: Maybe<Scalars['String']>,
-  txHash?: Maybe<Scalars['String']>
+export type UpsertBlockMutationVariables = {
+  objects: Array<Bloxx_Block_Insert_Input>
 };
 
 
-export type InsertBlockMutation = (
+export type UpsertBlockMutation = (
   { __typename?: 'mutation_root' }
   & { insert_bloxx_block: Maybe<(
     { __typename?: 'bloxx_block_mutation_response' }
     & Pick<Bloxx_Block_Mutation_Response, 'affected_rows'>
     & { returning: Array<(
       { __typename?: 'bloxx_block' }
-      & Pick<Bloxx_Block, 'blockHash'>
+      & Pick<Bloxx_Block, 'blockHash' | 'blockNumber' | 'blockStatus' | 'createdAt' | 'difficulty' | 'merkleRoot' | 'nonce' | 'previousBlockHash'>
+      & { transactions: Array<(
+        { __typename?: 'bloxx_transaction' }
+        & Pick<Bloxx_Transaction, 'blockNumber' | 'inputAddress' | 'outputAddress' | 'signature' | 'text' | 'txHash' | 'value'>
+      )> }
     )> }
   )> }
 );
@@ -1715,6 +1724,7 @@ export type InsertTransactionMutationVariables = {
   inputAddress?: Maybe<Scalars['String']>,
   outputAddress?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
+  signature?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>
 };
 
@@ -1726,7 +1736,7 @@ export type InsertTransactionMutation = (
     & Pick<Bloxx_Transaction_Mutation_Response, 'affected_rows'>
     & { returning: Array<(
       { __typename?: 'bloxx_transaction' }
-      & Pick<Bloxx_Transaction, 'inputaddress' | 'outputAddress' | 'txHash' | 'value'>
+      & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value'>
     )> }
   )> }
 );
@@ -1753,7 +1763,7 @@ export type TransactionsQuery = (
   { __typename: 'query_root' }
   & { bloxx_transaction: Array<(
     { __typename?: 'bloxx_transaction' }
-    & Pick<Bloxx_Transaction, 'inputaddress' | 'outputAddress' | 'text' | 'txHash' | 'value'>
+    & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'text' | 'txHash' | 'value'>
   )> }
 );
 
@@ -1779,54 +1789,62 @@ export type OnNewTransactionAddedSubscription = (
   { __typename?: 'subscription_root' }
   & { bloxx_transaction: Array<(
     { __typename?: 'bloxx_transaction' }
-    & Pick<Bloxx_Transaction, 'inputaddress' | 'outputAddress' | 'txHash' | 'value'>
+    & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value'>
   )> }
 );
 
 
-export const InsertBlockDocument = gql`
-    mutation insertBlock($blockHash: String, $blockNumber: Int, $blockStatus: String, $createdAt: timestamp, $difficulty: Int, $merkleRoot: String, $nonce: Int, $previousBlockHash: String, $txHash: String) {
-  insert_bloxx_block(objects: {blockHash: $blockHash, blockNumber: $blockNumber, blockStatus: $blockStatus, createdAt: $createdAt, difficulty: $difficulty, merkleRoot: $merkleRoot, nonce: $nonce, previousBlockHash: $previousBlockHash}) {
+export const UpsertBlockDocument = gql`
+    mutation upsertBlock($objects: [bloxx_block_insert_input!]!) {
+  insert_bloxx_block(objects: $objects) {
     affected_rows
     returning {
       blockHash
+      blockNumber
+      blockStatus
+      createdAt
+      difficulty
+      merkleRoot
+      nonce
+      previousBlockHash
+      transactions {
+        blockNumber
+        inputAddress
+        outputAddress
+        signature
+        text
+        txHash
+        value
+      }
     }
   }
 }
     `;
-export type InsertBlockMutationFn = ApolloReactCommon.MutationFunction<InsertBlockMutation, InsertBlockMutationVariables>;
+export type UpsertBlockMutationFn = ApolloReactCommon.MutationFunction<UpsertBlockMutation, UpsertBlockMutationVariables>;
 
 /**
- * __useInsertBlockMutation__
+ * __useUpsertBlockMutation__
  *
- * To run a mutation, you first call `useInsertBlockMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useInsertBlockMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpsertBlockMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertBlockMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [insertBlockMutation, { data, loading, error }] = useInsertBlockMutation({
+ * const [upsertBlockMutation, { data, loading, error }] = useUpsertBlockMutation({
  *   variables: {
- *      blockHash: // value for 'blockHash'
- *      blockNumber: // value for 'blockNumber'
- *      blockStatus: // value for 'blockStatus'
- *      createdAt: // value for 'createdAt'
- *      difficulty: // value for 'difficulty'
- *      merkleRoot: // value for 'merkleRoot'
- *      nonce: // value for 'nonce'
- *      previousBlockHash: // value for 'previousBlockHash'
- *      txHash: // value for 'txHash'
+ *      objects: // value for 'objects'
  *   },
  * });
  */
-export function useInsertBlockMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<InsertBlockMutation, InsertBlockMutationVariables>) {
-        return ApolloReactHooks.useMutation<InsertBlockMutation, InsertBlockMutationVariables>(InsertBlockDocument, baseOptions);
+export function useUpsertBlockMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpsertBlockMutation, UpsertBlockMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpsertBlockMutation, UpsertBlockMutationVariables>(UpsertBlockDocument, baseOptions);
       }
-export type InsertBlockMutationHookResult = ReturnType<typeof useInsertBlockMutation>;
-export type InsertBlockMutationResult = ApolloReactCommon.MutationResult<InsertBlockMutation>;
-export type InsertBlockMutationOptions = ApolloReactCommon.BaseMutationOptions<InsertBlockMutation, InsertBlockMutationVariables>;
+export type UpsertBlockMutationHookResult = ReturnType<typeof useUpsertBlockMutation>;
+export type UpsertBlockMutationResult = ApolloReactCommon.MutationResult<UpsertBlockMutation>;
+export type UpsertBlockMutationOptions = ApolloReactCommon.BaseMutationOptions<UpsertBlockMutation, UpsertBlockMutationVariables>;
 export const InsertNodeDocument = gql`
     mutation insertNode($publicKey: String, $privateKey: String, $address: String) {
   insert_bloxx_node(objects: {publicKey: $publicKey, privateKey: $privateKey, addresses: {data: {id: $address}}}) {
@@ -1869,12 +1887,13 @@ export type InsertNodeMutationHookResult = ReturnType<typeof useInsertNodeMutati
 export type InsertNodeMutationResult = ApolloReactCommon.MutationResult<InsertNodeMutation>;
 export type InsertNodeMutationOptions = ApolloReactCommon.BaseMutationOptions<InsertNodeMutation, InsertNodeMutationVariables>;
 export const InsertTransactionDocument = gql`
-    mutation insertTransaction($inputAddress: String, $outputAddress: String, $value: Int, $txHash: String) {
-  insert_bloxx_transaction(objects: {inputaddress: $inputAddress, outputAddress: $outputAddress, value: $value, txHash: $txHash}) {
+    mutation insertTransaction($inputAddress: String, $outputAddress: String, $value: Int, $signature: String, $txHash: String) {
+  insert_bloxx_transaction(objects: {inputAddress: $inputAddress, outputAddress: $outputAddress, value: $value, signature: $signature, txHash: $txHash}) {
     affected_rows
     returning {
-      inputaddress
+      inputAddress
       outputAddress
+      signature
       txHash
       value
     }
@@ -1899,6 +1918,7 @@ export type InsertTransactionMutationFn = ApolloReactCommon.MutationFunction<Ins
  *      inputAddress: // value for 'inputAddress'
  *      outputAddress: // value for 'outputAddress'
  *      value: // value for 'value'
+ *      signature: // value for 'signature'
  *      txHash: // value for 'txHash'
  *   },
  * });
@@ -1949,7 +1969,7 @@ export const TransactionsDocument = gql`
     query Transactions {
   __typename
   bloxx_transaction {
-    inputaddress
+    inputAddress
     outputAddress
     text
     txHash
@@ -2016,8 +2036,9 @@ export type OnNewNodeAddedSubscriptionResult = ApolloReactCommon.SubscriptionRes
 export const OnNewTransactionAddedDocument = gql`
     subscription onNewTransactionAdded {
   bloxx_transaction {
-    inputaddress
+    inputAddress
     outputAddress
+    signature
     txHash
     value
   }
