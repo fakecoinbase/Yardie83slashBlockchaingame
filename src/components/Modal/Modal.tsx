@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { Modal as RModal } from "rendition";
-import { useMutation } from "@apollo/react-hooks";
 import useUserInfo from "../../customHooks/useUserInfo/useUserInfo";
+import { useInsertNodeMutation } from "../../generated/graphql";
 import generateNode from "../../services/nodeGen";
-import { ADD_NODE } from "../../graphql/mutations";
 import {} from "./ModalStyles.js";
 
 interface Props {
@@ -12,23 +11,27 @@ interface Props {
 
 const Modal = (props: Props) => {
   const [userInfo, setUserInfo] = useUserInfo();
-  const [addNode] = useMutation(ADD_NODE, {
-    context: {
-      headers: { HASURA_GRAPHQL_UNAUTHORIZED_ROLE: process.env.HASURA_GRAPHQL_UNAUTHORIZED_ROLE }
+  const [insertNodeMutation, { data, loading, error }] = useInsertNodeMutation({
+    variables: {
+      publicKey: "",
+      privateKey: "",
+      address: ""
     }
   });
 
   useEffect(() => {
     const info = generateNode();
-    const result = addNode({
+    insertNodeMutation({
       variables: { publicKey: info.publicKey, privateKey: info.privateKey, address: info.address }
-    });
-    result
+    })
       .then(res => {
         return {
-          privateKey: res.data.insert_bloxx_node.returning[0].privateKey,
-          publicKey: res.data.insert_bloxx_node.returning[0].publicKey,
-          address: res.data.insert_bloxx_node.returning[0].addresses[0].id
+          privateKey: res.data!.insert_bloxx_node!.returning[0].privateKey,
+          publicKey: res.data!.insert_bloxx_node!.returning[0].publicKey,
+          address: {
+            id: res.data!.insert_bloxx_node!.returning[0].addresses[0].id,
+            amount: 0
+          }
         };
       })
       .then(userInfo => setUserInfo(userInfo));
@@ -52,7 +55,7 @@ const Modal = (props: Props) => {
           {userInfo.publicKey && userInfo.publicKey}
         </p>
         <p>
-          <strong>Node address: </strong> {userInfo.address && userInfo.address}
+          <strong>Node address: </strong> {userInfo.address.id && userInfo.address.id}
         </p>
         <p>You can find this information in the top of the next screen</p>
       </div>
