@@ -1772,6 +1772,17 @@ export type OnNewNodeAddedSubscription = (
   )> }
 );
 
+export type OnNewTransactionAddedSubscriptionVariables = {};
+
+
+export type OnNewTransactionAddedSubscription = (
+  { __typename?: 'subscription_root' }
+  & { bloxx_transaction: Array<(
+    { __typename?: 'bloxx_transaction' }
+    & Pick<Bloxx_Transaction, 'inputaddress' | 'outputAddress' | 'txHash' | 'value'>
+  )> }
+);
+
 
 export const InsertBlockDocument = gql`
     mutation insertBlock($blockHash: String, $blockNumber: Int, $blockStatus: String, $createdAt: timestamp, $difficulty: Int, $merkleRoot: String, $nonce: Int, $previousBlockHash: String, $txHash: String) {
@@ -2002,3 +2013,34 @@ export function useOnNewNodeAddedSubscription(baseOptions?: ApolloReactHooks.Sub
       }
 export type OnNewNodeAddedSubscriptionHookResult = ReturnType<typeof useOnNewNodeAddedSubscription>;
 export type OnNewNodeAddedSubscriptionResult = ApolloReactCommon.SubscriptionResult<OnNewNodeAddedSubscription>;
+export const OnNewTransactionAddedDocument = gql`
+    subscription onNewTransactionAdded {
+  bloxx_transaction {
+    inputaddress
+    outputAddress
+    txHash
+    value
+  }
+}
+    `;
+
+/**
+ * __useOnNewTransactionAddedSubscription__
+ *
+ * To run a query within a React component, call `useOnNewTransactionAddedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useOnNewTransactionAddedSubscription` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOnNewTransactionAddedSubscription({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useOnNewTransactionAddedSubscription(baseOptions?: ApolloReactHooks.SubscriptionHookOptions<OnNewTransactionAddedSubscription, OnNewTransactionAddedSubscriptionVariables>) {
+        return ApolloReactHooks.useSubscription<OnNewTransactionAddedSubscription, OnNewTransactionAddedSubscriptionVariables>(OnNewTransactionAddedDocument, baseOptions);
+      }
+export type OnNewTransactionAddedSubscriptionHookResult = ReturnType<typeof useOnNewTransactionAddedSubscription>;
+export type OnNewTransactionAddedSubscriptionResult = ApolloReactCommon.SubscriptionResult<OnNewTransactionAddedSubscription>;
