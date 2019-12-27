@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createStore } from 'reusable';
 
-const useMempoolTransactions = createStore(() => {
+const useSelectedTransactions = createStore(() => {
 	const [selectedMempoolTransactions, setSelectedMempoolTransactions] = useState([{
 		input: '',
 		output: '',
@@ -18,4 +18,4 @@ const useMempoolTransactions = createStore(() => {
 	]
 });
 
-export default useMempoolTransactions;
+export default useSelectedTransactions;
