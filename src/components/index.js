@@ -3,7 +3,7 @@ import Hasher from "./Hasher";
 import Signature from "./Signature";
 import Wallet from "./Wallet";
 import UnspentTx from "./UnspentTx";
-import Mempool from "./Mempool";
+import Mempool from "./Mempool/Mempool";
 import Blockchain from "./Blockchain";
 import Block from "./Block";
 import Modal from "./Modal"
