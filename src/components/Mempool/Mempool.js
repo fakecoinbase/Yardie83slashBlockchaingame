@@ -2,12 +2,11 @@ import React from 'react'
 import { } from './MempoolStyles.js'
 import { Provider, Box, Table, } from 'rendition'
 import Title from '../util/Title/Title'
-import useMempoolTransactions from '../../customHooks/useMempoolTransactions/useMempoolTransactions.js';
-
+import useSelectedTransactions from '../../customHooks/useSelectedTransactions/useSelectedlTransactions';
 
 const Mempool = () => {
 
-	const [, setSelectedTransaction] = useMempoolTransactions();
+	const [, setSelectedTransaction] = useSelectedTransactions();
 
 	const data = [
 		{
