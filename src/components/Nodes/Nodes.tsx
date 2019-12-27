@@ -1,28 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Title from "../util/Title/Title";
 import NodeList from "./NodeList/NodeList";
-import { useSubscription } from "@apollo/react-hooks";
-import NEW_NODE_ADDED from "../../graphql/subscriptions/onNewNodeAdded";
-
-interface Address {
-  id: string;
-}
-
-interface Addresses extends Array<Address> {}
-
-interface Node {
-  publicKey: string;
-  addresses: Addresses;
-}
-
-interface Nodes {
-  bloxx_node: Array<Node>;
-}
+import {useOnNewNodeAddedSubscription} from '../../generated/graphql'
 
 const Nodes = (props: any) => {
   const [nodes, setNodes] = useState<Array<Object>>([]);
 
-  const { data } = useSubscription<Nodes>(NEW_NODE_ADDED);
+  const { data } = useOnNewNodeAddedSubscription();
 
   useEffect(() => {
     if (data) {
@@ -36,7 +20,6 @@ const Nodes = (props: any) => {
           });
         }
       });
-      console.table(_nodes);
       setNodes(_nodes);
     }
   }, [data]);
