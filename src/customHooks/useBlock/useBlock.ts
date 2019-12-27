@@ -5,7 +5,7 @@ export interface Block {
 	blockHash: string,
 	blockNumber: number,
 	blockStatus: string,
-	createdAt?: Date,
+	timestamp?: Date,
 	difficulty: number,
 	merkleRoot: string,
 	nonce: number,
@@ -15,7 +15,7 @@ export interface Block {
 }
 
 
-const useBlock = createStore(() => {
+const useBlock = createStore<(Block | React.Dispatch<React.SetStateAction<Block | undefined>> | undefined)[]>(() => {
 	const [block, setBlock] = useState<Block>()
 	return [
 		block,
