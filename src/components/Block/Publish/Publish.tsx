@@ -2,30 +2,43 @@ import React from "react";
 import {} from "./PublishStyles.js";
 import { Button } from "@material-ui/core";
 import Title from "../../util/Title/Title";
-import useBlock from "../../../customHooks/useBlock";
-import { useInsertBlockMutation } from "../../../generated/graphql";
+import useBlock, { Block } from "../../../customHooks/useBlock";
+import { useUpsertBlockMutation, Bloxx_Transaction_Constraint, Bloxx_Transaction_Update_Column } from "../../../generated/graphql";
 
 const Publish = () => {
-  const [block] = useBlock();
-  const [insertBlock, { data, error, loading }] = useInsertBlockMutation();
+  const [block]: [Block] = useBlock();
+  const [upsertBlockMutation] = useUpsertBlockMutation();
 
+  /**
+   * 
+   */
+  //TODO Implement appropriate checks before allowing users to publish a block
   const onPublish = () => {
-    insertBlock({
+    upsertBlockMutation({
       variables: {
-        blockHash: "Test",
-        blockNumber: 1,
-        blockStatus: "published",
-        createdAt: new Date(),
-        difficulty: 1,
-        merkleRoot: "merkleRoot",
-        nonce: 2,
-        previousBlockHash: "TestBlock",
-        txHash: "txHashtxHash"
-      }
+        objects: [
+          {
+            blockHash: block.blockHash,
+            blockNumber: block.blockNumber,
+            blockStatus: block.blockStatus,
+            createdAt: block.timestamp,
+            difficulty: block.difficulty,
+            merkleRoot: block.merkleRoot,
+            nonce: block.nonce,
+            previousBlockHash: block.previousBlockHash,
+            transactions: {
+              on_conflict: {
+                constraint: Bloxx_Transaction_Constraint.TransactionPkey,
+                update_columns: [Bloxx_Transaction_Update_Column.BlockNumber]
+               },
+               data: block.transactions! }
+          }
+        ]
+      }, 
     })
       .then(
         success => {
-          console.log(success.data!.insert_bloxx_block!.returning.entries);
+          console.log(success.data!.insert_bloxx_block!)
         },
         rejected => {
           console.log("[Rejected] ", rejected);
