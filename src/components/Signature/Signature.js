@@ -65,7 +65,7 @@ const Signature = () => {
             style={{
               paddingLeft: "10px",
               paddingRight: "10px",
-              paddingTop: "10px"
+              paddingTop: "5px"
             }}
           >
             <LabeledInput
