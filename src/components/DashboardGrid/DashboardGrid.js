@@ -29,7 +29,7 @@ const DashboardGrid = () => {
           breakpoints={breakpoints}
           cols={cols}
           isDraggable={false}
-          margin={[10, 20, 10, 20]}
+          margin={[10, 15, 10, 20]}
           // FIXME rowHeight should be dynamic; it depends on the window height of each device
           rowHeight={125}
         >
