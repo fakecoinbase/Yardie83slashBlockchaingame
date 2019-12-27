@@ -5,7 +5,10 @@ const useUserInfo = createStore(() => {
 	const [userInfo, setUserInfo] = useState({
 			privateKey: "",
 			publicKey: "",
-			address: "",
+			address: {
+				id: "",
+				amount: 0
+			},
 	})
 
 	return [
