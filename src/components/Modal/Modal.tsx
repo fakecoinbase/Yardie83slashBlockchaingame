@@ -11,7 +11,7 @@ interface Props {
 
 const Modal = (props: Props) => {
   const [userInfo, setUserInfo] = useUserInfo();
-  const [insertNodeMutation, { data, loading, error }] = useInsertNodeMutation({
+  const [insertNodeMutation] = useInsertNodeMutation({
     variables: {
       publicKey: "",
       privateKey: "",
