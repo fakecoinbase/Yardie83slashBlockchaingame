@@ -4,7 +4,7 @@ const TRANSACTIONS = gql`
 query Transactions {
     __typename
     bloxx_transaction {
-      inputaddress
+      inputAddress
       outputAddress
       text
       txHash
