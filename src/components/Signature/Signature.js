@@ -11,6 +11,8 @@ const Signature = () => {
   const [signature, setSignature] = useState("");
   const [checkedSignature, setCheckedSignature] = useState("");
   const [signatureIsValid, setSignatureIsValid] = useState(undefined);
+  const [signError, setSignError] = useState("")
+  const [checkError, setCheckError] = useState("")
 
   const onChange = e => {
     if (e.target.id === "s1")
@@ -27,16 +29,26 @@ const Signature = () => {
 
   const signTX = () => {
     const { p1, p2 } = signParams;
-    const result = sign(p1, p2);
-    setSignature(result);
+    let result
+    try {
+      result = sign(p1, p2);
+      setSignature(result);
+    } catch (error) {
+      setSignError("Input parameter is not supported");
+    }
   };
 
   const checkTx = () => {
     const { p1, p2, p3 } = checkParams;
-    const result = check(p1, p2, p3);
-    setSignatureIsValid(result);
-    const response = result ? "Signature is valid" : "Signature is invalid";
-    setCheckedSignature(response);
+    let result;
+    try {
+      result = check(p1, p2, p3);
+      setSignatureIsValid(result);
+      const response = result ? "Signature is valid" : "Signature is invalid";
+      setCheckedSignature(response);
+    } catch (error) {
+      setCheckError("Input parameter is not supported");
+    }
   };
 
   useEffect(() => {
@@ -47,12 +59,14 @@ const Signature = () => {
     ) {
       setCheckedSignature("");
       setSignatureIsValid(undefined);
+      setCheckError("");
     }
   }, [checkParams]);
 
   useEffect(() => {
     if (signParams.p1 === "" || signParams.p2 === "") {
       setSignature("");
+      setSignError("");
     }
   }, [signParams]);
 
@@ -101,10 +115,10 @@ const Signature = () => {
                 Output
               </span>
               <Input
-                value={signature}
+                value={(signature !== "" ? signature : signError !== "" ? signError : signature)}
                 readonly={true}
                 style={{
-                  borderColor: signature !== "" ? "green" : ""
+                  borderColor: (signature !== "" ? "green" : signError === "" ? "" : "red")
                 }}
               />
             </div>
@@ -158,15 +172,10 @@ const Signature = () => {
                 Output
               </span>
               <Input
-                value={checkedSignature}
+                value={(checkedSignature !== "" ? checkedSignature : checkError !== "" ? checkError : checkedSignature)}
                 readonly={true}
                 style={{
-                  borderColor:
-                    signatureIsValid !== undefined
-                      ? signatureIsValid
-                        ? "green"
-                        : "red"
-                      : ""
+                  borderColor: signatureIsValid !== undefined ? signatureIsValid ? "green" : "red" : checkError ? "red" : ""
                 }}
               />
             </div>
