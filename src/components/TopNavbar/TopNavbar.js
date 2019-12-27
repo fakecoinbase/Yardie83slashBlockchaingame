@@ -3,14 +3,13 @@ import { } from './TopNavbarStyles.js';
 import useUserInfo from '../../customHooks/useUserInfo'
 import { Provider, Navbar, Txt, TextWithCopy } from 'rendition';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import Button from "@material-ui/core/Button";
+import {GoLink} from 'react-icons/go'
 
 import Logo from '../../assets/img/logo.png'
 
 const TopNavbar = () => {
 
 	const [userInfo] = useUserInfo();
-
 	const [showPK, setShowPK] = useState(false);
 
 	const togglePK = () => {
@@ -18,22 +17,18 @@ const TopNavbar = () => {
 	}
 
 	const brand = (
-		<div style={{ display: "flex", justifyContent: "center" }}>
+		<div style={{ display: "flex", justifyContent: "center", padding: "0px"}}>
 			<div style={{ paddingTop: "15px", paddingRight: "20px" }}>
 				<img alt="" src={Logo} width={40} height={40} />
 			</div>
-			<h1>Blo-x-x Game</h1>
+			<h1> Bloxx <GoLink/> Game </h1>
 		</div>
 	)
-
-	const togglePrivateKey = () => {
-		setShowPK(!showPK);
-	}
 
 	return (
 		<>
 			<Provider>
-				<Navbar brand={brand} style={{ background: "#282828", height: "70px", }}>
+				<Navbar brand={brand} style={{ background: "#282828", height: "70px"}}>
 					<Txt color='white'>
 						My Private Key:
 					</Txt>
