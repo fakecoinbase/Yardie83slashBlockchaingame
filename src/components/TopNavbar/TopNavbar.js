@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { } from './TopNavbarStyles.js';
 import useUserInfo from '../../customHooks/useUserInfo'
 import { Provider, Navbar, Txt, TextWithCopy } from 'rendition';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import Button from "@material-ui/core/Button";
 
 import Logo from '../../assets/img/logo.png'
@@ -12,12 +13,16 @@ const TopNavbar = () => {
 
 	const [showPK, setShowPK] = useState(false);
 
+	const togglePK = () => {
+		setShowPK(!showPK)
+	}
+
 	const brand = (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<div style={{ paddingTop: "15px", paddingRight: "20px" }}>
 				<img alt="" src={Logo} width={40} height={40} />
 			</div>
-			<h1>Bloxx Game</h1>
+			<h1>Blo-x-x Game</h1>
 		</div>
 	)
 
@@ -29,21 +34,23 @@ const TopNavbar = () => {
 		<>
 			<Provider>
 				<Navbar brand={brand} style={{ background: "#282828", height: "70px", }}>
-					<span>|</span>
 					<Txt color='white'>
 						My Private Key:
 					</Txt>
-					<Button variant="contained" style={{ width: "20px", height: "20px", paddingBottom:"20px", fontSize: "10px", backgroundColor: (showPK ? "#e87474" : "") }} onClick={togglePrivateKey}><strong>{showPK ? "Hide" : "Show"}</strong></Button>
-					<Txt color='white' style={{ visibility: (showPK ? "visible" : "hidden"), color: "#e87474" }}>
-						<TextWithCopy copy={userInfo.privateKey} ><strong>{userInfo.privateKey && userInfo.privateKey.slice(27, 35)} </strong></TextWithCopy>
+					<Txt color='white' style={{ color: (showPK ? "#e87474" : "white") }}>
+						{showPK ?
+							<TextWithCopy showCopyButton={showPK? "always": ""} copy={userInfo.privateKey} >
+								<strong>{userInfo.privateKey && userInfo.privateKey.slice(27, 35)} </strong>
+							</TextWithCopy> : <Txt>● ● ● ● ● ●</Txt>}
 					</Txt>
+					{showPK ? <FaEye size={20} color={"#e87474"} onClick={togglePK} /> : <FaEyeSlash size={20} onClick={togglePK} />}
 					<span>|</span>
 					<Txt color='white'>
 						My Public Key: <TextWithCopy showCopyButton={"always"} copy={userInfo.publicKey}><strong>{userInfo.publicKey && userInfo.publicKey.slice(27, 35)} </strong></TextWithCopy>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Address: <TextWithCopy showCopyButton={"always"} copy={userInfo.address}><strong>{userInfo.address && userInfo.address.slice(0, 8)} </strong></TextWithCopy>
+						My Address: <TextWithCopy showCopyButton={"always"} copy={userInfo.address}><strong>{userInfo.address && userInfo.address.id.slice(0, 8)} </strong></TextWithCopy>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
