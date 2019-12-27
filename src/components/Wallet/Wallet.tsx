@@ -5,11 +5,13 @@ import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput/LabeledInput";
 import useUserInfo from "../../customHooks/useUserInfo/useUserInfo";
+import { useInsertTransactionMutation } from "../../generated/graphql";
 
 const Wallet = () => {
-  const [userInfo, setUserInfo] = useUserInfo();
+  const [userInfo] = useUserInfo();
   const [canBroadcast, setCanBroadcast] = useState(false);
   const [fields, setFields] = useState({ to: "", amount: "", signature: "", txHash: "" });
+  const [insertTransactionMutation] = useInsertTransactionMutation();
 
   const copyTosign = () => {};
   const copyToHasher = () => {};
@@ -24,11 +26,23 @@ const Wallet = () => {
     setCanBroadcast(!isDisabled);
   }, [fields]);
 
-  const onBroadcast = () => {};
+  const onBroadcast = () => {
+    insertTransactionMutation({
+      variables: {
+        inputAddress: userInfo.address.id,
+        outputAddress: fields.to,
+        value: parseInt(fields.amount),
+        signature: fields.signature,
+        txHash: fields.txHash
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  };
 
-  //TODO Improve validation to check for write format of input
+  //TODO Improve validation to check for write format of input. 
+  // If any of the returned values is true, then we can not broadcast
   const validate = (to: string, amount: number, signature: string, txHash: string) => {
-    console.log("[Amount]", amount);
     return [to.length === 0, isNaN(amount), signature.length === 0, txHash.length === 0];
   };
 
