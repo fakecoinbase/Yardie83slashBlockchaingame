@@ -36,9 +36,24 @@ const Blockchain = () => {
   );
 
   return (
-    <div style={{ height: "220px", minWidth: "600px"}}>
+    <div style={{ height: "220px", minWidth: "600px" }}>
       <Title subTitle={subTitle} />
-      <Tree data={myTreeData} />
+      <Tree
+        data={myTreeData}
+        collapsible={false}
+        pathFunc={"elbow"}
+		translate={{ x: 50, y: 100 }}
+		zoom={0.8}
+        nodeSvgShape={{
+          shape: "rect",
+          shapeProps: {
+            width: 140,
+            height: 20,
+            y: -20,
+            x: -10
+          }
+        }}
+      />
     </div>
   );
 };
