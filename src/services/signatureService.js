@@ -5,13 +5,6 @@ const KJUR = require("jsrsasign");
 
 export const sign = (para1, para2) => {
   //for a sign function, we need hash of message (para1), secret key D (para2)
-  /* const pair = keys.keyPair();
-
-  const pubKey = pair[0];
-  console.log("pub Key from sign", pubKey);
-
-  const privKey = pair[1];
-  console.log("priv Key from sign", privKey);*/
 
   //load priv obj
   const priv = KJUR.KEYUTIL.getKey(para2);
@@ -37,21 +30,6 @@ export const check = (para1, para2, para3) => {
 
   return isValidSig;
 };
-
-// function decimalToHex(d, padding) {
-//   let BigInt = bigInt;
-//   var hex = BigInt(d).toString(16);
-//   padding =
-//     typeof padding === "undefined" || padding === null
-//       ? (padding = 2)
-//       : padding;
-
-//   while (hex.length < padding) {
-//     hex = "0" + hex;
-//   }
-
-//   return hex;
-// }
 
 // var b64map = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 // var b64padchar = "=";
