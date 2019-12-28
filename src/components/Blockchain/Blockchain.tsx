@@ -1,28 +1,72 @@
 import React from "react";
-import Tree from "react-d3-tree";
+import Tree, { ReactD3TreeItem } from "react-d3-tree";
 import {} from "./BlockchainStyles.js";
 import Title from "../util/Title/Title";
 
 const Blockchain = () => {
-  const myTreeData = [
+  const myTreeData: ReactD3TreeItem[] = [
     {
-      name: "Top Level",
+      name: "Genesis",
       attributes: {
-        keyA: "val A",
-        keyB: "val B",
-        keyC: "val C"
+        BlockNumber: "0",
+        BlockHash: "e3w4zg4h45b",
+        BlockStatus: "Accepted"
       },
       children: [
         {
-          name: "Level 2: A",
+          name: "Block: 1",
           attributes: {
-            keyA: "val A",
-            keyB: "val B",
-            keyC: "val C"
+            BlockNumber: "1",
+            BlockHash: "e3w4zg4h45b",
+            BlockStatus: "Pending"
+          },
+          nodeSvgShape: {
+            shape: "rect",
+            shapeProps: {
+              width: 100,
+              height: 20,
+              y: -20,
+              x: -10,
+              fill: "red"
+            }
           }
         },
         {
-          name: "Level 2: B"
+          name: "Block: 1",
+          attributes: {
+            BlockNumber: "1",
+            BlockHash: "e3w4zg4h45b",
+            BlockStatus: "Accepted"
+		  },
+		  nodeSvgShape: {
+            shape: "rect",
+            shapeProps: {
+              width: 100,
+              height: 20,
+              y: -20,
+              x: -10,
+              fill: "green"
+            }
+          }, children: [
+			{
+				name: "Block: 2",
+				attributes: {
+				  BlockNumber: "2",
+				  BlockHash: "236zhg432",
+				  BlockStatus: "Pending"
+				},
+				nodeSvgShape: {
+				  shape: "rect",
+				  shapeProps: {
+					width: 100,
+					height: 20,
+					y: -20,
+					x: -10,
+					fill: "red"
+				  }
+				}
+			  }, 
+		  ]
         }
       ]
     }
@@ -42,12 +86,12 @@ const Blockchain = () => {
         data={myTreeData}
         collapsible={false}
         pathFunc={"elbow"}
-		translate={{ x: 50, y: 100 }}
-		zoom={0.8}
+        translate={{ x: 50, y: 100 }}
+        zoom={0.8}
         nodeSvgShape={{
           shape: "rect",
           shapeProps: {
-            width: 140,
+            width: 100,
             height: 20,
             y: -20,
             x: -10
