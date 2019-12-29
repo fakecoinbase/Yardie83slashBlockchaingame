@@ -1804,10 +1804,10 @@ export type OnNewTransactionAddedSubscription = (
   & { bloxx_transaction: Array<(
     { __typename?: 'bloxx_transaction' }
     & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value'>
-    & { address: (
+    & { addressByInputaddress: Maybe<(
       { __typename?: 'bloxx_address' }
       & Pick<Bloxx_Address, 'nodePublicKey'>
-    ) }
+    )> }
   )> }
 );
 
@@ -2086,7 +2086,7 @@ export const OnNewTransactionAddedDocument = gql`
     signature
     txHash
     value
-    address {
+    addressByInputaddress {
       nodePublicKey
     }
   }

@@ -33,7 +33,7 @@ const Mempool = () => {
       const extendedData = data.bloxx_transaction;
       extendedData.forEach(
         transaction => {
-          transaction.pubKey = transaction.address.nodePublicKey
+          transaction.pubKey = transaction.addressByInputaddress.nodePublicKey
           transaction.dataToCheck = {
             signedData: (transaction.inputAddress.concat(":".concat(transaction.outputAddress.concat(":".concat(transaction.value))))),
             pubKey: transaction.pubKey,
