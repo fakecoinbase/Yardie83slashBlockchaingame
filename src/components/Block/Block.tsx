@@ -41,7 +41,6 @@ const Block = () => {
           value={difficulty}
           onChange={e => onChange("difficulty", e.target.value)}
         />
-        <LabeledInput label={"Block Hash"} onChange={e => onChange("blockHash", e.target.value)} />
         <LabeledInput label={"Nonce"} onChange={e => onChange("nonce", parseInt(e.target.value))} />
         <div
           style={{
@@ -62,6 +61,7 @@ const Block = () => {
             Generate Nonce
           </Button>
         </div>
+      <LabeledInput label={"Block Hash"} onChange={e => onChange("blockHash", e.target.value)} />
       </div>
       <div style={{ minHeight: "250px" }}>
         <Table
