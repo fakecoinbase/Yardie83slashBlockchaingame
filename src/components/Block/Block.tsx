@@ -7,6 +7,7 @@ import LabeledInput from "../util/LabeledInput";
 import Publish from "./Publish";
 import useBlock, { BlockType } from "../../customHooks/useBlock";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
+import miningService from "../../services/miningService.js";
 
 const Block = () => {
   const [block, setBlock]: [BlockType, React.Dispatch<React.SetStateAction<BlockType | undefined>>] = useBlock();
@@ -21,6 +22,10 @@ const Block = () => {
   useEffect(() => {
     setBlock({ ...block });
   }, [selectedTransactions]);
+
+  const solveNonce = () => {
+    const nonce = miningService(""); 
+  };
 
   return (
     <>
@@ -54,14 +59,11 @@ const Block = () => {
           <Button variant="contained" size="small">
             Copy to Hasher
           </Button>
-          <Button variant="contained" size="small">
+          <Button variant="contained" size="small" onClick={solveNonce}>
             Solve Nonce
           </Button>
-          <Button variant="contained" color="primary" size="small" onClick={() => {}}>
-            Generate Nonce
-          </Button>
         </div>
-      <LabeledInput label={"Block Hash"} onChange={e => onChange("blockHash", e.target.value)} />
+        <LabeledInput label={"Block Hash"} onChange={e => onChange("blockHash", e.target.value)} />
       </div>
       <div style={{ minHeight: "250px" }}>
         <Table
