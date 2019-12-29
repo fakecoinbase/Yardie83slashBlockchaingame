@@ -87,7 +87,6 @@ const Blockchain = () => {
         collapsible={false}
         pathFunc={"elbow"}
         translate={{ x: 50, y: 100 }}
-        zoom={0.8}
         nodeSvgShape={{
           shape: "rect",
           shapeProps: {

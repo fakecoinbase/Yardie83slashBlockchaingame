@@ -6,15 +6,26 @@ import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput/LabeledInput";
 import useUserInfo from "../../customHooks/useUserInfo/useUserInfo";
 import { useInsertTransactionMutation } from "../../generated/graphql";
+import useDataToSign from "../../customHooks/useDataToSign";
+import useDataToHash from "../../customHooks/useDataToHash";
 
 const Wallet = () => {
   const [userInfo] = useUserInfo();
   const [canBroadcast, setCanBroadcast] = useState(false);
   const [fields, setFields] = useState({ to: "", amount: "", signature: "", txHash: "" });
   const [insertTransactionMutation] = useInsertTransactionMutation();
+  const [, setDataToSign]: [string, React.Dispatch<React.SetStateAction<string>>] = useDataToSign();
+  const [, setDataToHash]: [string, React.Dispatch<React.SetStateAction<string>>] = useDataToHash();
 
-  const copyTosign = () => {};
-  const copyToHasher = () => {};
+  const copyToSign = () => {
+    if (fields !== undefined)
+      setDataToSign(userInfo.address.id.concat(":".concat(fields.to.concat(":".concat(fields.amount)))));
+  };
+
+  const copyToHasher = () => {
+    if (fields !== undefined)
+      setDataToHash(fields.to.concat(":".concat(fields.amount.concat(":".concat(fields.signature)))));
+  };
 
   const onChange = (key: string, value: string) => {
     setFields({ ...fields, [key]: value });
@@ -40,7 +51,7 @@ const Wallet = () => {
     });
   };
 
-  //TODO Improve validation to check for write format of input. 
+  //TODO Improve validation to check for write format of input.
   // If any of the returned values is true, then we can not broadcast
   const validate = (to: string, amount: number, signature: string, txHash: string) => {
     return [to.length === 0, isNaN(amount), signature.length === 0, txHash.length === 0];
@@ -69,7 +80,7 @@ const Wallet = () => {
         <LabeledInput label={"Amount"} placeholder={"Amount"} onChange={e => onChange("amount", e.target.value)} />
         <div style={{ paddingBottom: "20px" }}>
           <div style={{ float: "right", right: "0px", paddingRight: "10px" }}>
-            <Button onClick={copyTosign} variant="contained" color="primary" size="small">
+            <Button onClick={copyToSign} variant="contained" color="primary" size="small">
               Copy to Sign
             </Button>
           </div>

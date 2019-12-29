@@ -1,13 +1,27 @@
 import { gql } from 'apollo-boost';
-/**
- * Inserts a block and updates the "blocknumber" of the included already existing transactions
- * If inserting or updating fails, the entire transaction fails
- */
+
 const ADD_BLOCK = gql`
 mutation upsertBlock(
-  $objects: [bloxx_block_insert_input!]!) {
+  $blockNumber: Int, 
+  $previousBlockHash: String, 
+  $createdAt: timestamp, 
+  $difficulty: Int, 
+  $merkleRoot: String, 
+  $nonce: Int, 
+  $blockHash:String, 
+  $blockStatus: String, 
+  ) {
     insert_bloxx_block(
-      objects:$objects
+      objects: {
+        blockNumber: $blockNumber
+        previousBlockHash: $previousBlockHash
+        createdAt: $createdAt
+        difficulty: $difficulty
+        merkleRoot: $merkleRoot
+        nonce: $nonce
+        blockHash: $blockHash
+        blockStatus: $blockStatus
+      }
     )
     {
     affected_rows
@@ -20,15 +34,6 @@ mutation upsertBlock(
         merkleRoot
         nonce
         previousBlockHash
-        transactions {
-          blockNumber
-          inputAddress
-          outputAddress
-          signature
-          text
-          txHash
-          value
-        }
     }
     }
   }`;

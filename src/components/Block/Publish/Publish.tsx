@@ -2,43 +2,30 @@ import React from "react";
 import {} from "./PublishStyles.js";
 import { Button } from "@material-ui/core";
 import Title from "../../util/Title/Title";
-import useBlock, { Block } from "../../../customHooks/useBlock";
-import { useUpsertBlockMutation, Bloxx_Transaction_Constraint, Bloxx_Transaction_Update_Column } from "../../../generated/graphql";
+import useBlock, { BlockType } from "../../../customHooks/useBlock";
+import { useUpsertBlockMutation } from "../../../generated/graphql";
 
 const Publish = () => {
-  const [block]: [Block] = useBlock();
+  const [block]: [BlockType] = useBlock();
   const [upsertBlockMutation] = useUpsertBlockMutation();
 
-  /**
-   * 
-   */
-  //TODO Implement appropriate checks before allowing users to publish a block
   const onPublish = () => {
+    console.log(block);
     upsertBlockMutation({
       variables: {
-        objects: [
-          {
-            blockHash: block.blockHash,
-            blockNumber: block.blockNumber,
-            blockStatus: block.blockStatus,
-            createdAt: block.timestamp,
-            difficulty: block.difficulty,
-            merkleRoot: block.merkleRoot,
-            nonce: block.nonce,
-            previousBlockHash: block.previousBlockHash,
-            transactions: {
-              on_conflict: {
-                constraint: Bloxx_Transaction_Constraint.TransactionPkey,
-                update_columns: [Bloxx_Transaction_Update_Column.BlockNumber]
-               },
-               data: block.transactions! }
-          }
-        ]
-      }, 
+        blockHash: block.blockHash,
+        blockNumber: block.blockNumber,
+        blockStatus: block.blockStatus,
+        createdAt: block.timestamp,
+        difficulty: block.difficulty,
+        merkleRoot: block.merkleRoot,
+        nonce: block.nonce,
+        previousBlockHash: block.previousBlockHash,
+      }
     })
       .then(
         success => {
-          console.log(success.data!.insert_bloxx_block!)
+          console.log(success.data!.insert_bloxx_block!);
         },
         rejected => {
           console.log("[Rejected] ", rejected);

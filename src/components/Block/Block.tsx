@@ -5,11 +5,11 @@ import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput";
 import Publish from "./Publish";
-import useBlock from "../../customHooks/useBlock";
+import useBlock, { BlockType } from "../../customHooks/useBlock";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 
 const Block = () => {
-  const [block, setBlock] = useBlock();
+  const [block, setBlock]: [BlockType, React.Dispatch<React.SetStateAction<BlockType | undefined>>] = useBlock();
   const [timestamp] = useState(new Date());
   const [difficulty] = useState(1);
   const [selectedTransactions] = useSelectedTransactions();
@@ -19,14 +19,14 @@ const Block = () => {
   };
 
   useEffect(() => {
-    setBlock({ ...block, transactions: selectedTransactions });
+    setBlock({ ...block });
   }, [selectedTransactions]);
 
   return (
     <>
       <Title title="Block" subTitle="Block Header"></Title>
       <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
-        <LabeledInput label={"Block#"} onChange={e => onChange("blocknumber", parseInt(e.target.value))} />
+        <LabeledInput label={"Block#"} onChange={e => onChange("blockNumber", parseInt(e.target.value))} />
         <LabeledInput label={"Previous Block Hash"} onChange={e => onChange("previousBlockHash", e.target.value)} />
         <LabeledInput label={"Merkle Root"} onChange={e => onChange("merkleRoot", e.target.value)} />
         <LabeledInput

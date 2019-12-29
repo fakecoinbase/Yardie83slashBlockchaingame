@@ -3,7 +3,7 @@ import { } from './TopNavbarStyles.js';
 import useUserInfo from '../../customHooks/useUserInfo'
 import { Provider, Navbar, Txt, TextWithCopy } from 'rendition';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import {GoLink} from 'react-icons/go'
+import { GoLink } from 'react-icons/go'
 
 import Logo from '../../assets/img/logo.png'
 
@@ -17,24 +17,24 @@ const TopNavbar = () => {
 	}
 
 	const brand = (
-		<div style={{ display: "flex", justifyContent: "center", padding: "0px"}}>
+		<div style={{ display: "flex", justifyContent: "center", padding: "0px" }}>
 			<div style={{ paddingTop: "15px", paddingRight: "20px" }}>
 				<img alt="" src={Logo} width={40} height={40} />
 			</div>
-			<h1> Bloxx <GoLink/> Game </h1>
+			<h1> Bloxx <GoLink /> Sim </h1>
 		</div>
 	)
 
 	return (
 		<>
 			<Provider>
-				<Navbar brand={brand} style={{ background: "#282828", height: "70px"}}>
+				<Navbar brand={brand} style={{ background: "#282828", height: "70px" }}>
 					<Txt color='white'>
 						My Private Key:
 					</Txt>
 					<Txt color='white' style={{ color: (showPK ? "#e87474" : "white") }}>
 						{showPK ?
-							<TextWithCopy showCopyButton={showPK? "always": ""} copy={userInfo.privateKey} >
+							<TextWithCopy showCopyButton={showPK ? "always" : ""} copy={userInfo.privateKey}>
 								<strong>{userInfo.privateKey && userInfo.privateKey.slice(27, 35)} </strong>
 							</TextWithCopy> : <Txt>● ● ● ● ● ●</Txt>}
 					</Txt>

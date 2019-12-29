@@ -1677,7 +1677,14 @@ export type Timestamp_Comparison_Exp = {
 };
 
 export type UpsertBlockMutationVariables = {
-  objects: Array<Bloxx_Block_Insert_Input>
+  blockNumber?: Maybe<Scalars['Int']>,
+  previousBlockHash?: Maybe<Scalars['String']>,
+  createdAt?: Maybe<Scalars['timestamp']>,
+  difficulty?: Maybe<Scalars['Int']>,
+  merkleRoot?: Maybe<Scalars['String']>,
+  nonce?: Maybe<Scalars['Int']>,
+  blockHash?: Maybe<Scalars['String']>,
+  blockStatus?: Maybe<Scalars['String']>
 };
 
 
@@ -1689,10 +1696,6 @@ export type UpsertBlockMutation = (
     & { returning: Array<(
       { __typename?: 'bloxx_block' }
       & Pick<Bloxx_Block, 'blockHash' | 'blockNumber' | 'blockStatus' | 'createdAt' | 'difficulty' | 'merkleRoot' | 'nonce' | 'previousBlockHash'>
-      & { transactions: Array<(
-        { __typename?: 'bloxx_transaction' }
-        & Pick<Bloxx_Transaction, 'blockNumber' | 'inputAddress' | 'outputAddress' | 'signature' | 'text' | 'txHash' | 'value'>
-      )> }
     )> }
   )> }
 );
@@ -1767,6 +1770,17 @@ export type TransactionsQuery = (
   )> }
 );
 
+export type AddressSubscriptionVariables = {};
+
+
+export type AddressSubscription = (
+  { __typename?: 'subscription_root' }
+  & { bloxx_address: Array<(
+    { __typename?: 'bloxx_address' }
+    & Pick<Bloxx_Address, 'balance' | 'id'>
+  )> }
+);
+
 export type OnNewNodeAddedSubscriptionVariables = {};
 
 
@@ -1790,13 +1804,17 @@ export type OnNewTransactionAddedSubscription = (
   & { bloxx_transaction: Array<(
     { __typename?: 'bloxx_transaction' }
     & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value'>
+    & { address: (
+      { __typename?: 'bloxx_address' }
+      & Pick<Bloxx_Address, 'nodePublicKey'>
+    ) }
   )> }
 );
 
 
 export const UpsertBlockDocument = gql`
-    mutation upsertBlock($objects: [bloxx_block_insert_input!]!) {
-  insert_bloxx_block(objects: $objects) {
+    mutation upsertBlock($blockNumber: Int, $previousBlockHash: String, $createdAt: timestamp, $difficulty: Int, $merkleRoot: String, $nonce: Int, $blockHash: String, $blockStatus: String) {
+  insert_bloxx_block(objects: {blockNumber: $blockNumber, previousBlockHash: $previousBlockHash, createdAt: $createdAt, difficulty: $difficulty, merkleRoot: $merkleRoot, nonce: $nonce, blockHash: $blockHash, blockStatus: $blockStatus}) {
     affected_rows
     returning {
       blockHash
@@ -1807,15 +1825,6 @@ export const UpsertBlockDocument = gql`
       merkleRoot
       nonce
       previousBlockHash
-      transactions {
-        blockNumber
-        inputAddress
-        outputAddress
-        signature
-        text
-        txHash
-        value
-      }
     }
   }
 }
@@ -1835,7 +1844,14 @@ export type UpsertBlockMutationFn = ApolloReactCommon.MutationFunction<UpsertBlo
  * @example
  * const [upsertBlockMutation, { data, loading, error }] = useUpsertBlockMutation({
  *   variables: {
- *      objects: // value for 'objects'
+ *      blockNumber: // value for 'blockNumber'
+ *      previousBlockHash: // value for 'previousBlockHash'
+ *      createdAt: // value for 'createdAt'
+ *      difficulty: // value for 'difficulty'
+ *      merkleRoot: // value for 'merkleRoot'
+ *      nonce: // value for 'nonce'
+ *      blockHash: // value for 'blockHash'
+ *      blockStatus: // value for 'blockStatus'
  *   },
  * });
  */
@@ -2002,6 +2018,35 @@ export function useTransactionsLazyQuery(baseOptions?: ApolloReactHooks.LazyQuer
 export type TransactionsQueryHookResult = ReturnType<typeof useTransactionsQuery>;
 export type TransactionsLazyQueryHookResult = ReturnType<typeof useTransactionsLazyQuery>;
 export type TransactionsQueryResult = ApolloReactCommon.QueryResult<TransactionsQuery, TransactionsQueryVariables>;
+export const AddressDocument = gql`
+    subscription address {
+  bloxx_address {
+    balance
+    id
+  }
+}
+    `;
+
+/**
+ * __useAddressSubscription__
+ *
+ * To run a query within a React component, call `useAddressSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useAddressSubscription` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAddressSubscription({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAddressSubscription(baseOptions?: ApolloReactHooks.SubscriptionHookOptions<AddressSubscription, AddressSubscriptionVariables>) {
+        return ApolloReactHooks.useSubscription<AddressSubscription, AddressSubscriptionVariables>(AddressDocument, baseOptions);
+      }
+export type AddressSubscriptionHookResult = ReturnType<typeof useAddressSubscription>;
+export type AddressSubscriptionResult = ApolloReactCommon.SubscriptionResult<AddressSubscription>;
 export const OnNewNodeAddedDocument = gql`
     subscription onNewNodeAdded {
   bloxx_node {
@@ -2041,6 +2086,9 @@ export const OnNewTransactionAddedDocument = gql`
     signature
     txHash
     value
+    address {
+      nodePublicKey
+    }
   }
 }
     `;

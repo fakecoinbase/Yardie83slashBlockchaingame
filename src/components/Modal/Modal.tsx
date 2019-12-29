@@ -39,8 +39,8 @@ const Modal = (props: Props) => {
 
   return (
     <RModal
-      title="Welcome to Bloxx"
-      titleDetails="The following data has been generated:"
+      title={"Welcome to the Bloxx Sim"}
+      titleDetails="The following data has been generated for you:"
       done={() => {
         props.setShowModal(false);
       }}
@@ -57,7 +57,9 @@ const Modal = (props: Props) => {
         <p>
           <strong>Node address: </strong> {userInfo.address.id && userInfo.address.id}
         </p>
-        <p>You can find this information in the top of the next screen</p>
+        <p>
+          <strong>You can find this information on top of the next screen</strong>
+        </p>
       </div>
     </RModal>
   );
