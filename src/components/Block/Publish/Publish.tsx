@@ -4,10 +4,12 @@ import { Button } from "@material-ui/core";
 import Title from "../../util/Title/Title";
 import useBlock, { BlockType } from "../../../customHooks/useBlock";
 import { useUpsertBlockMutation } from "../../../generated/graphql";
+import useTimer from "../../../customHooks/useTimer";
 
 const Publish = () => {
   const [block]: [BlockType] = useBlock();
   const [upsertBlockMutation] = useUpsertBlockMutation();
+  const [, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
 
   const onPublish = () => {
     console.log(block);
@@ -20,12 +22,13 @@ const Publish = () => {
         difficulty: block.difficulty,
         merkleRoot: block.merkleRoot,
         nonce: block.nonce,
-        previousBlockHash: block.previousBlockHash,
+        previousBlockHash: block.previousBlockHash
       }
     })
       .then(
         success => {
           console.log(success.data!.insert_bloxx_block!);
+          setIsTimerActive(true);
         },
         rejected => {
           console.log("[Rejected] ", rejected);

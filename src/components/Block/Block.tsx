@@ -8,10 +8,15 @@ import Publish from "./Publish";
 import useBlock, { BlockType } from "../../customHooks/useBlock";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 import miningService from "../../services/miningService.js";
+import useTimer from "../../customHooks/useTimer";
+import useDataToHash from "../../customHooks/useDataToHash";
 
 const Block = () => {
   const [block, setBlock]: [BlockType, React.Dispatch<React.SetStateAction<BlockType | undefined>>] = useBlock();
-  const [timestamp] = useState(new Date());
+  const [timestamp, setTimestamp] = useState(new Date());
+  const [isTimerActive, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
+  const [clickCount, setClickCount] = useState(0);
+  const [, setDataToHash] = useDataToHash();
   const [difficulty] = useState(1);
   const [selectedTransactions] = useSelectedTransactions();
 
@@ -20,11 +25,53 @@ const Block = () => {
   };
 
   useEffect(() => {
+    let interval = setInterval(() => {}, 10000);
+    if (isTimerActive) {
+      interval = setInterval(() => {
+        setTimestamp(new Date());
+      }, 1000);
+    } else if (!isTimerActive) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isTimerActive, setTimestamp]);
+
+  useEffect(() => {
     setBlock({ ...block });
   }, [selectedTransactions]);
 
+  //TODO make sure all the variables are not empty strings or undefined
+  const copyToHasher = () => {
+    setClickCount(() => clickCount + 1);
+    setIsTimerActive(false);
+    let blockData =
+      block.blockNumber +
+      ":" +
+      block.previousBlockHash +
+      ":" +
+      block.merkleRoot +
+      ":" +
+      block.timestamp!.toISOString() +
+      ":" +
+      block.difficulty +
+      ":" +
+      block.nonce;
+    setDataToHash(blockData);
+  };
+
   const solveNonce = () => {
-    const nonce = miningService(""); 
+    let blockData =
+      block.blockNumber +
+      ":" +
+      block.previousBlockHash +
+      ":" +
+      block.merkleRoot +
+      ":" +
+      block.timestamp!.toISOString() +
+      ":" +
+      block.difficulty;
+    const nonce: number = miningService(blockData)!;
+    setBlock({ ...block, nonce: nonce });
   };
 
   return (
@@ -56,7 +103,7 @@ const Block = () => {
             paddingTop: "10px"
           }}
         >
-          <Button variant="contained" size="small">
+          <Button variant="contained" size="small" onClick={copyToHasher}>
             Copy to Hasher
           </Button>
           <Button variant="contained" size="small" onClick={solveNonce}>
