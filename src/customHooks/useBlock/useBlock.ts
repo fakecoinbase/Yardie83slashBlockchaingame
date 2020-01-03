@@ -4,10 +4,10 @@ import {Bloxx_Transaction_Arr_Rel_Insert_Input} from '../../generated/graphql'
 
 export interface BlockType {
 	blockHash: string,
-	blockNumber: number,
+	blockNumber: number | undefined,
 	blockStatus: string,
 	timestamp?: Date,
-	difficulty: number,
+	difficulty: number | undefined,
 	merkleRoot: string,
 	nonce: number,
 	previousBlockHash: string,
@@ -16,8 +16,19 @@ export interface BlockType {
 }
 
 
-const useBlock = createStore<(BlockType | React.Dispatch<React.SetStateAction<BlockType | undefined>> | undefined)[]>(() => {
-	const [block, setBlock] = useState<BlockType>()
+const useBlock = createStore<(BlockType | React.Dispatch<React.SetStateAction<BlockType>>)[]>(() => {
+	const [block, setBlock] = useState<BlockType>({
+		blockHash: "",
+		blockNumber: undefined,
+		blockStatus: "",
+		timestamp: new Date(),
+		difficulty: undefined,
+		merkleRoot: "",
+		nonce: 0,
+		previousBlockHash: "",
+		txHash: "",
+		transactions: undefined
+	})
 	return [
 		block,
 		setBlock

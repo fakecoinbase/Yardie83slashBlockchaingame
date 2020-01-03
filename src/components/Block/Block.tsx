@@ -60,6 +60,7 @@ const Block = () => {
   };
 
   const solveNonce = () => {
+    setIsTimerActive(false);
     let blockData =
       block.blockNumber +
       ":" +
@@ -93,7 +94,7 @@ const Block = () => {
           value={difficulty}
           onChange={e => onChange("difficulty", e.target.value)}
         />
-        <LabeledInput label={"Nonce"} onChange={e => onChange("nonce", parseInt(e.target.value))} />
+        <LabeledInput label={"Nonce"} onChange={e => onChange("nonce", parseInt(e.target.value))} value={block.nonce} />
         <div
           style={{
             display: "flex",
