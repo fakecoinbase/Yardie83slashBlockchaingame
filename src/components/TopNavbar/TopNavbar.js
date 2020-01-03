@@ -21,7 +21,7 @@ const TopNavbar = () => {
 			<div style={{ paddingTop: "15px", paddingRight: "20px" }}>
 				<img alt="" src={Logo} width={40} height={40} />
 			</div>
-			<h1> Bloxx <GoLink /> Sim </h1>
+			<h1> Bloxx <GoLink /> Game </h1>
 		</div>
 	)
 

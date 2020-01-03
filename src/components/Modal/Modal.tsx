@@ -39,7 +39,7 @@ const Modal = (props: Props) => {
 
   return (
     <RModal
-      title={"Welcome to the Bloxx Sim"}
+      title={"Welcome to the Bloxx Game"}
       titleDetails="The following data has been generated for you:"
       done={() => {
         props.setShowModal(false);
