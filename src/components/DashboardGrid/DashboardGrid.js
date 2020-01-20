@@ -8,6 +8,7 @@ import {
   UnspentTx,
   Mempool,
   Blockchain,
+  Merkl,
   Block,
   Modal
 } from "../index";
@@ -16,13 +17,14 @@ import { GridCard } from "./DashboardGridStyles";
 import { layouts, breakpoints, cols } from "./gridLayout";
 
 const DashboardGrid = () => {
-
   const [showModal, setShowModal] = useState(true);
   const ResponsiveGridLayout = WidthProvider(Responsive);
 
   return (
     <Provider>
-      {showModal ? (<Modal setShowModal={setShowModal} />) : (
+      {showModal ? (
+        <Modal setShowModal={setShowModal} />
+      ) : (
         <ResponsiveGridLayout
           className="layout"
           layouts={layouts}
@@ -48,6 +50,9 @@ const DashboardGrid = () => {
           <GridCard key="mempool">
             <Mempool />
           </GridCard>
+          <GridCard key="merkl">
+            <Merkl />
+          </GridCard>
           <GridCard key="blockchain">
             <Blockchain />
           </GridCard>
@@ -61,6 +66,6 @@ const DashboardGrid = () => {
       )}
     </Provider>
   );
-}
+};
 
 export default DashboardGrid;
