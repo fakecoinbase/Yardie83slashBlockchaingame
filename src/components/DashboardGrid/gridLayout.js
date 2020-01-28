@@ -2,10 +2,11 @@
 export const layouts = {
   lg: [
     { i: "nodes", x: 0, y: 0, w: 2, h: 2, minH: 1, minW: 2, maxW: 2 },
-    { i: "hasher", x: 2, y: 2, w: 2, h: 2, minW: 2, maxW: 2 },
+    { i: "hasher", x: 5, y: 2, w: 2, h: 2, minW: 2, maxW: 2 },
     { i: "wallet", x: 0, y: 2, w: 2, h: 4 },
     { i: "signature", x: 2, y: 0, w: 3, h: 2 },
-    { i: "unspentTx", x: 4, y: 4, w: 5, h: 2 },
+    { i: "unspentTx", x: 2, y: 2, w: 3, h: 2 },
+    { i: "merkl", x: 7, y: 2, w: 2, h: 2 },
     { i: "mempool", x: 2, y: 6, w: 7, h: 2 },
     { i: "blockchain", x: 5, y: 0, w: 4, h: 2 },
     { i: "block", x: 9, y: 0, w: 3, h: 6 }
