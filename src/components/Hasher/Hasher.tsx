@@ -13,7 +13,7 @@ const Hasher = () => {
   const [dataToHash]: [string, React.Dispatch<React.SetStateAction<string>>] = useDataToHash();
 
   useEffect(() => {
-    if (input === "") setOutput("");
+    setOutput("");
   }, [input]);
 
   useEffect(() => {
