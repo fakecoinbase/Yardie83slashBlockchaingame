@@ -9,8 +9,8 @@ Meeting 16.01.2020
 Ali
 Walter
 Hermann
-Navbar: 
-- fix hover address copy button [object Object]
+
+FIXED: fix hover address copy button [object Object] in Navbar
 
 green block : confirmed with all the transactions / confirmed by admin
 orange block: 
