@@ -142,7 +142,7 @@ const Mempool = () => {
                   delete item.pubKey;
                   delete item.dataToCheck;
                 });
-                // TODO limit entries to four
+                // limit entries to four
                 const limitedSelection = duplicate.splice(0, 4);
                 setSelectedTransaction(limitedSelection);
               }}
