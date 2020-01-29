@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
-import {} from "./MerklStyles.js";
-import { Input, Textarea } from "rendition";
+import React, { useState } from "react";
+import { Input } from "rendition";
 import Title from "../util/Title/Title";
 import Button from "@material-ui/core/Button";
-import hash from "../../services/hasherService";
 import useDataToHash from "../../customHooks/useDataToHash/useDataToHash";
+import LabeledInput from "../util/LabeledInput";
+import merkl from "../../services/merklService";
 
 const Merkl = () => {
-  const [input, setInput] = useState<string | undefined>("");
+  const [input1, setInput1] = useState<string | undefined>();
+  const [input2, setInput2] = useState<string | undefined>();
+  const [input3, setInput3] = useState<string | undefined>();
+  const [input4, setInput4] = useState<string | undefined>();
   const [output, setOutput] = useState<string | undefined>("");
 
   const [dataToHash]: [
@@ -15,19 +18,15 @@ const Merkl = () => {
     React.Dispatch<React.SetStateAction<string>>
   ] = useDataToHash();
 
-  useEffect(() => {
-    if (input === "") setOutput("");
-  }, [input]);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.id === "i1") setInput1(e.target.value);
+    if (e.target.id === "i2") setInput2(e.target.value);
+    if (e.target.id === "i3") setInput3(e.target.value);
+    if (e.target.id === "i4") setInput4(e.target.value);
+  };
 
-  useEffect(() => {
-    if (dataToHash !== undefined) {
-      setInput(dataToHash);
-    }
-  }, [dataToHash]);
-
-  const merklInput = () => {
-    const hashedInput = hash(input);
-    setOutput(hashedInput);
+  const onMerkl = () => {
+    setOutput(merkl(input1, input2, input3, input4));
   };
 
   return (
@@ -36,53 +35,34 @@ const Merkl = () => {
       <div style={{ padding: "5px" }}>
         <div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
           <div style={{ float: "right", width: "100%", paddingBottom: "10px" }}>
-            <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>
-              Input 1
-            </span>
-            <Input
-              value={input}
-              style={{ height: "30px", minHeight: "30px" }}
-              onChange={e => {
-                setInput(e.target.value);
-              }}
-            ></Input>
-            <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>
-              Input 2
-            </span>
-            <Input
-              value={input}
-              style={{ height: "30px", minHeight: "30px" }}
-              onChange={e => {
-                setInput(e.target.value);
-              }}
-            ></Input>
-            <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>
-              Input 3
-            </span>
-            <Input
-              value={input}
-              style={{ height: "30px", minHeight: "30px" }}
-              onChange={e => {
-                setInput(e.target.value);
-              }}
-            ></Input>
-            <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>
-              Input 4
-            </span>
-            <Input
-              value={input}
-              style={{ height: "30px", minHeight: "30px" }}
-              onChange={e => {
-                setInput(e.target.value);
-              }}
-            ></Input>
-            <Input
-              value={input}
-              style={{ height: "30px", minHeight: "30px" }}
-              onChange={e => {
-                setInput(e.target.value);
-              }}
-            ></Input>
+            <LabeledInput
+              label={"Input 1"}
+              placeholder={"Tx Hash 1"}
+              id={"i1"}
+              onChange={onChange}
+              value={input1}
+            />
+            <LabeledInput
+              label={"Input 2"}
+              placeholder={"Tx Hash 2"}
+              id={"i2"}
+              onChange={onChange}
+              value={input2}
+            />
+            <LabeledInput
+              label={"Input 3"}
+              placeholder={"Tx Hash 3"}
+              id={"i3"}
+              onChange={onChange}
+              value={input3}
+            />
+            <LabeledInput
+              label={"Input 4"}
+              placeholder={"Tx Hash 4"}
+              id={"i4"}
+              onChange={onChange}
+              value={input4}
+            />
           </div>
         </div>
         <div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
@@ -106,7 +86,7 @@ const Merkl = () => {
           >
             <Input
               style={{ height: "30px" }}
-              value={input === "" ? "" : output}
+              value={output}
               placeholder="Output"
             />
           </div>
@@ -114,7 +94,7 @@ const Merkl = () => {
         <div style={{ float: "right", paddingBottom: "10px" }}>
           <div style={{ float: "right", paddingRight: "10px" }}>
             <Button
-              onClick={merklInput}
+              onClick={onMerkl}
               variant="contained"
               color="primary"
               size="small"

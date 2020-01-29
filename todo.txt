@@ -1,27 +1,14 @@
-Extra functionality
+Future functionality
 ============================================
-<<<<<<< HEAD
-
-- Add student name to identify the nodes easier
-
-
-==============================================
-
-=======
  
 - Add student name to identify the nodes easier
  
- 
 ==============================================
  
->>>>>>> 26a207ead572a47f0c8eb273e4cf9a71bfc8c9f4
 Meeting 16.01.2020
 Ali
 Walter
 Hermann
-<<<<<<< HEAD
-
-==============================================
 Navbar: 
 - fix hover address copy button [object Object]
 
@@ -30,8 +17,8 @@ orange block:
 red block: 
 
 mempool: 
-- BUG: public key disappears when tx is selected
-- Put broadcasted Tx on top of the Mempool table
+FIXED: BUG: public key disappears when tx is selected
+FIXED: REQUIREMENT: Put new broadcasted Tx on top of the Mempool table
 
 Blockchain box: 
 - add timestamp to the blocmk in a tree
@@ -39,8 +26,6 @@ Blockchain box:
 
 Block box:
 - Put timestamp under difficulty
-
-=======
  
 ==============================================
 Navbar: 
@@ -61,7 +46,6 @@ Blockchain box:
 Block box:
 - Put timestamp under difficulty
  
->>>>>>> 26a207ead572a47f0c8eb273e4cf9a71bfc8c9f4
 New: 
 Merkle Root Box:
 - UTXO | Hasher  | Merkle root box
@@ -71,17 +55,8 @@ Merkle Root Box:
 - [Function]: 
     (H1:H2) -> Hx
     (H3:H4) -> Hy
-<<<<<<< HEAD
-
-    ==> Hx: Hy => Hz (merkle root)
-
-previosu block hash as a drop down menu
-
-Todo:
-Ali: Hex Address
-
+    
 ===============================================
-=======
  
     ==> Hx: Hy => Hz (merkle root)
  
@@ -91,4 +66,3 @@ Todo:
 Ali: Hex Address
  
 ===============================================
->>>>>>> 26a207ead572a47f0c8eb273e4cf9a71bfc8c9f4

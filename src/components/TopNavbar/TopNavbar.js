@@ -45,7 +45,7 @@ const TopNavbar = () => {
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>
-						My Address: <TextWithCopy showCopyButton={"always"} copy={userInfo.address}><strong>{userInfo.address && userInfo.address.id.slice(0, 8)} </strong></TextWithCopy>
+						My Address: <TextWithCopy showCopyButton={"always"} copy={userInfo.address.id}><strong>{userInfo.address && userInfo.address.id.slice(0, 8)} </strong></TextWithCopy>
 					</Txt>
 					<span>|</span>
 					<Txt color='white'>

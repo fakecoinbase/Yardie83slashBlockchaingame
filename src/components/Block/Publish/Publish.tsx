@@ -12,7 +12,6 @@ const Publish = () => {
   const [, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
 
   const onPublish = () => {
-    console.log(block);
     upsertBlockMutation({
       variables: {
         blockHash: block.blockHash,

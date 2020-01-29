@@ -37,7 +37,7 @@ const Block = () => {
   }, [isTimerActive, setTimestamp]);
 
   useEffect(() => {
-    setBlock({ ...block });
+    setBlock( {...block} );
   }, [selectedTransactions]);
 
   //TODO make sure all the variables are not empty strings or undefined
@@ -118,7 +118,7 @@ const Block = () => {
           columns={[
             {
               field: "txHash",
-              label: "Selected Transactions [TxHash]"
+              label: "Selected Transactions [TxHash] max. 4"
             }
           ]}
           data={selectedTransactions}
