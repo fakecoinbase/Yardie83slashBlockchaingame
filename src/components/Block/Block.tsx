@@ -81,7 +81,7 @@ const Block = () => {
       <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
         <LabeledInput label={"Block#"} onChange={e => onChange("blockNumber", parseInt(e.target.value))} />
         <LabeledInput label={"Previous Block Hash"} onChange={e => onChange("previousBlockHash", e.target.value)} />
-        <LabeledInput label={"Merkle Root"} onChange={e => onChange("merkleRoot", e.target.value)} />
+        <LabeledInput label={"Merkl Root"} onChange={e => onChange("merkleRoot", e.target.value)} />
         <LabeledInput
           label={"Difficulty"}
           readOnly
