@@ -143,8 +143,8 @@ const Mempool = () => {
                   delete item.dataToCheck;
                 });
                 // TODO limit entries to four
-                duplicate.splice(0)
-                setSelectedTransaction(duplicate);
+                const limitedSelection = duplicate.splice(0, 4);
+                setSelectedTransaction(limitedSelection);
               }}
             />
           )}
