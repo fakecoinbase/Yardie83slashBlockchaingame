@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { } from "./MempoolStyles.js";
-import { Provider, Box, Table, TextWithCopy } from "rendition";
+import {} from "./MempoolStyles.js";
+import { Provider, Box, Table, TextWithCopy, Alert } from "rendition";
 import Title from "../util/Title/Title";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
@@ -25,7 +25,10 @@ const Mempool = () => {
    */
   const { data } = useOnNewTransactionAddedSubscription();
   const [dataToShow, setDataToShow] = useState();
-  const [, setSelectedTransaction] = useSelectedTransactions();
+  const [
+    selectedTransactions,
+    setSelectedTransaction
+  ] = useSelectedTransactions();
   const [, setDataToCheck] = useDataToCheck();
 
   useEffect(() => {
