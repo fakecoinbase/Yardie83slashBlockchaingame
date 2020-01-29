@@ -83,16 +83,16 @@ const Block = () => {
         <LabeledInput label={"Previous Block Hash"} onChange={e => onChange("previousBlockHash", e.target.value)} />
         <LabeledInput label={"Merkle Root"} onChange={e => onChange("merkleRoot", e.target.value)} />
         <LabeledInput
-          label={"Timestamp"}
-          readOnly
-          value={timestamp.toUTCString()}
-          onChange={e => onChange("createdAt", timestamp)}
-        />
-        <LabeledInput
           label={"Difficulty"}
           readOnly
           value={difficulty}
           onChange={e => onChange("difficulty", e.target.value)}
+        />
+        <LabeledInput
+          label={"Timestamp"}
+          readOnly
+          value={timestamp.toUTCString()}
+          onChange={e => onChange("createdAt", timestamp)}
         />
         <LabeledInput label={"Nonce"} onChange={e => onChange("nonce", parseInt(e.target.value))} value={block.nonce} />
         <div
