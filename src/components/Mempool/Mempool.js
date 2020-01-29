@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { } from "./MempoolStyles.js";
-import { Provider, Box, Table, TextWithCopy, Alert } from "rendition";
+import { Provider, Box, Table, TextWithCopy } from "rendition";
 import Title from "../util/Title/Title";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
