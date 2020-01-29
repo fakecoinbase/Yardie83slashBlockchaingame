@@ -10,13 +10,14 @@ Ali
 Walter
 Hermann
 
-FIXED: fix hover address copy button [object Object] in Navbar
-
 green block : confirmed with all the transactions / confirmed by admin
 orange block: 
 red block: 
 
-mempool: 
+Navbar: 
+FIXED: fix hover address copy button [object Object]
+
+Mempool: 
 FIXED: BUG: public key disappears when tx is selected
 FIXED: REQUIREMENT: Put new broadcasted Tx on top of the Mempool table
 
@@ -25,44 +26,14 @@ Blockchain box:
 - copy block hash from tree when clicking on block
 
 Block box:
-- Put timestamp under difficulty
+FIXED: Put timestamp under difficulty
+TODO: previous block hash as a drop down menu
  
-==============================================
-Navbar: 
-- fix hover address copy button [object Object]
- 
-green block : confirmed with all the transactions / confirmed by admin
-orange block: 
-red block: 
- 
-mempool: 
-- BUG: public key disappears when tx is selected
-- Put broadcasted Tx on top of the Mempool table
- 
-Blockchain box: 
-- add timestamp to the blocmk in a tree
-- copy block hash from tree when clicking on block
- 
-Block box:
-- Put timestamp under difficulty
- 
-New: 
 Merkle Root Box:
-- UTXO | Hasher  | Merkle root box
-- Four input fields
-- Button "Hash"
-- Output field
-- [Function]: 
-    (H1:H2) -> Hx
-    (H3:H4) -> Hy
-    
-===============================================
- 
-    ==> Hx: Hy => Hz (merkle root)
- 
-previosu block hash as a drop down menu
- 
-Todo:
+ADD MERKL ROOT BOX
+CHANGE LAYOUT TO: UTXO | Hasher | Merkle root box
+
+TODO:
 Ali: Hex Address
  
 ===============================================
