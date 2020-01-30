@@ -15,6 +15,7 @@ const Block = () => {
   const [block, setBlock]: [BlockType, React.Dispatch<React.SetStateAction<BlockType | undefined>>] = useBlock();
   const [timestamp, setTimestamp] = useState(new Date());
   const [isTimerActive, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
+  const [nonce, setNonce] = useState(0);
   const [clickCount, setClickCount] = useState(0);
   const [, setDataToHash] = useDataToHash();
   const [difficulty] = useState(1);
@@ -61,17 +62,7 @@ const Block = () => {
 
   const solveNonce = () => {
     setIsTimerActive(false);
-    let blockData =
-      block.blockNumber +
-      ":" +
-      block.previousBlockHash +
-      ":" +
-      block.merkleRoot +
-      ":" +
-      block.timestamp!.toISOString() +
-      ":" +
-      block.difficulty;
-    const nonce: number = miningService(blockData)!;
+    setNonce(miningService(block)!);
     setBlock({ ...block, nonce });
   };
 
