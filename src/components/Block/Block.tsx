@@ -72,7 +72,7 @@ const Block = () => {
       ":" +
       block.difficulty;
     const nonce: number = miningService(blockData)!;
-    setBlock({ ...block, nonce: nonce });
+    setBlock({ ...block, nonce });
   };
 
   return (
