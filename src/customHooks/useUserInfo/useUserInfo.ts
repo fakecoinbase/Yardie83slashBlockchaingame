@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createStore } from 'reusable';
 
-type User = {
+export type UserType = {
 	privateKey: String
 	publicKey: String,
 	address: {
@@ -11,7 +11,7 @@ type User = {
 }
 
 const useUserInfo = createStore(() => {
-	const [userInfo, setUserInfo]: [User, any] = useState({
+	const [userInfo, setUserInfo]: [UserType, any] = useState({
 			privateKey: "",
 			publicKey: "",
 			address: {
@@ -22,7 +22,7 @@ const useUserInfo = createStore(() => {
 
 	return [
 		userInfo,
-		(userInfo:User) => setUserInfo(userInfo)
+		(userInfo:UserType) => setUserInfo(userInfo)
 	]
 });
 
