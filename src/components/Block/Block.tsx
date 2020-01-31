@@ -7,7 +7,7 @@ import LabeledInput from "../util/LabeledInput";
 import Publish from "./Publish";
 import useBlock, { BlockType } from "../../customHooks/useBlock";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
-import miningService from "../../services/miningService.js";
+import miningService from "../../services/miningService";
 import useTimer from "../../customHooks/useTimer";
 import useDataToHash from "../../customHooks/useDataToHash";
 
@@ -56,7 +56,7 @@ const Block = () => {
       ":" +
       block.difficulty +
       ":" +
-      block.nonce;
+      nonce;
     setDataToHash(blockData);
   };
 
@@ -85,7 +85,7 @@ const Block = () => {
           value={timestamp.toUTCString()}
           onChange={e => onChange("createdAt", timestamp)}
         />
-        <LabeledInput label={"Nonce"} onChange={e => onChange("nonce", parseInt(e.target.value))} value={block.nonce} />
+        <LabeledInput label={"Nonce"} onChange={e => onChange("nonce", parseInt(e.target.value))} value={nonce} />
         <div
           style={{
             display: "flex",
