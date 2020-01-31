@@ -26,7 +26,7 @@ const Nodes = () => {
       });
       setNodes(_nodes);
     }
-  }, [data]);
+  }, [data, userInfo.publicKey]);
 
   return (
     <>
