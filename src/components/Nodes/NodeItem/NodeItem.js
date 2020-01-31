@@ -2,10 +2,15 @@ import React from 'react';
 import { Styled } from './NodeItemStyles.js';
 import { Divider } from 'rendition';
 
-const NodeItem = ({ node }) => {
+const NodeItem = ({ node, index }) => {
 	const { address, pubKey } = node;
 	return (
-		<Styled.Container>
+		<Styled.Container style={{ backgroundColor: ((index % 2 === 0) ? "white" : "#F0F0F7") }}>
+			<Styled.NodeAddress>
+				<Styled.Labelspan>Address: </Styled.Labelspan>
+				<br />
+				<Styled.TextWithCopy style={{ fontSize: "12px" }} copy={address}>{address}</Styled.TextWithCopy>
+			</Styled.NodeAddress>
 			<Styled.NodePubKey>
 				<Styled.Labelspan>Public Key: </Styled.Labelspan>
 				<br />
@@ -15,12 +20,6 @@ const NodeItem = ({ node }) => {
 					wordWrap: "break-word"
 				}} copy={pubKey}>{pubKey}</Styled.TextWithCopy>
 			</Styled.NodePubKey>
-			<Styled.NodeAddress>
-				<Styled.Labelspan>Address: </Styled.Labelspan>
-				<br />
-				<Styled.TextWithCopy style={{ fontSize: "12px" }} copy={address}>{address}</Styled.TextWithCopy>
-			</Styled.NodeAddress>
-			<Divider />
 		</Styled.Container>
 	)
 }

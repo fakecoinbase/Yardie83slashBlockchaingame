@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { TextWithCopy as TwC } from 'rendition'
 
 const Container = styled.div`
+    padding-top: 10px;
 	padding-left: 10px;
+    padding-bottom: 10px;
 `;
 
 const baseSpan = styled.span`

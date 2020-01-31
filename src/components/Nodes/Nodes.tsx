@@ -5,7 +5,7 @@ import {useOnNewNodeAddedSubscription} from '../../generated/graphql'
 import useUserInfo, { UserType } from "../../customHooks/useUserInfo/useUserInfo";
 
 
-const Nodes = (props: any) => {
+const Nodes = () => {
   const [nodes, setNodes] = useState<Array<Object>>([]);
   const [userInfo]:[UserType] = useUserInfo();
 
