@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import Title from "../util/Title/Title";
 import NodeList from "./NodeList/NodeList";
 import {useOnNewNodeAddedSubscription} from '../../generated/graphql'
+import useUserInfo, { UserType } from "../../customHooks/useUserInfo/useUserInfo";
+
 
 const Nodes = (props: any) => {
   const [nodes, setNodes] = useState<Array<Object>>([]);
+  const [userInfo]:[UserType] = useUserInfo();
 
   const { data } = useOnNewNodeAddedSubscription();
 
@@ -14,6 +17,7 @@ const Nodes = (props: any) => {
 
       data.bloxx_node.forEach(node => {
         if (node.publicKey !== "undefined" && typeof node.addresses[0] !== "undefined") {
+          if(userInfo.publicKey !== node.publicKey)
           _nodes.push({
             pubKey: node.publicKey,
             address: node.addresses[0].id
