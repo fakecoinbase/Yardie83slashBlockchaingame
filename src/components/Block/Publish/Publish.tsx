@@ -8,11 +8,11 @@ import useTimer from "../../../customHooks/useTimer";
 
 const Publish = () => {
   const [block]: [BlockType] = useBlock();
-  const [upsertBlockMutation] = useInsertBlockMutation();
+  const [insertBlock] = useInsertBlockMutation();
   const [, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
 
   const onPublish = () => {
-    upsertBlockMutation({
+    insertBlock({
       variables: {
         blockHash: block.blockHash,
         blockNumber: block.blockNumber,
