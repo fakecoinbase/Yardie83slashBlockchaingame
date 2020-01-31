@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 const ADD_BLOCK = gql`
-mutation upsertBlock(
+mutation insertBlock(
   $blockNumber: Int, 
   $previousBlockHash: String, 
   $createdAt: timestamp, 
@@ -25,6 +25,7 @@ mutation upsertBlock(
     )
     {
     affected_rows
+    
     returning {
         blockHash
         blockNumber

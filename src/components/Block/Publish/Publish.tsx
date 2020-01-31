@@ -3,12 +3,12 @@ import {} from "./PublishStyles.js";
 import { Button } from "@material-ui/core";
 import Title from "../../util/Title/Title";
 import useBlock, { BlockType } from "../../../customHooks/useBlock";
-import { useUpsertBlockMutation } from "../../../generated/graphql";
+import { useInsertBlockMutation  } from "../../../generated/graphql";
 import useTimer from "../../../customHooks/useTimer";
 
 const Publish = () => {
   const [block]: [BlockType] = useBlock();
-  const [upsertBlockMutation] = useUpsertBlockMutation();
+  const [upsertBlockMutation] = useInsertBlockMutation();
   const [, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
 
   const onPublish = () => {

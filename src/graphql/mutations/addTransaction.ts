@@ -8,7 +8,7 @@ mutation insertTransaction(
   $signature: String, 
   $txHash: String
   ) {
-  insert_bloxx_transaction(objects: {
+    insert_bloxx_transaction(objects: {
     inputAddress: $inputAddress, 
     outputAddress: $outputAddress, 
     value: $value, 
