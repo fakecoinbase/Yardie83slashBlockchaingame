@@ -1,6 +1,5 @@
 import React from 'react';
 import { Styled } from './NodeItemStyles.js';
-import { Divider } from 'rendition';
 
 const NodeItem = ({ node, index }) => {
 	const { address, pubKey } = node;
