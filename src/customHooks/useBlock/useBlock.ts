@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createStore } from 'reusable';
-import {Bloxx_Transaction_Arr_Rel_Insert_Input} from '../../generated/graphql'
+import { Bloxx_Block_Transaction_Arr_Rel_Insert_Input  } from "../../generated/graphql";
+
 
 export interface BlockType {
 	blockHash: string,
@@ -12,7 +13,7 @@ export interface BlockType {
 	nonce: number,
 	previousBlockHash: string,
 	txHash: string,
-	transactions?: Bloxx_Transaction_Arr_Rel_Insert_Input
+	block_transactions: Bloxx_Block_Transaction_Arr_Rel_Insert_Input
 }
 
 
@@ -27,7 +28,7 @@ const useBlock = createStore<(BlockType | React.Dispatch<React.SetStateAction<Bl
 		nonce: 0,
 		previousBlockHash: "",
 		txHash: "",
-		transactions: undefined
+		block_transactions: {data: []}
 	})
 	return [
 		block,

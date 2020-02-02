@@ -3,13 +3,15 @@ import {} from "./PublishStyles.js";
 import { Button } from "@material-ui/core";
 import Title from "../../util/Title/Title";
 import useBlock, { BlockType } from "../../../customHooks/useBlock";
-import { useInsertBlockMutation  } from "../../../generated/graphql";
+import { useInsertBlockMutation } from "../../../generated/graphql";
 import useTimer from "../../../customHooks/useTimer";
+import useNotification from "../../../customHooks/useNotification/useNotification.js";
 
 const Publish = () => {
-  const [block]: [BlockType] = useBlock();
+  const [block, setBlock]: [BlockType, React.Dispatch<React.SetStateAction<BlockType | undefined>>] = useBlock();
   const [insertBlock] = useInsertBlockMutation();
   const [, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
+  const [notification, setNotification] = useNotification();
 
   const onPublish = () => {
     insertBlock({
@@ -21,12 +23,14 @@ const Publish = () => {
         difficulty: block.difficulty,
         merkleRoot: block.merkleRoot,
         nonce: block.nonce,
-        previousBlockHash: block.previousBlockHash
+        previousBlockHash: block.previousBlockHash,
+        block_transactions: block.block_transactions
       }
     })
       .then(
         success => {
           console.log(success.data!.insert_bloxx_block!);
+          setBlock(undefined);
           setIsTimerActive(true);
         },
         rejected => {

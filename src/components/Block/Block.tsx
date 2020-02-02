@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "rendition";
-import {} from "./BlockStyles.js";
 import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput";
@@ -38,7 +37,10 @@ const Block = () => {
   }, [isTimerActive, setTimestamp]);
 
   useEffect(() => {
-    setBlock( {...block} );
+    const data = selectedTransactions.map(function(transaction: any) {
+      return { txHash: transaction.txHash };
+    });
+    setBlock({ ...block, block_transactions: { data } });
   }, [selectedTransactions]);
 
   //TODO make sure all the variables are not empty strings or undefined
@@ -85,7 +87,14 @@ const Block = () => {
           value={timestamp.toUTCString()}
           onChange={e => onChange("createdAt", timestamp)}
         />
-        <LabeledInput label={"Nonce"} onChange={e => onChange("nonce", parseInt(e.target.value))} value={nonce} />
+        <LabeledInput
+          label={"Nonce"}
+          onChange={e => {
+            setNonce(parseInt(e.target.value));
+            onChange("nonce", parseInt(e.target.value));
+          }}
+          value={isNaN(nonce) ? 0 : nonce}
+        />
         <div
           style={{
             display: "flex",
