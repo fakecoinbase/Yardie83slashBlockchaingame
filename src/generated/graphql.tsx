@@ -1935,7 +1935,8 @@ export type InsertBlockMutationVariables = {
   merkleRoot?: Maybe<Scalars['String']>,
   nonce?: Maybe<Scalars['Int']>,
   blockHash?: Maybe<Scalars['String']>,
-  blockStatus?: Maybe<Scalars['String']>
+  blockStatus?: Maybe<Scalars['String']>,
+  block_transactions?: Maybe<Bloxx_Block_Transaction_Arr_Rel_Insert_Input>
 };
 
 
@@ -2087,8 +2088,8 @@ export type OnNewTransactionAddedSubscription = (
 
 
 export const InsertBlockDocument = gql`
-    mutation insertBlock($blockNumber: Int, $previousBlockHash: String, $createdAt: timestamp, $difficulty: Int, $merkleRoot: String, $nonce: Int, $blockHash: String, $blockStatus: String) {
-  insert_bloxx_block(objects: {blockNumber: $blockNumber, previousBlockHash: $previousBlockHash, createdAt: $createdAt, difficulty: $difficulty, merkleRoot: $merkleRoot, nonce: $nonce, blockHash: $blockHash, blockStatus: $blockStatus}) {
+    mutation insertBlock($blockNumber: Int, $previousBlockHash: String, $createdAt: timestamp, $difficulty: Int, $merkleRoot: String, $nonce: Int, $blockHash: String, $blockStatus: String, $block_transactions: bloxx_block_transaction_arr_rel_insert_input) {
+  insert_bloxx_block(objects: {blockNumber: $blockNumber, previousBlockHash: $previousBlockHash, createdAt: $createdAt, difficulty: $difficulty, merkleRoot: $merkleRoot, nonce: $nonce, blockHash: $blockHash, blockStatus: $blockStatus, block_transactions: $block_transactions}) {
     affected_rows
     returning {
       blockHash
@@ -2126,6 +2127,7 @@ export type InsertBlockMutationFn = ApolloReactCommon.MutationFunction<InsertBlo
  *      nonce: // value for 'nonce'
  *      blockHash: // value for 'blockHash'
  *      blockStatus: // value for 'blockStatus'
+ *      block_transactions: // value for 'block_transactions'
  *   },
  * });
  */
