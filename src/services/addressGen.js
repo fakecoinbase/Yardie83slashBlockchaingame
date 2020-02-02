@@ -1,7 +1,9 @@
 import hash from "./hasherService";
 
 export const address = pub => {
-  const results = hash(pub).substr(20);
+  let results = hash(pub).substr(30);
 
-  return "0x" + results;
+  let hexResults = results.toString(16);
+
+  return "0xBc" + hexResults;
 };
