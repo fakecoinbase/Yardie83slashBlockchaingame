@@ -1,76 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tree, { ReactD3TreeItem } from "react-d3-tree";
 import {} from "./BlockchainStyles.js";
 import Title from "../util/Title/Title";
+import { useOnBlockAddedSubscription, Bloxx_Block } from "../../generated/graphql";
 
 const Blockchain = () => {
-  const myTreeData: ReactD3TreeItem[] = [
+  const { data } = useOnBlockAddedSubscription();
+
+  const [treeData, setTreeData] = useState<ReactD3TreeItem[]>([
     {
-      name: "Genesis",
+      name: "Block 0",
       attributes: {
-        BlockNumber: "0",
-        BlockHash: "e3w4zg4h45b",
-        BlockStatus: "Accepted"
-      },
-      children: [
-        {
-          name: "Block: 1",
-          attributes: {
-            BlockNumber: "1",
-            BlockHash: "e3w4zg4h45b",
-            BlockStatus: "Pending"
-          },
-          nodeSvgShape: {
-            shape: "rect",
-            shapeProps: {
-              width: 100,
-              height: 20,
-              y: -20,
-              x: -10,
-              fill: "red"
-            }
-          }
-        },
-        {
-          name: "Block: 1",
-          attributes: {
-            BlockNumber: "1",
-            BlockHash: "e3w4zg4h45b",
-            BlockStatus: "Accepted"
-		  },
-		  nodeSvgShape: {
-            shape: "rect",
-            shapeProps: {
-              width: 100,
-              height: 20,
-              y: -20,
-              x: -10,
-              fill: "green"
-            }
-          }, children: [
-			{
-				name: "Block: 2",
-				attributes: {
-				  BlockNumber: "2",
-				  BlockHash: "236zhg432",
-				  BlockStatus: "Pending"
-				},
-				nodeSvgShape: {
-				  shape: "rect",
-				  shapeProps: {
-					width: 100,
-					height: 20,
-					y: -20,
-					x: -10,
-					fill: "red"
-				  }
-				}
-			  }, 
-		  ]
-        }
-      ]
+        BlockNumber: "",
+        BlockHash: "",
+        BlockStatus: ""
+      }
     }
-  ];
+  ]);
+
+  const createDataTree = (dataset: any[]): ReactD3TreeItem[] => {
+    let hashTable = Object.create(null);
+    dataset.forEach(
+      (block: Bloxx_Block) =>
+        (hashTable[block.blockHash] = {
+          name: "Block " + block.blockNumber,
+          attributes: {
+            BlockHash: block.blockHash,
+            BlockStatus: block.blockStatus
+          },
+          children: []
+        })
+    );
+    let dataTree: ReactD3TreeItem[] = [];
+    dataset.forEach((block: Bloxx_Block) => {
+      if (block.previousBlockHash && hashTable[block.previousBlockHash] !== undefined) {
+        hashTable[block.previousBlockHash].children.push(hashTable[block.blockHash]);
+      } else dataTree.push(hashTable[block.blockHash]);
+    });
+    console.table(dataTree);
+    return dataTree;
+  };
+
+  useEffect(() => {
+    let tree: ReactD3TreeItem[] = [];
+    if (data !== undefined) {
+      tree = createDataTree(data!.bloxx_block);
+      setTreeData(tree);
+    }
+  }, [data]);
+
   const subTitle = (
     <div style={{ width: "100%" }}>
       <span style={{ display: "inline-block", boxSizing: "border-box", width: "33%" }}>Blockchain</span>
@@ -82,21 +60,23 @@ const Blockchain = () => {
   return (
     <div style={{ height: "220px", minWidth: "600px" }}>
       <Title subTitle={subTitle} />
-      <Tree
-        data={myTreeData}
-        collapsible={false}
-        pathFunc={"elbow"}
-        translate={{ x: 50, y: 100 }}
-        nodeSvgShape={{
-          shape: "rect",
-          shapeProps: {
-            width: 100,
-            height: 20,
-            y: -20,
-            x: -10
-          }
-        }}
-      />
+      {treeData !== undefined && (
+        <Tree
+          data={treeData}
+          collapsible={false}
+          pathFunc={"elbow"}
+          translate={{ x: 50, y: 100 }}
+          nodeSvgShape={{
+            shape: "rect",
+            shapeProps: {
+              width: 100,
+              height: 20,
+              y: -20,
+              x: -10
+            }
+          }}
+        />
+      )}
     </div>
   );
 };

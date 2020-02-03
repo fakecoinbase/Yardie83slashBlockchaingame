@@ -21,7 +21,7 @@ const Block = () => {
   const [selectedTransactions] = useSelectedTransactions();
 
   const onChange = (key: string, value: any) => {
-    setBlock({ ...block, timestamp, difficulty, blockStatus: "pending", [key]: value });
+    setBlock({ ...block, timestamp, difficulty, blockStatus: "unconfirmed", [key]: value });
   };
 
   useEffect(() => {

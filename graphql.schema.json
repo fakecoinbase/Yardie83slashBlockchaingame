@@ -13,15 +13,15 @@
       {
         "kind": "OBJECT",
         "name": "query_root",
-        "description": "query root",
+        "description": "",
         "fields": [
           {
             "name": "bloxx_address",
-            "description": "fetch data from the table: \"bloxx.address\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -39,7 +39,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -49,7 +49,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -59,7 +59,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -77,7 +77,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_bool_exp",
@@ -108,11 +108,11 @@
           },
           {
             "name": "bloxx_address_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.address\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -130,7 +130,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -140,7 +140,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -150,7 +150,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -168,7 +168,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_bool_exp",
@@ -191,7 +191,7 @@
           },
           {
             "name": "bloxx_address_by_pk",
-            "description": "fetch data from the table: \"bloxx.address\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "id",
@@ -218,11 +218,11 @@
           },
           {
             "name": "bloxx_block",
-            "description": "fetch data from the table: \"bloxx.block\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -240,7 +240,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -250,7 +250,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -260,7 +260,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -278,7 +278,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_bool_exp",
@@ -309,11 +309,11 @@
           },
           {
             "name": "bloxx_block_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.block\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -331,7 +331,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -341,7 +341,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -351,7 +351,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -369,7 +369,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_bool_exp",
@@ -392,7 +392,7 @@
           },
           {
             "name": "bloxx_block_by_pk",
-            "description": "fetch data from the table: \"bloxx.block\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "blockHash",
@@ -419,11 +419,11 @@
           },
           {
             "name": "bloxx_block_transaction",
-            "description": "fetch data from the table: \"bloxx.block_transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -441,7 +441,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -451,7 +451,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -461,7 +461,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -479,7 +479,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_bool_exp",
@@ -510,11 +510,11 @@
           },
           {
             "name": "bloxx_block_transaction_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.block_transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -532,7 +532,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -542,7 +542,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -552,7 +552,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -570,7 +570,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_bool_exp",
@@ -593,7 +593,7 @@
           },
           {
             "name": "bloxx_block_transaction_by_pk",
-            "description": "fetch data from the table: \"bloxx.block_transaction\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "blockHash",
@@ -634,11 +634,11 @@
           },
           {
             "name": "bloxx_node",
-            "description": "fetch data from the table: \"bloxx.node\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -656,7 +656,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -666,7 +666,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -676,7 +676,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -694,7 +694,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_node_bool_exp",
@@ -725,11 +725,11 @@
           },
           {
             "name": "bloxx_node_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.node\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -747,7 +747,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -757,7 +757,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -767,7 +767,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -785,7 +785,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_node_bool_exp",
@@ -808,7 +808,7 @@
           },
           {
             "name": "bloxx_node_by_pk",
-            "description": "fetch data from the table: \"bloxx.node\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "publicKey",
@@ -835,11 +835,11 @@
           },
           {
             "name": "bloxx_transaction",
-            "description": "fetch data from the table: \"bloxx.transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -857,7 +857,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -867,7 +867,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -877,7 +877,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -895,7 +895,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_bool_exp",
@@ -926,11 +926,11 @@
           },
           {
             "name": "bloxx_transaction_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -948,7 +948,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -958,7 +958,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -968,7 +968,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -986,7 +986,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_bool_exp",
@@ -1009,7 +1009,7 @@
           },
           {
             "name": "bloxx_transaction_by_pk",
-            "description": "fetch data from the table: \"bloxx.transaction\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "txHash",
@@ -1043,26 +1043,26 @@
       {
         "kind": "ENUM",
         "name": "bloxx_address_select_column",
-        "description": "select columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "balance",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "id",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "nodePublicKey",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -1082,7 +1082,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_order_by",
-        "description": "ordering options when selecting data from \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1153,44 +1153,44 @@
       {
         "kind": "ENUM",
         "name": "order_by",
-        "description": "column ordering options",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "asc",
-            "description": "in the ascending order, nulls last",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "asc_nulls_first",
-            "description": "in the ascending order, nulls first",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "asc_nulls_last",
-            "description": "in the ascending order, nulls last",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "desc",
-            "description": "in the descending order, nulls first",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "desc_nulls_first",
-            "description": "in the descending order, nulls first",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "desc_nulls_last",
-            "description": "in the descending order, nulls last",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -1200,7 +1200,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_order_by",
-        "description": "ordering options when selecting data from \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1241,7 +1241,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_aggregate_order_by",
-        "description": "order by aggregate values of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1362,7 +1362,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_avg_order_by",
-        "description": "order by avg() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1383,7 +1383,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_max_order_by",
-        "description": "order by max() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1424,7 +1424,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_min_order_by",
-        "description": "order by min() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1465,7 +1465,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_stddev_order_by",
-        "description": "order by stddev() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1486,7 +1486,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_stddev_pop_order_by",
-        "description": "order by stddev_pop() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1507,7 +1507,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_stddev_samp_order_by",
-        "description": "order by stddev_samp() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1528,7 +1528,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_sum_order_by",
-        "description": "order by sum() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1549,7 +1549,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_var_pop_order_by",
-        "description": "order by var_pop() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1570,7 +1570,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_var_samp_order_by",
-        "description": "order by var_samp() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1591,7 +1591,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_variance_order_by",
-        "description": "order by variance() on columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1612,7 +1612,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_aggregate_order_by",
-        "description": "order by aggregate values of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1733,7 +1733,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_avg_order_by",
-        "description": "order by avg() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1754,7 +1754,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_max_order_by",
-        "description": "order by max() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1835,7 +1835,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_min_order_by",
-        "description": "order by min() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1916,7 +1916,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_stddev_order_by",
-        "description": "order by stddev() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1937,7 +1937,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_stddev_pop_order_by",
-        "description": "order by stddev_pop() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1958,7 +1958,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_stddev_samp_order_by",
-        "description": "order by stddev_samp() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -1979,7 +1979,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_sum_order_by",
-        "description": "order by sum() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2000,7 +2000,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_var_pop_order_by",
-        "description": "order by var_pop() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2021,7 +2021,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_var_samp_order_by",
-        "description": "order by var_samp() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2042,7 +2042,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_variance_order_by",
-        "description": "order by variance() on columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2063,7 +2063,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_bool_exp",
-        "description": "Boolean expression to filter rows from the table \"bloxx.address\". All fields are combined with a logical 'AND'.",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2172,7 +2172,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "Int_comparison_exp",
-        "description": "expression to compare columns of type Int. All fields are combined with logical 'AND'.",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2299,7 +2299,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "String_comparison_exp",
-        "description": "expression to compare columns of type String. All fields are combined with logical 'AND'.",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2486,7 +2486,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_bool_exp",
-        "description": "Boolean expression to filter rows from the table \"bloxx.node\". All fields are combined with a logical 'AND'.",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2565,7 +2565,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_bool_exp",
-        "description": "Boolean expression to filter rows from the table \"bloxx.transaction\". All fields are combined with a logical 'AND'.",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2724,7 +2724,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_bool_exp",
-        "description": "Boolean expression to filter rows from the table \"bloxx.block\". All fields are combined with a logical 'AND'.",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2863,7 +2863,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_bool_exp",
-        "description": "Boolean expression to filter rows from the table \"bloxx.block_transaction\". All fields are combined with a logical 'AND'.",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -2952,7 +2952,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "timestamp_comparison_exp",
-        "description": "expression to compare columns of type timestamp. All fields are combined with logical 'AND'.",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -3069,7 +3069,7 @@
       {
         "kind": "SCALAR",
         "name": "timestamp",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -3079,7 +3079,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address",
-        "description": "columns and relationships of \"bloxx.address\"",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -3111,7 +3111,7 @@
           },
           {
             "name": "node",
-            "description": "An object relationship",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -3143,11 +3143,11 @@
           },
           {
             "name": "transactions",
-            "description": "An array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3165,7 +3165,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3175,7 +3175,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3185,7 +3185,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3203,7 +3203,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_bool_exp",
@@ -3234,11 +3234,11 @@
           },
           {
             "name": "transactionsByInputaddress",
-            "description": "An array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3256,7 +3256,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3266,7 +3266,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3276,7 +3276,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3294,7 +3294,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_bool_exp",
@@ -3325,11 +3325,11 @@
           },
           {
             "name": "transactionsByInputaddress_aggregate",
-            "description": "An aggregated array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3347,7 +3347,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3357,7 +3357,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3367,7 +3367,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3385,7 +3385,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_bool_exp",
@@ -3408,11 +3408,11 @@
           },
           {
             "name": "transactions_aggregate",
-            "description": "An aggregated array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3430,7 +3430,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3440,7 +3440,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3450,7 +3450,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3468,7 +3468,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_bool_exp",
@@ -3498,15 +3498,15 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_node",
-        "description": "columns and relationships of \"bloxx.node\"",
+        "description": "",
         "fields": [
           {
             "name": "addresses",
-            "description": "An array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3524,7 +3524,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3534,7 +3534,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3544,7 +3544,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3562,7 +3562,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_bool_exp",
@@ -3593,11 +3593,11 @@
           },
           {
             "name": "addresses_aggregate",
-            "description": "An aggregated array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3615,7 +3615,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3625,7 +3625,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3635,7 +3635,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -3653,7 +3653,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_bool_exp",
@@ -3715,7 +3715,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_aggregate",
-        "description": "aggregated selection of \"bloxx.address\"",
+        "description": "",
         "fields": [
           {
             "name": "aggregate",
@@ -3762,7 +3762,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_aggregate_fields",
-        "description": "aggregate fields of \"bloxx.address\"",
+        "description": "",
         "fields": [
           {
             "name": "avg",
@@ -3934,7 +3934,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_avg_fields",
-        "description": "aggregate avg on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -3967,7 +3967,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_max_fields",
-        "description": "aggregate max on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4014,7 +4014,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_min_fields",
-        "description": "aggregate min on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4061,7 +4061,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_stddev_fields",
-        "description": "aggregate stddev on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4084,7 +4084,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_stddev_pop_fields",
-        "description": "aggregate stddev_pop on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4107,7 +4107,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_stddev_samp_fields",
-        "description": "aggregate stddev_samp on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4130,7 +4130,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_sum_fields",
-        "description": "aggregate sum on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4153,7 +4153,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_var_pop_fields",
-        "description": "aggregate var_pop on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4176,7 +4176,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_var_samp_fields",
-        "description": "aggregate var_samp on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4199,7 +4199,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_variance_fields",
-        "description": "aggregate variance on columns",
+        "description": "",
         "fields": [
           {
             "name": "balance",
@@ -4222,50 +4222,50 @@
       {
         "kind": "ENUM",
         "name": "bloxx_transaction_select_column",
-        "description": "select columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "blockHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "inputAddress",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "outputAddress",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "signature",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "text",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "txHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "value",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -4275,7 +4275,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_order_by",
-        "description": "ordering options when selecting data from \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -4396,7 +4396,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_order_by",
-        "description": "ordering options when selecting data from \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -4497,7 +4497,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_aggregate_order_by",
-        "description": "order by aggregate values of table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -4538,7 +4538,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_max_order_by",
-        "description": "order by max() on columns of table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -4569,7 +4569,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_min_order_by",
-        "description": "order by min() on columns of table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -4600,11 +4600,11 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction",
-        "description": "columns and relationships of \"bloxx.transaction\"",
+        "description": "",
         "fields": [
           {
             "name": "address",
-            "description": "An object relationship",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4620,7 +4620,7 @@
           },
           {
             "name": "addressByInputaddress",
-            "description": "An object relationship",
+            "description": "",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -4632,7 +4632,7 @@
           },
           {
             "name": "block",
-            "description": "An object relationship",
+            "description": "",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -4656,11 +4656,11 @@
           },
           {
             "name": "block_transactions",
-            "description": "An array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -4678,7 +4678,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -4688,7 +4688,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -4698,7 +4698,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -4716,7 +4716,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_bool_exp",
@@ -4747,11 +4747,11 @@
           },
           {
             "name": "block_transactions_aggregate",
-            "description": "An aggregated array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -4769,7 +4769,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -4779,7 +4779,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -4789,7 +4789,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -4807,7 +4807,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_bool_exp",
@@ -4925,7 +4925,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block",
-        "description": "columns and relationships of \"bloxx.block\"",
+        "description": "",
         "fields": [
           {
             "name": "blockHash",
@@ -4977,11 +4977,11 @@
           },
           {
             "name": "block_transactions",
-            "description": "An array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -4999,7 +4999,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -5009,7 +5009,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -5019,7 +5019,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -5037,7 +5037,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_bool_exp",
@@ -5068,11 +5068,11 @@
           },
           {
             "name": "block_transactions_aggregate",
-            "description": "An aggregated array relationship",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -5090,7 +5090,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -5100,7 +5100,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -5110,7 +5110,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -5128,7 +5128,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_bool_exp",
@@ -5218,13 +5218,9 @@
             "description": "",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5238,20 +5234,20 @@
       {
         "kind": "ENUM",
         "name": "bloxx_block_transaction_select_column",
-        "description": "select columns of table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "blockHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "txHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -5261,7 +5257,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_order_by",
-        "description": "ordering options when selecting data from \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -5312,11 +5308,11 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_transaction",
-        "description": "columns and relationships of \"bloxx.block_transaction\"",
+        "description": "",
         "fields": [
           {
             "name": "block",
-            "description": "An object relationship",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5348,7 +5344,7 @@
           },
           {
             "name": "transaction",
-            "description": "An object relationship",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5387,7 +5383,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_transaction_aggregate",
-        "description": "aggregated selection of \"bloxx.block_transaction\"",
+        "description": "",
         "fields": [
           {
             "name": "aggregate",
@@ -5434,7 +5430,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_transaction_aggregate_fields",
-        "description": "aggregate fields of \"bloxx.block_transaction\"",
+        "description": "",
         "fields": [
           {
             "name": "count",
@@ -5510,7 +5506,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_transaction_max_fields",
-        "description": "aggregate max on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockHash",
@@ -5545,7 +5541,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_transaction_min_fields",
-        "description": "aggregate min on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockHash",
@@ -5580,7 +5576,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_aggregate",
-        "description": "aggregated selection of \"bloxx.transaction\"",
+        "description": "",
         "fields": [
           {
             "name": "aggregate",
@@ -5627,7 +5623,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_aggregate_fields",
-        "description": "aggregate fields of \"bloxx.transaction\"",
+        "description": "",
         "fields": [
           {
             "name": "avg",
@@ -5799,7 +5795,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_avg_fields",
-        "description": "aggregate avg on columns",
+        "description": "",
         "fields": [
           {
             "name": "value",
@@ -5822,7 +5818,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_max_fields",
-        "description": "aggregate max on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockHash",
@@ -5917,7 +5913,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_min_fields",
-        "description": "aggregate min on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockHash",
@@ -6012,7 +6008,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_stddev_fields",
-        "description": "aggregate stddev on columns",
+        "description": "",
         "fields": [
           {
             "name": "value",
@@ -6035,7 +6031,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_stddev_pop_fields",
-        "description": "aggregate stddev_pop on columns",
+        "description": "",
         "fields": [
           {
             "name": "value",
@@ -6058,7 +6054,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_stddev_samp_fields",
-        "description": "aggregate stddev_samp on columns",
+        "description": "",
         "fields": [
           {
             "name": "value",
@@ -6081,7 +6077,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_sum_fields",
-        "description": "aggregate sum on columns",
+        "description": "",
         "fields": [
           {
             "name": "value",
@@ -6104,7 +6100,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_var_pop_fields",
-        "description": "aggregate var_pop on columns",
+        "description": "",
         "fields": [
           {
             "name": "value",
@@ -6127,7 +6123,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_var_samp_fields",
-        "description": "aggregate var_samp on columns",
+        "description": "",
         "fields": [
           {
             "name": "value",
@@ -6150,7 +6146,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_variance_fields",
-        "description": "aggregate variance on columns",
+        "description": "",
         "fields": [
           {
             "name": "value",
@@ -6173,56 +6169,56 @@
       {
         "kind": "ENUM",
         "name": "bloxx_block_select_column",
-        "description": "select columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "blockHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "blockNumber",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "blockStatus",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "createdAt",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "difficulty",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "merkleRoot",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "nonce",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "previousBlockHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -6232,7 +6228,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_aggregate",
-        "description": "aggregated selection of \"bloxx.block\"",
+        "description": "",
         "fields": [
           {
             "name": "aggregate",
@@ -6279,7 +6275,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_aggregate_fields",
-        "description": "aggregate fields of \"bloxx.block\"",
+        "description": "",
         "fields": [
           {
             "name": "avg",
@@ -6451,7 +6447,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_avg_fields",
-        "description": "aggregate avg on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockNumber",
@@ -6498,7 +6494,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_max_fields",
-        "description": "aggregate max on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockHash",
@@ -6593,7 +6589,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_min_fields",
-        "description": "aggregate min on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockHash",
@@ -6688,7 +6684,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_stddev_fields",
-        "description": "aggregate stddev on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockNumber",
@@ -6735,7 +6731,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_stddev_pop_fields",
-        "description": "aggregate stddev_pop on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockNumber",
@@ -6782,7 +6778,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_stddev_samp_fields",
-        "description": "aggregate stddev_samp on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockNumber",
@@ -6829,7 +6825,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_sum_fields",
-        "description": "aggregate sum on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockNumber",
@@ -6876,7 +6872,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_var_pop_fields",
-        "description": "aggregate var_pop on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockNumber",
@@ -6923,7 +6919,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_var_samp_fields",
-        "description": "aggregate var_samp on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockNumber",
@@ -6970,7 +6966,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_variance_fields",
-        "description": "aggregate variance on columns",
+        "description": "",
         "fields": [
           {
             "name": "blockNumber",
@@ -7017,20 +7013,20 @@
       {
         "kind": "ENUM",
         "name": "bloxx_node_select_column",
-        "description": "select columns of table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "privateKey",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "publicKey",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -7040,7 +7036,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_node_aggregate",
-        "description": "aggregated selection of \"bloxx.node\"",
+        "description": "",
         "fields": [
           {
             "name": "aggregate",
@@ -7087,7 +7083,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_node_aggregate_fields",
-        "description": "aggregate fields of \"bloxx.node\"",
+        "description": "",
         "fields": [
           {
             "name": "count",
@@ -7163,7 +7159,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_node_max_fields",
-        "description": "aggregate max on columns",
+        "description": "",
         "fields": [
           {
             "name": "privateKey",
@@ -7198,7 +7194,7 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_node_min_fields",
-        "description": "aggregate min on columns",
+        "description": "",
         "fields": [
           {
             "name": "privateKey",
@@ -7233,15 +7229,15 @@
       {
         "kind": "OBJECT",
         "name": "mutation_root",
-        "description": "mutation root",
+        "description": "",
         "fields": [
           {
             "name": "delete_bloxx_address",
-            "description": "delete data from the table: \"bloxx.address\"",
+            "description": "",
             "args": [
               {
                 "name": "where",
-                "description": "filter the rows which have to be deleted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7264,11 +7260,11 @@
           },
           {
             "name": "delete_bloxx_block",
-            "description": "delete data from the table: \"bloxx.block\"",
+            "description": "",
             "args": [
               {
                 "name": "where",
-                "description": "filter the rows which have to be deleted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7291,11 +7287,11 @@
           },
           {
             "name": "delete_bloxx_block_transaction",
-            "description": "delete data from the table: \"bloxx.block_transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "where",
-                "description": "filter the rows which have to be deleted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7318,11 +7314,11 @@
           },
           {
             "name": "delete_bloxx_node",
-            "description": "delete data from the table: \"bloxx.node\"",
+            "description": "",
             "args": [
               {
                 "name": "where",
-                "description": "filter the rows which have to be deleted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7345,11 +7341,11 @@
           },
           {
             "name": "delete_bloxx_transaction",
-            "description": "delete data from the table: \"bloxx.transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "where",
-                "description": "filter the rows which have to be deleted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7372,11 +7368,11 @@
           },
           {
             "name": "insert_bloxx_address",
-            "description": "insert data into the table: \"bloxx.address\"",
+            "description": "",
             "args": [
               {
                 "name": "objects",
-                "description": "the rows to be inserted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7398,7 +7394,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_on_conflict",
@@ -7417,11 +7413,11 @@
           },
           {
             "name": "insert_bloxx_block",
-            "description": "insert data into the table: \"bloxx.block\"",
+            "description": "",
             "args": [
               {
                 "name": "objects",
-                "description": "the rows to be inserted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7443,7 +7439,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_on_conflict",
@@ -7462,11 +7458,11 @@
           },
           {
             "name": "insert_bloxx_block_transaction",
-            "description": "insert data into the table: \"bloxx.block_transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "objects",
-                "description": "the rows to be inserted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7488,7 +7484,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_on_conflict",
@@ -7507,11 +7503,11 @@
           },
           {
             "name": "insert_bloxx_node",
-            "description": "insert data into the table: \"bloxx.node\"",
+            "description": "",
             "args": [
               {
                 "name": "objects",
-                "description": "the rows to be inserted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7533,7 +7529,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_node_on_conflict",
@@ -7552,11 +7548,11 @@
           },
           {
             "name": "insert_bloxx_transaction",
-            "description": "insert data into the table: \"bloxx.transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "objects",
-                "description": "the rows to be inserted",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7578,7 +7574,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_on_conflict",
@@ -7597,11 +7593,11 @@
           },
           {
             "name": "update_bloxx_address",
-            "description": "update data of the table: \"bloxx.address\"",
+            "description": "",
             "args": [
               {
                 "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_inc_input",
@@ -7611,7 +7607,7 @@
               },
               {
                 "name": "_set",
-                "description": "sets the columns of the filtered rows to the given values",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_set_input",
@@ -7621,7 +7617,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows which have to be updated",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7644,11 +7640,11 @@
           },
           {
             "name": "update_bloxx_block",
-            "description": "update data of the table: \"bloxx.block\"",
+            "description": "",
             "args": [
               {
                 "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_inc_input",
@@ -7658,7 +7654,7 @@
               },
               {
                 "name": "_set",
-                "description": "sets the columns of the filtered rows to the given values",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_set_input",
@@ -7668,7 +7664,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows which have to be updated",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7691,11 +7687,11 @@
           },
           {
             "name": "update_bloxx_block_transaction",
-            "description": "update data of the table: \"bloxx.block_transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "_set",
-                "description": "sets the columns of the filtered rows to the given values",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_set_input",
@@ -7705,7 +7701,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows which have to be updated",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7728,11 +7724,11 @@
           },
           {
             "name": "update_bloxx_node",
-            "description": "update data of the table: \"bloxx.node\"",
+            "description": "",
             "args": [
               {
                 "name": "_set",
-                "description": "sets the columns of the filtered rows to the given values",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_node_set_input",
@@ -7742,7 +7738,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows which have to be updated",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7765,11 +7761,11 @@
           },
           {
             "name": "update_bloxx_transaction",
-            "description": "update data of the table: \"bloxx.transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_inc_input",
@@ -7779,7 +7775,7 @@
               },
               {
                 "name": "_set",
-                "description": "sets the columns of the filtered rows to the given values",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_set_input",
@@ -7789,7 +7785,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows which have to be updated",
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -7819,11 +7815,11 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_address_mutation_response",
-        "description": "response of any mutation on the table \"bloxx.address\"",
+        "description": "",
         "fields": [
           {
             "name": "affected_rows",
-            "description": "number of affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7839,7 +7835,7 @@
           },
           {
             "name": "returning",
-            "description": "data of the affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7870,11 +7866,11 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_mutation_response",
-        "description": "response of any mutation on the table \"bloxx.block\"",
+        "description": "",
         "fields": [
           {
             "name": "affected_rows",
-            "description": "number of affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7890,7 +7886,7 @@
           },
           {
             "name": "returning",
-            "description": "data of the affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7921,11 +7917,11 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_block_transaction_mutation_response",
-        "description": "response of any mutation on the table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": [
           {
             "name": "affected_rows",
-            "description": "number of affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7941,7 +7937,7 @@
           },
           {
             "name": "returning",
-            "description": "data of the affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7972,11 +7968,11 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_node_mutation_response",
-        "description": "response of any mutation on the table \"bloxx.node\"",
+        "description": "",
         "fields": [
           {
             "name": "affected_rows",
-            "description": "number of affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7992,7 +7988,7 @@
           },
           {
             "name": "returning",
-            "description": "data of the affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -8023,11 +8019,11 @@
       {
         "kind": "OBJECT",
         "name": "bloxx_transaction_mutation_response",
-        "description": "response of any mutation on the table \"bloxx.transaction\"",
+        "description": "",
         "fields": [
           {
             "name": "affected_rows",
-            "description": "number of affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -8043,7 +8039,7 @@
           },
           {
             "name": "returning",
-            "description": "data of the affected rows by the mutation",
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -8074,7 +8070,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_insert_input",
-        "description": "input type for inserting data into table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8145,7 +8141,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_obj_rel_insert_input",
-        "description": "input type for inserting object relation for remote table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8180,7 +8176,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_insert_input",
-        "description": "input type for inserting data into table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8221,7 +8217,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_arr_rel_insert_input",
-        "description": "input type for inserting array relation for remote table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8264,7 +8260,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_on_conflict",
-        "description": "on conflict condition type for table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8321,20 +8317,20 @@
       {
         "kind": "ENUM",
         "name": "bloxx_address_constraint",
-        "description": "unique or primary key constraints on table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "address_addressid_key",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "address_pkey",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -8344,26 +8340,26 @@
       {
         "kind": "ENUM",
         "name": "bloxx_address_update_column",
-        "description": "update columns of table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "balance",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "id",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "nodePublicKey",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -8373,7 +8369,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_on_conflict",
-        "description": "on conflict condition type for table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8430,26 +8426,26 @@
       {
         "kind": "ENUM",
         "name": "bloxx_node_constraint",
-        "description": "unique or primary key constraints on table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "node_nodeprk_key",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "node_nodepuk_key",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "node_pkey",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -8459,20 +8455,20 @@
       {
         "kind": "ENUM",
         "name": "bloxx_node_update_column",
-        "description": "update columns of table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "privateKey",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "publicKey",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -8482,7 +8478,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_arr_rel_insert_input",
-        "description": "input type for inserting array relation for remote table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8525,7 +8521,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_insert_input",
-        "description": "input type for inserting data into table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8646,7 +8642,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_obj_rel_insert_input",
-        "description": "input type for inserting object relation for remote table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8681,7 +8677,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_obj_rel_insert_input",
-        "description": "input type for inserting object relation for remote table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8716,7 +8712,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_insert_input",
-        "description": "input type for inserting data into table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8817,7 +8813,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_arr_rel_insert_input",
-        "description": "input type for inserting array relation for remote table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8860,7 +8856,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_insert_input",
-        "description": "input type for inserting data into table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8911,7 +8907,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_obj_rel_insert_input",
-        "description": "input type for inserting object relation for remote table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -8946,7 +8942,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_on_conflict",
-        "description": "on conflict condition type for table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9003,20 +8999,20 @@
       {
         "kind": "ENUM",
         "name": "bloxx_transaction_constraint",
-        "description": "unique or primary key constraints on table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "transaction_pkey",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "transaction_txhash_key",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -9026,50 +9022,50 @@
       {
         "kind": "ENUM",
         "name": "bloxx_transaction_update_column",
-        "description": "update columns of table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "blockHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "inputAddress",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "outputAddress",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "signature",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "text",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "txHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "value",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -9079,7 +9075,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_on_conflict",
-        "description": "on conflict condition type for table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9136,14 +9132,14 @@
       {
         "kind": "ENUM",
         "name": "bloxx_block_transaction_constraint",
-        "description": "unique or primary key constraints on table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "block_transaction_pkey",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -9153,20 +9149,20 @@
       {
         "kind": "ENUM",
         "name": "bloxx_block_transaction_update_column",
-        "description": "update columns of table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "blockHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "txHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -9176,7 +9172,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_on_conflict",
-        "description": "on conflict condition type for table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9233,20 +9229,20 @@
       {
         "kind": "ENUM",
         "name": "bloxx_block_constraint",
-        "description": "unique or primary key constraints on table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "block_blockHash_key",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "block_pkey",
-            "description": "unique or primary key constraint",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -9256,56 +9252,56 @@
       {
         "kind": "ENUM",
         "name": "bloxx_block_update_column",
-        "description": "update columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "blockHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "blockNumber",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "blockStatus",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "createdAt",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "difficulty",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "merkleRoot",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "nonce",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "previousBlockHash",
-            "description": "column name",
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -9315,7 +9311,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_inc_input",
-        "description": "input type for incrementing integer columne in table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9336,7 +9332,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_address_set_input",
-        "description": "input type for updating data in table \"bloxx.address\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9377,7 +9373,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_inc_input",
-        "description": "input type for incrementing integer columne in table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9418,7 +9414,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_set_input",
-        "description": "input type for updating data in table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9509,7 +9505,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_set_input",
-        "description": "input type for updating data in table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9540,7 +9536,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_set_input",
-        "description": "input type for updating data in table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9571,7 +9567,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_inc_input",
-        "description": "input type for incrementing integer columne in table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9592,7 +9588,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_transaction_set_input",
-        "description": "input type for updating data in table \"bloxx.transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -9673,15 +9669,15 @@
       {
         "kind": "OBJECT",
         "name": "subscription_root",
-        "description": "subscription root",
+        "description": "",
         "fields": [
           {
             "name": "bloxx_address",
-            "description": "fetch data from the table: \"bloxx.address\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -9699,7 +9695,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -9709,7 +9705,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -9719,7 +9715,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -9737,7 +9733,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_bool_exp",
@@ -9768,11 +9764,11 @@
           },
           {
             "name": "bloxx_address_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.address\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -9790,7 +9786,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -9800,7 +9796,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -9810,7 +9806,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -9828,7 +9824,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_address_bool_exp",
@@ -9851,7 +9847,7 @@
           },
           {
             "name": "bloxx_address_by_pk",
-            "description": "fetch data from the table: \"bloxx.address\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "id",
@@ -9878,11 +9874,11 @@
           },
           {
             "name": "bloxx_block",
-            "description": "fetch data from the table: \"bloxx.block\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -9900,7 +9896,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -9910,7 +9906,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -9920,7 +9916,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -9938,7 +9934,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_bool_exp",
@@ -9969,11 +9965,11 @@
           },
           {
             "name": "bloxx_block_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.block\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -9991,7 +9987,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10001,7 +9997,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10011,7 +10007,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10029,7 +10025,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_bool_exp",
@@ -10052,7 +10048,7 @@
           },
           {
             "name": "bloxx_block_by_pk",
-            "description": "fetch data from the table: \"bloxx.block\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "blockHash",
@@ -10079,11 +10075,11 @@
           },
           {
             "name": "bloxx_block_transaction",
-            "description": "fetch data from the table: \"bloxx.block_transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10101,7 +10097,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10111,7 +10107,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10121,7 +10117,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10139,7 +10135,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_bool_exp",
@@ -10170,11 +10166,11 @@
           },
           {
             "name": "bloxx_block_transaction_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.block_transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10192,7 +10188,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10202,7 +10198,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10212,7 +10208,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10230,7 +10226,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_block_transaction_bool_exp",
@@ -10253,7 +10249,7 @@
           },
           {
             "name": "bloxx_block_transaction_by_pk",
-            "description": "fetch data from the table: \"bloxx.block_transaction\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "blockHash",
@@ -10294,11 +10290,11 @@
           },
           {
             "name": "bloxx_node",
-            "description": "fetch data from the table: \"bloxx.node\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10316,7 +10312,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10326,7 +10322,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10336,7 +10332,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10354,7 +10350,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_node_bool_exp",
@@ -10385,11 +10381,11 @@
           },
           {
             "name": "bloxx_node_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.node\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10407,7 +10403,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10417,7 +10413,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10427,7 +10423,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10445,7 +10441,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_node_bool_exp",
@@ -10468,7 +10464,7 @@
           },
           {
             "name": "bloxx_node_by_pk",
-            "description": "fetch data from the table: \"bloxx.node\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "publicKey",
@@ -10495,11 +10491,11 @@
           },
           {
             "name": "bloxx_transaction",
-            "description": "fetch data from the table: \"bloxx.transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10517,7 +10513,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10527,7 +10523,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10537,7 +10533,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10555,7 +10551,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_bool_exp",
@@ -10586,11 +10582,11 @@
           },
           {
             "name": "bloxx_transaction_aggregate",
-            "description": "fetch aggregated fields from the table: \"bloxx.transaction\"",
+            "description": "",
             "args": [
               {
                 "name": "distinct_on",
-                "description": "distinct select on columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10608,7 +10604,7 @@
               },
               {
                 "name": "limit",
-                "description": "limit the number of rows returned",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10618,7 +10614,7 @@
               },
               {
                 "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -10628,7 +10624,7 @@
               },
               {
                 "name": "order_by",
-                "description": "sort the rows by one or more columns",
+                "description": "",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -10646,7 +10642,7 @@
               },
               {
                 "name": "where",
-                "description": "filter the rows returned",
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "bloxx_transaction_bool_exp",
@@ -10669,7 +10665,7 @@
           },
           {
             "name": "bloxx_transaction_by_pk",
-            "description": "fetch data from the table: \"bloxx.transaction\" using primary key columns",
+            "description": "",
             "args": [
               {
                 "name": "txHash",
@@ -11499,7 +11495,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_aggregate_order_by",
-        "description": "order by aggregate values of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -11620,7 +11616,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_avg_order_by",
-        "description": "order by avg() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -11661,7 +11657,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_max_order_by",
-        "description": "order by max() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -11742,7 +11738,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_min_order_by",
-        "description": "order by min() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -11823,7 +11819,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_stddev_order_by",
-        "description": "order by stddev() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -11864,7 +11860,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_stddev_pop_order_by",
-        "description": "order by stddev_pop() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -11905,7 +11901,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_stddev_samp_order_by",
-        "description": "order by stddev_samp() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -11946,7 +11942,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_sum_order_by",
-        "description": "order by sum() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -11987,7 +11983,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_var_pop_order_by",
-        "description": "order by var_pop() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -12028,7 +12024,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_var_samp_order_by",
-        "description": "order by var_samp() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -12069,7 +12065,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_variance_order_by",
-        "description": "order by variance() on columns of table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -12110,7 +12106,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_arr_rel_insert_input",
-        "description": "input type for inserting array relation for remote table \"bloxx.block\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -12153,7 +12149,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_block_transaction_obj_rel_insert_input",
-        "description": "input type for inserting object relation for remote table \"bloxx.block_transaction\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -12188,7 +12184,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_aggregate_order_by",
-        "description": "order by aggregate values of table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -12229,7 +12225,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_max_order_by",
-        "description": "order by max() on columns of table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -12260,7 +12256,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_min_order_by",
-        "description": "order by min() on columns of table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
@@ -12291,7 +12287,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "bloxx_node_arr_rel_insert_input",
-        "description": "input type for inserting array relation for remote table \"bloxx.node\"",
+        "description": "",
         "fields": null,
         "inputFields": [
           {
