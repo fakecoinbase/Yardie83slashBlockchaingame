@@ -23,7 +23,7 @@ const Blockchain = () => {
     dataset.forEach(
       (block: Bloxx_Block) =>
         (hashTable[block.blockHash] = {
-          name: "Block " + block.blockNumber,
+          name: block.blockNumber === 0 ? "Genesis" : "Block " + block.blockNumber,
           attributes: {
             BlockHash: block.blockHash,
             BlockStatus: block.blockStatus
@@ -37,7 +37,6 @@ const Blockchain = () => {
         hashTable[block.previousBlockHash].children.push(hashTable[block.blockHash]);
       } else dataTree.push(hashTable[block.blockHash]);
     });
-    console.table(dataTree);
     return dataTree;
   };
 
