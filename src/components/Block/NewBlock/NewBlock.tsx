@@ -108,6 +108,7 @@ const Block = () => {
     setIsTimerActive(false);
     setNonce(miningService(block)!);
     setBlock({ ...block, nonce });
+    setClickCount(0);
   };
 
   return (
@@ -161,16 +162,17 @@ const Block = () => {
         <div
           style={{
             display: "flex",
+            flex: 1,
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
             paddingBottom: "10px",
             paddingTop: "10px"
           }}
         >
-          <Button variant="contained" size="small" onClick={onCopyToHasher}>
+          <Button variant="contained" size="small" color="primary" onClick={onCopyToHasher} style={{marginRight: "10px"}}>
             Copy to Hasher
           </Button>
-          <Button variant="contained" size="small" onClick={onSolveNonce}>
+          <Button variant="contained" disabled={clickCount !== 3} color="primary" size="small" onClick={onSolveNonce}>
             Solve Nonce
           </Button>
         </div>
