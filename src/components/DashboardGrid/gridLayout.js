@@ -1,9 +1,9 @@
 // layout is an array of objects
 export const layouts = {
   lg: [
-    { i: "nodes", x: 0, y: 0, w: 2, h: 2, minH: 1, minW: 2, maxW: 2 },
+    { i: "nodes", x: 0, y: 0, w: 2, h: 3, minH: 1, minW: 2, maxW: 2 },
     { i: "hasher", x: 5, y: 2, w: 2, h: 2, minW: 2, maxW: 2 },
-    { i: "wallet", x: 0, y: 2, w: 2, h: 4 },
+    { i: "wallet", x: 0, y: 2, w: 2, h: 3 },
     { i: "signature", x: 2, y: 0, w: 3, h: 2 },
     { i: "unspentTx", x: 2, y: 2, w: 3, h: 2 },
     { i: "merkl", x: 7, y: 2, w: 2, h: 2 },

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Tree, { ReactD3TreeItem } from "react-d3-tree";
-import {} from "./BlockchainStyles.js";
-import Title from "../util/Title/Title";
-import { useOnBlockAddedSubscription, Bloxx_Block } from "../../generated/graphql";
+import Title from "../util/Title";
+import { useOnBlockAddedSubscription, Bloxx_Block, useBlockLazyQuery } from "../../generated/graphql";
+import useSelectedBlock from "../../customHooks/useSelectedBlock/useSelectedBlock";
 
 const Blockchain = () => {
-  const { data } = useOnBlockAddedSubscription();
+  const { data: blockSubscriptionData } = useOnBlockAddedSubscription();
+  const [, setSelectedBlock] = useSelectedBlock();
 
   const [treeData, setTreeData] = useState<ReactD3TreeItem[]>([
     {
-      name: "Block 0",
+      name: "Genesis",
       attributes: {
         BlockNumber: "",
         BlockHash: "",
@@ -24,9 +25,21 @@ const Blockchain = () => {
       (block: Bloxx_Block) =>
         (hashTable[block.blockHash] = {
           name: block.blockNumber === 0 ? "Genesis" : "Block " + block.blockNumber,
+          blockHash: block.blockHash,
           attributes: {
-            BlockHash: block.blockHash,
-            BlockStatus: block.blockStatus
+            Hash: block.blockHash.substr(0, 7) + "..." + block.blockHash.substr(block.blockHash.length - 7, 7),
+            Status: block.blockStatus
+          },
+          nodeSvgShape: {
+            shape: "rect",
+            shapeProps: {
+              width: 80,
+              height: 20,
+              y: -20,
+              x: 8,
+              fill: block.blockStatus === "confirmed" ? "#d2f3e0" : "#ffd19a",
+              stroke: "none"
+            }
           },
           children: []
         })
@@ -42,11 +55,25 @@ const Blockchain = () => {
 
   useEffect(() => {
     let tree: ReactD3TreeItem[] = [];
-    if (data !== undefined) {
-      tree = createDataTree(data!.bloxx_block);
+    if (blockSubscriptionData !== undefined) {
+      tree = createDataTree(blockSubscriptionData!.bloxx_block);
       setTreeData(tree);
     }
-  }, [data]);
+  }, [blockSubscriptionData]);
+
+  const [blockQuery, { data: blockQueryData }] = useBlockLazyQuery();
+
+  const onClick = (blockHash: string) => {
+    blockQuery({
+      variables: {
+        blockHash: blockHash
+      }
+    });
+  };
+
+  useEffect(() => {
+    setSelectedBlock(blockQueryData);
+  }, [blockQueryData, setSelectedBlock]);
 
   const subTitle = (
     <div style={{ width: "100%" }}>
@@ -65,13 +92,11 @@ const Blockchain = () => {
           collapsible={false}
           pathFunc={"elbow"}
           translate={{ x: 50, y: 100 }}
-          nodeSvgShape={{
-            shape: "rect",
-            shapeProps: {
-              width: 100,
-              height: 20,
-              y: -20,
-              x: -10
+          scaleExtent={{ min: 0.3, max: 2 }}
+          nodeSize={{ x: 200, y: 100 }}
+          onClick={(nodeData: any) => {
+            if (nodeData && nodeData.blockHash) {
+              onClick(nodeData!.blockHash);
             }
           }}
         />

@@ -1,131 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Table } from "rendition";
-import { Button } from "@material-ui/core";
+import React from "react";
+import { Tabs, Tab } from "rendition";
+import NewBlock from "./NewBlock/NewBlock";
+import CheckBlock from "./CheckBlock/CheckBlock";
 import Title from "../util/Title/Title";
-import LabeledInput from "../util/LabeledInput";
-import Publish from "./Publish";
-import useBlock, { BlockType } from "../../customHooks/useBlock";
-import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
-import miningService from "../../services/miningService";
-import useTimer from "../../customHooks/useTimer";
-import useDataToHash from "../../customHooks/useDataToHash";
 
 const Block = () => {
-  const [block, setBlock]: [BlockType, React.Dispatch<React.SetStateAction<BlockType | undefined>>] = useBlock();
-  const [timestamp, setTimestamp] = useState(new Date());
-  const [isTimerActive, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
-  const [nonce, setNonce] = useState(0);
-  const [clickCount, setClickCount] = useState(0);
-  const [, setDataToHash] = useDataToHash();
-  const [difficulty] = useState(1);
-  const [selectedTransactions] = useSelectedTransactions();
-
-  const onChange = (key: string, value: any) => {
-    setBlock({ ...block, timestamp, difficulty, blockStatus: "unconfirmed", [key]: value });
-  };
-
-  useEffect(() => {
-    let interval = setInterval(() => {}, 10000);
-    if (isTimerActive) {
-      interval = setInterval(() => {
-        setTimestamp(new Date());
-      }, 1000);
-    } else if (!isTimerActive) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isTimerActive, setTimestamp]);
-
-  useEffect(() => {
-    const data = selectedTransactions.map(function(transaction: any) {
-      return { txHash: transaction.txHash };
-    });
-    setBlock({ ...block, block_transactions: { data } });
-  }, [selectedTransactions]);
-
-  //TODO make sure all the variables are not empty strings or undefined
-  const copyToHasher = () => {
-    setClickCount(() => clickCount + 1);
-    setIsTimerActive(false);
-    let blockData =
-      block.blockNumber +
-      ":" +
-      block.previousBlockHash +
-      ":" +
-      block.merkleRoot +
-      ":" +
-      block.timestamp!.toISOString() +
-      ":" +
-      block.difficulty +
-      ":" +
-      nonce;
-    setDataToHash(blockData);
-  };
-
-  const solveNonce = () => {
-    setIsTimerActive(false);
-    setNonce(miningService(block)!);
-    setBlock({ ...block, nonce });
-  };
-
   return (
     <>
-      <Title title="Block" subTitle="Block Header"></Title>
-      <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
-        <LabeledInput label={"Block#"} onChange={e => onChange("blockNumber", parseInt(e.target.value))} />
-        <LabeledInput label={"Previous Block Hash"} onChange={e => onChange("previousBlockHash", e.target.value)} />
-        <LabeledInput label={"Merkl Root"} onChange={e => onChange("merkleRoot", e.target.value)} />
-        <LabeledInput
-          label={"Difficulty"}
-          readOnly
-          value={difficulty}
-          onChange={e => onChange("difficulty", e.target.value)}
-        />
-        <LabeledInput
-          label={"Timestamp"}
-          readOnly
-          value={timestamp.toUTCString()}
-          onChange={e => onChange("createdAt", timestamp)}
-        />
-        <LabeledInput
-          label={"Nonce"}
-          onChange={e => {
-            setNonce(parseInt(e.target.value));
-            onChange("nonce", parseInt(e.target.value));
-          }}
-          value={isNaN(nonce) ? 0 : nonce}
-        />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            paddingBottom: "10px",
-            paddingTop: "10px"
-          }}
-        >
-          <Button variant="contained" size="small" onClick={copyToHasher}>
-            Copy to Hasher
-          </Button>
-          <Button variant="contained" size="small" onClick={solveNonce}>
-            Solve Nonce
-          </Button>
-        </div>
-        <LabeledInput label={"Block Hash"} onChange={e => onChange("blockHash", e.target.value)} />
-      </div>
-      <div style={{ minHeight: "250px" }}>
-        <Table
-          columns={[
-            {
-              field: "txHash",
-              label: "Selected Transactions [TxHash] max. 4"
-            }
-          ]}
-          data={selectedTransactions}
-          rowKey="txHash"
-        />
-      </div>
-      <Publish />
+      <Title title="Block" />
+      <Tabs>
+        <Tab title="New Block">
+          <NewBlock />
+        </Tab>
+        <Tab title="Check Block">
+          <CheckBlock />
+        </Tab>
+      </Tabs>
     </>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {} from "./WalletStyles.js";
 import { Heading, Divider } from "rendition";
 import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
@@ -51,7 +50,7 @@ const Wallet = () => {
     });
   };
 
-  //TODO Improve validation to check for write format of input.
+  //TODO Improve validation to check for right format of input.
   // If any of the returned values is true, then we can not broadcast
   const validate = (to: string, amount: number, signature: string, txHash: string) => {
     return [to.length === 0, isNaN(amount), signature.length === 0, txHash.length === 0];
@@ -70,12 +69,9 @@ const Wallet = () => {
       <Title title="Wallet" subTitle={subTitle}></Title>
       <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
         <Heading.h6 style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C", paddingBottom: "5px" }}>
-          My Address: {userInfo.address.id ? userInfo.address.id : ""}
-        </Heading.h6>
-        <Divider />
-        <Heading.h6 style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C", paddingBottom: "5px" }}>
           Send Coins
         </Heading.h6>
+        <Divider />
         <LabeledInput label={"To"} placeholder={"Address"} onChange={e => onChange("to", e.target.value)} />
         <LabeledInput label={"Amount"} placeholder={"Amount"} onChange={e => onChange("amount", e.target.value)} />
         <div style={{ paddingBottom: "20px" }}>

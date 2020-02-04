@@ -1675,29 +1675,27 @@ export type DeleteGameDataMutation = (
   )> }
 );
 
-export type NodesQueryVariables = {};
+export type BlockQueryVariables = {
+  blockHash?: Maybe<Scalars['String']>
+};
 
 
-export type NodesQuery = (
+export type BlockQuery = (
   { __typename?: 'query_root' }
-  & { bloxx_node: Array<(
-    { __typename?: 'bloxx_node' }
-    & Pick<Bloxx_Node, 'publicKey' | 'privateKey'>
-    & { addresses: Array<(
-      { __typename?: 'bloxx_address' }
-      & Pick<Bloxx_Address, 'id'>
+  & { bloxx_block: Array<(
+    { __typename?: 'bloxx_block' }
+    & Pick<Bloxx_Block, 'blockNumber' | 'previousBlockHash' | 'merkleRoot' | 'difficulty' | 'createdAt' | 'nonce' | 'blockHash'>
+    & { block_transactions: Array<(
+      { __typename?: 'bloxx_block_transaction' }
+      & { transaction: (
+        { __typename?: 'bloxx_transaction' }
+        & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'value'>
+        & { addressByInputaddress: Maybe<(
+          { __typename?: 'bloxx_address' }
+          & Pick<Bloxx_Address, 'nodePublicKey'>
+        )> }
+      ) }
     )> }
-  )> }
-);
-
-export type TransactionsQueryVariables = {};
-
-
-export type TransactionsQuery = (
-  { __typename: 'query_root' }
-  & { bloxx_transaction: Array<(
-    { __typename?: 'bloxx_transaction' }
-    & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'text' | 'txHash' | 'value'>
   )> }
 );
 
@@ -1935,79 +1933,56 @@ export function useDeleteGameDataMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type DeleteGameDataMutationHookResult = ReturnType<typeof useDeleteGameDataMutation>;
 export type DeleteGameDataMutationResult = ApolloReactCommon.MutationResult<DeleteGameDataMutation>;
 export type DeleteGameDataMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteGameDataMutation, DeleteGameDataMutationVariables>;
-export const NodesDocument = gql`
-    query Nodes {
-  bloxx_node {
-    publicKey
-    privateKey
-    addresses {
-      id
+export const BlockDocument = gql`
+    query block($blockHash: String) {
+  bloxx_block(where: {blockHash: {_eq: $blockHash}}) {
+    blockNumber
+    previousBlockHash
+    merkleRoot
+    difficulty
+    createdAt
+    nonce
+    blockHash
+    block_transactions {
+      transaction {
+        inputAddress
+        outputAddress
+        signature
+        value
+        addressByInputaddress {
+          nodePublicKey
+        }
+      }
     }
   }
 }
     `;
 
 /**
- * __useNodesQuery__
+ * __useBlockQuery__
  *
- * To run a query within a React component, call `useNodesQuery` and pass it any options that fit your needs.
- * When your component renders, `useNodesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * To run a query within a React component, call `useBlockQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBlockQuery` returns an object from Apollo Client that contains loading, error, and data properties 
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useNodesQuery({
+ * const { data, loading, error } = useBlockQuery({
  *   variables: {
+ *      blockHash: // value for 'blockHash'
  *   },
  * });
  */
-export function useNodesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<NodesQuery, NodesQueryVariables>) {
-        return ApolloReactHooks.useQuery<NodesQuery, NodesQueryVariables>(NodesDocument, baseOptions);
+export function useBlockQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<BlockQuery, BlockQueryVariables>) {
+        return ApolloReactHooks.useQuery<BlockQuery, BlockQueryVariables>(BlockDocument, baseOptions);
       }
-export function useNodesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<NodesQuery, NodesQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<NodesQuery, NodesQueryVariables>(NodesDocument, baseOptions);
+export function useBlockLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<BlockQuery, BlockQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<BlockQuery, BlockQueryVariables>(BlockDocument, baseOptions);
         }
-export type NodesQueryHookResult = ReturnType<typeof useNodesQuery>;
-export type NodesLazyQueryHookResult = ReturnType<typeof useNodesLazyQuery>;
-export type NodesQueryResult = ApolloReactCommon.QueryResult<NodesQuery, NodesQueryVariables>;
-export const TransactionsDocument = gql`
-    query Transactions {
-  __typename
-  bloxx_transaction {
-    inputAddress
-    outputAddress
-    text
-    txHash
-    value
-  }
-}
-    `;
-
-/**
- * __useTransactionsQuery__
- *
- * To run a query within a React component, call `useTransactionsQuery` and pass it any options that fit your needs.
- * When your component renders, `useTransactionsQuery` returns an object from Apollo Client that contains loading, error, and data properties 
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTransactionsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useTransactionsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TransactionsQuery, TransactionsQueryVariables>) {
-        return ApolloReactHooks.useQuery<TransactionsQuery, TransactionsQueryVariables>(TransactionsDocument, baseOptions);
-      }
-export function useTransactionsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TransactionsQuery, TransactionsQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<TransactionsQuery, TransactionsQueryVariables>(TransactionsDocument, baseOptions);
-        }
-export type TransactionsQueryHookResult = ReturnType<typeof useTransactionsQuery>;
-export type TransactionsLazyQueryHookResult = ReturnType<typeof useTransactionsLazyQuery>;
-export type TransactionsQueryResult = ApolloReactCommon.QueryResult<TransactionsQuery, TransactionsQueryVariables>;
+export type BlockQueryHookResult = ReturnType<typeof useBlockQuery>;
+export type BlockLazyQueryHookResult = ReturnType<typeof useBlockLazyQuery>;
+export type BlockQueryResult = ApolloReactCommon.QueryResult<BlockQuery, BlockQueryVariables>;
 export const AddressDocument = gql`
     subscription address {
   bloxx_address {

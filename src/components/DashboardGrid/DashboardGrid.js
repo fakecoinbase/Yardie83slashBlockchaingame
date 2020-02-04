@@ -8,8 +8,8 @@ import {
   UnspentTx,
   Mempool,
   Blockchain,
-  Merkl,
   Block,
+  Merkl,
   Modal
 } from "../index";
 import { Provider } from "rendition";
