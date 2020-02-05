@@ -1,49 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { } from "./MempoolStyles.js";
 import { Provider, Box, Table, TextWithCopy } from "rendition";
 import Title from "../util/Title/Title";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
-import { FaRegCopy } from "react-icons/fa";
-import useDataToCheck from "../../customHooks/useDataToCheck";
 
 const Mempool = () => {
-  
+
   const { data } = useOnNewTransactionAddedSubscription();
   const [dataToShow, setDataToShow] = useState();
   const [, setSelectedTransaction] = useSelectedTransactions();
-  const [, setDataToCheck] = useDataToCheck();
 
   useEffect(() => {
     if (data !== undefined) {
-      const extendedData = data.bloxx_transaction;
-      extendedData.forEach(transaction => {
+      data.bloxx_transaction.forEach(transaction => {
         transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
-        transaction.dataToCheck = {
-          signedData: transaction.inputAddress.concat(":".concat(transaction.outputAddress.concat(":".concat(transaction.value)))
-          ),
-          pubKey: transaction.pubKey,
-          signature: transaction.signature
-        };
       });
-      extendedData.reverse();
-      setDataToShow(extendedData);
+      setDataToShow(data.bloxx_transaction.reverse());
     }
   }, [data]);
 
   const columns = [
-    {
-      field: "dataToCheck",
-      label: "Copy to Check",
-      render: value => {
-        return (
-          <FaRegCopy
-            onClick={() => setDataToCheck(value)}
-            style={{ cursor: "pointer" }}
-          />
-        );
-      }
-    },
     {
       field: "inputAddress",
       label: "Input Address",
