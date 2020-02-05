@@ -29,7 +29,6 @@ const Publish = () => {
     })
       .then(
         success => {
-          console.log(success.data!.insert_bloxx_block!);
           setToast(
             <Alert success emphasized style={{ width: "350px" }} onDismiss={() => setToast(null)}>
               Block published
@@ -38,7 +37,6 @@ const Publish = () => {
           setIsTimerActive(true);
         },
         rejected => {
-          console.warn(rejected)
           setToast(
             <Alert warning style={{ width: "350px" }} emphasized onDismiss={() => setToast(null)}>
               Check the block data again
@@ -47,7 +45,6 @@ const Publish = () => {
         }
       )
       .catch(error => {
-        console.error(error)
         setToast(
           <Alert danger emphasized prefix={false} style={{ width: "350px" }} onDismiss={() => setToast(null)}>
             Could not publish block
