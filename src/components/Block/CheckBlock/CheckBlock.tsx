@@ -4,6 +4,9 @@ import Title from "../../util/Title/Title";
 import LabeledInput from "../../util/LabeledInput/LabeledInput";
 import useSelectedBlock from "../../../customHooks/useSelectedBlock/useSelectedBlock";
 import { BlockQuery } from "../../../generated/graphql";
+import { FaRegCopy } from "react-icons/fa";
+import useDataToCheck from "../../../customHooks/useDataToCheck";
+import CheckSignature from "./CheckSignature";
 
 type SelectedBlock = {
   blockNumber: number | null;
@@ -13,11 +16,29 @@ type SelectedBlock = {
   timestamp: any;
   nonce: number;
   blockHash: string;
-  transactions: any;
+  transactions: any[];
+};
+
+type Transaction = {
+  inputAddress: string;
+  outputAddress: string;
+  signature: string;
+  value: number;
+  addressByInputaddress: {
+    nodePublicKey: string;
+  };
+  pubKey: string;
+  dataToCheck: {
+    signedData: string;
+    pubKey: string;
+    signature: string;
+  };
 };
 
 const CheckBlock = () => {
   const [selectedBlock]: [BlockQuery] = useSelectedBlock();
+  const [dataToShow, setDataToShow] = useState();
+  const [, setDataToCheck] = useDataToCheck();
   const [block, setBlock] = useState<SelectedBlock>({
     blockNumber: 0,
     previousBlockHash: "",
@@ -28,6 +49,29 @@ const CheckBlock = () => {
     blockHash: "",
     transactions: []
   });
+
+  const dataToCheck = (block_transactions: any[]): any[] => {
+    if (block_transactions !== undefined) {
+      let transactions: Transaction[] = [];
+      block_transactions.forEach(entry => {
+        let transaction: Transaction = entry.transaction;
+        transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
+        transaction.dataToCheck = {
+          signedData: transaction.inputAddress.concat(
+            ":".concat(transaction.outputAddress.concat(":".concat(transaction.value.toString())))
+          ),
+          pubKey: transaction.pubKey,
+          signature: transaction.signature
+        };
+        transactions.push(transaction);
+      });
+      setDataToShow(transactions);
+    }
+    return [];
+  };
+
+  useEffect(() => {
+  }, [dataToShow]);
 
   useEffect(() => {
     if (selectedBlock && selectedBlock.bloxx_block) {
@@ -40,7 +84,7 @@ const CheckBlock = () => {
         timestamp: b.createdAt ? new Date(b.createdAt).toUTCString() : new Date().toUTCString(),
         nonce: b.nonce ? b.nonce : 0,
         blockHash: b.blockHash ? b.blockHash : "",
-        transactions: b.block_transactions ? b.block_transactions : []
+        transactions: b.block_transactions ? dataToCheck(b.block_transactions) : []
       });
     }
   }, [selectedBlock]);
@@ -51,18 +95,18 @@ const CheckBlock = () => {
       <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
         <LabeledInput label={"Block number"} value={block!.blockNumber} readOnly />
         <LabeledInput label={"Previous Block Hash"} value={block!.previousBlockHash} readOnly />
-        <LabeledInput label={"Merkl Root"} value={block!.merklRoot} />
-        <LabeledInput label={"Difficulty"} readOnly value={block!.difficulty} />
-        <LabeledInput label={"Timestamp"} readOnly value={block!.timestamp} />
-        <LabeledInput label={"Nonce"} value={block!.nonce} />
-        <LabeledInput label={"Block Hash"} value={block!.blockHash} />
+        <LabeledInput label={"Merkl Root"} value={block!.merklRoot} readOnly />
+        <LabeledInput label={"Difficulty"} value={block!.difficulty} readOnly />
+        <LabeledInput label={"Timestamp"} value={block!.timestamp} readOnly />
+        <LabeledInput label={"Nonce"} value={block!.nonce} readOnly />
+        <LabeledInput label={"Block Hash"} value={block!.blockHash} readOnly />
       </div>
-      {/* <div style={{ minHeight: "250px" }}>
+      <div style={{ minHeight: "190px" }}>
         <Table
           columns={[
             {
               field: "dataToCheck",
-              label: "Copy to Check",
+              label: "Check",
               render: value => {
                 return <FaRegCopy onClick={() => setDataToCheck(value)} style={{ cursor: "pointer" }} />;
               }
@@ -72,10 +116,10 @@ const CheckBlock = () => {
               label: "Transactions"
             }
           ]}
-          data={selectedTransactions}
-          rowKey="txHash"
+          data={dataToShow}
         />
-      </div> */}
+      </div>
+      <CheckSignature />
     </>
   );
 };

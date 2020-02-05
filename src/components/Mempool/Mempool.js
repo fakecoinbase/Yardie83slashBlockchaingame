@@ -8,21 +8,7 @@ import { FaRegCopy } from "react-icons/fa";
 import useDataToCheck from "../../customHooks/useDataToCheck";
 
 const Mempool = () => {
-  /**
-   * e.g. data shape:
-   * data = [
-   * 	{
-   * 		input: 'v43bc6543vr46',
-   * 		output: 'fwf3tgg4fgu64',
-   * 		amount: '2',
-   * 		pubkey: '1215sadv8s',
-   * 		signature: 'asg43vt5z332',
-   * 		text: 'Some text',
-   * 		txHash: '43ct3g34c4n6767'
-   *	}
-   * ]
-   *
-   */
+  
   const { data } = useOnNewTransactionAddedSubscription();
   const [dataToShow, setDataToShow] = useState();
   const [, setSelectedTransaction] = useSelectedTransactions();
@@ -130,7 +116,7 @@ const Mempool = () => {
             <Table
               columns={columns}
               data={dataToShow}
-              // use TxHash for rowKey; because unique
+              // use TxHash for rowKey; because it is unique
               rowKey="txHash"
               onCheck={checkedItemsArray => setSelectedTransaction(checkedItemsArray)}
             />

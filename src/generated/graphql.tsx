@@ -1689,7 +1689,7 @@ export type BlockQuery = (
       { __typename?: 'bloxx_block_transaction' }
       & { transaction: (
         { __typename?: 'bloxx_transaction' }
-        & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'value'>
+        & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'value' | 'txHash'>
         & { addressByInputaddress: Maybe<(
           { __typename?: 'bloxx_address' }
           & Pick<Bloxx_Address, 'nodePublicKey'>
@@ -1949,6 +1949,7 @@ export const BlockDocument = gql`
         outputAddress
         signature
         value
+        txHash
         addressByInputaddress {
           nodePublicKey
         }

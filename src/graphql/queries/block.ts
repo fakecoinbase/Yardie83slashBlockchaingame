@@ -16,6 +16,7 @@ query block($blockHash: String) {
           outputAddress
           signature
           value
+          txHash
           addressByInputaddress {
             nodePublicKey
           }
