@@ -1,5 +1,5 @@
 // layout is an array of objects
-export const layouts = {
+export const userLayouts = {
   lg: [
     { i: "nodes", x: 0, y: 0, w: 2, h: 3, minH: 1, minW: 2, maxW: 2 },
     { i: "hasher", x: 5, y: 2, w: 2, h: 2, minW: 2, maxW: 2 },
@@ -48,6 +48,29 @@ export const layouts = {
     { i: "signature", x: 0, y: 9, w: 3, h: 6 },
     { i: "unspentTx", x: 0, y: 12, w: 6, h: 6 },
     { i: "mempool", x: 0, y: 15, w: 6, h: 6 },
+    { i: "blockchain", x: 0, y: 18, w: 3, h: 6 },
+    { i: "block", x: 0, y: 21, w: 3, h: 12 }
+  ]
+};
+
+export const adminLayouts = {
+  lg: [
+    { i: "blockchain", x: 0, y: 0, w: 9, h: 6 },
+    { i: "block", x: 9, y: 0, w: 3, h: 6 }
+  ],
+  md: [
+    { i: "blockchain", x: 6, y: 0, w: 3, h: 6 },
+    { i: "block", x: 9, y: 0, w: 3, h: 12 }
+  ],
+  sm: [
+    { i: "blockchain", x: 6, y: 0, w: 3, h: 6 },
+    { i: "block", x: 9, y: 0, w: 3, h: 12 }
+  ],
+  xs: [
+    { i: "blockchain", x: 0, y: 36, w: 3, h: 6 },
+    { i: "block", x: 0, y: 42, w: 3, h: 12 }
+  ],
+  xxs: [
     { i: "blockchain", x: 0, y: 18, w: 3, h: 6 },
     { i: "block", x: 0, y: 21, w: 3, h: 12 }
   ]

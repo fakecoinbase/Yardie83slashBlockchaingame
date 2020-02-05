@@ -4,7 +4,7 @@ import Title from "../util/Title";
 import { useOnBlockAddedSubscription, Bloxx_Block, useBlockLazyQuery } from "../../generated/graphql";
 import useSelectedBlock from "../../customHooks/useSelectedBlock/useSelectedBlock";
 
-const Blockchain = () => {
+const Blockchain = ({ admin }: any) => {
   const { data: blockSubscriptionData } = useOnBlockAddedSubscription();
   const [, setSelectedBlock] = useSelectedBlock();
 
@@ -78,13 +78,12 @@ const Blockchain = () => {
   const subTitle = (
     <div style={{ width: "100%" }}>
       <span style={{ display: "inline-block", boxSizing: "border-box", width: "33%" }}>Blockchain</span>
-      <span style={{ display: "inline-block", boxSizing: "border-box", width: "33%" }}>Longest chain: 6 </span>
-      <span style={{ display: "inline-block", boxSizing: "border-box", width: "33%" }}>Difficulty: 0</span>
     </div>
   );
 
   return (
-    <div style={{ height: "220px", minWidth: "600px" }}>
+    //TODO The height of the div is hard coded. Should be dynamically calcuated from the react-grid-layout columns * rows
+    <div style={{ height: admin ? 125 * 6 + "px" : "220px", minWidth: "600px" }}>
       <Title subTitle={subTitle} />
       {treeData !== undefined && (
         <Tree
