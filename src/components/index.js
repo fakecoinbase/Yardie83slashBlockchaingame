@@ -8,6 +8,7 @@ import Blockchain from "./Blockchain";
 import Merkl from "./Merkl";
 import Block from "./Block";
 import Modal from "./Modal";
+import CheckBlock from './Block/CheckBlock'
 
 export {
   Nodes,
@@ -19,5 +20,6 @@ export {
   Blockchain,
   Merkl,
   Block,
-  Modal
+  Modal,
+  CheckBlock
 };

@@ -7,6 +7,7 @@ import { BlockQuery } from "../../../generated/graphql";
 import { FaRegCopy } from "react-icons/fa";
 import useDataToCheck from "../../../customHooks/useDataToCheck";
 import CheckSignature from "./CheckSignature";
+import Confirm from "./Confirm/Confirm";
 
 type SelectedBlock = {
   blockNumber: number | null;
@@ -35,7 +36,7 @@ type Transaction = {
   };
 };
 
-const CheckBlock = () => {
+const CheckBlock = ({ admin }: any) => {
   const [selectedBlock]: [BlockQuery] = useSelectedBlock();
   const [dataToShow, setDataToShow] = useState();
   const [, setDataToCheck] = useDataToCheck();
@@ -69,9 +70,6 @@ const CheckBlock = () => {
     }
     return [];
   };
-
-  useEffect(() => {
-  }, [dataToShow]);
 
   useEffect(() => {
     if (selectedBlock && selectedBlock.bloxx_block) {
@@ -120,6 +118,7 @@ const CheckBlock = () => {
         />
       </div>
       <CheckSignature />
+      {admin && <Confirm />}
     </>
   );
 };

@@ -27,7 +27,7 @@ const Blockchain = ({ admin }: any) => {
           name: block.blockNumber === 0 ? "Genesis" : "Block " + block.blockNumber,
           blockHash: block.blockHash,
           attributes: {
-            Hash: block.blockHash.substr(0, 7) + "..." + block.blockHash.substr(block.blockHash.length - 7, 7),
+            Hash: block.blockHash.substr(0, 5) + "..." + block.blockHash.substr(block.blockHash.length - 5, 5),
             Status: block.blockStatus
           },
           nodeSvgShape: {
@@ -84,22 +84,22 @@ const Blockchain = ({ admin }: any) => {
   return (
     //TODO The height of the div is hard coded. Should be dynamically calcuated from the react-grid-layout columns * rows
     <div style={{ height: admin ? 125 * 6 + "px" : "220px", minWidth: "600px" }}>
-      <Title subTitle={subTitle} />
-      {treeData !== undefined && (
-        <Tree
-          data={treeData}
-          collapsible={false}
-          pathFunc={"elbow"}
-          translate={{ x: 50, y: 100 }}
-          scaleExtent={{ min: 0.3, max: 2 }}
-          nodeSize={{ x: 200, y: 100 }}
-          onClick={(nodeData: any) => {
-            if (nodeData && nodeData.blockHash) {
-              onClick(nodeData!.blockHash);
-            }
-          }}
-        />
-      )}
+    <Title subTitle={subTitle} />
+    {treeData !== undefined && (
+      <Tree
+        data={treeData}
+        collapsible={false}
+        pathFunc={"elbow"}
+        translate={{ x: 50, y: 100 }}
+        scaleExtent={{ min: 0.3, max: 2 }}
+        nodeSize={{ x: 200, y: 100 }}
+        onClick={(nodeData: any) => {
+          if (nodeData && nodeData.blockHash) {
+            onClick(nodeData!.blockHash);
+          }
+        }}
+      />
+    )}
     </div>
   );
 };

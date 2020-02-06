@@ -30,7 +30,7 @@ const Modal = (props: Props) => {
           publicKey: res.data!.insert_bloxx_node!.returning[0].publicKey,
           address: {
             id: res.data!.insert_bloxx_node!.returning[0].addresses[0].id,
-            amount: 0
+            amount: res.data!.insert_bloxx_node!.returning[0].addresses[0].balance
           }
         };
       })

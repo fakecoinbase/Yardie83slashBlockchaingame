@@ -15,6 +15,7 @@ mutation insertNode(
       privateKey
       addresses {
         id
+        balance
       }
     }
   }

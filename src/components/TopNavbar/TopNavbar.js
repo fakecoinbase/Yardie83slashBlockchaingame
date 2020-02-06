@@ -1,8 +1,8 @@
 import React from 'react';
-import { Provider, Navbar } from 'rendition';
+import { Provider } from 'rendition';
 
-import Brand from './Brand'
 import UserInfo from './UserInfo/UserInfo';
+import AdminControls from './AdminControls/AdminControls';
 
 const TopNavbar = (props) => {
 
@@ -10,7 +10,7 @@ const TopNavbar = (props) => {
 		<>
 			<Provider>
 				{props.admin ?
-					<Navbar brand={Brand} style={{ background: "#282828", height: "70px" }} /> :
+					<AdminControls/> :
 					<UserInfo />
 				}
 			</Provider>

@@ -1625,7 +1625,7 @@ export type InsertNodeMutation = (
       & Pick<Bloxx_Node, 'publicKey' | 'privateKey'>
       & { addresses: Array<(
         { __typename?: 'bloxx_address' }
-        & Pick<Bloxx_Address, 'id'>
+        & Pick<Bloxx_Address, 'id' | 'balance'>
       )> }
     )> }
   )> }
@@ -1735,7 +1735,7 @@ export type OnNewNodeAddedSubscription = (
     & Pick<Bloxx_Node, 'publicKey'>
     & { addresses: Array<(
       { __typename?: 'bloxx_address' }
-      & Pick<Bloxx_Address, 'id'>
+      & Pick<Bloxx_Address, 'id' | 'balance'>
     )> }
   )> }
 );
@@ -1815,6 +1815,7 @@ export const InsertNodeDocument = gql`
       privateKey
       addresses {
         id
+        balance
       }
     }
   }
@@ -2053,6 +2054,7 @@ export const OnNewNodeAddedDocument = gql`
     publicKey
     addresses {
       id
+      balance
     }
   }
 }

@@ -14,9 +14,9 @@ import useDataToHash from "../../../customHooks/useDataToHash/useDataToHash";
 const Block = () => {
   const { data } = useOnBlockAddedSubscription();
   const [block, setBlock]: [BlockType, React.Dispatch<React.SetStateAction<BlockType | undefined>>] = useBlock();
-  const [blockNumber, setBlockNumber] = useState<string>("Block number");
+  const [blockNumber, setBlockNumber] = useState<string>("-");
   const [blockNumberOptions, setBlockNumberOptions] = useState<string[]>();
-  const [previousBlockHash, setPreviousBlockHashlockNumber] = useState<string>("Previous Block Hash");
+  const [previousBlockHash, setPreviousBlockHashlockNumber] = useState<string>("-");
   const [previousBlockHashOptions, setPreviousBlockHashOptions] = useState<
     { blockNumber: string; blockHash: string }[]
   >();
