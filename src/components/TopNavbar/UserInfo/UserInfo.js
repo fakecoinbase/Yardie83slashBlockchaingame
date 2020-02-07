@@ -31,7 +31,7 @@ const UserInfo = () => {
 			</Txt>
 			<span>|</span>
 			<Txt color='white'>
-				My Address: <strong>{userInfo.address && userInfo.address.id.slice(0, 8)} </strong>
+				My Address: <strong>{userInfo.address && userInfo.address.id} </strong>
 			</Txt>
 		</Navbar>
 	)

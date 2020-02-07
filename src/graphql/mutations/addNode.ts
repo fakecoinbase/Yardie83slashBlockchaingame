@@ -4,11 +4,12 @@ const ADD_NODE = gql`
 mutation insertNode(
   $publicKey: String, 
   $privateKey: String, 
-  $address: String ) {
+  $address: String,
+  $balance: Int ) {
   insert_bloxx_node(objects: {
     publicKey: $publicKey, 
-    privateKey: $privateKey, 
-    addresses: {data: {id: $address }}}) {
+    privateKey: $privateKey,
+    addresses: {data: {id: $address, balance: $balance  }}}) {
     affected_rows
     returning {
       publicKey

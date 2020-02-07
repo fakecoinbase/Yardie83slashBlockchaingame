@@ -3,15 +3,15 @@ import { Modal as RModal } from "rendition";
 import useUserInfo from "../../customHooks/useUserInfo/useUserInfo";
 import { useInsertNodeMutation } from "../../generated/graphql";
 import generateNode from "../../services/nodeGen";
-import {} from "./ModalStyles.js";
+import Loader from "react-loader-spinner";
 
 interface Props {
-  setShowModal: (show: boolean) => {};
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Modal = (props: Props) => {
   const [userInfo, setUserInfo] = useUserInfo();
-  const [insertNodeMutation] = useInsertNodeMutation({
+  const [insertNodeMutation, { loading }] = useInsertNodeMutation({
     variables: {
       publicKey: "",
       privateKey: "",
@@ -22,7 +22,7 @@ const Modal = (props: Props) => {
   useEffect(() => {
     const info = generateNode();
     insertNodeMutation({
-      variables: { publicKey: info.publicKey, privateKey: info.privateKey, address: info.address }
+      variables: { publicKey: info.publicKey, privateKey: info.privateKey, address: info.address, balance: 0 }
     })
       .then(res => {
         return {
@@ -45,22 +45,26 @@ const Modal = (props: Props) => {
         props.setShowModal(false);
       }}
     >
-      <div>
-        <p>
-          <strong>Private Key: </strong>
-          {userInfo.privateKey && userInfo.privateKey}
-        </p>
-        <p>
-          <strong>Public Key: </strong>
-          {userInfo.publicKey && userInfo.publicKey}
-        </p>
-        <p>
-          <strong>Node address: </strong> {userInfo.address.id && userInfo.address.id}
-        </p>
-        <p>
-          <strong>You can find this information on top of the next screen</strong>
-        </p>
-      </div>
+      {loading ? (
+        <Loader type="Circles" color="#00BFFF" height={100} width={100} />
+      ) : (
+        <div>
+          <p>
+            <strong>Private Key: </strong>
+            {userInfo.privateKey && userInfo.privateKey}
+          </p>
+          <p>
+            <strong>Public Key: </strong>
+            {userInfo.publicKey && userInfo.publicKey}
+          </p>
+          <p>
+            <strong>Node address: </strong> {userInfo.address.id && userInfo.address.id}
+          </p>
+          <p>
+            <strong>You can find this information on top of the next screen</strong>
+          </p>
+        </div>
+      )}
     </RModal>
   );
 };

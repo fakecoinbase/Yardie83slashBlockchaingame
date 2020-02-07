@@ -3,18 +3,30 @@ import { Heading, Divider } from "rendition";
 import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput/LabeledInput";
-import useUserInfo from "../../customHooks/useUserInfo/useUserInfo";
-import { useInsertTransactionMutation } from "../../generated/graphql";
+import useUserInfo, { UserType } from "../../customHooks/useUserInfo/useUserInfo";
+import { useInsertTransactionMutation, useAddressSubscription } from "../../generated/graphql";
 import useDataToSign from "../../customHooks/useDataToSign";
 import useDataToHash from "../../customHooks/useDataToHash";
 
 const Wallet = () => {
-  const [userInfo] = useUserInfo();
+  const [userInfo, setUserInfo]: [UserType, React.Dispatch<React.SetStateAction<UserType>>] = useUserInfo();
+  const { data } = useAddressSubscription();
   const [canBroadcast, setCanBroadcast] = useState(false);
   const [fields, setFields] = useState({ to: "", amount: "", signature: "", txHash: "" });
   const [insertTransactionMutation] = useInsertTransactionMutation();
   const [, setDataToSign]: [string, React.Dispatch<React.SetStateAction<string>>] = useDataToSign();
   const [, setDataToHash]: [string, React.Dispatch<React.SetStateAction<string>>] = useDataToHash();
+
+  useEffect(() => {
+    let currentUser = undefined;
+    if (data) {
+      currentUser = data!.bloxx_address.find(address => address.id === userInfo.address.id);
+    }
+    if (currentUser) {
+      const amount = currentUser!.balance!;
+      setUserInfo({ ...userInfo, address: { id: userInfo.address.id, amount } });
+    }
+  }, [data]);
 
   const copyToSign = () => {
     if (fields !== undefined)
@@ -50,7 +62,7 @@ const Wallet = () => {
     });
   };
 
-  //TODO Improve validation to check for right format of input.
+  //TODO Improve validation to check for right input format.
   // If any of the returned values is true, then we can not broadcast
   const validate = (to: string, amount: number, signature: string, txHash: string) => {
     return [to.length === 0, isNaN(amount), signature.length === 0, txHash.length === 0];

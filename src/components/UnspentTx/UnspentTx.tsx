@@ -14,7 +14,7 @@ const UnspentTx = () => {
       let _nodes: { address?: string; amount?: number | null }[] = [];
 
       data.bloxx_address.forEach(node => {
-        if (node.id !== "undefined") {
+        if (node.id !== "undefined" && node.balance !== null) {
           _nodes.push({
             address: node.id,
             amount: node.balance
@@ -47,18 +47,6 @@ const UnspentTx = () => {
       label: "Amount",
       render: (value: string) => <code>{value}</code>
     }
-    // {
-    // 	field: 'txHash',
-    // 	label: 'Tx Hash',
-    // 	render: value => {
-    // 		// shorten value to fit column width, then
-    // 		const newValue = value
-    // 		return (
-    // 			// newValue
-    // 			newValue
-    // 		)
-    // 	}
-    // }
   ];
 
   return (

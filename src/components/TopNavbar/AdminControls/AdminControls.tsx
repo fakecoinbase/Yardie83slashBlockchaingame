@@ -9,7 +9,6 @@ const AdminControls = () => {
   const [, setShowAdminModal] = useAdminModal();
   const [,setShowResetGameModal] = useResetGameModal();
 
-
   const onClick = () => {
     setShowAdminModal(true);
   };
@@ -20,7 +19,7 @@ const AdminControls = () => {
         variant="contained"
         color="primary"
         size="small"
-        onClick={() => onClick()}
+        onClick={onClick}
         style={{ marginRight: "10px" }}
       >
         Transfer Coins

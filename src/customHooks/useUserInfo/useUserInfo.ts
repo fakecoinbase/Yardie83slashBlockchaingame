@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { createStore } from 'reusable';
 
 export type UserType = {
-	privateKey: String
-	publicKey: String,
+	privateKey: string
+	publicKey: string,
 	address: {
-		id: String,
+		id: string,
 		amount: Number
 	},
 }

@@ -22,7 +22,7 @@ const ResetGameModal = () => {
         <Box m={3}>
           <Alert emphasized danger prefix={false}>Caution!!
           <Txt>Are you sure you want to reset the game?</Txt>
-            <Txt>This will delete all the game data and create a new admin node</Txt>
+            <Txt>This will delete all the game data</Txt>
           </Alert>
         </Box>
       </Modal>

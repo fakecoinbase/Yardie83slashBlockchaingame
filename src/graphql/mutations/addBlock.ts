@@ -23,7 +23,8 @@ mutation insertBlock(
         blockHash: $blockHash
         blockStatus: $blockStatus
         block_transactions: $block_transactions
-      }
+      },
+      on_conflict: {constraint: block_blockHash_key, update_columns: blockNumber}
     )
     {
     affected_rows

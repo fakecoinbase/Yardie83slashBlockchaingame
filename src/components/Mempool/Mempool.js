@@ -2,22 +2,31 @@ import React, { useEffect, useState } from "react";
 import { Provider, Box, Table, TextWithCopy } from "rendition";
 import Title from "../util/Title/Title";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
-import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
+import { useOnNewTransactionAddedSubscription, useAdminAddressLazyQuery } from "../../generated/graphql";
 
 const Mempool = () => {
 
   const { data } = useOnNewTransactionAddedSubscription();
   const [dataToShow, setDataToShow] = useState();
   const [, setSelectedTransaction] = useSelectedTransactions();
+  const [adminAddressLazyQuery, { data: adminAddressQueryData }] = useAdminAddressLazyQuery();
+
+  useEffect(() => {
+    adminAddressLazyQuery();
+  }, [adminAddressLazyQuery])
 
   useEffect(() => {
     if (data !== undefined) {
       data.bloxx_transaction.forEach(transaction => {
         transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
       });
-      setDataToShow(data.bloxx_transaction.reverse());
+      if (adminAddressQueryData) {
+        setDataToShow(data.bloxx_transaction.filter(transaction => transaction.pubKey !== adminAddressQueryData.bloxx_address[0].nodePublicKey).reverse());
+      } else {
+        setDataToShow(data.bloxx_transaction.reverse())
+      }
     }
-  }, [data]);
+  }, [data, adminAddressQueryData]);
 
   const columns = [
     {

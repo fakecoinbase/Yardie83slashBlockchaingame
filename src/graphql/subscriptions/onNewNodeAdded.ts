@@ -7,6 +7,7 @@ const NEW_NODE_ADDED = gql`
             addresses {
                 id
                 balance
+                nodePublicKey
             }
         }
     }

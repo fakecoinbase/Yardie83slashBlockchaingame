@@ -12,10 +12,11 @@ const Blockchain = ({ admin }: any) => {
     {
       name: "Genesis",
       attributes: {
-        BlockNumber: "",
-        BlockHash: "",
-        BlockStatus: ""
-      }
+        BlockNumber: "-",
+        BlockHash: "-",
+        BlockStatus: "-"
+      },
+      children: []
     }
   ]);
 
@@ -57,7 +58,7 @@ const Blockchain = ({ admin }: any) => {
     let tree: ReactD3TreeItem[] = [];
     if (blockSubscriptionData !== undefined) {
       tree = createDataTree(blockSubscriptionData!.bloxx_block);
-      setTreeData(tree);
+      if (tree.length !== 0) setTreeData(tree);
     }
   }, [blockSubscriptionData]);
 
@@ -84,22 +85,22 @@ const Blockchain = ({ admin }: any) => {
   return (
     //TODO The height of the div is hard coded. Should be dynamically calcuated from the react-grid-layout columns * rows
     <div style={{ height: admin ? 125 * 6 + "px" : "220px", minWidth: "600px" }}>
-    <Title subTitle={subTitle} />
-    {treeData !== undefined && (
-      <Tree
-        data={treeData}
-        collapsible={false}
-        pathFunc={"elbow"}
-        translate={{ x: 50, y: 100 }}
-        scaleExtent={{ min: 0.3, max: 2 }}
-        nodeSize={{ x: 200, y: 100 }}
-        onClick={(nodeData: any) => {
-          if (nodeData && nodeData.blockHash) {
-            onClick(nodeData!.blockHash);
-          }
-        }}
-      />
-    )}
+      <Title subTitle={subTitle} />
+      {treeData !== undefined && (
+        <Tree
+          data={treeData}
+          collapsible={false}
+          pathFunc={"elbow"}
+          translate={{ x: 50, y: 100 }}
+          scaleExtent={{ min: 0.3, max: 2 }}
+          nodeSize={{ x: 200, y: 100 }}
+          onClick={(nodeData: any) => {
+            if (nodeData && nodeData.blockHash) {
+              onClick(nodeData!.blockHash);
+            }
+          }}
+        />
+      )}
     </div>
   );
 };

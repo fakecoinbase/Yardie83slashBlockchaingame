@@ -1583,6 +1583,23 @@ export type Timestamp_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['timestamp']>>,
 };
 
+export type InsertAdminTransactionsMutationVariables = {
+  transactions: Array<Bloxx_Transaction_Insert_Input>
+};
+
+
+export type InsertAdminTransactionsMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_bloxx_transaction: Maybe<(
+    { __typename?: 'bloxx_transaction_mutation_response' }
+    & Pick<Bloxx_Transaction_Mutation_Response, 'affected_rows'>
+    & { returning: Array<(
+      { __typename?: 'bloxx_transaction' }
+      & Pick<Bloxx_Transaction, 'blockHash' | 'inputAddress' | 'outputAddress' | 'signature' | 'text' | 'txHash' | 'value'>
+    )> }
+  )> }
+);
+
 export type InsertBlockMutationVariables = {
   blockNumber?: Maybe<Scalars['Int']>,
   previousBlockHash?: Maybe<Scalars['String']>,
@@ -1611,7 +1628,8 @@ export type InsertBlockMutation = (
 export type InsertNodeMutationVariables = {
   publicKey?: Maybe<Scalars['String']>,
   privateKey?: Maybe<Scalars['String']>,
-  address?: Maybe<Scalars['String']>
+  address?: Maybe<Scalars['String']>,
+  balance?: Maybe<Scalars['Int']>
 };
 
 
@@ -1675,6 +1693,17 @@ export type DeleteGameDataMutation = (
   )> }
 );
 
+export type AdminAddressQueryVariables = {};
+
+
+export type AdminAddressQuery = (
+  { __typename?: 'query_root' }
+  & { bloxx_address: Array<(
+    { __typename?: 'bloxx_address' }
+    & Pick<Bloxx_Address, 'nodePublicKey'>
+  )> }
+);
+
 export type BlockQueryVariables = {
   blockHash?: Maybe<Scalars['String']>
 };
@@ -1696,6 +1725,19 @@ export type BlockQuery = (
         )> }
       ) }
     )> }
+  )> }
+);
+
+export type BlockHashByBlocknumberQueryVariables = {
+  blockNumber?: Maybe<Scalars['Int']>
+};
+
+
+export type BlockHashByBlocknumberQuery = (
+  { __typename?: 'query_root' }
+  & { bloxx_block: Array<(
+    { __typename?: 'bloxx_block' }
+    & Pick<Bloxx_Block, 'blockHash'>
   )> }
 );
 
@@ -1735,7 +1777,7 @@ export type OnNewNodeAddedSubscription = (
     & Pick<Bloxx_Node, 'publicKey'>
     & { addresses: Array<(
       { __typename?: 'bloxx_address' }
-      & Pick<Bloxx_Address, 'id' | 'balance'>
+      & Pick<Bloxx_Address, 'id' | 'balance' | 'nodePublicKey'>
     )> }
   )> }
 );
@@ -1756,9 +1798,50 @@ export type OnNewTransactionAddedSubscription = (
 );
 
 
+export const InsertAdminTransactionsDocument = gql`
+    mutation insertAdminTransactions($transactions: [bloxx_transaction_insert_input!]!) {
+  insert_bloxx_transaction(objects: $transactions) {
+    returning {
+      blockHash
+      inputAddress
+      outputAddress
+      signature
+      text
+      txHash
+      value
+    }
+    affected_rows
+  }
+}
+    `;
+export type InsertAdminTransactionsMutationFn = ApolloReactCommon.MutationFunction<InsertAdminTransactionsMutation, InsertAdminTransactionsMutationVariables>;
+
+/**
+ * __useInsertAdminTransactionsMutation__
+ *
+ * To run a mutation, you first call `useInsertAdminTransactionsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertAdminTransactionsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertAdminTransactionsMutation, { data, loading, error }] = useInsertAdminTransactionsMutation({
+ *   variables: {
+ *      transactions: // value for 'transactions'
+ *   },
+ * });
+ */
+export function useInsertAdminTransactionsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<InsertAdminTransactionsMutation, InsertAdminTransactionsMutationVariables>) {
+        return ApolloReactHooks.useMutation<InsertAdminTransactionsMutation, InsertAdminTransactionsMutationVariables>(InsertAdminTransactionsDocument, baseOptions);
+      }
+export type InsertAdminTransactionsMutationHookResult = ReturnType<typeof useInsertAdminTransactionsMutation>;
+export type InsertAdminTransactionsMutationResult = ApolloReactCommon.MutationResult<InsertAdminTransactionsMutation>;
+export type InsertAdminTransactionsMutationOptions = ApolloReactCommon.BaseMutationOptions<InsertAdminTransactionsMutation, InsertAdminTransactionsMutationVariables>;
 export const InsertBlockDocument = gql`
     mutation insertBlock($blockNumber: Int, $previousBlockHash: String, $createdAt: timestamp, $difficulty: Int, $merkleRoot: String, $nonce: Int, $blockHash: String, $blockStatus: String, $block_transactions: bloxx_block_transaction_arr_rel_insert_input) {
-  insert_bloxx_block(objects: {blockNumber: $blockNumber, previousBlockHash: $previousBlockHash, createdAt: $createdAt, difficulty: $difficulty, merkleRoot: $merkleRoot, nonce: $nonce, blockHash: $blockHash, blockStatus: $blockStatus, block_transactions: $block_transactions}) {
+  insert_bloxx_block(objects: {blockNumber: $blockNumber, previousBlockHash: $previousBlockHash, createdAt: $createdAt, difficulty: $difficulty, merkleRoot: $merkleRoot, nonce: $nonce, blockHash: $blockHash, blockStatus: $blockStatus, block_transactions: $block_transactions}, on_conflict: {constraint: block_blockHash_key, update_columns: blockNumber}) {
     affected_rows
     returning {
       blockHash
@@ -1807,8 +1890,8 @@ export type InsertBlockMutationHookResult = ReturnType<typeof useInsertBlockMuta
 export type InsertBlockMutationResult = ApolloReactCommon.MutationResult<InsertBlockMutation>;
 export type InsertBlockMutationOptions = ApolloReactCommon.BaseMutationOptions<InsertBlockMutation, InsertBlockMutationVariables>;
 export const InsertNodeDocument = gql`
-    mutation insertNode($publicKey: String, $privateKey: String, $address: String) {
-  insert_bloxx_node(objects: {publicKey: $publicKey, privateKey: $privateKey, addresses: {data: {id: $address}}}) {
+    mutation insertNode($publicKey: String, $privateKey: String, $address: String, $balance: Int) {
+  insert_bloxx_node(objects: {publicKey: $publicKey, privateKey: $privateKey, addresses: {data: {id: $address, balance: $balance}}}) {
     affected_rows
     returning {
       publicKey
@@ -1839,6 +1922,7 @@ export type InsertNodeMutationFn = ApolloReactCommon.MutationFunction<InsertNode
  *      publicKey: // value for 'publicKey'
  *      privateKey: // value for 'privateKey'
  *      address: // value for 'address'
+ *      balance: // value for 'balance'
  *   },
  * });
  */
@@ -1934,6 +2018,38 @@ export function useDeleteGameDataMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type DeleteGameDataMutationHookResult = ReturnType<typeof useDeleteGameDataMutation>;
 export type DeleteGameDataMutationResult = ApolloReactCommon.MutationResult<DeleteGameDataMutation>;
 export type DeleteGameDataMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteGameDataMutation, DeleteGameDataMutationVariables>;
+export const AdminAddressDocument = gql`
+    query adminAddress {
+  bloxx_address(where: {node: {addresses: {balance: {_is_null: true}}}}, limit: 1) {
+    nodePublicKey
+  }
+}
+    `;
+
+/**
+ * __useAdminAddressQuery__
+ *
+ * To run a query within a React component, call `useAdminAddressQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAdminAddressQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAdminAddressQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAdminAddressQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AdminAddressQuery, AdminAddressQueryVariables>) {
+        return ApolloReactHooks.useQuery<AdminAddressQuery, AdminAddressQueryVariables>(AdminAddressDocument, baseOptions);
+      }
+export function useAdminAddressLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AdminAddressQuery, AdminAddressQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AdminAddressQuery, AdminAddressQueryVariables>(AdminAddressDocument, baseOptions);
+        }
+export type AdminAddressQueryHookResult = ReturnType<typeof useAdminAddressQuery>;
+export type AdminAddressLazyQueryHookResult = ReturnType<typeof useAdminAddressLazyQuery>;
+export type AdminAddressQueryResult = ApolloReactCommon.QueryResult<AdminAddressQuery, AdminAddressQueryVariables>;
 export const BlockDocument = gql`
     query block($blockHash: String) {
   bloxx_block(where: {blockHash: {_eq: $blockHash}}) {
@@ -1985,6 +2101,39 @@ export function useBlockLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOp
 export type BlockQueryHookResult = ReturnType<typeof useBlockQuery>;
 export type BlockLazyQueryHookResult = ReturnType<typeof useBlockLazyQuery>;
 export type BlockQueryResult = ApolloReactCommon.QueryResult<BlockQuery, BlockQueryVariables>;
+export const BlockHashByBlocknumberDocument = gql`
+    query blockHashByBlocknumber($blockNumber: Int) {
+  bloxx_block(where: {blockNumber: {_eq: $blockNumber}}) {
+    blockHash
+  }
+}
+    `;
+
+/**
+ * __useBlockHashByBlocknumberQuery__
+ *
+ * To run a query within a React component, call `useBlockHashByBlocknumberQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBlockHashByBlocknumberQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBlockHashByBlocknumberQuery({
+ *   variables: {
+ *      blockNumber: // value for 'blockNumber'
+ *   },
+ * });
+ */
+export function useBlockHashByBlocknumberQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<BlockHashByBlocknumberQuery, BlockHashByBlocknumberQueryVariables>) {
+        return ApolloReactHooks.useQuery<BlockHashByBlocknumberQuery, BlockHashByBlocknumberQueryVariables>(BlockHashByBlocknumberDocument, baseOptions);
+      }
+export function useBlockHashByBlocknumberLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<BlockHashByBlocknumberQuery, BlockHashByBlocknumberQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<BlockHashByBlocknumberQuery, BlockHashByBlocknumberQueryVariables>(BlockHashByBlocknumberDocument, baseOptions);
+        }
+export type BlockHashByBlocknumberQueryHookResult = ReturnType<typeof useBlockHashByBlocknumberQuery>;
+export type BlockHashByBlocknumberLazyQueryHookResult = ReturnType<typeof useBlockHashByBlocknumberLazyQuery>;
+export type BlockHashByBlocknumberQueryResult = ApolloReactCommon.QueryResult<BlockHashByBlocknumberQuery, BlockHashByBlocknumberQueryVariables>;
 export const AddressDocument = gql`
     subscription address {
   bloxx_address {
@@ -2055,6 +2204,7 @@ export const OnNewNodeAddedDocument = gql`
     addresses {
       id
       balance
+      nodePublicKey
     }
   }
 }
