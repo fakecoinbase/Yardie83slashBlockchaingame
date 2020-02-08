@@ -8,6 +8,7 @@ const NEW_TRANSACTION_ADDED = gql`
             signature
             txHash
             value
+            blockHash
             addressByInputaddress{
                 nodePublicKey
             }

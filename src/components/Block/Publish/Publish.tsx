@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {} from "./PublishStyles.js";
 import { Button } from "@material-ui/core";
 import Title from "../../util/Title/Title";
@@ -12,6 +12,16 @@ const Publish = () => {
   const [insertBlock] = useInsertBlockMutation();
   const [, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
   const [toast, setToast] = useState<React.ReactNode | null>();
+
+  useEffect(() => {
+    let interval = setInterval(() => {}, 10000);
+    if (toast) {
+      interval = setInterval(() => {
+        setToast(false);
+      }, 2000);
+    }
+    return () => clearInterval(interval);
+  }, [toast]);
 
   const onPublish = () => {
     insertBlock({
@@ -66,10 +76,12 @@ const Publish = () => {
         <div
           style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "center", alignItems: "center" }}
         >
-          <Button style={{ width: "160px" }} variant="contained" color="primary" onClick={onPublish}>
-            Publish
-          </Button>
-          {toast && <Box m={2}>{toast}</Box>}
+          {!toast && (
+            <Button style={{ width: "160px" }} variant="contained" color="primary" onClick={onPublish}>
+              Publish
+            </Button>
+          )}
+          {toast && <Box m={0}>{toast}</Box>}
         </div>
       </div>
     </>

@@ -11,6 +11,7 @@ import useAdminInfo from "../../../customHooks/useAdminInfo";
 import { useInsertNodeMutation } from "../../../generated/graphql";
 import generateNode from "../../../services/nodeGen";
 import Loader from "react-loader-spinner";
+import LoadingIndicator from "../../util/LoadingIndicator/LoadingIndicator";
 
 const AdminGrid = (props: any) => {
   const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -58,9 +59,7 @@ const AdminGrid = (props: any) => {
       rowHeight={125}
       autoSize={true}
     >
-      <GridCard key="blockchain">
-        {loading ? <Loader type="Circles" color="#00BFFF" height={100} width={100} /> : <Blockchain admin />}
-      </GridCard>
+      <GridCard key="blockchain">{loading ? <LoadingIndicator /> : <Blockchain admin />}</GridCard>
       <GridCard key="block">
         <CheckBlock admin />
       </GridCard>

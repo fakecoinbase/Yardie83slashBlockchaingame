@@ -3,9 +3,7 @@ import { StyledWrapper } from './TitleStyles.js';
 import { Heading } from 'rendition';
 import Headerbanner from '../Headerbanner/Headerbanner'
 
-
 const Title = (props) => {
-	// const [hook, setHook] = useState(hook);
 
 	return (
 		<StyledWrapper>

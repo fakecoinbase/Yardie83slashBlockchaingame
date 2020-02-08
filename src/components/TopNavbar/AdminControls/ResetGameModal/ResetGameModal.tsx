@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Provider, Box, Txt, Alert, Flex, Button, Card, List } from "rendition";
 import useResetGameModal from "../../../../customHooks/useResetGameModal/useResetGameModal";
 import { useDeleteGameDataMutation, useInsertNodeMutation } from "../../../../generated/graphql";
-import Loader from "react-loader-spinner";
 import useAdminInfo from "../../../../customHooks/useAdminInfo/useAdminInfo";
 import generateNode from "../../../../services/nodeGen";
+import LoadingIndicator from "../../../util/LoadingIndicator/LoadingIndicator";
 
 const ResetGameModal = () => {
   const [, setShowResetGameModal] = useResetGameModal();
@@ -51,7 +51,7 @@ const ResetGameModal = () => {
         }}
       >
         {loadingDeletion || loadingNewNode ? (
-          <Loader type="Circles" color="#00BFFF" height={100} width={100} />
+          <LoadingIndicator />
         ) : (
           <Card>
             {showDeletionResult && data ? (

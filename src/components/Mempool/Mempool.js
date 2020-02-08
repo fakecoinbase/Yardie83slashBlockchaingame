@@ -2,31 +2,40 @@ import React, { useEffect, useState } from "react";
 import { Provider, Box, Table, TextWithCopy } from "rendition";
 import Title from "../util/Title/Title";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
-import { useOnNewTransactionAddedSubscription, useAdminAddressLazyQuery } from "../../generated/graphql";
+import { useOnNewTransactionAddedSubscription, useOnBlockAddedSubscription } from "../../generated/graphql";
 
 const Mempool = () => {
 
   const { data } = useOnNewTransactionAddedSubscription();
   const [dataToShow, setDataToShow] = useState();
-  const [, setSelectedTransaction] = useSelectedTransactions();
-  const [adminAddressLazyQuery, { data: adminAddressQueryData }] = useAdminAddressLazyQuery();
+  const [selectedTransactions, setSelectedTransactions] = useSelectedTransactions();
 
-  useEffect(() => {
-    adminAddressLazyQuery();
-  }, [adminAddressLazyQuery])
-
+  // Run whenever there new transactions have been added by users
   useEffect(() => {
     if (data !== undefined) {
+      // Add the pubKey key/value to the transactions in the mempool
       data.bloxx_transaction.forEach(transaction => {
         transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
       });
-      if (adminAddressQueryData) {
-        setDataToShow(data.bloxx_transaction.filter(transaction => transaction.pubKey !== adminAddressQueryData.bloxx_address[0].nodePublicKey).reverse());
-      } else {
-        setDataToShow(data.bloxx_transaction.reverse())
-      }
+      // Filter out transactions that have been definitely assigned to a confirmed block
+      const unconfirmedTransactions = data.bloxx_transaction.filter(transaction => transaction.blockHash === null);
+      // Show the remaining transactions
+      setDataToShow(unconfirmedTransactions.reverse());
     }
-  }, [data, adminAddressQueryData]);
+  }, [data]);
+
+  useEffect(() => {
+    if (data !== undefined) {
+      const unconfirmedTransactions = data.bloxx_transaction.filter(transaction => transaction.blockHash === null);
+      let unconfirmedSelectedTransactions = [];
+      unconfirmedTransactions.forEach(unconfirmedTransaction =>
+        selectedTransactions.forEach(selectedTransaction => {
+          if (selectedTransaction.txHash === unconfirmedTransaction.txHash) unconfirmedSelectedTransactions.push(selectedTransaction)
+        })
+      )
+      setSelectedTransactions(unconfirmedSelectedTransactions);
+    }
+  }, [dataToShow])
 
   const columns = [
     {
@@ -103,7 +112,7 @@ const Mempool = () => {
               data={dataToShow}
               // use TxHash for rowKey; because it is unique
               rowKey="txHash"
-              onCheck={checkedItemsArray => setSelectedTransaction(checkedItemsArray)}
+              onCheck={checkedItemsArray => setSelectedTransactions(checkedItemsArray)}
             />
           )}
         </Box>

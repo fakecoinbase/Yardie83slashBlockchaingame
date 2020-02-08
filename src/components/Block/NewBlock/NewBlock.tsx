@@ -84,7 +84,7 @@ const Block = () => {
   //TODO validate user data
   const onCopyToHasher = () => {
     setIsTimerActive(false);
-    setClickCount(() => clickCount + 1);
+    setClickCount(() => (clickCount === 3 ? 3 : clickCount + 1));
     let blockData =
       blockNumber +
       ":" +
@@ -106,7 +106,8 @@ const Block = () => {
    */
   const onSolveNonce = () => {
     setIsTimerActive(false);
-    setNonce(miningService(block)!);
+    const nonce = miningService(block)!;
+    setNonce(nonce);
     setBlock({ ...block, nonce });
     setClickCount(0);
   };
@@ -117,7 +118,12 @@ const Block = () => {
       <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
         <LabeledInput
           label={"Block number"}
-          options={blockNumberOptions && blockNumberOptions!.sort()}
+          options={
+            blockNumberOptions &&
+            blockNumberOptions!.sort((a, b) => {
+              return parseInt(a) - parseInt(b);
+            })
+          }
           value={blockNumber}
           onChange={({ option }) => {
             setBlockNumber(option);
@@ -169,7 +175,13 @@ const Block = () => {
             paddingTop: "10px"
           }}
         >
-          <Button variant="contained" size="small" color="primary" onClick={onCopyToHasher} style={{marginRight: "10px"}}>
+          <Button
+            variant="contained"
+            size="small"
+            color="primary"
+            onClick={onCopyToHasher}
+            style={{ marginRight: "10px" }}
+          >
             Copy to Hasher
           </Button>
           <Button variant="contained" disabled={clickCount !== 3} color="primary" size="small" onClick={onSolveNonce}>

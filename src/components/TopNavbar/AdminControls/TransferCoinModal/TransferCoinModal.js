@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Modal, Provider, Box, Table, Flex, Txt, Input } from "rendition";
 import { Button } from "@material-ui/core";
 import useAdminModal from "../../../../customHooks/useAdminModal/useAdminModal";
-
+import { sign } from "../../../../services/signatureService";
+import hash from "../../../../services/hasherService";
+import calculateNonce from "../../../../services/miningService";
 import {
   useOnNewNodeAddedSubscription,
   useInsertAdminTransactionsMutation,
@@ -13,10 +15,8 @@ import {
   Bloxx_Transaction_Constraint,
   Bloxx_Transaction_Update_Column,
 } from "../../../../generated/graphql";
-import Loader from "react-loader-spinner";
-import { sign } from "../../../../services/signatureService";
-import hash from "../../../../services/hasherService";
-import calculateNonce from "../../../../services/miningService";
+import LoadingIndicator from "../../../util/LoadingIndicator/LoadingIndicator";
+
 
 const TransferCoinModal = ({ adminInfo }) => {
   const [, setShowAdminModal] = useAdminModal();
@@ -24,8 +24,8 @@ const TransferCoinModal = ({ adminInfo }) => {
   const [nodes, setNodes] = useState([]);
   const [selectedNodes, setSelectedNodes] = useState([]);
   const [amountToSend, setAmountToSend] = useState(0);
-  const [insertAdminTransactionsMutation] = useInsertAdminTransactionsMutation();
-  const [insertBlock, { called, loading: insertBlockLoading }] = useInsertBlockMutation();
+  const [insertAdminTransactionsMutation, { loading: insertAdminTransactionMutationLoading }] = useInsertAdminTransactionsMutation();
+  const [insertBlock, { loading: insertBlockLoading }] = useInsertBlockMutation();
   const [blockHashbyBlockNumberQuery, { data: blockHashQueryData }] = useBlockHashByBlocknumberLazyQuery({ fetchPolicy: "network-only" });
 
   useEffect(() => {
@@ -160,7 +160,7 @@ const TransferCoinModal = ({ adminInfo }) => {
                 previousBlockHash: blockData.previousBlockHash,
                 block_transactions: { data: block_transactions }
               }
-            }).then().catch(error => console.log(error));
+            }).catch(error => console.log(error));
           })
           .catch(error => {
             console.log(error);
@@ -178,15 +178,15 @@ const TransferCoinModal = ({ adminInfo }) => {
     >
       <Provider>
         <Box m={3}>
-          {loading && <Loader type="Circles" color="#00BFFF" height={100} width={100} />}
-          {newNodeSubscriptionData !== undefined && (
+          {loading && <LoadingIndicator/>}
+          {(newNodeSubscriptionData !== undefined || loading) && (
             <>
               <Flex m={3} alignItems={"center"}>
                 <Box pr={3}>
                   <Txt>Send:</Txt>
                 </Box>
                 <Box pr={3}>
-                  <Input width={100} type={"number"} min={0} onChange={e => setAmountToSend(parseInt(e.target.value))}/>
+                  <Input width={100} type={"number"} min={0} onChange={e => setAmountToSend(parseInt(e.target.value))} />
                 </Box>
                 <Box pr={3}>
                   <Txt>coins to</Txt>
@@ -209,7 +209,9 @@ const TransferCoinModal = ({ adminInfo }) => {
                   </Button>
                 </Box>
               </Flex>
-              {called && insertBlockLoading ? <Loader type="Circles" color="#00BFFF" height={100} width={100} /> :
+              {(insertBlockLoading || insertAdminTransactionMutationLoading) ?
+                <LoadingIndicator/>
+                :
                 <Table
                   columns={columns}
                   data={nodes}
@@ -221,7 +223,7 @@ const TransferCoinModal = ({ adminInfo }) => {
           )}
         </Box>
       </Provider>
-    </Modal>
+    </Modal >
   );
 };
 

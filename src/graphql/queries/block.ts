@@ -4,6 +4,7 @@ const BLOCK = gql`
 query block($blockHash: String) {
     bloxx_block(where: {blockHash: {_eq: $blockHash}}) {
       blockNumber
+      blockStatus
       previousBlockHash
       merkleRoot
       difficulty

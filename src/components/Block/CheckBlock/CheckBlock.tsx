@@ -9,7 +9,7 @@ import useDataToCheck from "../../../customHooks/useDataToCheck";
 import CheckSignature from "./CheckSignature";
 import Confirm from "./Confirm/Confirm";
 
-type SelectedBlock = {
+export type SelectedBlock = {
   blockNumber: number | null;
   previousBlockHash: string | null | undefined;
   merklRoot: string;
@@ -118,7 +118,7 @@ const CheckBlock = ({ admin }: any) => {
         />
       </div>
       <CheckSignature />
-      {admin && <Confirm />}
+      {admin && <Confirm blockToConfirm={block}/>}
     </>
   );
 };

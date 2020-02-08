@@ -18,7 +18,7 @@ const merklService = (i1, i2, i3, i4) => {
     let first = hash(i1);
     return first;
   }
-  return "you didn't fill the fields correctly";
+  return "Error! Check inputs";
 };
 
 export default merklService;

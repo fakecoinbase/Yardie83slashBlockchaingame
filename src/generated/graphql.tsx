@@ -1670,6 +1670,36 @@ export type InsertTransactionMutation = (
   )> }
 );
 
+export type ConfirmBlockMutationVariables = {
+  blockHash?: Maybe<Scalars['String']>
+};
+
+
+export type ConfirmBlockMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_bloxx_block: Maybe<(
+    { __typename?: 'bloxx_block_mutation_response' }
+    & Pick<Bloxx_Block_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type ConfirmBlockTransactionMutationVariables = {
+  txHash?: Maybe<Scalars['String']>,
+  blockHash?: Maybe<Scalars['String']>
+};
+
+
+export type ConfirmBlockTransactionMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_bloxx_transaction: Maybe<(
+    { __typename?: 'bloxx_transaction_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'bloxx_transaction' }
+      & Pick<Bloxx_Transaction, 'blockHash' | 'inputAddress' | 'outputAddress' | 'value'>
+    )> }
+  )> }
+);
+
 export type DeleteGameDataMutationVariables = {};
 
 
@@ -1693,6 +1723,33 @@ export type DeleteGameDataMutation = (
   )> }
 );
 
+export type UpdateAddressValuesMutationVariables = {
+  outAddress?: Maybe<Scalars['String']>,
+  inAddress?: Maybe<Scalars['String']>,
+  amountAdd?: Maybe<Scalars['Int']>,
+  amountSub?: Maybe<Scalars['Int']>
+};
+
+
+export type UpdateAddressValuesMutation = (
+  { __typename?: 'mutation_root' }
+  & { updateInputAddress: Maybe<(
+    { __typename?: 'bloxx_address_mutation_response' }
+    & Pick<Bloxx_Address_Mutation_Response, 'affected_rows'>
+    & { returning: Array<(
+      { __typename?: 'bloxx_address' }
+      & Pick<Bloxx_Address, 'id' | 'balance'>
+    )> }
+  )>, updateOutputAddress: Maybe<(
+    { __typename?: 'bloxx_address_mutation_response' }
+    & Pick<Bloxx_Address_Mutation_Response, 'affected_rows'>
+    & { returning: Array<(
+      { __typename?: 'bloxx_address' }
+      & Pick<Bloxx_Address, 'id' | 'balance'>
+    )> }
+  )> }
+);
+
 export type AdminAddressQueryVariables = {};
 
 
@@ -1713,7 +1770,7 @@ export type BlockQuery = (
   { __typename?: 'query_root' }
   & { bloxx_block: Array<(
     { __typename?: 'bloxx_block' }
-    & Pick<Bloxx_Block, 'blockNumber' | 'previousBlockHash' | 'merkleRoot' | 'difficulty' | 'createdAt' | 'nonce' | 'blockHash'>
+    & Pick<Bloxx_Block, 'blockNumber' | 'blockStatus' | 'previousBlockHash' | 'merkleRoot' | 'difficulty' | 'createdAt' | 'nonce' | 'blockHash'>
     & { block_transactions: Array<(
       { __typename?: 'bloxx_block_transaction' }
       & { transaction: (
@@ -1789,7 +1846,7 @@ export type OnNewTransactionAddedSubscription = (
   { __typename?: 'subscription_root' }
   & { bloxx_transaction: Array<(
     { __typename?: 'bloxx_transaction' }
-    & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value'>
+    & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value' | 'blockHash'>
     & { addressByInputaddress: Maybe<(
       { __typename?: 'bloxx_address' }
       & Pick<Bloxx_Address, 'nodePublicKey'>
@@ -1975,6 +2032,76 @@ export function useInsertTransactionMutation(baseOptions?: ApolloReactHooks.Muta
 export type InsertTransactionMutationHookResult = ReturnType<typeof useInsertTransactionMutation>;
 export type InsertTransactionMutationResult = ApolloReactCommon.MutationResult<InsertTransactionMutation>;
 export type InsertTransactionMutationOptions = ApolloReactCommon.BaseMutationOptions<InsertTransactionMutation, InsertTransactionMutationVariables>;
+export const ConfirmBlockDocument = gql`
+    mutation confirmBlock($blockHash: String) {
+  update_bloxx_block(where: {blockHash: {_eq: $blockHash}}, _set: {blockStatus: "confirmed"}) {
+    affected_rows
+  }
+}
+    `;
+export type ConfirmBlockMutationFn = ApolloReactCommon.MutationFunction<ConfirmBlockMutation, ConfirmBlockMutationVariables>;
+
+/**
+ * __useConfirmBlockMutation__
+ *
+ * To run a mutation, you first call `useConfirmBlockMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useConfirmBlockMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [confirmBlockMutation, { data, loading, error }] = useConfirmBlockMutation({
+ *   variables: {
+ *      blockHash: // value for 'blockHash'
+ *   },
+ * });
+ */
+export function useConfirmBlockMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ConfirmBlockMutation, ConfirmBlockMutationVariables>) {
+        return ApolloReactHooks.useMutation<ConfirmBlockMutation, ConfirmBlockMutationVariables>(ConfirmBlockDocument, baseOptions);
+      }
+export type ConfirmBlockMutationHookResult = ReturnType<typeof useConfirmBlockMutation>;
+export type ConfirmBlockMutationResult = ApolloReactCommon.MutationResult<ConfirmBlockMutation>;
+export type ConfirmBlockMutationOptions = ApolloReactCommon.BaseMutationOptions<ConfirmBlockMutation, ConfirmBlockMutationVariables>;
+export const ConfirmBlockTransactionDocument = gql`
+    mutation confirmBlockTransaction($txHash: String, $blockHash: String) {
+  update_bloxx_transaction(where: {txHash: {_eq: $txHash}}, _set: {blockHash: $blockHash}) {
+    returning {
+      blockHash
+      inputAddress
+      outputAddress
+      value
+    }
+  }
+}
+    `;
+export type ConfirmBlockTransactionMutationFn = ApolloReactCommon.MutationFunction<ConfirmBlockTransactionMutation, ConfirmBlockTransactionMutationVariables>;
+
+/**
+ * __useConfirmBlockTransactionMutation__
+ *
+ * To run a mutation, you first call `useConfirmBlockTransactionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useConfirmBlockTransactionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [confirmBlockTransactionMutation, { data, loading, error }] = useConfirmBlockTransactionMutation({
+ *   variables: {
+ *      txHash: // value for 'txHash'
+ *      blockHash: // value for 'blockHash'
+ *   },
+ * });
+ */
+export function useConfirmBlockTransactionMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ConfirmBlockTransactionMutation, ConfirmBlockTransactionMutationVariables>) {
+        return ApolloReactHooks.useMutation<ConfirmBlockTransactionMutation, ConfirmBlockTransactionMutationVariables>(ConfirmBlockTransactionDocument, baseOptions);
+      }
+export type ConfirmBlockTransactionMutationHookResult = ReturnType<typeof useConfirmBlockTransactionMutation>;
+export type ConfirmBlockTransactionMutationResult = ApolloReactCommon.MutationResult<ConfirmBlockTransactionMutation>;
+export type ConfirmBlockTransactionMutationOptions = ApolloReactCommon.BaseMutationOptions<ConfirmBlockTransactionMutation, ConfirmBlockTransactionMutationVariables>;
 export const DeleteGameDataDocument = gql`
     mutation deleteGameData {
   delete_bloxx_transaction(where: {}) {
@@ -2018,6 +2145,52 @@ export function useDeleteGameDataMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type DeleteGameDataMutationHookResult = ReturnType<typeof useDeleteGameDataMutation>;
 export type DeleteGameDataMutationResult = ApolloReactCommon.MutationResult<DeleteGameDataMutation>;
 export type DeleteGameDataMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteGameDataMutation, DeleteGameDataMutationVariables>;
+export const UpdateAddressValuesDocument = gql`
+    mutation updateAddressValues($outAddress: String, $inAddress: String, $amountAdd: Int, $amountSub: Int) {
+  updateInputAddress: update_bloxx_address(where: {id: {_eq: $inAddress}}, _inc: {balance: $amountSub}) {
+    affected_rows
+    returning {
+      id
+      balance
+    }
+  }
+  updateOutputAddress: update_bloxx_address(where: {id: {_eq: $outAddress}}, _inc: {balance: $amountAdd}) {
+    affected_rows
+    returning {
+      id
+      balance
+    }
+  }
+}
+    `;
+export type UpdateAddressValuesMutationFn = ApolloReactCommon.MutationFunction<UpdateAddressValuesMutation, UpdateAddressValuesMutationVariables>;
+
+/**
+ * __useUpdateAddressValuesMutation__
+ *
+ * To run a mutation, you first call `useUpdateAddressValuesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateAddressValuesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateAddressValuesMutation, { data, loading, error }] = useUpdateAddressValuesMutation({
+ *   variables: {
+ *      outAddress: // value for 'outAddress'
+ *      inAddress: // value for 'inAddress'
+ *      amountAdd: // value for 'amountAdd'
+ *      amountSub: // value for 'amountSub'
+ *   },
+ * });
+ */
+export function useUpdateAddressValuesMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateAddressValuesMutation, UpdateAddressValuesMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateAddressValuesMutation, UpdateAddressValuesMutationVariables>(UpdateAddressValuesDocument, baseOptions);
+      }
+export type UpdateAddressValuesMutationHookResult = ReturnType<typeof useUpdateAddressValuesMutation>;
+export type UpdateAddressValuesMutationResult = ApolloReactCommon.MutationResult<UpdateAddressValuesMutation>;
+export type UpdateAddressValuesMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateAddressValuesMutation, UpdateAddressValuesMutationVariables>;
 export const AdminAddressDocument = gql`
     query adminAddress {
   bloxx_address(where: {node: {addresses: {balance: {_is_null: true}}}}, limit: 1) {
@@ -2054,6 +2227,7 @@ export const BlockDocument = gql`
     query block($blockHash: String) {
   bloxx_block(where: {blockHash: {_eq: $blockHash}}) {
     blockNumber
+    blockStatus
     previousBlockHash
     merkleRoot
     difficulty
@@ -2238,6 +2412,7 @@ export const OnNewTransactionAddedDocument = gql`
     signature
     txHash
     value
+    blockHash
     addressByInputaddress {
       nodePublicKey
     }
