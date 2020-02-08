@@ -12,8 +12,6 @@ import {
   useBlockHashByBlocknumberLazyQuery,
   Bloxx_Transaction_Constraint,
   Bloxx_Transaction_Update_Column,
-  Bloxx_Block_Transaction_Constraint,
-  Bloxx_Block_Transaction_Update_Column,
 } from "../../../../generated/graphql";
 import Loader from "react-loader-spinner";
 import { sign } from "../../../../services/signatureService";

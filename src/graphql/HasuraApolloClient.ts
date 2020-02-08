@@ -6,7 +6,7 @@ import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const httpLink = new HttpLink({
-  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT as string
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT as string,
 });
 
 const wsLink = new WebSocketLink({

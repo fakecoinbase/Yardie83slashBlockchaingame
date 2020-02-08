@@ -38,7 +38,6 @@ const AdminGrid = (props: any) => {
           };
         })
         .then(res => {
-          console.log(res);
           setAdminInfo(res);
         });
     }
