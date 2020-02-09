@@ -3,7 +3,7 @@ import { Modal as RModal } from "rendition";
 import useUserInfo from "../../customHooks/useUserInfo/useUserInfo";
 import { useInsertNodeMutation } from "../../generated/graphql";
 import generateNode from "../../services/nodeGen";
-import Loader from "react-loader-spinner";
+import LoadingIndicator from "../util/LoadingIndicator/LoadingIndicator";
 
 interface Props {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,15 +40,15 @@ const Modal = (props: Props) => {
   return (
     <RModal
       title={"Welcome to the Bloxx Game"}
-      titleDetails="The following data has been generated for you:"
       done={() => {
         props.setShowModal(false);
       }}
     >
       {loading ? (
-        <Loader type="Circles" color="#00BFFF" height={100} width={100} />
+        <LoadingIndicator/>
       ) : (
         <div>
+          <p>The following data has been generated for you:</p>
           <p>
             <strong>Private Key: </strong>
             {userInfo.privateKey && userInfo.privateKey}
