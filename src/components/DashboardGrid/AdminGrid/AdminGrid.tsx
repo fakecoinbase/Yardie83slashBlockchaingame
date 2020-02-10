@@ -10,7 +10,6 @@ import { breakpoints, cols } from "../gridLayout";
 import useAdminInfo from "../../../customHooks/useAdminInfo";
 import { useInsertNodeMutation } from "../../../generated/graphql";
 import generateNode from "../../../services/nodeGen";
-import Loader from "react-loader-spinner";
 import LoadingIndicator from "../../util/LoadingIndicator/LoadingIndicator";
 
 const AdminGrid = (props: any) => {
