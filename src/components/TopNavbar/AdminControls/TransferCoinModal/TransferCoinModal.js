@@ -95,6 +95,7 @@ const TransferCoinModal = ({ adminInfo }) => {
           }
         });
       });
+
       try {
         insertAdminTransactionsMutation({
           variables: { transactions }
@@ -148,6 +149,8 @@ const TransferCoinModal = ({ adminInfo }) => {
               }
             }))
 
+
+
             insertBlock({
               variables: {
                 blockHash: blockHash,
@@ -178,7 +181,7 @@ const TransferCoinModal = ({ adminInfo }) => {
     >
       <Provider>
         <Box m={3}>
-          {loading && <LoadingIndicator/>}
+          {loading && <LoadingIndicator />}
           {(newNodeSubscriptionData !== undefined || loading) && (
             <>
               <Flex m={3} alignItems={"center"}>
@@ -210,7 +213,7 @@ const TransferCoinModal = ({ adminInfo }) => {
                 </Box>
               </Flex>
               {(insertBlockLoading || insertAdminTransactionMutationLoading) ?
-                <LoadingIndicator/>
+                <LoadingIndicator />
                 :
                 <Table
                   columns={columns}

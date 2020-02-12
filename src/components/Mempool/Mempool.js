@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Provider, Box, Table, TextWithCopy } from "rendition";
 import Title from "../util/Title/Title";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
-import { useOnNewTransactionAddedSubscription, useOnBlockAddedSubscription } from "../../generated/graphql";
+import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
 
 const Mempool = () => {
 
-  const { data } = useOnNewTransactionAddedSubscription();
+  const { data, loading } = useOnNewTransactionAddedSubscription();
   const [dataToShow, setDataToShow] = useState();
   const [selectedTransactions, setSelectedTransactions] = useSelectedTransactions();
-
-  // Run whenever there new transactions have been added by users
+  const tableRef = useRef(null);
+  // Run whenever new transactions have been added by users
   useEffect(() => {
     if (data !== undefined) {
       // Add the pubKey key/value to the transactions in the mempool
@@ -34,6 +34,7 @@ const Mempool = () => {
         })
       )
       setSelectedTransactions(unconfirmedSelectedTransactions);
+      tableRef.current.setRowSelection(unconfirmedSelectedTransactions)
     }
   }, [dataToShow])
 
@@ -106,13 +107,15 @@ const Mempool = () => {
       <Title title="Mempool"></Title>
       <Provider>
         <Box m={3}>
-          {data !== undefined && (
-            <Table
+          {(data !== undefined && !loading) && (
+            <Table ref={tableRef}
               columns={columns}
               data={dataToShow}
               // use TxHash for rowKey; because it is unique
               rowKey="txHash"
-              onCheck={checkedItemsArray => setSelectedTransactions(checkedItemsArray)}
+              onCheck={checkedItemsArray =>
+                setSelectedTransactions(checkedItemsArray)
+              }
             />
           )}
         </Box>
