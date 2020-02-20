@@ -84,8 +84,8 @@ const Wallet = () => {
           Send Coins
         </Heading.h6>
         <Divider />
-        <LabeledInput label={"To"} placeholder={"Address"} onChange={e => onChange("to", e.target.value)} />
-        <LabeledInput label={"Amount"} placeholder={"Amount"} onChange={e => onChange("amount", e.target.value)} />
+        <LabeledInput placeholder={"Address"} onChange={e => onChange("to", e.target.value)} />
+        <LabeledInput placeholder={"Amount"} onChange={e => onChange("amount", e.target.value)} />
         <div style={{ paddingBottom: "20px" }}>
           <div style={{ float: "right", right: "0px", paddingRight: "10px" }}>
             <Button onClick={copyToSign} variant="contained" color="primary" size="small">
@@ -95,7 +95,6 @@ const Wallet = () => {
         </div>
         <div style={{ clear: "both", height: "10px" }} />
         <LabeledInput
-          label={"Signature"}
           placeholder={"Signature"}
           onChange={e => onChange("signature", e.target.value)}
         />
@@ -108,7 +107,6 @@ const Wallet = () => {
         </div>
         <div style={{ clear: "both", height: "10px" }} />
         <LabeledInput
-          label={"Tx Hash"}
           placeholder={"Transaction Hash"}
           onChange={e => onChange("txHash", e.target.value)}
         />

@@ -25,37 +25,33 @@ const Merkl = () => {
 
   return (
     <>
-      <Title title="Merkl" />
+      <Title title="Merkle" />
       <div style={{ padding: "5px" }}>
-        <div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
-          <div style={{ float: "right", width: "100%", paddingBottom: "10px" }}>
+        <div style={{ margin: "auto", width: "100%" }}>
+          <div style={{ float: "right", width: "100%" }}>
             <LabeledInput
-              label={"Input 1"}
               placeholder={"Tx Hash 1"}
               id={"i1"}
               onChange={onChange}
             />
             <LabeledInput
-              label={"Input 2"}
               placeholder={"Tx Hash 2"}
               id={"i2"}
               onChange={onChange}
             />
             <LabeledInput
-              label={"Input 3"}
               placeholder={"Tx Hash 3"}
               id={"i3"}
               onChange={onChange}
             />
             <LabeledInput
-              label={"Input 4"}
               placeholder={"Tx Hash 4"}
               id={"i4"}
               onChange={onChange}
             />
           </div>
         </div>
-        <div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
+        <div style={{ margin: "auto", width: "100%", paddingBottom: "5px" }}>
           <div
             style={{
               display: "inline-block",
@@ -63,26 +59,11 @@ const Merkl = () => {
               width: "20%"
             }}
           >
-            <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>
+            {/* <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>
               Output
-            </span>
+            </span> */}
           </div>
-          <div
-            style={{
-              display: "inline-block",
-              boxSizing: "border-box",
-              width: "80%"
-            }}
-          >
-            <Input
-              style={{ height: "30px" }}
-              value={output}
-              placeholder="Output"
-            />
-          </div>
-        </div>
-        <div style={{ float: "right", paddingBottom: "10px" }}>
-          <div style={{ float: "right", paddingRight: "10px" }}>
+          <div style={{ float: "right", paddingRight: "5px", paddingBottom: '5px' }}>
             <Button
               onClick={onMerkl}
               variant="contained"
@@ -91,6 +72,19 @@ const Merkl = () => {
             >
               Hash
             </Button>
+          </div>
+          <div
+            style={{
+              display: "inline-block",
+              boxSizing: "border-box",
+              // width: "80%"
+            }}
+          >
+            <Input
+              style={{ height: "30px" }}
+              value={output}
+              placeholder="Output"
+            />
           </div>
         </div>
       </div>

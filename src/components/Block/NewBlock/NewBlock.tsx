@@ -131,7 +131,7 @@ const Block = () => {
           }}
         />
         <LabeledInput
-          label={"Previous Block Hash"}
+          label={"Previous Blockhash"}
           options={
             previousBlockHashOptions &&
             previousBlockHashOptions
@@ -144,7 +144,7 @@ const Block = () => {
             onChange("previousBlockHash", option);
           }}
         />
-        <LabeledInput label={"Merkl Root"} onChange={e => onChange("merkleRoot", e.target.value)} />
+        <LabeledInput label={"Merkle Root"} onChange={e => onChange("merkleRoot", e.target.value)} />
         <LabeledInput
           label={"Difficulty"}
           readOnly

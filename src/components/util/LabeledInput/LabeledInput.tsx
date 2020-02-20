@@ -1,8 +1,8 @@
 import React from "react";
 import { Input, Select } from "rendition";
-import {} from "./LabeledInputStyles.js";
+import { } from "./LabeledInputStyles.js";
 type Props = {
-  label: string;
+  label?: string;
   placeholder?: string;
   options?: string[];
   id?: string;
@@ -11,11 +11,11 @@ type Props = {
   readOnly?: boolean;
 };
 const LabeledInput = (props: Props) => {
-  const { label, placeholder, id, onChange = () => {}, value, readOnly, options } = props;
+  const { label, placeholder, id, onChange = () => { }, value, readOnly, options } = props;
 
   return (
     <div style={{ margin: "auto", width: "100%", paddingBottom: "10px" }}>
-      <div
+      {label && <div
         style={{
           display: "inline-block",
           boxSizing: "border-box",
@@ -25,8 +25,8 @@ const LabeledInput = (props: Props) => {
         }}
       >
         <span>{label}</span>
-      </div>
-      <div style={{ display: "inline-block", boxSizing: "border-box", width: "70%" }}>
+      </div>}
+      <div style={{ display: "inline-block", boxSizing: "border-box", width:  (label ? "70%" : '100%')  }}>
         {options ? (
           <Select
             options={options}
@@ -37,15 +37,15 @@ const LabeledInput = (props: Props) => {
             placeholder={placeholder ? placeholder : ""}
           />
         ) : (
-          <Input
-            readOnly={readOnly}
-            value={value}
-            onChange={e => onChange(e)}
-            id={id}
-            style={{ height: "30px" }}
-            placeholder={placeholder ? placeholder : ""}
-          />
-        )}
+            <Input
+              readOnly={readOnly}
+              value={value}
+              onChange={e => onChange(e)}
+              id={id}
+              style={{ height: "30px" }}
+              placeholder={placeholder ? placeholder : ""}
+            />
+          )}
       </div>
     </div>
   );
