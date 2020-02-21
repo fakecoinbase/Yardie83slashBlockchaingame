@@ -37,10 +37,14 @@ const UserGrid = (props: any) => {
           </Scrollbars>
         </GridCard>
         <GridCard key="unspentTx">
-          <UnspentTx />
+          <Scrollbars style={{ minHeight: 250, height: 250, maxHeight: '100%' }}>
+            <UnspentTx />
+          </Scrollbars>
         </GridCard>
         <GridCard key="mempool">
-          <Mempool />
+          <Scrollbars style={{ minHeight: 250, height: 250, maxHeight: '100%' }}>
+            <Mempool />
+          </Scrollbars>
         </GridCard>
         <GridCard key="merkl">
           <Merkl />

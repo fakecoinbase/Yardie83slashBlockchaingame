@@ -31,7 +31,7 @@ const Hasher = () => {
     <>
       <Title title="Hasher" />
       <div style={{ paddingLeft: "5px", paddingRight: '5px' }}>
-        <div style={{ width: "100%", paddingBottom: "5px" }}>
+        <div style={{ width: "100%", paddingBottom: "10px" }}>
           <div style={{ float: "right", width: "100%" }}>
             <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>Input</span>
             <Textarea
@@ -43,34 +43,21 @@ const Hasher = () => {
             ></Textarea>
           </div>
         </div>
-        <div style={{ width: "100%", paddingBottom: "5px" }}>
-          <div
-            style={{
-              display: "inline-block",
-              boxSizing: "border-box",
-              width: "20%"
-            }}
-          >
-            {/* <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>Output</span> */}
-          </div>
-          <div style={{ float: "right", paddingTop: "10px", paddingBottom: '5px' }}>
-            <div style={{ float: "right", paddingRight: "5px" }}>
-              <Button onClick={hashInput} variant="contained" color="primary" size="small">
-                Hash
+        <div style={{ width: "100%", paddingTop: '10px' }}>
+          <div style={{ paddingBottom: '10px' }}>
+            <Button onClick={hashInput} variant="contained" color="primary" size="small">
+              Hash
             </Button>
-            </div>
           </div>
           <div
             style={{
               display: "inline-block",
               boxSizing: "border-box",
-              // width: "80%"
             }}
           >
             <Input style={{ height: "30px" }} value={input === "" ? "" : output} placeholder="Output" />
           </div>
         </div>
-
       </div>
     </>
   );

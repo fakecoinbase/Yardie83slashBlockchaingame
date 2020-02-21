@@ -59,11 +59,8 @@ const Merkl = () => {
               width: "20%"
             }}
           >
-            {/* <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>
-              Output
-            </span> */}
           </div>
-          <div style={{ float: "right", paddingRight: "5px", paddingBottom: '5px' }}>
+          <div style={{ paddingBottom: '5px' }}>
             <Button
               onClick={onMerkl}
               variant="contained"

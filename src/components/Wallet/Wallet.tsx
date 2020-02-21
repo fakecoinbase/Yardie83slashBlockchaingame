@@ -87,11 +87,11 @@ const Wallet = () => {
         <LabeledInput placeholder={"Address"} onChange={e => onChange("to", e.target.value)} />
         <LabeledInput placeholder={"Amount"} onChange={e => onChange("amount", e.target.value)} />
         <div style={{ paddingBottom: "20px" }}>
-          <div style={{ float: "right", right: "0px", paddingRight: "10px" }}>
+          {/* <div style={{ float: "right", right: "0px", paddingRight: "10px" }}> */}
             <Button onClick={copyToSign} variant="contained" color="primary" size="small">
               Copy to Sign
             </Button>
-          </div>
+          {/* </div> */}
         </div>
         <div style={{ clear: "both", height: "10px" }} />
         <LabeledInput
@@ -99,24 +99,24 @@ const Wallet = () => {
           onChange={e => onChange("signature", e.target.value)}
         />
         <div style={{ paddingBottom: "20px" }}>
-          <div style={{ float: "right", right: "0px", paddingRight: "10px" }}>
+          {/* <div style={{ float: "right", right: "0px", paddingRight: "10px" }}> */}
             <Button onClick={copyToHasher} variant="contained" color="primary" size="small">
               Copy to Hasher
             </Button>
-          </div>
+          {/* </div> */}
         </div>
         <div style={{ clear: "both", height: "10px" }} />
         <LabeledInput
           placeholder={"Transaction Hash"}
           onChange={e => onChange("txHash", e.target.value)}
         />
-        <div style={{ float: "right", paddingBottom: "10px" }}>
-          <div style={{ float: "right", paddingRight: "10px" }}>
+        {/* <div style={{ float: "right", paddingBottom: "10px" }}> */}
+          {/* <div style={{ float: "right", paddingRight: "10px" }}> */}
             <Button onClick={onBroadcast} variant="contained" color="primary" disabled={!canBroadcast} size="small">
               Broadcast
             </Button>
-          </div>
-        </div>
+          {/* </div> */}
+        {/* </div> */}
       </div>
     </>
   );
