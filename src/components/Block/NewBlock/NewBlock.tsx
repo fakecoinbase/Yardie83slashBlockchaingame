@@ -195,7 +195,7 @@ const Block = () => {
           columns={[
             {
               field: "txHash",
-              label: "Selected Transactions [TxHash] max. 4"
+              label: "Selected Transactions"
             }
           ]}
           data={selectedTransactions}
