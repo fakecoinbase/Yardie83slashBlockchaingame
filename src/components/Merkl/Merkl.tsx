@@ -6,10 +6,10 @@ import LabeledInput from '../util/LabeledInput';
 import merkl from '../../services/merklService';
 
 const Merkl = () => {
-	const [input1, setInput1] = useState<string | undefined>();
-	const [input2, setInput2] = useState<string | undefined>();
-	const [input3, setInput3] = useState<string | undefined>();
-	const [input4, setInput4] = useState<string | undefined>();
+	const [input1, setInput1] = useState<string | undefined>('');
+	const [input2, setInput2] = useState<string | undefined>('');
+	const [input3, setInput3] = useState<string | undefined>('');
+	const [input4, setInput4] = useState<string | undefined>('');
 	const [output, setOutput] = useState<string | undefined>('');
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,28 +23,41 @@ const Merkl = () => {
 		setOutput(merkl(input1, input2, input3, input4));
 	};
 
+	const handleClear = () => {
+		setInput1('');
+		setInput2('');
+		setInput3('');
+		setInput4('');
+		setOutput('');
+	};
+
 	return (
 		<>
 			<Title title='Merkle' />
 			<div style={{ paddingLeft: '5px', paddingRight: '5px' }}>
 				<div style={{ margin: 'auto', width: '100%' }}>
 					<div style={{ float: 'right', width: '100%' }}>
-						<LabeledInput placeholder={'Tx Hash 1'} id={'i1'} onChange={onChange} />
-						<LabeledInput placeholder={'Tx Hash 2'} id={'i2'} onChange={onChange} />
-						<LabeledInput placeholder={'Tx Hash 3'} id={'i3'} onChange={onChange} />
-						<LabeledInput placeholder={'Tx Hash 4'} id={'i4'} onChange={onChange} />
+						<LabeledInput placeholder={'Tx Hash 1'} id={'i1'} value={input1} onChange={onChange} />
+						<LabeledInput placeholder={'Tx Hash 2'} id={'i2'} value={input2} onChange={onChange} />
+						<LabeledInput placeholder={'Tx Hash 3'} id={'i3'} value={input3} onChange={onChange} />
+						<LabeledInput placeholder={'Tx Hash 4'} id={'i4'} value={input4} onChange={onChange} />
 					</div>
 				</div>
 				<div style={{ width: '100%', paddingTop: '10px' }}>
 					<div style={{ paddingBottom: '5px' }}>
-						<Button
-							onClick={onMerkl}
-							variant='contained'
-							color='primary'
-							size='small'
-							style={{ marginTop: '10px', marginBottom: '5px' }}>
-							Hash
-						</Button>
+						<div style={{ flexDirection: 'row', flex: 1 }}>
+							<Button
+								onClick={onMerkl}
+								variant='contained'
+								color='primary'
+								size='small'
+								style={{ marginTop: '10px', marginBottom: '5px', marginRight: '10px' }}>
+								Hash
+							</Button>
+							<Button variant='contained' color='default' size='small' onClick={handleClear}>
+								Clear
+							</Button>
+						</div>
 					</div>
 					<div
 						style={{

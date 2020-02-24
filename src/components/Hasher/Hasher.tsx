@@ -27,6 +27,11 @@ const Hasher = () => {
 		setOutput(hashedInput);
 	};
 
+	const handleClear = () => {
+		setInput('');
+		setOutput(undefined);
+	};
+
 	return (
 		<>
 			<Title title='Hasher' />
@@ -44,14 +49,19 @@ const Hasher = () => {
 				</div>
 				<div style={{ width: '100%', paddingTop: '10px' }}>
 					<div style={{ paddingBottom: '5px' }}>
-						<Button
-							onClick={hashInput}
-							variant='contained'
-							color='primary'
-							size='small'
-							style={{ marginTop: '10px', marginBottom: '5px' }}>
-							Hash
-						</Button>
+						<div style={{ flexDirection: 'row', flex: 1 }}>
+							<Button
+								onClick={hashInput}
+								variant='contained'
+								color='primary'
+								size='small'
+								style={{ marginTop: '10px', marginBottom: '5px', marginRight: '10px' }}>
+								Hash
+							</Button>
+							<Button variant='contained' color='default' size='small' onClick={handleClear}>
+								Clear
+							</Button>
+						</div>
 					</div>
 					<div
 						style={{
