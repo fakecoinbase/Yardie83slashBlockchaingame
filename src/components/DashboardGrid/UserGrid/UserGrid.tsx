@@ -4,13 +4,18 @@ import Scrollbars from 'react-custom-scrollbars';
 import { GridCard } from '../DashboardGridStyles';
 import { Nodes, Hasher, Signature, Wallet, UnspentTx, Mempool, Blockchain, Block, Merkl, Modal } from '../../index';
 import { breakpoints, cols } from '../gridLayout';
+import useBlockchainModal from '../../../customHooks/useBlockchainModal/useBlockchainModal';
+import BlockchainModal from '../../BlockchainModal';
 
 const UserGrid = (props: any) => {
 	const ResponsiveGridLayout = WidthProvider(Responsive);
 	const [showModal, setShowModal] = useState(true);
+	const [showBlockchainModal, setShowBlockchainModal] = useBlockchainModal();
 
 	return showModal ? (
 		<Modal setShowModal={setShowModal} />
+	) : showBlockchainModal !== null ? (
+		<BlockchainModal />
 	) : (
 		<ResponsiveGridLayout
 			className='layout'

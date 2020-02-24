@@ -7,6 +7,7 @@ import { useOnBlockAddedSubscription, Bloxx_Block, useBlockLazyQuery } from '../
 import useSelectedBlock from '../../customHooks/useSelectedBlock/useSelectedBlock';
 import { Heading } from 'rendition';
 import ReactDOM from 'react-dom';
+import useBlockchainModal from '../../customHooks/useBlockchainModal/useBlockchainModal';
 
 const Blockchain = ({ admin }: any) => {
 	const { data: blockSubscriptionData } = useOnBlockAddedSubscription();
@@ -80,13 +81,18 @@ const Blockchain = ({ admin }: any) => {
 		setSelectedBlock(blockQueryData);
 	}, [blockQueryData, setSelectedBlock]);
 
-	const treeRef = useRef<
-		Component<
-			ReactD3TreeProps,
-			any,
-			any | ((instance: Component<ReactD3TreeProps, any, any> | null) => void) | null | undefined
-		>
-	>(null);
+	const [, setShowBlockchainModal] = useBlockchainModal();
+
+	const handleShowBlockchainModal = () => {
+		setShowBlockchainModal({
+			data: treeData,
+			collapsible: false,
+			pathFunc: 'diagonal',
+			translate: { x: 50, y: 100 },
+			scaleExtent: { min: 0.3, max: 2 },
+			nodeSize: { x: 200, y: 100 },
+		});
+	};
 
 	const [resetting, setResetting] = useState(false);
 
@@ -108,13 +114,13 @@ const Blockchain = ({ admin }: any) => {
 					alignItems: 'center',
 					height: '35px',
 				}}>
-				<IconButton style={{ borderRadius: '0px' }} size='small'>
+				<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleShowBlockchainModal}>
 					<OpenWithIcon />
 				</IconButton>
 				<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleResetTree}>
 					<RotateLeftIcon />
 				</IconButton>
-				<Heading.h6 style={{ display: 'inline-block', boxSizing: 'border-box' }}>Blockchain</Heading.h6>
+				<Heading.h5 style={{ display: 'inline-block', boxSizing: 'border-box' }}>Blockchain</Heading.h5>
 			</div>
 			{treeData !== undefined && !resetting && (
 				<Tree
@@ -129,7 +135,6 @@ const Blockchain = ({ admin }: any) => {
 							onClick(nodeData!.blockHash);
 						}
 					}}
-					ref={treeRef}
 				/>
 			)}
 		</div>
