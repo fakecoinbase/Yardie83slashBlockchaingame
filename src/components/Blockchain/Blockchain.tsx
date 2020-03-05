@@ -126,7 +126,7 @@ const Blockchain = ({ admin }: any) => {
 				<Tree
 					data={treeData}
 					collapsible={false}
-					pathFunc={'diagonal'}
+					pathFunc={'straight'}
 					translate={{ x: 50, y: 100 }}
 					scaleExtent={{ min: 0.3, max: 2 }}
 					nodeSize={{ x: 200, y: 100 }}
