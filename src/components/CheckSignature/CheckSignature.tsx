@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import LabeledInput from "../../../util/LabeledInput/LabeledInput";
+import LabeledInput from "../util/LabeledInput/LabeledInput";
 import Button from "@material-ui/core/Button";
 import { Input } from "rendition";
-import { check } from "../../../../services/signatureService";
-import useDataToCheck, { DataToCheck } from "../../../../customHooks/useDataToCheck/useDataToCheck";
+import { check } from "../../services/signatureService";
+import useDataToCheck, { DataToCheck } from "../../customHooks/useDataToCheck/useDataToCheck";
 
 const CheckSignature = () => {
   const [checkParams, setCheckParams] = useState({ p1: "", p2: "", p3: "" });

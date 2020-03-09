@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Provider, Box, Table, TextWithCopy } from "rendition";
+import { FaRegCopy } from 'react-icons/fa'
 import Title from "../util/Title/Title";
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
+import useDataToCheck from "../../customHooks/useDataToCheck";
 
 const Mempool = () => {
 
   const { data, loading } = useOnNewTransactionAddedSubscription();
   const [dataToShow, setDataToShow] = useState();
+  const [, setDataToCheck] = useDataToCheck();
   const [selectedTransactions, setSelectedTransactions] = useSelectedTransactions();
   const tableRef = useRef(null);
   // Run whenever new transactions have been added by users
@@ -16,6 +19,11 @@ const Mempool = () => {
       // Add the pubKey key/value to the transactions in the mempool
       data.bloxx_transaction.forEach(transaction => {
         transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
+        transaction.dataToCheck = {
+          signedData: (transaction.inputAddress.concat(":".concat(transaction.outputAddress.concat(":".concat(transaction.value))))),
+          pubKey: transaction.pubKey,
+          signature: transaction.signature
+        }
       });
       // Filter out transactions that have been definitely assigned to a confirmed block
       const unconfirmedTransactions = data.bloxx_transaction.filter(transaction => transaction.blockHash === null);
@@ -39,6 +47,15 @@ const Mempool = () => {
   }, [dataToShow])
 
   const columns = [
+    {
+      field: "dataToCheck",
+      label: "Copy to Check",
+      render: value => {
+        return (
+          <FaRegCopy onClick={() => setDataToCheck(value)} style={{ cursor: "pointer" }} />
+        )
+      }
+    },
     {
       field: "inputAddress",
       label: "Input Address",
