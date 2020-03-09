@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Provider, Box, Table, TextWithCopy } from "rendition";
 import { FaRegCopy } from 'react-icons/fa'
+import IconButton from '@material-ui/core/IconButton';
+import OpenWithIcon from '@material-ui/icons/OpenWith';
 import Title from "../util/Title/Title";
+import useMempoolModal from '../../customHooks/useMempoolModal'
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
 import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
 import useDataToCheck from "../../customHooks/useDataToCheck";
@@ -12,6 +15,7 @@ const Mempool = () => {
   const [dataToShow, setDataToShow] = useState();
   const [, setDataToCheck] = useDataToCheck();
   const [selectedTransactions, setSelectedTransactions] = useSelectedTransactions();
+  const [showMempoolModal, setShowMempoolModal] = useMempoolModal();
   const tableRef = useRef(null);
   // Run whenever new transactions have been added by users
   useEffect(() => {
@@ -119,9 +123,20 @@ const Mempool = () => {
     }
   ];
 
+  const handleShowMempoolModal = () => {
+    setShowMempoolModal(true)
+  }
+
   return (
     <>
-      <Title title="Mempool"></Title>
+      <div style={{ display: 'flex', flex: 1, alignItems: 'center' }}>
+        {showMempoolModal == null &&
+          <IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleShowMempoolModal}>
+            <OpenWithIcon />
+          </IconButton>
+        }
+        <Title title="Mempool"></Title>
+      </div>
       <Provider>
         <Box m={3}>
           {(data !== undefined && !loading) && (

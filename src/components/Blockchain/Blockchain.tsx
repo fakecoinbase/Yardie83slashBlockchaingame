@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useRef, Component, RefObject, MutableRefObject } from 'react';
-import Tree, { ReactD3TreeItem, ReactD3TreeProps } from 'react-d3-tree';
+import React, { useEffect, useState } from 'react';
+import Tree, { ReactD3TreeItem } from 'react-d3-tree';
 import IconButton from '@material-ui/core/IconButton';
 import OpenWithIcon from '@material-ui/icons/OpenWith';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import { useOnBlockAddedSubscription, Bloxx_Block, useBlockLazyQuery } from '../../generated/graphql';
 import useSelectedBlock from '../../customHooks/useSelectedBlock/useSelectedBlock';
 import { Heading } from 'rendition';
-import ReactDOM from 'react-dom';
 import useBlockchainModal from '../../customHooks/useBlockchainModal/useBlockchainModal';
 
 const Blockchain = ({ admin }: any) => {
@@ -87,7 +86,7 @@ const Blockchain = ({ admin }: any) => {
 		setShowBlockchainModal({
 			data: treeData,
 			collapsible: false,
-			pathFunc: 'diagonal',
+			pathFunc: 'straight',
 			translate: { x: 50, y: 100 },
 			scaleExtent: { min: 0.3, max: 2 },
 			nodeSize: { x: 200, y: 100 },

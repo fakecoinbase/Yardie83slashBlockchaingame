@@ -6,16 +6,21 @@ import { Nodes, Hasher, Signature, Wallet, UnspentTx, Mempool, Blockchain, Block
 import { breakpoints, cols } from '../gridLayout';
 import useBlockchainModal from '../../../customHooks/useBlockchainModal/useBlockchainModal';
 import BlockchainModal from '../../BlockchainModal';
+import useMempoolModal from '../../../customHooks/useMempoolModal';
+import MempoolModal from '../../MempoolModal';
 
 const UserGrid = (props: any) => {
 	const ResponsiveGridLayout = WidthProvider(Responsive);
 	const [showModal, setShowModal] = useState(true);
-	const [showBlockchainModal, setShowBlockchainModal] = useBlockchainModal();
+	const [showBlockchainModal] = useBlockchainModal();
+	const [showMempoolModal] = useMempoolModal();
 
 	return showModal ? (
 		<Modal setShowModal={setShowModal} />
 	) : showBlockchainModal !== null ? (
 		<BlockchainModal />
+	) : showMempoolModal !== null ? (
+		<MempoolModal />
 	) : (
 		<ResponsiveGridLayout
 			className='layout'
