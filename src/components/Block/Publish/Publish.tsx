@@ -29,7 +29,7 @@ const Publish = () => {
         blockHash: block.blockHash,
         blockNumber: block.blockNumber,
         blockStatus: block.blockStatus,
-        createdAt: block.timestamp,
+        createdAt: block.timestamp!.toString(),
         difficulty: block.difficulty,
         merkleRoot: block.merkleRoot,
         nonce: block.nonce,

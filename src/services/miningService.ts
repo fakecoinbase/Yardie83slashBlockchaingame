@@ -9,7 +9,7 @@ const miningService = (data: BlockType) => {
     ":" +
     data.merkleRoot +
     ":" +
-    data.timestamp!.toISOString() +
+    data.timestamp! +
     ":" +
     data.difficulty;
   let nonce;

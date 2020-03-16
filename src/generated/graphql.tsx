@@ -9,7 +9,6 @@ export type Scalars = {
   Boolean: boolean,
   Int: number,
   Float: number,
-  timestamp: any,
 };
 
 export type Bloxx_Address = {
@@ -285,7 +284,7 @@ export type Bloxx_Block = {
   blockStatus: Scalars['String'],
   block_transactions: Array<Bloxx_Block_Transaction>,
   block_transactions_aggregate: Bloxx_Block_Transaction_Aggregate,
-  createdAt: Scalars['timestamp'],
+  createdAt?: Maybe<Scalars['String']>,
   difficulty: Scalars['Int'],
   merkleRoot: Scalars['String'],
   nonce: Scalars['Int'],
@@ -377,7 +376,7 @@ export type Bloxx_Block_Bool_Exp = {
   blockNumber?: Maybe<Int_Comparison_Exp>,
   blockStatus?: Maybe<String_Comparison_Exp>,
   block_transactions?: Maybe<Bloxx_Block_Transaction_Bool_Exp>,
-  createdAt?: Maybe<Timestamp_Comparison_Exp>,
+  createdAt?: Maybe<String_Comparison_Exp>,
   difficulty?: Maybe<Int_Comparison_Exp>,
   merkleRoot?: Maybe<String_Comparison_Exp>,
   nonce?: Maybe<Int_Comparison_Exp>,
@@ -400,7 +399,7 @@ export type Bloxx_Block_Insert_Input = {
   blockNumber?: Maybe<Scalars['Int']>,
   blockStatus?: Maybe<Scalars['String']>,
   block_transactions?: Maybe<Bloxx_Block_Transaction_Arr_Rel_Insert_Input>,
-  createdAt?: Maybe<Scalars['timestamp']>,
+  createdAt?: Maybe<Scalars['String']>,
   difficulty?: Maybe<Scalars['Int']>,
   merkleRoot?: Maybe<Scalars['String']>,
   nonce?: Maybe<Scalars['Int']>,
@@ -412,6 +411,7 @@ export type Bloxx_Block_Max_Fields = {
   blockHash?: Maybe<Scalars['String']>,
   blockNumber?: Maybe<Scalars['Int']>,
   blockStatus?: Maybe<Scalars['String']>,
+  createdAt?: Maybe<Scalars['String']>,
   difficulty?: Maybe<Scalars['Int']>,
   merkleRoot?: Maybe<Scalars['String']>,
   nonce?: Maybe<Scalars['Int']>,
@@ -422,6 +422,7 @@ export type Bloxx_Block_Max_Order_By = {
   blockHash?: Maybe<Order_By>,
   blockNumber?: Maybe<Order_By>,
   blockStatus?: Maybe<Order_By>,
+  createdAt?: Maybe<Order_By>,
   difficulty?: Maybe<Order_By>,
   merkleRoot?: Maybe<Order_By>,
   nonce?: Maybe<Order_By>,
@@ -433,6 +434,7 @@ export type Bloxx_Block_Min_Fields = {
   blockHash?: Maybe<Scalars['String']>,
   blockNumber?: Maybe<Scalars['Int']>,
   blockStatus?: Maybe<Scalars['String']>,
+  createdAt?: Maybe<Scalars['String']>,
   difficulty?: Maybe<Scalars['Int']>,
   merkleRoot?: Maybe<Scalars['String']>,
   nonce?: Maybe<Scalars['Int']>,
@@ -443,6 +445,7 @@ export type Bloxx_Block_Min_Order_By = {
   blockHash?: Maybe<Order_By>,
   blockNumber?: Maybe<Order_By>,
   blockStatus?: Maybe<Order_By>,
+  createdAt?: Maybe<Order_By>,
   difficulty?: Maybe<Order_By>,
   merkleRoot?: Maybe<Order_By>,
   nonce?: Maybe<Order_By>,
@@ -493,7 +496,7 @@ export type Bloxx_Block_Set_Input = {
   blockHash?: Maybe<Scalars['String']>,
   blockNumber?: Maybe<Scalars['Int']>,
   blockStatus?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['timestamp']>,
+  createdAt?: Maybe<Scalars['String']>,
   difficulty?: Maybe<Scalars['Int']>,
   merkleRoot?: Maybe<Scalars['String']>,
   nonce?: Maybe<Scalars['Int']>,
@@ -1570,19 +1573,6 @@ export type Subscription_RootBloxx_Transaction_By_PkArgs = {
   txHash: Scalars['String']
 };
 
-
-export type Timestamp_Comparison_Exp = {
-  _eq?: Maybe<Scalars['timestamp']>,
-  _gt?: Maybe<Scalars['timestamp']>,
-  _gte?: Maybe<Scalars['timestamp']>,
-  _in?: Maybe<Array<Scalars['timestamp']>>,
-  _is_null?: Maybe<Scalars['Boolean']>,
-  _lt?: Maybe<Scalars['timestamp']>,
-  _lte?: Maybe<Scalars['timestamp']>,
-  _neq?: Maybe<Scalars['timestamp']>,
-  _nin?: Maybe<Array<Scalars['timestamp']>>,
-};
-
 export type InsertAdminTransactionsMutationVariables = {
   transactions: Array<Bloxx_Transaction_Insert_Input>
 };
@@ -1603,7 +1593,7 @@ export type InsertAdminTransactionsMutation = (
 export type InsertBlockMutationVariables = {
   blockNumber?: Maybe<Scalars['Int']>,
   previousBlockHash?: Maybe<Scalars['String']>,
-  createdAt?: Maybe<Scalars['timestamp']>,
+  createdAt?: Maybe<Scalars['String']>,
   difficulty?: Maybe<Scalars['Int']>,
   merkleRoot?: Maybe<Scalars['String']>,
   nonce?: Maybe<Scalars['Int']>,
@@ -1897,7 +1887,7 @@ export type InsertAdminTransactionsMutationHookResult = ReturnType<typeof useIns
 export type InsertAdminTransactionsMutationResult = ApolloReactCommon.MutationResult<InsertAdminTransactionsMutation>;
 export type InsertAdminTransactionsMutationOptions = ApolloReactCommon.BaseMutationOptions<InsertAdminTransactionsMutation, InsertAdminTransactionsMutationVariables>;
 export const InsertBlockDocument = gql`
-    mutation insertBlock($blockNumber: Int, $previousBlockHash: String, $createdAt: timestamp, $difficulty: Int, $merkleRoot: String, $nonce: Int, $blockHash: String, $blockStatus: String, $block_transactions: bloxx_block_transaction_arr_rel_insert_input) {
+    mutation insertBlock($blockNumber: Int, $previousBlockHash: String, $createdAt: String, $difficulty: Int, $merkleRoot: String, $nonce: Int, $blockHash: String, $blockStatus: String, $block_transactions: bloxx_block_transaction_arr_rel_insert_input) {
   insert_bloxx_block(objects: {blockNumber: $blockNumber, previousBlockHash: $previousBlockHash, createdAt: $createdAt, difficulty: $difficulty, merkleRoot: $merkleRoot, nonce: $nonce, blockHash: $blockHash, blockStatus: $blockStatus, block_transactions: $block_transactions}, on_conflict: {constraint: block_blockHash_key, update_columns: blockNumber}) {
     affected_rows
     returning {

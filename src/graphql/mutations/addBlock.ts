@@ -4,7 +4,7 @@ const ADD_BLOCK = gql`
 mutation insertBlock(
   $blockNumber: Int, 
   $previousBlockHash: String, 
-  $createdAt: timestamp, 
+  $createdAt: String, 
   $difficulty: Int, 
   $merkleRoot: String, 
   $nonce: Int, 

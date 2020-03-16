@@ -20,7 +20,7 @@ const Block = () => {
 	const [previousBlockHashOptions, setPreviousBlockHashOptions] = useState<
 		{ blockNumber: string; blockHash: string }[]
 	>();
-	const [timestamp, setTimestamp] = useState(new Date());
+	const [timestamp, setTimestamp] = useState<number | undefined>(undefined);
 	const [isTimerActive, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
 	const [nonce, setNonce] = useState(0);
 	const [clickCount, setClickCount] = useState(0);
@@ -54,10 +54,10 @@ const Block = () => {
 	 * when the block has been successfully published
 	 */
 	useEffect(() => {
-		let interval = setInterval(() => {}, 10000);
+		let interval = setInterval(() => {}, 1000);
 		if (isTimerActive) {
 			interval = setInterval(() => {
-				setTimestamp(new Date());
+				setTimestamp((Date.now() / 1000) | 0);
 			}, 1000);
 		} else if (!isTimerActive) {
 			clearInterval(interval);
@@ -85,6 +85,10 @@ const Block = () => {
 	const onCopyToHasher = () => {
 		setIsTimerActive(false);
 		setClickCount(() => (clickCount === 3 ? 3 : clickCount + 1));
+		let finalTimestamp = (Date.now() / 1000) | 0;
+		setTimestamp(finalTimestamp);
+		setBlock({ ...block, timestamp: finalTimestamp });
+		console.log(block.timestamp!);
 		let blockData =
 			blockNumber +
 			':' +
@@ -92,11 +96,14 @@ const Block = () => {
 			':' +
 			block.merkleRoot +
 			':' +
-			block.timestamp!.toISOString() +
+			finalTimestamp +
 			':' +
 			block.difficulty +
 			':' +
 			nonce;
+		console.log('Timestamp', block.timestamp);
+		console.log('NewHeader');
+		console.log(blockData);
 		setDataToHash(blockData);
 	};
 
@@ -152,12 +159,7 @@ const Block = () => {
 					value={difficulty}
 					onChange={e => onChange('difficulty', e.target.value)}
 				/>
-				<LabeledInput
-					label={'Timestamp'}
-					readOnly
-					value={timestamp.toUTCString()}
-					onChange={e => onChange('createdAt', timestamp)}
-				/>
+				<LabeledInput label={'Timestamp'} readOnly value={timestamp} onChange={e => onChange('timestamp', timestamp)} />
 				<LabeledInput
 					label={'Nonce'}
 					onChange={e => {

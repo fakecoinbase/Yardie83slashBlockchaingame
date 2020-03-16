@@ -8,6 +8,7 @@ import { FaRegCopy } from 'react-icons/fa';
 import useDataToCheck from '../../../customHooks/useDataToCheck';
 import CheckSignature from '../../CheckSignature';
 import Confirm from './Confirm/Confirm';
+import CheckHeader from './CheckHeader';
 
 export type SelectedBlock = {
 	blockNumber: number | null;
@@ -79,7 +80,7 @@ const CheckBlock = ({ admin }: any) => {
 				previousBlockHash: b.previousBlockHash ? b.previousBlockHash : '-',
 				merklRoot: b.merkleRoot ? b.merkleRoot : '',
 				difficulty: b.difficulty ? b.difficulty : 0,
-				timestamp: b.createdAt ? new Date(b.createdAt).toUTCString() : new Date().toUTCString(),
+				timestamp: b.createdAt ? b.createdAt : '',
 				nonce: b.nonce ? b.nonce : 0,
 				blockHash: b.blockHash ? b.blockHash : '',
 				transactions: b.block_transactions ? dataToCheck(b.block_transactions) : [],
@@ -98,6 +99,7 @@ const CheckBlock = ({ admin }: any) => {
 				<LabeledInput label={'Timestamp'} value={block!.timestamp} readOnly />
 				<LabeledInput label={'Nonce'} value={block!.nonce} readOnly />
 				<LabeledInput label={'Block Hash'} value={block!.blockHash} readOnly />
+				<CheckHeader blockInfo={block!} />
 			</div>
 			<div style={{ minHeight: '190px' }}>
 				<Table
