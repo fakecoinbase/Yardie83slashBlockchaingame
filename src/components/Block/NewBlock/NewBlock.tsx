@@ -88,7 +88,6 @@ const Block = () => {
 		let finalTimestamp = (Date.now() / 1000) | 0;
 		setTimestamp(finalTimestamp);
 		setBlock({ ...block, timestamp: finalTimestamp });
-		console.log(block.timestamp!);
 		let blockData =
 			blockNumber +
 			':' +
@@ -101,9 +100,6 @@ const Block = () => {
 			block.difficulty +
 			':' +
 			nonce;
-		console.log('Timestamp', block.timestamp);
-		console.log('NewHeader');
-		console.log(blockData);
 		setDataToHash(blockData);
 	};
 
