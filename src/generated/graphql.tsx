@@ -1157,6 +1157,107 @@ export type Bloxx_Transaction_Variance_Order_By = {
   value?: Maybe<Order_By>,
 };
 
+export type Bloxx_UserPassword = {
+   __typename?: 'bloxx_userPassword',
+  password: Scalars['String'],
+};
+
+export type Bloxx_UserPassword_Aggregate = {
+   __typename?: 'bloxx_userPassword_aggregate',
+  aggregate?: Maybe<Bloxx_UserPassword_Aggregate_Fields>,
+  nodes: Array<Bloxx_UserPassword>,
+};
+
+export type Bloxx_UserPassword_Aggregate_Fields = {
+   __typename?: 'bloxx_userPassword_aggregate_fields',
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<Bloxx_UserPassword_Max_Fields>,
+  min?: Maybe<Bloxx_UserPassword_Min_Fields>,
+};
+
+
+export type Bloxx_UserPassword_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Bloxx_UserPassword_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type Bloxx_UserPassword_Aggregate_Order_By = {
+  count?: Maybe<Order_By>,
+  max?: Maybe<Bloxx_UserPassword_Max_Order_By>,
+  min?: Maybe<Bloxx_UserPassword_Min_Order_By>,
+};
+
+export type Bloxx_UserPassword_Arr_Rel_Insert_Input = {
+  data: Array<Bloxx_UserPassword_Insert_Input>,
+  on_conflict?: Maybe<Bloxx_UserPassword_On_Conflict>,
+};
+
+export type Bloxx_UserPassword_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Bloxx_UserPassword_Bool_Exp>>>,
+  _not?: Maybe<Bloxx_UserPassword_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<Bloxx_UserPassword_Bool_Exp>>>,
+  password?: Maybe<String_Comparison_Exp>,
+};
+
+export enum Bloxx_UserPassword_Constraint {
+  UserPasswordPkey = 'userPassword_pkey'
+}
+
+export type Bloxx_UserPassword_Insert_Input = {
+  password?: Maybe<Scalars['String']>,
+};
+
+export type Bloxx_UserPassword_Max_Fields = {
+   __typename?: 'bloxx_userPassword_max_fields',
+  password?: Maybe<Scalars['String']>,
+};
+
+export type Bloxx_UserPassword_Max_Order_By = {
+  password?: Maybe<Order_By>,
+};
+
+export type Bloxx_UserPassword_Min_Fields = {
+   __typename?: 'bloxx_userPassword_min_fields',
+  password?: Maybe<Scalars['String']>,
+};
+
+export type Bloxx_UserPassword_Min_Order_By = {
+  password?: Maybe<Order_By>,
+};
+
+export type Bloxx_UserPassword_Mutation_Response = {
+   __typename?: 'bloxx_userPassword_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<Bloxx_UserPassword>,
+};
+
+export type Bloxx_UserPassword_Obj_Rel_Insert_Input = {
+  data: Bloxx_UserPassword_Insert_Input,
+  on_conflict?: Maybe<Bloxx_UserPassword_On_Conflict>,
+};
+
+export type Bloxx_UserPassword_On_Conflict = {
+  constraint: Bloxx_UserPassword_Constraint,
+  update_columns: Array<Bloxx_UserPassword_Update_Column>,
+  where?: Maybe<Bloxx_UserPassword_Bool_Exp>,
+};
+
+export type Bloxx_UserPassword_Order_By = {
+  password?: Maybe<Order_By>,
+};
+
+export enum Bloxx_UserPassword_Select_Column {
+  Password = 'password'
+}
+
+export type Bloxx_UserPassword_Set_Input = {
+  password?: Maybe<Scalars['String']>,
+};
+
+export enum Bloxx_UserPassword_Update_Column {
+  Password = 'password'
+}
+
 export type Int_Comparison_Exp = {
   _eq?: Maybe<Scalars['Int']>,
   _gt?: Maybe<Scalars['Int']>,
@@ -1176,16 +1277,19 @@ export type Mutation_Root = {
   delete_bloxx_block_transaction?: Maybe<Bloxx_Block_Transaction_Mutation_Response>,
   delete_bloxx_node?: Maybe<Bloxx_Node_Mutation_Response>,
   delete_bloxx_transaction?: Maybe<Bloxx_Transaction_Mutation_Response>,
+  delete_bloxx_userPassword?: Maybe<Bloxx_UserPassword_Mutation_Response>,
   insert_bloxx_address?: Maybe<Bloxx_Address_Mutation_Response>,
   insert_bloxx_block?: Maybe<Bloxx_Block_Mutation_Response>,
   insert_bloxx_block_transaction?: Maybe<Bloxx_Block_Transaction_Mutation_Response>,
   insert_bloxx_node?: Maybe<Bloxx_Node_Mutation_Response>,
   insert_bloxx_transaction?: Maybe<Bloxx_Transaction_Mutation_Response>,
+  insert_bloxx_userPassword?: Maybe<Bloxx_UserPassword_Mutation_Response>,
   update_bloxx_address?: Maybe<Bloxx_Address_Mutation_Response>,
   update_bloxx_block?: Maybe<Bloxx_Block_Mutation_Response>,
   update_bloxx_block_transaction?: Maybe<Bloxx_Block_Transaction_Mutation_Response>,
   update_bloxx_node?: Maybe<Bloxx_Node_Mutation_Response>,
   update_bloxx_transaction?: Maybe<Bloxx_Transaction_Mutation_Response>,
+  update_bloxx_userPassword?: Maybe<Bloxx_UserPassword_Mutation_Response>,
 };
 
 
@@ -1211,6 +1315,11 @@ export type Mutation_RootDelete_Bloxx_NodeArgs = {
 
 export type Mutation_RootDelete_Bloxx_TransactionArgs = {
   where: Bloxx_Transaction_Bool_Exp
+};
+
+
+export type Mutation_RootDelete_Bloxx_UserPasswordArgs = {
+  where: Bloxx_UserPassword_Bool_Exp
 };
 
 
@@ -1241,6 +1350,12 @@ export type Mutation_RootInsert_Bloxx_NodeArgs = {
 export type Mutation_RootInsert_Bloxx_TransactionArgs = {
   objects: Array<Bloxx_Transaction_Insert_Input>,
   on_conflict?: Maybe<Bloxx_Transaction_On_Conflict>
+};
+
+
+export type Mutation_RootInsert_Bloxx_UserPasswordArgs = {
+  objects: Array<Bloxx_UserPassword_Insert_Input>,
+  on_conflict?: Maybe<Bloxx_UserPassword_On_Conflict>
 };
 
 
@@ -1276,6 +1391,12 @@ export type Mutation_RootUpdate_Bloxx_TransactionArgs = {
   where: Bloxx_Transaction_Bool_Exp
 };
 
+
+export type Mutation_RootUpdate_Bloxx_UserPasswordArgs = {
+  _set?: Maybe<Bloxx_UserPassword_Set_Input>,
+  where: Bloxx_UserPassword_Bool_Exp
+};
+
 export enum Order_By {
   Asc = 'asc',
   AscNullsFirst = 'asc_nulls_first',
@@ -1302,6 +1423,9 @@ export type Query_Root = {
   bloxx_transaction: Array<Bloxx_Transaction>,
   bloxx_transaction_aggregate: Bloxx_Transaction_Aggregate,
   bloxx_transaction_by_pk?: Maybe<Bloxx_Transaction>,
+  bloxx_userPassword: Array<Bloxx_UserPassword>,
+  bloxx_userPassword_aggregate: Bloxx_UserPassword_Aggregate,
+  bloxx_userPassword_by_pk?: Maybe<Bloxx_UserPassword>,
 };
 
 
@@ -1420,6 +1544,29 @@ export type Query_RootBloxx_Transaction_By_PkArgs = {
   txHash: Scalars['String']
 };
 
+
+export type Query_RootBloxx_UserPasswordArgs = {
+  distinct_on?: Maybe<Array<Bloxx_UserPassword_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Bloxx_UserPassword_Order_By>>,
+  where?: Maybe<Bloxx_UserPassword_Bool_Exp>
+};
+
+
+export type Query_RootBloxx_UserPassword_AggregateArgs = {
+  distinct_on?: Maybe<Array<Bloxx_UserPassword_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Bloxx_UserPassword_Order_By>>,
+  where?: Maybe<Bloxx_UserPassword_Bool_Exp>
+};
+
+
+export type Query_RootBloxx_UserPassword_By_PkArgs = {
+  password: Scalars['String']
+};
+
 export type String_Comparison_Exp = {
   _eq?: Maybe<Scalars['String']>,
   _gt?: Maybe<Scalars['String']>,
@@ -1455,6 +1602,9 @@ export type Subscription_Root = {
   bloxx_transaction: Array<Bloxx_Transaction>,
   bloxx_transaction_aggregate: Bloxx_Transaction_Aggregate,
   bloxx_transaction_by_pk?: Maybe<Bloxx_Transaction>,
+  bloxx_userPassword: Array<Bloxx_UserPassword>,
+  bloxx_userPassword_aggregate: Bloxx_UserPassword_Aggregate,
+  bloxx_userPassword_by_pk?: Maybe<Bloxx_UserPassword>,
 };
 
 
@@ -1571,6 +1721,29 @@ export type Subscription_RootBloxx_Transaction_AggregateArgs = {
 
 export type Subscription_RootBloxx_Transaction_By_PkArgs = {
   txHash: Scalars['String']
+};
+
+
+export type Subscription_RootBloxx_UserPasswordArgs = {
+  distinct_on?: Maybe<Array<Bloxx_UserPassword_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Bloxx_UserPassword_Order_By>>,
+  where?: Maybe<Bloxx_UserPassword_Bool_Exp>
+};
+
+
+export type Subscription_RootBloxx_UserPassword_AggregateArgs = {
+  distinct_on?: Maybe<Array<Bloxx_UserPassword_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Bloxx_UserPassword_Order_By>>,
+  where?: Maybe<Bloxx_UserPassword_Bool_Exp>
+};
+
+
+export type Subscription_RootBloxx_UserPassword_By_PkArgs = {
+  password: Scalars['String']
 };
 
 export type InsertAdminTransactionsMutationVariables = {
@@ -1713,6 +1886,20 @@ export type DeleteGameDataMutation = (
   )> }
 );
 
+export type UpdateUserPasswordMutationVariables = {
+  oldPassword?: Maybe<Scalars['String']>,
+  newPassword?: Maybe<Scalars['String']>
+};
+
+
+export type UpdateUserPasswordMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_bloxx_userPassword: Maybe<(
+    { __typename?: 'bloxx_userPassword_mutation_response' }
+    & Pick<Bloxx_UserPassword_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type UpdateAddressValuesMutationVariables = {
   outAddress?: Maybe<Scalars['String']>,
   inAddress?: Maybe<Scalars['String']>,
@@ -1841,6 +2028,17 @@ export type OnNewTransactionAddedSubscription = (
       { __typename?: 'bloxx_address' }
       & Pick<Bloxx_Address, 'nodePublicKey'>
     )> }
+  )> }
+);
+
+export type OnUserPasswordChangedSubscriptionVariables = {};
+
+
+export type OnUserPasswordChangedSubscription = (
+  { __typename?: 'subscription_root' }
+  & { bloxx_userPassword: Array<(
+    { __typename?: 'bloxx_userPassword' }
+    & Pick<Bloxx_UserPassword, 'password'>
   )> }
 );
 
@@ -2135,6 +2333,39 @@ export function useDeleteGameDataMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type DeleteGameDataMutationHookResult = ReturnType<typeof useDeleteGameDataMutation>;
 export type DeleteGameDataMutationResult = ApolloReactCommon.MutationResult<DeleteGameDataMutation>;
 export type DeleteGameDataMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteGameDataMutation, DeleteGameDataMutationVariables>;
+export const UpdateUserPasswordDocument = gql`
+    mutation updateUserPassword($oldPassword: String, $newPassword: String) {
+  update_bloxx_userPassword(where: {password: {_eq: $oldPassword}}, _set: {password: $newPassword}) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateUserPasswordMutationFn = ApolloReactCommon.MutationFunction<UpdateUserPasswordMutation, UpdateUserPasswordMutationVariables>;
+
+/**
+ * __useUpdateUserPasswordMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserPasswordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserPasswordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserPasswordMutation, { data, loading, error }] = useUpdateUserPasswordMutation({
+ *   variables: {
+ *      oldPassword: // value for 'oldPassword'
+ *      newPassword: // value for 'newPassword'
+ *   },
+ * });
+ */
+export function useUpdateUserPasswordMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateUserPasswordMutation, UpdateUserPasswordMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateUserPasswordMutation, UpdateUserPasswordMutationVariables>(UpdateUserPasswordDocument, baseOptions);
+      }
+export type UpdateUserPasswordMutationHookResult = ReturnType<typeof useUpdateUserPasswordMutation>;
+export type UpdateUserPasswordMutationResult = ApolloReactCommon.MutationResult<UpdateUserPasswordMutation>;
+export type UpdateUserPasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateUserPasswordMutation, UpdateUserPasswordMutationVariables>;
 export const UpdateAddressValuesDocument = gql`
     mutation updateAddressValues($outAddress: String, $inAddress: String, $amountAdd: Int, $amountSub: Int) {
   updateInputAddress: update_bloxx_address(where: {id: {_eq: $inAddress}}, _inc: {balance: $amountSub}) {
@@ -2430,3 +2661,31 @@ export function useOnNewTransactionAddedSubscription(baseOptions?: ApolloReactHo
       }
 export type OnNewTransactionAddedSubscriptionHookResult = ReturnType<typeof useOnNewTransactionAddedSubscription>;
 export type OnNewTransactionAddedSubscriptionResult = ApolloReactCommon.SubscriptionResult<OnNewTransactionAddedSubscription>;
+export const OnUserPasswordChangedDocument = gql`
+    subscription onUserPasswordChanged {
+  bloxx_userPassword {
+    password
+  }
+}
+    `;
+
+/**
+ * __useOnUserPasswordChangedSubscription__
+ *
+ * To run a query within a React component, call `useOnUserPasswordChangedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useOnUserPasswordChangedSubscription` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOnUserPasswordChangedSubscription({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useOnUserPasswordChangedSubscription(baseOptions?: ApolloReactHooks.SubscriptionHookOptions<OnUserPasswordChangedSubscription, OnUserPasswordChangedSubscriptionVariables>) {
+        return ApolloReactHooks.useSubscription<OnUserPasswordChangedSubscription, OnUserPasswordChangedSubscriptionVariables>(OnUserPasswordChangedDocument, baseOptions);
+      }
+export type OnUserPasswordChangedSubscriptionHookResult = ReturnType<typeof useOnUserPasswordChangedSubscription>;
+export type OnUserPasswordChangedSubscriptionResult = ApolloReactCommon.SubscriptionResult<OnUserPasswordChangedSubscription>;

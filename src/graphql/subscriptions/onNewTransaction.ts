@@ -13,7 +13,6 @@ const NEW_TRANSACTION_ADDED = gql`
                 nodePublicKey
             }
     }
-}
-`;
+}`;
 
 export default NEW_TRANSACTION_ADDED;
