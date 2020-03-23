@@ -80,10 +80,9 @@ const Wallet = () => {
     <>
       <Title title="Wallet" subTitle={subTitle}></Title>
       <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
-        <Heading.h6 style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C", paddingBottom: "5px" }}>
-          Send Coins
+        <Heading.h6 style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C", paddingTop: '5px'}}>
+          Send Coins:
         </Heading.h6>
-        <Divider />
         <LabeledInput placeholder={"To Address"} onChange={e => onChange("to", e.target.value)} />
         <LabeledInput placeholder={"Amount"} onChange={e => onChange("amount", e.target.value)} />
         <div style={{ paddingBottom: "20px" }}>
