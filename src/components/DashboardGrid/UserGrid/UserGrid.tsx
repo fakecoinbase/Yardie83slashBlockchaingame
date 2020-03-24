@@ -11,14 +11,11 @@ import MempoolModal from '../../MempoolModal';
 
 const UserGrid = (props: any) => {
 	const ResponsiveGridLayout = WidthProvider(Responsive);
-	const [showUserLoginModal] = useUserLoginModal();
 	const [showModal, setShowModal] = useState(true);
 	const [showBlockchainModal] = useBlockchainModal();
 	const [showMempoolModal] = useMempoolModal();
 
-	return showUserLoginModal ? (
-		<UserLoginModal />
-	) : showModal ? (
+	return showModal ? (
 		<Modal setShowModal={setShowModal} />
 	) : showBlockchainModal !== null ? (
 		<BlockchainModal />

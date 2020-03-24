@@ -277,6 +277,107 @@ export type Bloxx_Address_Variance_Order_By = {
   balance?: Maybe<Order_By>,
 };
 
+export type Bloxx_AdminPassword = {
+   __typename?: 'bloxx_adminPassword',
+  password: Scalars['String'],
+};
+
+export type Bloxx_AdminPassword_Aggregate = {
+   __typename?: 'bloxx_adminPassword_aggregate',
+  aggregate?: Maybe<Bloxx_AdminPassword_Aggregate_Fields>,
+  nodes: Array<Bloxx_AdminPassword>,
+};
+
+export type Bloxx_AdminPassword_Aggregate_Fields = {
+   __typename?: 'bloxx_adminPassword_aggregate_fields',
+  count?: Maybe<Scalars['Int']>,
+  max?: Maybe<Bloxx_AdminPassword_Max_Fields>,
+  min?: Maybe<Bloxx_AdminPassword_Min_Fields>,
+};
+
+
+export type Bloxx_AdminPassword_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Bloxx_AdminPassword_Select_Column>>,
+  distinct?: Maybe<Scalars['Boolean']>
+};
+
+export type Bloxx_AdminPassword_Aggregate_Order_By = {
+  count?: Maybe<Order_By>,
+  max?: Maybe<Bloxx_AdminPassword_Max_Order_By>,
+  min?: Maybe<Bloxx_AdminPassword_Min_Order_By>,
+};
+
+export type Bloxx_AdminPassword_Arr_Rel_Insert_Input = {
+  data: Array<Bloxx_AdminPassword_Insert_Input>,
+  on_conflict?: Maybe<Bloxx_AdminPassword_On_Conflict>,
+};
+
+export type Bloxx_AdminPassword_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Bloxx_AdminPassword_Bool_Exp>>>,
+  _not?: Maybe<Bloxx_AdminPassword_Bool_Exp>,
+  _or?: Maybe<Array<Maybe<Bloxx_AdminPassword_Bool_Exp>>>,
+  password?: Maybe<String_Comparison_Exp>,
+};
+
+export enum Bloxx_AdminPassword_Constraint {
+  AdminPasswordPkey = 'adminPassword_pkey'
+}
+
+export type Bloxx_AdminPassword_Insert_Input = {
+  password?: Maybe<Scalars['String']>,
+};
+
+export type Bloxx_AdminPassword_Max_Fields = {
+   __typename?: 'bloxx_adminPassword_max_fields',
+  password?: Maybe<Scalars['String']>,
+};
+
+export type Bloxx_AdminPassword_Max_Order_By = {
+  password?: Maybe<Order_By>,
+};
+
+export type Bloxx_AdminPassword_Min_Fields = {
+   __typename?: 'bloxx_adminPassword_min_fields',
+  password?: Maybe<Scalars['String']>,
+};
+
+export type Bloxx_AdminPassword_Min_Order_By = {
+  password?: Maybe<Order_By>,
+};
+
+export type Bloxx_AdminPassword_Mutation_Response = {
+   __typename?: 'bloxx_adminPassword_mutation_response',
+  affected_rows: Scalars['Int'],
+  returning: Array<Bloxx_AdminPassword>,
+};
+
+export type Bloxx_AdminPassword_Obj_Rel_Insert_Input = {
+  data: Bloxx_AdminPassword_Insert_Input,
+  on_conflict?: Maybe<Bloxx_AdminPassword_On_Conflict>,
+};
+
+export type Bloxx_AdminPassword_On_Conflict = {
+  constraint: Bloxx_AdminPassword_Constraint,
+  update_columns: Array<Bloxx_AdminPassword_Update_Column>,
+  where?: Maybe<Bloxx_AdminPassword_Bool_Exp>,
+};
+
+export type Bloxx_AdminPassword_Order_By = {
+  password?: Maybe<Order_By>,
+};
+
+export enum Bloxx_AdminPassword_Select_Column {
+  Password = 'password'
+}
+
+export type Bloxx_AdminPassword_Set_Input = {
+  password?: Maybe<Scalars['String']>,
+};
+
+export enum Bloxx_AdminPassword_Update_Column {
+  Password = 'password'
+}
+
 export type Bloxx_Block = {
    __typename?: 'bloxx_block',
   blockHash: Scalars['String'],
@@ -1273,18 +1374,21 @@ export type Int_Comparison_Exp = {
 export type Mutation_Root = {
    __typename?: 'mutation_root',
   delete_bloxx_address?: Maybe<Bloxx_Address_Mutation_Response>,
+  delete_bloxx_adminPassword?: Maybe<Bloxx_AdminPassword_Mutation_Response>,
   delete_bloxx_block?: Maybe<Bloxx_Block_Mutation_Response>,
   delete_bloxx_block_transaction?: Maybe<Bloxx_Block_Transaction_Mutation_Response>,
   delete_bloxx_node?: Maybe<Bloxx_Node_Mutation_Response>,
   delete_bloxx_transaction?: Maybe<Bloxx_Transaction_Mutation_Response>,
   delete_bloxx_userPassword?: Maybe<Bloxx_UserPassword_Mutation_Response>,
   insert_bloxx_address?: Maybe<Bloxx_Address_Mutation_Response>,
+  insert_bloxx_adminPassword?: Maybe<Bloxx_AdminPassword_Mutation_Response>,
   insert_bloxx_block?: Maybe<Bloxx_Block_Mutation_Response>,
   insert_bloxx_block_transaction?: Maybe<Bloxx_Block_Transaction_Mutation_Response>,
   insert_bloxx_node?: Maybe<Bloxx_Node_Mutation_Response>,
   insert_bloxx_transaction?: Maybe<Bloxx_Transaction_Mutation_Response>,
   insert_bloxx_userPassword?: Maybe<Bloxx_UserPassword_Mutation_Response>,
   update_bloxx_address?: Maybe<Bloxx_Address_Mutation_Response>,
+  update_bloxx_adminPassword?: Maybe<Bloxx_AdminPassword_Mutation_Response>,
   update_bloxx_block?: Maybe<Bloxx_Block_Mutation_Response>,
   update_bloxx_block_transaction?: Maybe<Bloxx_Block_Transaction_Mutation_Response>,
   update_bloxx_node?: Maybe<Bloxx_Node_Mutation_Response>,
@@ -1295,6 +1399,11 @@ export type Mutation_Root = {
 
 export type Mutation_RootDelete_Bloxx_AddressArgs = {
   where: Bloxx_Address_Bool_Exp
+};
+
+
+export type Mutation_RootDelete_Bloxx_AdminPasswordArgs = {
+  where: Bloxx_AdminPassword_Bool_Exp
 };
 
 
@@ -1326,6 +1435,12 @@ export type Mutation_RootDelete_Bloxx_UserPasswordArgs = {
 export type Mutation_RootInsert_Bloxx_AddressArgs = {
   objects: Array<Bloxx_Address_Insert_Input>,
   on_conflict?: Maybe<Bloxx_Address_On_Conflict>
+};
+
+
+export type Mutation_RootInsert_Bloxx_AdminPasswordArgs = {
+  objects: Array<Bloxx_AdminPassword_Insert_Input>,
+  on_conflict?: Maybe<Bloxx_AdminPassword_On_Conflict>
 };
 
 
@@ -1363,6 +1478,12 @@ export type Mutation_RootUpdate_Bloxx_AddressArgs = {
   _inc?: Maybe<Bloxx_Address_Inc_Input>,
   _set?: Maybe<Bloxx_Address_Set_Input>,
   where: Bloxx_Address_Bool_Exp
+};
+
+
+export type Mutation_RootUpdate_Bloxx_AdminPasswordArgs = {
+  _set?: Maybe<Bloxx_AdminPassword_Set_Input>,
+  where: Bloxx_AdminPassword_Bool_Exp
 };
 
 
@@ -1411,6 +1532,9 @@ export type Query_Root = {
   bloxx_address: Array<Bloxx_Address>,
   bloxx_address_aggregate: Bloxx_Address_Aggregate,
   bloxx_address_by_pk?: Maybe<Bloxx_Address>,
+  bloxx_adminPassword: Array<Bloxx_AdminPassword>,
+  bloxx_adminPassword_aggregate: Bloxx_AdminPassword_Aggregate,
+  bloxx_adminPassword_by_pk?: Maybe<Bloxx_AdminPassword>,
   bloxx_block: Array<Bloxx_Block>,
   bloxx_block_aggregate: Bloxx_Block_Aggregate,
   bloxx_block_by_pk?: Maybe<Bloxx_Block>,
@@ -1449,6 +1573,29 @@ export type Query_RootBloxx_Address_AggregateArgs = {
 
 export type Query_RootBloxx_Address_By_PkArgs = {
   id: Scalars['String']
+};
+
+
+export type Query_RootBloxx_AdminPasswordArgs = {
+  distinct_on?: Maybe<Array<Bloxx_AdminPassword_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Bloxx_AdminPassword_Order_By>>,
+  where?: Maybe<Bloxx_AdminPassword_Bool_Exp>
+};
+
+
+export type Query_RootBloxx_AdminPassword_AggregateArgs = {
+  distinct_on?: Maybe<Array<Bloxx_AdminPassword_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Bloxx_AdminPassword_Order_By>>,
+  where?: Maybe<Bloxx_AdminPassword_Bool_Exp>
+};
+
+
+export type Query_RootBloxx_AdminPassword_By_PkArgs = {
+  password: Scalars['String']
 };
 
 
@@ -1590,6 +1737,9 @@ export type Subscription_Root = {
   bloxx_address: Array<Bloxx_Address>,
   bloxx_address_aggregate: Bloxx_Address_Aggregate,
   bloxx_address_by_pk?: Maybe<Bloxx_Address>,
+  bloxx_adminPassword: Array<Bloxx_AdminPassword>,
+  bloxx_adminPassword_aggregate: Bloxx_AdminPassword_Aggregate,
+  bloxx_adminPassword_by_pk?: Maybe<Bloxx_AdminPassword>,
   bloxx_block: Array<Bloxx_Block>,
   bloxx_block_aggregate: Bloxx_Block_Aggregate,
   bloxx_block_by_pk?: Maybe<Bloxx_Block>,
@@ -1628,6 +1778,29 @@ export type Subscription_RootBloxx_Address_AggregateArgs = {
 
 export type Subscription_RootBloxx_Address_By_PkArgs = {
   id: Scalars['String']
+};
+
+
+export type Subscription_RootBloxx_AdminPasswordArgs = {
+  distinct_on?: Maybe<Array<Bloxx_AdminPassword_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Bloxx_AdminPassword_Order_By>>,
+  where?: Maybe<Bloxx_AdminPassword_Bool_Exp>
+};
+
+
+export type Subscription_RootBloxx_AdminPassword_AggregateArgs = {
+  distinct_on?: Maybe<Array<Bloxx_AdminPassword_Select_Column>>,
+  limit?: Maybe<Scalars['Int']>,
+  offset?: Maybe<Scalars['Int']>,
+  order_by?: Maybe<Array<Bloxx_AdminPassword_Order_By>>,
+  where?: Maybe<Bloxx_AdminPassword_Bool_Exp>
+};
+
+
+export type Subscription_RootBloxx_AdminPassword_By_PkArgs = {
+  password: Scalars['String']
 };
 
 
@@ -1938,6 +2111,19 @@ export type AdminAddressQuery = (
   )> }
 );
 
+export type AdminLoginQueryVariables = {
+  password?: Maybe<Scalars['String']>
+};
+
+
+export type AdminLoginQuery = (
+  { __typename?: 'query_root' }
+  & { bloxx_adminPassword: Array<(
+    { __typename?: 'bloxx_adminPassword' }
+    & Pick<Bloxx_AdminPassword, 'password'>
+  )> }
+);
+
 export type BlockQueryVariables = {
   blockHash?: Maybe<Scalars['String']>
 };
@@ -1972,6 +2158,19 @@ export type BlockHashByBlocknumberQuery = (
   & { bloxx_block: Array<(
     { __typename?: 'bloxx_block' }
     & Pick<Bloxx_Block, 'blockHash'>
+  )> }
+);
+
+export type UserLoginQueryVariables = {
+  password?: Maybe<Scalars['String']>
+};
+
+
+export type UserLoginQuery = (
+  { __typename?: 'query_root' }
+  & { bloxx_userPassword: Array<(
+    { __typename?: 'bloxx_userPassword' }
+    & Pick<Bloxx_UserPassword, 'password'>
   )> }
 );
 
@@ -2444,6 +2643,39 @@ export function useAdminAddressLazyQuery(baseOptions?: ApolloReactHooks.LazyQuer
 export type AdminAddressQueryHookResult = ReturnType<typeof useAdminAddressQuery>;
 export type AdminAddressLazyQueryHookResult = ReturnType<typeof useAdminAddressLazyQuery>;
 export type AdminAddressQueryResult = ApolloReactCommon.QueryResult<AdminAddressQuery, AdminAddressQueryVariables>;
+export const AdminLoginDocument = gql`
+    query adminLogin($password: String) {
+  bloxx_adminPassword(where: {password: {_eq: $password}}) {
+    password
+  }
+}
+    `;
+
+/**
+ * __useAdminLoginQuery__
+ *
+ * To run a query within a React component, call `useAdminLoginQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAdminLoginQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAdminLoginQuery({
+ *   variables: {
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useAdminLoginQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AdminLoginQuery, AdminLoginQueryVariables>) {
+        return ApolloReactHooks.useQuery<AdminLoginQuery, AdminLoginQueryVariables>(AdminLoginDocument, baseOptions);
+      }
+export function useAdminLoginLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AdminLoginQuery, AdminLoginQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AdminLoginQuery, AdminLoginQueryVariables>(AdminLoginDocument, baseOptions);
+        }
+export type AdminLoginQueryHookResult = ReturnType<typeof useAdminLoginQuery>;
+export type AdminLoginLazyQueryHookResult = ReturnType<typeof useAdminLoginLazyQuery>;
+export type AdminLoginQueryResult = ApolloReactCommon.QueryResult<AdminLoginQuery, AdminLoginQueryVariables>;
 export const BlockDocument = gql`
     query block($blockHash: String) {
   bloxx_block(where: {blockHash: {_eq: $blockHash}}) {
@@ -2529,6 +2761,39 @@ export function useBlockHashByBlocknumberLazyQuery(baseOptions?: ApolloReactHook
 export type BlockHashByBlocknumberQueryHookResult = ReturnType<typeof useBlockHashByBlocknumberQuery>;
 export type BlockHashByBlocknumberLazyQueryHookResult = ReturnType<typeof useBlockHashByBlocknumberLazyQuery>;
 export type BlockHashByBlocknumberQueryResult = ApolloReactCommon.QueryResult<BlockHashByBlocknumberQuery, BlockHashByBlocknumberQueryVariables>;
+export const UserLoginDocument = gql`
+    query userLogin($password: String) {
+  bloxx_userPassword(where: {password: {_eq: $password}}) {
+    password
+  }
+}
+    `;
+
+/**
+ * __useUserLoginQuery__
+ *
+ * To run a query within a React component, call `useUserLoginQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserLoginQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserLoginQuery({
+ *   variables: {
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useUserLoginQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<UserLoginQuery, UserLoginQueryVariables>) {
+        return ApolloReactHooks.useQuery<UserLoginQuery, UserLoginQueryVariables>(UserLoginDocument, baseOptions);
+      }
+export function useUserLoginLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<UserLoginQuery, UserLoginQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<UserLoginQuery, UserLoginQueryVariables>(UserLoginDocument, baseOptions);
+        }
+export type UserLoginQueryHookResult = ReturnType<typeof useUserLoginQuery>;
+export type UserLoginLazyQueryHookResult = ReturnType<typeof useUserLoginLazyQuery>;
+export type UserLoginQueryResult = ApolloReactCommon.QueryResult<UserLoginQuery, UserLoginQueryVariables>;
 export const AddressDocument = gql`
     subscription address {
   bloxx_address {
