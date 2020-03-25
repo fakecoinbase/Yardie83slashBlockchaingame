@@ -113,9 +113,11 @@ const Blockchain = ({ admin }: any) => {
 					alignItems: 'center',
 					height: '35px',
 				}}>
-				<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleShowBlockchainModal}>
-					<OpenWithIcon />
-				</IconButton>
+				{!admin && (
+					<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleShowBlockchainModal}>
+						<OpenWithIcon />
+					</IconButton>
+				)}
 				<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleResetTree}>
 					<RotateLeftIcon />
 				</IconButton>
