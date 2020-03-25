@@ -24,6 +24,9 @@ const AdminGrid = (props: any) => {
 
 	const [insertNodeMutation, { loading }] = useInsertNodeMutation();
 
+	/**
+	 * Creates the admin node and adds it to the database
+	 */
 	useEffect(() => {
 		if (adminInfo === undefined || adminInfo === null) {
 			const info = generateNode();

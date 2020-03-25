@@ -77,7 +77,7 @@ const CheckBlock = ({ admin }: any) => {
 			const b = selectedBlock.bloxx_block[0];
 			setBlock({
 				blockNumber: b.blockNumber ? b.blockNumber : 0,
-				previousBlockHash: b.previousBlockHash ? b.previousBlockHash : '-',
+				previousBlockHash: b.previousBlockHash ? b.previousBlockHash : 'null',
 				merklRoot: b.merkleRoot ? b.merkleRoot : '',
 				difficulty: b.difficulty ? b.difficulty : 0,
 				timestamp: b.createdAt ? b.createdAt : '',

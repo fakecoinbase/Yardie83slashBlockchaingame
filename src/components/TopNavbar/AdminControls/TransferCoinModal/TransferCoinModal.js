@@ -64,6 +64,9 @@ const TransferCoinModal = ({ adminInfo }) => {
     }
   ];
 
+  /**
+   * Transfers the intials coins from the admin node to each of the selected user nodes.
+   */
   const transferCoins = () => {
     blockHashbyBlockNumberQuery({ variables: 0 });
     if (selectedNodes.length > 0) {
@@ -95,18 +98,34 @@ const TransferCoinModal = ({ adminInfo }) => {
           }
         });
       });
-
+      /**
+       * 1. Inserts all the coin transfer transactions to the users into the database
+       * 2. Prepares a new Genesis Block; adds all the transactions from step 1. into the gensis block information
+       * 3. Inserts the Genesis Block into the DB and updates all the transactions' information about their parent block 
+       *    (in this case the genesis block)
+       */
       try {
+        /**
+         * Step 1.
+         */
         insertAdminTransactionsMutation({
           variables: { transactions }
         })
+          /**
+           * Step 2. 
+           * NOTE: If the Genesis block already exists, then an additional coin transfer to the user nodes will only
+           * result in an update of the gensis block. This is done in order to accomodate for users that might join the game late
+           * and still need some coins from the admin. In essence, there is always just one genesis block with dynamically updated 
+           * transactions 
+           *
+           */
           .then(res => {
             const blockData = {
               blockNumber: 0,
               previousBlockHash: null,
               blockStatus: "confirmed",
-              merkleRoot: "",
-              timestamp: new Date(),
+              merkleRoot: '',
+              timestamp: ((Date.now() / 1000) | 0).toString(),
               difficulty: 1,
               nonce: 0
             };
@@ -127,8 +146,7 @@ const TransferCoinModal = ({ adminInfo }) => {
                   ":" +
                   blockData.difficulty +
                   ":" +
-                  nonce
-                );
+                  nonce);
 
             const block_transactions = []
             res.data.insert_bloxx_transaction.returning.forEach(tx => block_transactions.push({
@@ -149,8 +167,9 @@ const TransferCoinModal = ({ adminInfo }) => {
               }
             }))
 
-
-
+            /**
+             * Step 3.
+             */
             insertBlock({
               variables: {
                 blockHash: blockHash,
