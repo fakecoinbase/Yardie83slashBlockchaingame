@@ -61,7 +61,7 @@ const CheckHeader = ({ blockInfo }: Props) => {
 				justifyContent: 'flex-end',
 				width: '100%',
 				paddingBottom: '10px',
-				paddingTop: '10px',
+				// paddingTop: '10px',
 			}}>
 			<div style={{ display: 'inline-block', boxSizing: 'border-box', width: '30%' }}>
 				<Button variant='contained' color='primary' size='small' onClick={checkHeader}>

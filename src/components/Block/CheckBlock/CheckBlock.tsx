@@ -91,7 +91,7 @@ const CheckBlock = ({ admin }: any) => {
 	return (
 		<>
 			<Title subTitle='Block Header' />
-			<div style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+			<div style={{ paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px' }}>
 				<LabeledInput label={'Block#'} value={block!.blockNumber} readOnly />
 				<LabeledInput label={'Previous Blockhash'} value={block!.previousBlockHash} readOnly />
 				<LabeledInput label={'Merkle Root'} value={block!.merklRoot} readOnly />
@@ -101,7 +101,7 @@ const CheckBlock = ({ admin }: any) => {
 				<LabeledInput label={'Block Hash'} value={block!.blockHash} readOnly />
 				<CheckHeader blockInfo={block!} />
 			</div>
-			<div style={{ minHeight: '190px' }}>
+			<div style={{ minHeight: '190px', overflow: 'hidden' }}>
 				<Table
 					columns={[
 						{
