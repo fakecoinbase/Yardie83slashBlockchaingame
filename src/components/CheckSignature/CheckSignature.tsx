@@ -92,7 +92,7 @@ const CheckSignature = () => {
           Clear
         </Button>
       </div>
-      <div style={{ float: "right", width: "100%", paddingBottom: "10px" }}>
+      <div style={{ float: "right", width: "100%", paddingBottom: "5px" }}>
         <span style={{ fontFamily: "Source Sans Pro", color: "#4D4F5C" }}>Output</span>
         <Input
           value={checkedSignature !== "" ? checkedSignature : checkError !== "" ? checkError : checkedSignature}

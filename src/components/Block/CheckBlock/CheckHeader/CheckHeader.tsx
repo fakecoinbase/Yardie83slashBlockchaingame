@@ -53,28 +53,32 @@ const CheckHeader = ({ blockInfo }: Props) => {
 	}, [blockHashResult]);
 
 	return (
-		<>
-			<div
-				style={{
-					display: 'flex',
-					flex: 1,
-					flexDirection: 'row',
-					justifyContent: 'flex-end',
-					paddingBottom: '10px',
-					paddingTop: '10px',
-				}}>
+		<div
+			style={{
+				display: 'flex',
+				flex: 1,
+				flexDirection: 'row',
+				justifyContent: 'flex-end',
+				width: '100%',
+				paddingBottom: '10px',
+				paddingTop: '10px',
+			}}>
+			<div style={{ display: 'inline-block', boxSizing: 'border-box', width: '30%' }}>
 				<Button variant='contained' color='primary' size='small' onClick={checkHeader}>
 					Check Header
 				</Button>
 			</div>
-			<Input
-				readOnly
-				value={resultText}
-				style={{
-					borderColor: isBlockHashValid !== undefined ? (isBlockHashValid ? 'green' : 'red') : '',
-				}}
-			/>
-		</>
+			<div style={{ display: 'inline-block', boxSizing: 'border-box', width: '70%' }}>
+				<Input
+					readOnly
+					value={resultText}
+					style={{
+						height: '30px',
+						borderColor: isBlockHashValid !== undefined ? (isBlockHashValid ? 'green' : 'red') : '',
+					}}
+				/>
+			</div>
+		</div>
 	);
 };
 
