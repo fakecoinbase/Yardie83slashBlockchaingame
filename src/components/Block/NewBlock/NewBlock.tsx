@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Table } from 'rendition';
 import { Button } from '@material-ui/core';
 import Title from '../../util/Title/Title';
@@ -56,6 +56,7 @@ const Block = () => {
 	useEffect(() => {
 		let interval = setInterval(() => {}, 1000);
 		if (isTimerActive) {
+			if (timestampRef.current !== 0) timestampRef.current = 0;
 			interval = setInterval(() => {
 				setTimestamp((Date.now() / 1000) | 0);
 			}, 1000);
@@ -76,6 +77,7 @@ const Block = () => {
 		setBlock({ ...block, block_transactions: { data } });
 	}, [selectedTransactions]);
 
+	const timestampRef = useRef<number>(0);
 	/**
 	 * Called when the user clicks copy to hasher.
 	 * The hasher hashes any type of data, so we decided arbitrarily
@@ -85,9 +87,12 @@ const Block = () => {
 	const onCopyToHasher = () => {
 		setIsTimerActive(false);
 		setClickCount(() => (clickCount === 3 ? 3 : clickCount + 1));
-		let finalTimestamp = (Date.now() / 1000) | 0;
-		setTimestamp(finalTimestamp);
-		setBlock({ ...block, timestamp: finalTimestamp });
+		if (timestampRef.current === 0) {
+			console.log('Tick');
+			timestampRef.current = (Date.now() / 1000) | 0;
+			setTimestamp(timestampRef.current);
+			setBlock({ ...block, timestamp: timestampRef.current });
+		}
 		let blockData =
 			blockNumber +
 			':' +
@@ -95,7 +100,7 @@ const Block = () => {
 			':' +
 			block.merkleRoot +
 			':' +
-			finalTimestamp +
+			timestampRef.current +
 			':' +
 			block.difficulty +
 			':' +
