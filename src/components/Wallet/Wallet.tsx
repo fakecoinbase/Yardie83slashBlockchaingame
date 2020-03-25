@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Heading, Divider } from "rendition";
+import { Heading } from "rendition";
 import { Button } from "@material-ui/core";
 import Title from "../util/Title/Title";
 import LabeledInput from "../util/LabeledInput/LabeledInput";

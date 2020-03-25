@@ -118,7 +118,7 @@ const Block = () => {
 	return (
 		<>
 			<Title subTitle='Block Header' />
-			<div style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+			<div style={{ paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px' }}>
 				<LabeledInput
 					label={'Block#'}
 					options={

@@ -39,11 +39,11 @@ const CheckHeader = ({ blockInfo }: Props) => {
 	useEffect(() => {
 		if (blockHashResult !== undefined) {
 			if (blockHashResult === blockInfo.blockHash) {
-				setResultText('Block Hash matches');
+				setResultText(blockHashResult);
 				setIsBlockHashValid(true);
 			}
 			if (blockHashResult !== blockInfo.blockHash) {
-				setResultText('Block Hash does not match');
+				setResultText(blockHashResult);
 				setIsBlockHashValid(false);
 			}
 		}
