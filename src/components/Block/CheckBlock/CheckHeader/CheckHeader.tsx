@@ -26,8 +26,6 @@ const CheckHeader = ({ blockInfo }: Props) => {
 			blockInfo.difficulty +
 			':' +
 			blockInfo.nonce;
-		console.log('CheckHeader');
-		console.log(blockData);
 		let hashResult = hash(blockData);
 		setBlockHashResult(hashResult);
 	};
