@@ -17,7 +17,7 @@ const ResetGameModal = () => {
   const generateNewAdminNode = () => {
     const info = generateNode();
     insertNodeMutation({
-      variables: { publicKey: info.publicKey, privateKey: info.privateKey, address: info.address }
+      variables: { publicKey: info.publicKey, privateKey: info.privateKey, admin: true, address: info.address }
     })
       .then(res => {
         return {

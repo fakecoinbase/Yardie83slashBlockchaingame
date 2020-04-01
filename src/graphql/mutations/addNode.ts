@@ -5,10 +5,12 @@ mutation insertNode(
   $publicKey: String, 
   $privateKey: String, 
   $address: String,
-  $balance: Int ) {
+  $balance: Int,
+  $admin: Boolean ) {
   insert_bloxx_node(objects: {
     publicKey: $publicKey, 
     privateKey: $privateKey,
+    admin: $admin,
     addresses: {data: {id: $address, balance: $balance  }}}) {
     affected_rows
     returning {

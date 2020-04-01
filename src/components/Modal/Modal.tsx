@@ -22,7 +22,7 @@ const Modal = (props: Props) => {
   useEffect(() => {
     const info = generateNode();
     insertNodeMutation({
-      variables: { publicKey: info.publicKey, privateKey: info.privateKey, address: info.address, balance: 0 }
+      variables: { publicKey: info.publicKey, privateKey: info.privateKey, admin: false, address: info.address, balance: 0 }
     })
       .then(res => {
         return {

@@ -1616,6 +1616,16 @@
             "defaultValue": null
           },
           {
+            "name": "admin",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "privateKey",
             "description": "",
             "type": {
@@ -2940,6 +2950,16 @@
             "defaultValue": null
           },
           {
+            "name": "admin",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "privateKey",
             "description": "",
             "type": {
@@ -2956,6 +2976,123 @@
               "kind": "INPUT_OBJECT",
               "name": "String_comparison_exp",
               "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "Boolean_comparison_exp",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_eq",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_gt",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_gte",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_in",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_is_null",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_lt",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_lte",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_neq",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_nin",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null
           }
@@ -3945,6 +4082,18 @@
                 "name": "bloxx_address_aggregate",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "admin",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7607,6 +7756,12 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "admin",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "privateKey",
             "description": "",
             "isDeprecated": false,
@@ -9391,6 +9546,16 @@
             "defaultValue": null
           },
           {
+            "name": "admin",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "privateKey",
             "description": "",
             "type": {
@@ -9661,6 +9826,12 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
+          {
+            "name": "admin",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "privateKey",
             "description": "",
@@ -10985,6 +11156,16 @@
         "description": "",
         "fields": null,
         "inputFields": [
+          {
+            "name": "admin",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "privateKey",
             "description": "",

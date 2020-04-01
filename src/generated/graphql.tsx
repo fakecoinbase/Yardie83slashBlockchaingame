@@ -830,6 +830,7 @@ export type Bloxx_Node = {
    __typename?: 'bloxx_node',
   addresses: Array<Bloxx_Address>,
   addresses_aggregate: Bloxx_Address_Aggregate,
+  admin?: Maybe<Scalars['Boolean']>,
   privateKey: Scalars['String'],
   publicKey: Scalars['String'],
 };
@@ -887,6 +888,7 @@ export type Bloxx_Node_Bool_Exp = {
   _not?: Maybe<Bloxx_Node_Bool_Exp>,
   _or?: Maybe<Array<Maybe<Bloxx_Node_Bool_Exp>>>,
   addresses?: Maybe<Bloxx_Address_Bool_Exp>,
+  admin?: Maybe<Boolean_Comparison_Exp>,
   privateKey?: Maybe<String_Comparison_Exp>,
   publicKey?: Maybe<String_Comparison_Exp>,
 };
@@ -899,6 +901,7 @@ export enum Bloxx_Node_Constraint {
 
 export type Bloxx_Node_Insert_Input = {
   addresses?: Maybe<Bloxx_Address_Arr_Rel_Insert_Input>,
+  admin?: Maybe<Scalars['Boolean']>,
   privateKey?: Maybe<Scalars['String']>,
   publicKey?: Maybe<Scalars['String']>,
 };
@@ -944,21 +947,25 @@ export type Bloxx_Node_On_Conflict = {
 
 export type Bloxx_Node_Order_By = {
   addresses_aggregate?: Maybe<Bloxx_Address_Aggregate_Order_By>,
+  admin?: Maybe<Order_By>,
   privateKey?: Maybe<Order_By>,
   publicKey?: Maybe<Order_By>,
 };
 
 export enum Bloxx_Node_Select_Column {
+  Admin = 'admin',
   PrivateKey = 'privateKey',
   PublicKey = 'publicKey'
 }
 
 export type Bloxx_Node_Set_Input = {
+  admin?: Maybe<Scalars['Boolean']>,
   privateKey?: Maybe<Scalars['String']>,
   publicKey?: Maybe<Scalars['String']>,
 };
 
 export enum Bloxx_Node_Update_Column {
+  Admin = 'admin',
   PrivateKey = 'privateKey',
   PublicKey = 'publicKey'
 }
@@ -1358,6 +1365,18 @@ export type Bloxx_UserPassword_Set_Input = {
 export enum Bloxx_UserPassword_Update_Column {
   Password = 'password'
 }
+
+export type Boolean_Comparison_Exp = {
+  _eq?: Maybe<Scalars['Boolean']>,
+  _gt?: Maybe<Scalars['Boolean']>,
+  _gte?: Maybe<Scalars['Boolean']>,
+  _in?: Maybe<Array<Scalars['Boolean']>>,
+  _is_null?: Maybe<Scalars['Boolean']>,
+  _lt?: Maybe<Scalars['Boolean']>,
+  _lte?: Maybe<Scalars['Boolean']>,
+  _neq?: Maybe<Scalars['Boolean']>,
+  _nin?: Maybe<Array<Scalars['Boolean']>>,
+};
 
 export type Int_Comparison_Exp = {
   _eq?: Maybe<Scalars['Int']>,
@@ -1965,7 +1984,8 @@ export type InsertNodeMutationVariables = {
   publicKey?: Maybe<Scalars['String']>,
   privateKey?: Maybe<Scalars['String']>,
   address?: Maybe<Scalars['String']>,
-  balance?: Maybe<Scalars['Int']>
+  balance?: Maybe<Scalars['Int']>,
+  admin?: Maybe<Scalars['Boolean']>
 };
 
 
@@ -2121,6 +2141,21 @@ export type AdminLoginQuery = (
   & { bloxx_adminPassword: Array<(
     { __typename?: 'bloxx_adminPassword' }
     & Pick<Bloxx_AdminPassword, 'password'>
+  )> }
+);
+
+export type AdminNodeQueryVariables = {};
+
+
+export type AdminNodeQuery = (
+  { __typename?: 'query_root' }
+  & { bloxx_node: Array<(
+    { __typename?: 'bloxx_node' }
+    & Pick<Bloxx_Node, 'privateKey' | 'publicKey'>
+    & { addresses: Array<(
+      { __typename?: 'bloxx_address' }
+      & Pick<Bloxx_Address, 'id' | 'balance'>
+    )> }
   )> }
 );
 
@@ -2334,8 +2369,8 @@ export type InsertBlockMutationHookResult = ReturnType<typeof useInsertBlockMuta
 export type InsertBlockMutationResult = ApolloReactCommon.MutationResult<InsertBlockMutation>;
 export type InsertBlockMutationOptions = ApolloReactCommon.BaseMutationOptions<InsertBlockMutation, InsertBlockMutationVariables>;
 export const InsertNodeDocument = gql`
-    mutation insertNode($publicKey: String, $privateKey: String, $address: String, $balance: Int) {
-  insert_bloxx_node(objects: {publicKey: $publicKey, privateKey: $privateKey, addresses: {data: {id: $address, balance: $balance}}}) {
+    mutation insertNode($publicKey: String, $privateKey: String, $address: String, $balance: Int, $admin: Boolean) {
+  insert_bloxx_node(objects: {publicKey: $publicKey, privateKey: $privateKey, admin: $admin, addresses: {data: {id: $address, balance: $balance}}}) {
     affected_rows
     returning {
       publicKey
@@ -2367,6 +2402,7 @@ export type InsertNodeMutationFn = ApolloReactCommon.MutationFunction<InsertNode
  *      privateKey: // value for 'privateKey'
  *      address: // value for 'address'
  *      balance: // value for 'balance'
+ *      admin: // value for 'admin'
  *   },
  * });
  */
@@ -2676,6 +2712,43 @@ export function useAdminLoginLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type AdminLoginQueryHookResult = ReturnType<typeof useAdminLoginQuery>;
 export type AdminLoginLazyQueryHookResult = ReturnType<typeof useAdminLoginLazyQuery>;
 export type AdminLoginQueryResult = ApolloReactCommon.QueryResult<AdminLoginQuery, AdminLoginQueryVariables>;
+export const AdminNodeDocument = gql`
+    query adminNode {
+  bloxx_node(where: {admin: {_eq: true}}) {
+    privateKey
+    publicKey
+    addresses {
+      id
+      balance
+    }
+  }
+}
+    `;
+
+/**
+ * __useAdminNodeQuery__
+ *
+ * To run a query within a React component, call `useAdminNodeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAdminNodeQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAdminNodeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAdminNodeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AdminNodeQuery, AdminNodeQueryVariables>) {
+        return ApolloReactHooks.useQuery<AdminNodeQuery, AdminNodeQueryVariables>(AdminNodeDocument, baseOptions);
+      }
+export function useAdminNodeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AdminNodeQuery, AdminNodeQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AdminNodeQuery, AdminNodeQueryVariables>(AdminNodeDocument, baseOptions);
+        }
+export type AdminNodeQueryHookResult = ReturnType<typeof useAdminNodeQuery>;
+export type AdminNodeLazyQueryHookResult = ReturnType<typeof useAdminNodeLazyQuery>;
+export type AdminNodeQueryResult = ApolloReactCommon.QueryResult<AdminNodeQuery, AdminNodeQueryVariables>;
 export const BlockDocument = gql`
     query block($blockHash: String) {
   bloxx_block(where: {blockHash: {_eq: $blockHash}}) {

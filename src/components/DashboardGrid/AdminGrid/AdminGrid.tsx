@@ -8,7 +8,7 @@ import { GridCard } from '../DashboardGridStyles';
 import { Blockchain, CheckBlock } from '../..';
 import { breakpoints, cols } from '../gridLayout';
 import useAdminInfo from '../../../customHooks/useAdminInfo';
-import { useInsertNodeMutation } from '../../../generated/graphql';
+import { useInsertNodeMutation, useAdminNodeLazyQuery } from '../../../generated/graphql';
 import generateNode from '../../../services/nodeGen';
 import LoadingIndicator from '../../util/LoadingIndicator/LoadingIndicator';
 import SetUserPasswordModal from '../../TopNavbar/AdminControls/SetUserPasswordModal';
@@ -22,32 +22,51 @@ const AdminGrid = (props: any) => {
 	const [showUserPasswordModal] = useSetUserPasswordModal();
 	const [adminInfo, setAdminInfo] = useAdminInfo();
 
-	const [insertNodeMutation, { loading }] = useInsertNodeMutation();
+	const [adminNodeLazyQuery, { data: adminNodeQueryData, loading: loadingAdminNodeQuery }] = useAdminNodeLazyQuery();
+	const [insertNodeMutation, { loading: loadingInsertNode }] = useInsertNodeMutation();
+
+	useEffect(() => {
+		adminNodeLazyQuery();
+	}, [adminNodeLazyQuery]);
 
 	/**
-	 * Creates the admin node and adds it to the database
+	 * If there is no admin node in the database this 
+	 * creates the admin node and adds it to the database
+	 * otherwise sets the existing admin node from the DB. 
 	 */
 	useEffect(() => {
-		if (adminInfo === undefined || adminInfo === null) {
-			const info = generateNode();
-			insertNodeMutation({
-				variables: { publicKey: info.publicKey, privateKey: info.privateKey, address: info.address },
-			})
-				.then(res => {
-					return {
-						privateKey: res!.data!.insert_bloxx_node!.returning[0].privateKey,
-						publicKey: res!.data!.insert_bloxx_node!.returning[0].publicKey,
-						address: {
-							id: res!.data!.insert_bloxx_node!.returning[0].addresses[0].id,
-							amount: res!.data!.insert_bloxx_node!.returning[0].addresses[0].balance,
-						},
-					};
+		if (adminNodeQueryData !== undefined) {
+			if (adminNodeQueryData!.bloxx_node.length !== 0) {
+				const existingAdminNode = {
+					privateKey: adminNodeQueryData.bloxx_node[0].privateKey,
+					publicKey: adminNodeQueryData.bloxx_node[0].publicKey,
+					address: {
+						id: adminNodeQueryData.bloxx_node[0].addresses[0].id,
+						amount: adminNodeQueryData.bloxx_node[0].addresses[0].balance,
+					},
+				};
+				setAdminInfo(existingAdminNode);
+			} else {
+				const info = generateNode();
+				insertNodeMutation({
+					variables: { publicKey: info.publicKey, privateKey: info.privateKey, admin: true, address: info.address },
 				})
-				.then(res => {
-					setAdminInfo(res);
-				});
+					.then(res => {
+						return {
+							privateKey: res!.data!.insert_bloxx_node!.returning[0].privateKey,
+							publicKey: res!.data!.insert_bloxx_node!.returning[0].publicKey,
+							address: {
+								id: res!.data!.insert_bloxx_node!.returning[0].addresses[0].id,
+								amount: res!.data!.insert_bloxx_node!.returning[0].addresses[0].balance,
+							},
+						};
+					})
+					.then(res => {
+						setAdminInfo(res);
+					});
+			}
 		}
-	}, []);
+	}, [adminNodeQueryData]);
 
 	return showAdminModal ? (
 		<TransferCoinModal adminInfo={adminInfo} />
@@ -65,7 +84,7 @@ const AdminGrid = (props: any) => {
 			margin={[10, 15]}
 			rowHeight={125}
 			autoSize={true}>
-			<GridCard key='blockchain'>{loading ? <LoadingIndicator /> : <Blockchain admin />}</GridCard>
+			<GridCard key='blockchain'>{loadingInsertNode ? <LoadingIndicator /> : <Blockchain admin />}</GridCard>
 			<GridCard key='block'>
 				<CheckBlock admin />
 			</GridCard>
