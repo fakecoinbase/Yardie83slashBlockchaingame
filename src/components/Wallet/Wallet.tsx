@@ -114,7 +114,7 @@ const Wallet = () => {
 					Broadcast
 				</Button>
 				<div style={{ paddingTop: '20px', float:'right' }}>
-					<Button onClick={clear} variant='contained' color='primary' size='small' style={{ width: '30%' }}>
+					<Button onClick={clear} variant='contained' color='default' size='small' style={{ width: '30%' }}>
 						Clear
 					</Button>
 				</div>
