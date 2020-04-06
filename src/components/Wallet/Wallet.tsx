@@ -62,6 +62,10 @@ const Wallet = () => {
 		});
 	};
 
+	const clear = () => {
+		setFields({ to: '', amount: '', signature: '', txHash: '' })
+	}
+
 	//TODO Improve validation to check for right input format.
 	// If any of the returned values is true, then we can not broadcast
 	const validate = (to: string, amount: number, signature: string, txHash: string) => {
@@ -83,22 +87,22 @@ const Wallet = () => {
 				<Heading.h6 style={{ fontFamily: 'Source Sans Pro', color: '#4D4F5C', paddingTop: '5px' }}>
 					Send Coins:
 				</Heading.h6>
-				<LabeledInput placeholder={'To Address'} onChange={e => onChange('to', e.target.value)} />
-				<LabeledInput placeholder={'Amount'} onChange={e => onChange('amount', e.target.value)} />
+				<LabeledInput placeholder={'To Address'} onChange={e => onChange('to', e.target.value)} value={fields.to} />
+				<LabeledInput placeholder={'Amount'} onChange={e => onChange('amount', e.target.value)} value={fields.amount}/>
 				<div style={{ paddingBottom: '20px' }}>
 					<Button onClick={copyToSign} variant='contained' color='primary' size='small' style={{ width: '100%' }}>
 						Copy to Sign
 					</Button>
 				</div>
 				<div style={{ clear: 'both', height: '10px' }} />
-				<LabeledInput placeholder={'Signature'} onChange={e => onChange('signature', e.target.value)} />
+				<LabeledInput placeholder={'Signature'} onChange={e => onChange('signature', e.target.value)} value={fields.signature} />
 				<div style={{ paddingBottom: '20px' }}>
 					<Button onClick={copyToHasher} variant='contained' color='primary' size='small' style={{ width: '100%' }}>
 						Copy to Hasher
 					</Button>
 				</div>
 				<div style={{ clear: 'both', height: '10px' }} />
-				<LabeledInput placeholder={'Transaction Hash'} onChange={e => onChange('txHash', e.target.value)} />
+				<LabeledInput placeholder={'Transaction Hash'} onChange={e => onChange('txHash', e.target.value)} value={fields.txHash} />
 
 				<Button
 					onClick={onBroadcast}
@@ -109,6 +113,11 @@ const Wallet = () => {
 					style={{ width: '100%' }}>
 					Broadcast
 				</Button>
+				<div style={{ paddingTop: '20px', float:'right' }}>
+					<Button onClick={clear} variant='contained' color='primary' size='small' style={{ width: '30%' }}>
+						Clear
+					</Button>
+				</div>
 			</div>
 		</>
 	);
