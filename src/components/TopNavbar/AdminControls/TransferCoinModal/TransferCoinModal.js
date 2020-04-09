@@ -11,12 +11,11 @@ import {
   useInsertBlockMutation,
   Bloxx_Address_Constraint,
   Bloxx_Address_Update_Column,
-  useBlockHashByBlocknumberLazyQuery,
+  // useBlockHashByBlocknumberLazyQuery,
   Bloxx_Transaction_Constraint,
   Bloxx_Transaction_Update_Column,
 } from "../../../../generated/graphql";
 import LoadingIndicator from "../../../util/LoadingIndicator/LoadingIndicator";
-
 
 const TransferCoinModal = ({ adminInfo }) => {
   const [, setShowAdminModal] = useAdminModal();
@@ -26,11 +25,12 @@ const TransferCoinModal = ({ adminInfo }) => {
   const [amountToSend, setAmountToSend] = useState(0);
   const [insertAdminTransactionsMutation, { loading: insertAdminTransactionMutationLoading }] = useInsertAdminTransactionsMutation();
   const [insertBlock, { loading: insertBlockLoading }] = useInsertBlockMutation();
-  const [blockHashbyBlockNumberQuery, { data: blockHashQueryData }] = useBlockHashByBlocknumberLazyQuery({ fetchPolicy: "network-only" });
 
-  useEffect(() => {
-    blockHashbyBlockNumberQuery({ variables: 0 });
-  }, []);
+  // const [blockHashbyBlockNumberQuery, { data: blockHashQueryData }] = useBlockHashByBlocknumberLazyQuery({ fetchPolicy: "network-only" });
+
+  // useEffect(() => {
+  //   blockHashbyBlockNumberQuery({ variables: 0 });
+  // }, []);
 
   useEffect(() => {
     if (newNodeSubscriptionData) {
@@ -66,11 +66,13 @@ const TransferCoinModal = ({ adminInfo }) => {
 
   /**
    * Transfers the intials coins from the admin node to each of the selected user nodes.
+   * This will also create or if already exists update a Genesis block. 
    */
   const transferCoins = () => {
-    blockHashbyBlockNumberQuery({ variables: 0 });
+    // blockHashbyBlockNumberQuery({ variables: 0 });
     if (selectedNodes.length > 0) {
       const transactions = [];
+
       selectedNodes.forEach(selectedNode => {
         const signature = sign(
           adminInfo.address.id.concat(":".concat(selectedNode.address.concat(":".concat(amountToSend.toString())))),
@@ -98,6 +100,7 @@ const TransferCoinModal = ({ adminInfo }) => {
           }
         });
       });
+
       /**
        * 1. Inserts all the coin transfer transactions to the users into the database
        * 2. Prepares a new Genesis Block; adds all the transactions from step 1. into the gensis block information
@@ -120,34 +123,60 @@ const TransferCoinModal = ({ adminInfo }) => {
            *
            */
           .then(res => {
+            /**
+             * Recursive function to calculate the new Merkel root
+             */
+            let txHashes = res.data.insert_bloxx_transaction.returning.map(tx => tx.txHash);
+            const merkler = (txHashes) => {
+              if (txHashes.length === 1) return hash(txHashes[0]);
+              let temp = [];
+              while (txHashes.length !== 0) {
+                if (txHashes.length > 1) {
+                  const first = txHashes.pop();
+                  const second = txHashes.pop();
+                  temp.push(hash(first + second));
+                }
+                if (txHashes.length === 1) temp.push(hash(txHashes.pop()))
+              }
+              return merkler(temp);
+            }
+            const merkel = merkler(txHashes);
+
+
+            /**
+             * Create the Genesis block data
+             */
             const blockData = {
               blockNumber: 0,
               previousBlockHash: null,
               blockStatus: "confirmed",
-              merkleRoot: '',
+              merkleRoot: merkel,
               timestamp: ((Date.now() / 1000) | 0).toString(),
               difficulty: 1,
               nonce: 0
             };
 
+            /**
+             * Calculate the nonce
+             */
             const nonce = calculateNonce(blockData);
 
-            const blockHash =
-              (blockHashQueryData.bloxx_block.length !== 0 && blockHashQueryData.bloxx_block[0] !== undefined)
-                ? blockHashQueryData.bloxx_block[0].blockHash
-                : hash(
-                  blockData.blockNumber +
-                  ":" +
-                  blockData.previousBlockHash +
-                  ":" +
-                  blockData.merkleRoot +
-                  ":" +
-                  blockData.timestamp +
-                  ":" +
-                  blockData.difficulty +
-                  ":" +
-                  nonce);
+            const blockHash = hash(
+              blockData.blockNumber +
+              ":" +
+              blockData.previousBlockHash +
+              ":" +
+              blockData.merkleRoot +
+              ":" +
+              blockData.timestamp +
+              ":" +
+              blockData.difficulty +
+              ":" +
+              nonce);
 
+              /**
+               * Prepare the transactions for an update of their parent block hash; This confirms them
+               */
             const block_transactions = []
             res.data.insert_bloxx_transaction.returning.forEach(tx => block_transactions.push({
               transaction: {
@@ -168,7 +197,8 @@ const TransferCoinModal = ({ adminInfo }) => {
             }))
 
             /**
-             * Step 3.
+             * Step 3. Insert/update the Genesis block
+             * and the associated transactions
              */
             insertBlock({
               variables: {
@@ -187,7 +217,7 @@ const TransferCoinModal = ({ adminInfo }) => {
           .catch(error => {
             console.log(error);
           });
-      } catch (error) { }
+      } catch (error) { console.log(error) }
     }
   };
 
