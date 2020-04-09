@@ -1,7 +1,6 @@
 import hash from "./hasherService";
 
 const merklService = (i1, i2, i3, i4) => {
-  let result;
 
   if (i1 != null && i2 != null && i3 != null && i4 != null) {
     let first = hash(i1 + i2);
