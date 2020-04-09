@@ -22,7 +22,7 @@ const AdminGrid = (props: any) => {
 	const [showUserPasswordModal] = useSetUserPasswordModal();
 	const [adminInfo, setAdminInfo] = useAdminInfo();
 
-	const [adminNodeLazyQuery, { data: adminNodeQueryData, loading: loadingAdminNodeQuery }] = useAdminNodeLazyQuery();
+	const [adminNodeLazyQuery, { data: adminNodeQueryData }] = useAdminNodeLazyQuery();
 	const [insertNodeMutation, { loading: loadingInsertNode }] = useInsertNodeMutation();
 
 	useEffect(() => {
@@ -48,6 +48,7 @@ const AdminGrid = (props: any) => {
 				setAdminInfo(existingAdminNode);
 			} else {
 				const info = generateNode();
+				info.address = "0";
 				insertNodeMutation({
 					variables: { publicKey: info.publicKey, privateKey: info.privateKey, admin: true, address: info.address },
 				})
