@@ -21,9 +21,9 @@ const CheckHeader = ({ blockInfo }: Props) => {
 			':' +
 			blockInfo.merklRoot +
 			':' +
-			blockInfo.timestamp! +
-			':' +
 			blockInfo.difficulty +
+			':' +
+			blockInfo.timestamp! +
 			':' +
 			blockInfo.nonce;
 		let hashResult = hash(blockData);
