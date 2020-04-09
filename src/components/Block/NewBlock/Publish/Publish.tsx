@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {} from "./PublishStyles.js";
 import { Button } from "@material-ui/core";
-import Title from "../../util/Title/Title";
-import useBlock, { BlockType } from "../../../customHooks/useBlock";
-import { useInsertBlockMutation } from "../../../generated/graphql";
-import useTimer from "../../../customHooks/useTimer";
+import Title from "../../../util/Title/Title";
+import useBlock, { BlockType } from "../../../../customHooks/useBlock/useBlock";
+import { useInsertBlockMutation } from "../../../../generated/graphql";
+import useTimer from "../../../../customHooks/useTimer/useTimer";
 import { Alert, Box } from "rendition";
 
 const Publish = () => {
