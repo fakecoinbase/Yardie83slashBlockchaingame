@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Provider, Box, Table, Flex, Txt, Input } from "rendition";
+import { Container, Modal, Provider, Box, Table, Flex, Txt, Input } from "rendition";
 import { Button } from "@material-ui/core";
 import useAdminModal from "../../../../customHooks/useAdminModal/useAdminModal";
 import { sign } from "../../../../services/signatureService";
@@ -25,6 +25,7 @@ const TransferCoinModal = ({ adminInfo }) => {
   const [amountToSend, setAmountToSend] = useState(0);
   const [insertAdminTransactionsMutation, { loading: insertAdminTransactionMutationLoading }] = useInsertAdminTransactionsMutation();
   const [insertBlock, { loading: insertBlockLoading }] = useInsertBlockMutation();
+  const [isSendCoinsButtonDisabled, setIsSendCoinsButtonDisabled] = useState(false);
 
   // const [blockHashbyBlockNumberQuery, { data: blockHashQueryData }] = useBlockHashByBlocknumberLazyQuery({ fetchPolicy: "network-only" });
 
@@ -46,6 +47,9 @@ const TransferCoinModal = ({ adminInfo }) => {
             balance: node.addresses[0].balance,
             nodePublicKey: node.addresses[0].nodePublicKey
           });
+        }
+        if (node.addresses[0].balance > 0) {
+          setIsSendCoinsButtonDisabled(true);
         }
       });
       setNodes(_nodes);
@@ -174,9 +178,9 @@ const TransferCoinModal = ({ adminInfo }) => {
               ":" +
               nonce);
 
-              /**
-               * Prepare the transactions for an update of their parent block hash; This confirms them
-               */
+            /**
+             * Prepare the transactions for an update of their parent block hash; This confirms them
+             */
             const block_transactions = []
             res.data.insert_bloxx_transaction.returning.forEach(tx => block_transactions.push({
               transaction: {
@@ -254,6 +258,7 @@ const TransferCoinModal = ({ adminInfo }) => {
                     variant="contained"
                     color="primary"
                     size="small"
+                    disabled={isSendCoinsButtonDisabled}
                     onClick={transferCoins}
                     style={{ marginRight: "10px" }}
                   >
@@ -261,6 +266,10 @@ const TransferCoinModal = ({ adminInfo }) => {
                   </Button>
                 </Box>
               </Flex>
+              {isSendCoinsButtonDisabled &&
+                <Container m={3}>
+                  <Txt color={'red'}>Coins have already been transferred for this game session. Reset the game to send coins again.</Txt>
+                </Container>}
               {(insertBlockLoading || insertAdminTransactionMutationLoading) ?
                 <LoadingIndicator />
                 :
