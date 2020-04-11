@@ -3,10 +3,10 @@ import { useOnBlockAddedSubscription } from '../../../../generated/graphql';
 import { Button } from '@material-ui/core';
 import Title from '../../../util/Title/Title';
 import LabeledInput from '../../../util/LabeledInput/LabeledInput';
-import useDataToHash from '../../../../customHooks/useDataToHash/useDataToHash';
+import useDataToHash from '../../../../customHooks/useDataToHash';
 import miningService from '../../../../services/miningService';
-import useTimer from '../../../../customHooks/useTimer/useTimer';
-import useBlock, { BlockType } from '../../../../customHooks/useBlock/useBlock';
+import useTimer from '../../../../customHooks/useTimer';
+import useBlock, { BlockType } from '../../../../customHooks/useBlock';
 
 const Header = () => {
 	const [block, setBlock]: [BlockType, React.Dispatch<React.SetStateAction<BlockType | undefined>>] = useBlock();
@@ -32,7 +32,7 @@ const Header = () => {
 				blockHash: block.blockHash!,
 			}));
 			setPreviousBlockHashOptions(prevBlockOptions);
-			setBlock({ ...block, merkleRoot: '-', difficulty: 1 });
+			setBlock({ ...block});
 		}
 	}, [data]);
 

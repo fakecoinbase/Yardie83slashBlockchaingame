@@ -20,7 +20,7 @@ const Wallet = () => {
 	useEffect(() => {
 		let currentUser = undefined;
 		if (data) {
-			currentUser = data!.bloxx_address.find(address => address.id === userInfo.address.id);
+			currentUser = data!.bloxx_address.find((address) => address.id === userInfo.address.id);
 		}
 		if (currentUser) {
 			const amount = currentUser!.balance!;
@@ -57,14 +57,16 @@ const Wallet = () => {
 				signature: fields.signature,
 				txHash: fields.txHash,
 			},
-		}).catch(error => {
-			console.log(error);
-		});
+		})
+			.then(clear)
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	const clear = () => {
-		setFields({ to: '', amount: '', signature: '', txHash: '' })
-	}
+		setFields({ to: '', amount: '', signature: '', txHash: '' });
+	};
 
 	//TODO Improve validation to check for right input format.
 	// If any of the returned values is true, then we can not broadcast
@@ -87,22 +89,34 @@ const Wallet = () => {
 				<Heading.h6 style={{ fontFamily: 'Source Sans Pro', color: '#4D4F5C', paddingTop: '5px' }}>
 					Send Coins:
 				</Heading.h6>
-				<LabeledInput placeholder={'To Address'} onChange={e => onChange('to', e.target.value)} value={fields.to} />
-				<LabeledInput placeholder={'Amount'} onChange={e => onChange('amount', e.target.value)} value={fields.amount}/>
+				<LabeledInput placeholder={'To Address'} onChange={(e) => onChange('to', e.target.value)} value={fields.to} />
+				<LabeledInput
+					placeholder={'Amount'}
+					onChange={(e) => onChange('amount', e.target.value)}
+					value={fields.amount}
+				/>
 				<div style={{ paddingBottom: '20px' }}>
 					<Button onClick={copyToSign} variant='contained' color='primary' size='small' style={{ width: '100%' }}>
 						Copy to Sign
 					</Button>
 				</div>
 				<div style={{ clear: 'both', height: '10px' }} />
-				<LabeledInput placeholder={'Signature'} onChange={e => onChange('signature', e.target.value)} value={fields.signature} />
+				<LabeledInput
+					placeholder={'Signature'}
+					onChange={(e) => onChange('signature', e.target.value)}
+					value={fields.signature}
+				/>
 				<div style={{ paddingBottom: '20px' }}>
 					<Button onClick={copyToHasher} variant='contained' color='primary' size='small' style={{ width: '100%' }}>
 						Copy to Hasher
 					</Button>
 				</div>
 				<div style={{ clear: 'both', height: '10px' }} />
-				<LabeledInput placeholder={'Transaction Hash'} onChange={e => onChange('txHash', e.target.value)} value={fields.txHash} />
+				<LabeledInput
+					placeholder={'Transaction Hash'}
+					onChange={(e) => onChange('txHash', e.target.value)}
+					value={fields.txHash}
+				/>
 
 				<Button
 					onClick={onBroadcast}
@@ -113,7 +127,7 @@ const Wallet = () => {
 					style={{ width: '100%' }}>
 					Broadcast
 				</Button>
-				<div style={{ paddingTop: '20px', float:'right' }}>
+				<div style={{ paddingTop: '20px', float: 'right' }}>
 					<Button onClick={clear} variant='contained' color='default' size='small' style={{ width: '30%' }}>
 						Clear
 					</Button>

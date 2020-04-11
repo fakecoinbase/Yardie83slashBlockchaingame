@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import OpenWithIcon from '@material-ui/icons/OpenWith';
 import Title from "../util/Title/Title";
 import useMempoolModal from '../../customHooks/useMempoolModal'
-import useSelectedTransactions from "../../customHooks/useSelectedTransactions/useSelectedlTransactions";
+import useSelectedTransactions from "../../customHooks/useSelectedTransactions";
 import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
 import useDataToCheck from "../../customHooks/useDataToCheck";
 
@@ -22,15 +22,17 @@ const Mempool = () => {
     if (data !== undefined) {
       // Add the pubKey key/value to the transactions in the mempool
       data.bloxx_transaction.forEach(transaction => {
-        transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
-        transaction.dataToCheck = {
-          signedData: (transaction.inputAddress.concat(":".concat(transaction.outputAddress.concat(":".concat(transaction.value))))),
-          pubKey: transaction.pubKey,
-          signature: transaction.signature
+        if (transaction.signature !== "coinbase") {
+          transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
+          transaction.dataToCheck = {
+            signedData: (transaction.inputAddress.concat(":".concat(transaction.outputAddress.concat(":".concat(transaction.value))))),
+            pubKey: transaction.pubKey,
+            signature: transaction.signature
+          }
         }
       });
       // Filter out transactions that have been definitely assigned to a confirmed block
-      const unconfirmedTransactions = data.bloxx_transaction.filter(transaction => transaction.blockHash === null);
+      const unconfirmedTransactions = data.bloxx_transaction.filter(transaction => transaction.blockHash === null && transaction.signature !== "coinbase");
       // Show the remaining transactions
       setDataToShow(unconfirmedTransactions.reverse());
     }

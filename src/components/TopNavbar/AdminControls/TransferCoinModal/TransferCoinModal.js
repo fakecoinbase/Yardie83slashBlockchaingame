@@ -15,7 +15,7 @@ import {
   Bloxx_Transaction_Constraint,
   Bloxx_Transaction_Update_Column,
 } from "../../../../generated/graphql";
-import LoadingIndicator from "../../../util/LoadingIndicator/LoadingIndicator";
+import LoadingIndicator from "../../../util/LoadingIndicator";
 
 const TransferCoinModal = ({ adminInfo }) => {
   const [, setShowAdminModal] = useAdminModal();

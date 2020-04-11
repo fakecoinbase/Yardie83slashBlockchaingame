@@ -980,7 +980,7 @@ export type Bloxx_Transaction = {
   block_transactions_aggregate: Bloxx_Block_Transaction_Aggregate,
   inputAddress?: Maybe<Scalars['String']>,
   outputAddress: Scalars['String'],
-  signature: Scalars['String'],
+  signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
   txHash: Scalars['String'],
   value: Scalars['Int'],
@@ -2196,6 +2196,19 @@ export type BlockHashByBlocknumberQuery = (
   )> }
 );
 
+export type CoinbaseTransactionQueryVariables = {
+  outputAddress?: Maybe<Scalars['String']>
+};
+
+
+export type CoinbaseTransactionQuery = (
+  { __typename?: 'query_root' }
+  & { bloxx_transaction: Array<(
+    { __typename?: 'bloxx_transaction' }
+    & Pick<Bloxx_Transaction, 'txHash'>
+  )> }
+);
+
 export type UserLoginQueryVariables = {
   password?: Maybe<Scalars['String']>
 };
@@ -2834,6 +2847,39 @@ export function useBlockHashByBlocknumberLazyQuery(baseOptions?: ApolloReactHook
 export type BlockHashByBlocknumberQueryHookResult = ReturnType<typeof useBlockHashByBlocknumberQuery>;
 export type BlockHashByBlocknumberLazyQueryHookResult = ReturnType<typeof useBlockHashByBlocknumberLazyQuery>;
 export type BlockHashByBlocknumberQueryResult = ApolloReactCommon.QueryResult<BlockHashByBlocknumberQuery, BlockHashByBlocknumberQueryVariables>;
+export const CoinbaseTransactionDocument = gql`
+    query coinbaseTransaction($outputAddress: String) {
+  bloxx_transaction(where: {inputAddress: {_is_null: true}, outputAddress: {_eq: $outputAddress}, blockHash: {_is_null: true}, block: {}}) {
+    txHash
+  }
+}
+    `;
+
+/**
+ * __useCoinbaseTransactionQuery__
+ *
+ * To run a query within a React component, call `useCoinbaseTransactionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCoinbaseTransactionQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCoinbaseTransactionQuery({
+ *   variables: {
+ *      outputAddress: // value for 'outputAddress'
+ *   },
+ * });
+ */
+export function useCoinbaseTransactionQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<CoinbaseTransactionQuery, CoinbaseTransactionQueryVariables>) {
+        return ApolloReactHooks.useQuery<CoinbaseTransactionQuery, CoinbaseTransactionQueryVariables>(CoinbaseTransactionDocument, baseOptions);
+      }
+export function useCoinbaseTransactionLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<CoinbaseTransactionQuery, CoinbaseTransactionQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<CoinbaseTransactionQuery, CoinbaseTransactionQueryVariables>(CoinbaseTransactionDocument, baseOptions);
+        }
+export type CoinbaseTransactionQueryHookResult = ReturnType<typeof useCoinbaseTransactionQuery>;
+export type CoinbaseTransactionLazyQueryHookResult = ReturnType<typeof useCoinbaseTransactionLazyQuery>;
+export type CoinbaseTransactionQueryResult = ApolloReactCommon.QueryResult<CoinbaseTransactionQuery, CoinbaseTransactionQueryVariables>;
 export const UserLoginDocument = gql`
     query userLogin($password: String) {
   bloxx_userPassword(where: {password: {_eq: $password}}) {

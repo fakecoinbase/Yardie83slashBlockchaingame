@@ -55,9 +55,13 @@ const CheckBlock = ({ admin }: any) => {
 	const dataToCheck = (block_transactions: any[]): any[] => {
 		if (block_transactions !== undefined) {
 			let transactions: Transaction[] = [];
-			block_transactions.forEach(entry => {
+			block_transactions.forEach((entry) => {
 				let transaction: Transaction = entry.transaction;
-				transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
+				if (transaction.inputAddress === null) {
+					transaction.inputAddress = 'null';
+				}
+				transaction.pubKey =
+					transaction.addressByInputaddress === null ? '' : transaction.addressByInputaddress.nodePublicKey;
 				transaction.dataToCheck = {
 					signedData: transaction.inputAddress.concat(
 						':'.concat(transaction.outputAddress.concat(':'.concat(transaction.value.toString())))
@@ -107,7 +111,7 @@ const CheckBlock = ({ admin }: any) => {
 						{
 							field: 'dataToCheck',
 							label: 'Check',
-							render: value => {
+							render: (value) => {
 								return <FaRegCopy onClick={() => setDataToCheck(value)} style={{ cursor: 'pointer' }} />;
 							},
 						},

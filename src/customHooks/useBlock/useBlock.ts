@@ -23,16 +23,32 @@ const useBlock = createStore<(BlockType | React.Dispatch<React.SetStateAction<Bl
 		blockNumber: undefined,
 		blockStatus: "",
 		timestamp: Date.now(),
-		difficulty: undefined,
-		merkleRoot: "",
+		difficulty: 1,
+		merkleRoot: "-",
 		nonce: 0,
 		previousBlockHash: "",
 		txHash: "",
 		block_transactions: { data: [] }
 	})
+
+	const resetBlock = () => {
+		setBlock({
+			blockHash: "",
+			blockNumber: undefined,
+			blockStatus: "",
+			timestamp: Date.now(),
+			difficulty: 1,
+			merkleRoot: "-",
+			nonce: 0,
+			previousBlockHash: "",
+			txHash: "",
+			block_transactions: { data: [] }
+		})
+	}
 	return [
 		block,
-		setBlock
+		setBlock,
+		resetBlock
 	];
 });
 
