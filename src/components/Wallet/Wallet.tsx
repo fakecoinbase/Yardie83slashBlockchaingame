@@ -60,7 +60,7 @@ const Wallet = () => {
 		})
 			.then(clear)
 			.catch((error) => {
-				console.log(error);
+				console.debug(error);
 			});
 	};
 

@@ -216,12 +216,12 @@ const TransferCoinModal = ({ adminInfo }) => {
                 previousBlockHash: blockData.previousBlockHash,
                 block_transactions: { data: block_transactions }
               }
-            }).catch(error => console.log(error));
+            }).catch(error => console.debug(error));
           })
           .catch(error => {
-            console.log(error);
+            console.debug(error);
           });
-      } catch (error) { console.log(error) }
+      } catch (error) { console.debug(error) }
     }
   };
 

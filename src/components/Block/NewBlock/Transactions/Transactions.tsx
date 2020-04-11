@@ -40,14 +40,12 @@ const Transactions = () => {
 	 */
 	useEffect(() => {
 		if (data !== undefined && adminNodeData !== undefined) {
-			console.log(data.bloxx_transaction);
 			const existingCoinbaseTransaction = data.bloxx_transaction.filter(
 				(transaction) =>
 					transaction.inputAddress === adminNodeData.bloxx_node[0].addresses[0].id &&
 					transaction.outputAddress === userInfo.address.id &&
 					transaction.blockHash === null
 			);
-			console.log(existingCoinbaseTransaction);
 			if (existingCoinbaseTransaction.length === 0) {
 				const txHash = hash(
 					userInfo.address.id.concat(':'.concat('20'.concat(':'.concat(((Date.now() / 1000) | 0).toString()))))

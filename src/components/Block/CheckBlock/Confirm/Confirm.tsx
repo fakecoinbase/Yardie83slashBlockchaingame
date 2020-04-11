@@ -45,7 +45,6 @@ const Confirm = ({ blockToConfirm }: Props) => {
 								txHash: block_transaction.transaction.txHash,
 							},
 						}).then((res) => {
-							console.log(res.data!.update_bloxx_transaction);
 							updateAddressValues({
 								variables: {
 									inAddress: res.data!.update_bloxx_transaction!.returning[0].inputAddress,
@@ -53,7 +52,7 @@ const Confirm = ({ blockToConfirm }: Props) => {
 									amountAdd: res.data!.update_bloxx_transaction!.returning[0].value,
 									amountSub: res.data!.update_bloxx_transaction!.returning[0].value * -1,
 								},
-							}).then((res) => console.log(res));
+							})
 						});
 					});
 					/**
