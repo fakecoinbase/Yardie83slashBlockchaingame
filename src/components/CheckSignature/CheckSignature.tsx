@@ -55,7 +55,7 @@ const CheckSignature = () => {
 	useEffect(() => {
 		if (dataToCheck !== undefined) {
 			if (dataToCheck.signature === 'coinbase') {
-				setCheckParams({ p1: 'Coinbase Transactions', p2: 'No PubKey', p3: 'No Signature' });
+				setCheckParams({ p1: 'Coinbase Transaction', p2: 'No PubKey', p3: 'No Signature' });
 			} else {
 				setCheckParams({ p1: dataToCheck.signedData, p2: dataToCheck.pubKey, p3: dataToCheck.signature });
 			}
