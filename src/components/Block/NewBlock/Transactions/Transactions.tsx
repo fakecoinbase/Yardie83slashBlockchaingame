@@ -8,6 +8,7 @@ import {
 	useInsertTransactionMutation,
 	useOnNewTransactionAddedSubscription,
 	useAdminNodeQuery,
+	useOnNewNodeAddedSubscription,
 } from '../../../../generated/graphql';
 
 type Transaction = {
@@ -25,22 +26,22 @@ const Transactions = () => {
 		(transactions: any) => void
 	] = useSelectedTransactions();
 	const [userInfo]: [UserType] = useUserInfo();
-	const { data, loading } = useOnNewTransactionAddedSubscription();
+	const { data: onNewTransactionAddedData, loading } = useOnNewTransactionAddedSubscription();
 	const [insertTransactionMutation] = useInsertTransactionMutation();
 	const [transactionsToShow, setTransactionsToShow] = useState<
 		{
 			txHash: string;
 		}[]
 	>([]);
-
+	const { data: newNodeSubscriptionData } = useOnNewNodeAddedSubscription();
 	const { data: adminNodeData, loading: loadingAdminNode } = useAdminNodeQuery();
 
 	/**
 	 * We create a coinbase transaction when the component is first loaded and add it to the selectedTransactions Array
 	 */
 	useEffect(() => {
-		if (data !== undefined && adminNodeData !== undefined) {
-			const existingCoinbaseTransaction = data.bloxx_transaction.filter(
+		if (onNewTransactionAddedData !== undefined && adminNodeData !== undefined) {
+			const existingCoinbaseTransaction = onNewTransactionAddedData.bloxx_transaction.filter(
 				(transaction) =>
 					transaction.inputAddress === adminNodeData.bloxx_node[0].addresses[0].id &&
 					transaction.outputAddress === userInfo.address.id &&
@@ -75,7 +76,7 @@ const Transactions = () => {
 				}
 			}
 		}
-	}, [data, adminNodeData]);
+	}, [onNewTransactionAddedData, adminNodeData, loadingAdminNode, newNodeSubscriptionData]);
 
 	/**
 	 * The block list of selected transaction is updated
