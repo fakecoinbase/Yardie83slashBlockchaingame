@@ -72,7 +72,7 @@ const Header = () => {
 	//TODO validate user data
 	const onCopyToHasher = () => {
 		setIsTimerActive(false);
-		setClickCount(() => (clickCount === 3 ? 3 : clickCount + 1));
+		setClickCount((clickCount === 3 ? 3 : clickCount + 1));
 		if (timestampRef.current === 0) {
 			timestampRef.current = (Date.now() / 1000) | 0;
 			setTimestamp(timestampRef.current);
