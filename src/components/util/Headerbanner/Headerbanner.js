@@ -7,7 +7,7 @@ const Headerbanner = (props) => {
 
 	return (
 		<Wrapper>
-			<Heading.h6 style={{fontFamily: 'Source Sans Pro', color:"#5e5e5e"}}>{props.children}</Heading.h6>
+			<Heading.h6 style={{ fontFamily: 'Source Sans Pro' }}>{props.children}</Heading.h6>
 		</Wrapper>
 	);
 };

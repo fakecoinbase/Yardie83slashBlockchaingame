@@ -54,7 +54,7 @@ const UnspentTx = () => {
 			<Title title='Unspent Transactions (UTXO)'></Title>
 			<Provider>
 				<Box m={3}>
-					<Table columns={columns} data={nodes} />
+					<Table columns={columns} data={nodes}  />
 				</Box>
 			</Provider>
 		</>
