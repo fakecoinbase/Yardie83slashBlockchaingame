@@ -93,20 +93,20 @@ const CheckSignature = () => {
 				onChange={onChange}
 				value={checkParams.p3}
 			/>
-			<div style={{ float: 'right', flexDirection: 'row', flex: 1 }}>
-				<Button variant='contained' color='primary' size='small' onClick={checkTx} style={{ marginRight: '10px' }}>
+			<div style={{ display: 'inline-block', boxSizing: 'border-box', width: '35%' }}>
+				<Button variant='contained' color='primary' size='small' onClick={checkTx} style={{ marginRight: '5px' }}>
 					Check
 				</Button>
 				<Button variant='contained' color='default' size='small' onClick={clearCheckFields}>
 					Clear
 				</Button>
 			</div>
-			<div style={{ float: 'right', width: '100%' }}>
-				<span style={{ fontFamily: 'Source Sans Pro', color: '#4D4F5C' }}>Output</span>
+			<div style={{ display: 'inline-block', boxSizing: 'border-box', width: '65%' }}>
 				<Input
 					value={checkedSignature !== '' ? checkedSignature : checkError !== '' ? checkError : checkedSignature}
 					readOnly={true}
 					style={{
+						height: '30px',
 						borderColor:
 							signatureIsValid !== undefined ? (signatureIsValid ? 'green' : 'red') : checkError ? 'red' : '',
 					}}
