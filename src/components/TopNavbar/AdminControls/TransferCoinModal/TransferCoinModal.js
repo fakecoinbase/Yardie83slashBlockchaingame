@@ -25,6 +25,7 @@ const TransferCoinModal = ({ adminInfo }) => {
   const [amountToSend, setAmountToSend] = useState(0);
   const [insertAdminTransactionsMutation, { loading: insertAdminTransactionMutationLoading }] = useInsertAdminTransactionsMutation();
   const [insertBlock, { loading: insertBlockLoading }] = useInsertBlockMutation();
+  const [coinsSent, setCoinsSent] = useState(false);
   const [isSendCoinsButtonDisabled, setIsSendCoinsButtonDisabled] = useState(false);
 
   // const [blockHashbyBlockNumberQuery, { data: blockHashQueryData }] = useBlockHashByBlocknumberLazyQuery({ fetchPolicy: "network-only" });
@@ -131,6 +132,7 @@ const TransferCoinModal = ({ adminInfo }) => {
              * Recursive function to calculate the new Merkel root
              */
             let txHashes = res.data.insert_bloxx_transaction.returning.map(tx => tx.txHash);
+            txHashes.reverse();
             const merkler = (txHashes) => {
               if (txHashes.length === 1) return hash(txHashes[0]);
               let temp = [];
@@ -216,7 +218,7 @@ const TransferCoinModal = ({ adminInfo }) => {
                 previousBlockHash: blockData.previousBlockHash,
                 block_transactions: { data: block_transactions }
               }
-            }).catch(error => console.debug(error));
+            }).catch(error => console.debug(error)).then(setCoinsSent(true));
           })
           .catch(error => {
             console.debug(error);
@@ -229,6 +231,7 @@ const TransferCoinModal = ({ adminInfo }) => {
     <Modal
       title={"Transfer coins"}
       done={() => {
+        if (newNodeSubscriptionData.bloxx_node.some(node => node.addresses[0].balance > 0)) setIsSendCoinsButtonDisabled(true);
         setShowAdminModal(false);
       }}
     >
@@ -266,7 +269,7 @@ const TransferCoinModal = ({ adminInfo }) => {
                   </Button>
                 </Box>
               </Flex>
-              {isSendCoinsButtonDisabled &&
+              {(isSendCoinsButtonDisabled && !coinsSent) &&
                 <Container m={3}>
                   <Txt color={'red'}>Coins have already been transferred for this game session. Reset the game to send coins again.</Txt>
                 </Container>}
