@@ -3,13 +3,13 @@ import { Input } from 'rendition';
 import Title from '../util/Title/Title';
 import Button from '@material-ui/core/Button';
 import LabeledInput from '../util/LabeledInput';
-import merkl from '../../services/merklService';
+import merkle from '../../services/merklService';
 
 const Merkl = () => {
-	const [input1, setInput1] = useState<string | undefined>('');
-	const [input2, setInput2] = useState<string | undefined>('');
-	const [input3, setInput3] = useState<string | undefined>('');
-	const [input4, setInput4] = useState<string | undefined>('');
+	const [input1, setInput1] = useState<string | null | undefined>(null);
+	const [input2, setInput2] = useState<string | null | undefined>(null);
+	const [input3, setInput3] = useState<string | null | undefined>(null);
+	const [input4, setInput4] = useState<string | null | undefined>(null);
 	const [output, setOutput] = useState<string | undefined>('');
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +20,13 @@ const Merkl = () => {
 	};
 
 	const onMerkl = () => {
-		setOutput(merkl(input1, input2, input3, input4));
+		let txHashes = [];
+		if (input1 !== null && input1 !== '') txHashes.push(input1);
+		if (input2 !== null && input2 !== '') txHashes.push(input2);
+		if (input3 !== null && input3 !== '') txHashes.push(input3);
+		if (input4 !== null && input4 !== '') txHashes.push(input4);
+		const output = merkle(txHashes);
+		setOutput(output);
 	};
 
 	const handleClear = () => {
@@ -64,7 +70,7 @@ const Merkl = () => {
 							display: 'flex',
 							flex: 1,
 							flexGrow: 1,
-							boxSizing: 'border-box',
+							boxSizing: 'border-box'
 						}}>
 						<Input style={{ height: '30px' }} value={output} placeholder='Output' />
 					</div>

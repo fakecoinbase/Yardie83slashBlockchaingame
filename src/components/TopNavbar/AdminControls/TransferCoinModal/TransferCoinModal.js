@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Modal, Provider, Box, Table, Flex, Txt, Input } from "rendition";
 import { Button } from "@material-ui/core";
-import useAdminModal from "../../../../customHooks/useAdminModal/useAdminModal";
+import useAdminModal from "../../../../customHooks/useAdminModal";
 import { sign } from "../../../../services/signatureService";
 import hash from "../../../../services/hasherService";
 import calculateNonce from "../../../../services/miningService";
@@ -16,6 +16,7 @@ import {
   Bloxx_Transaction_Update_Column,
 } from "../../../../generated/graphql";
 import LoadingIndicator from "../../../util/LoadingIndicator";
+import merkle from '../../../../services/merklService'
 
 const TransferCoinModal = ({ adminInfo }) => {
   const [, setShowAdminModal] = useAdminModal();
@@ -129,25 +130,10 @@ const TransferCoinModal = ({ adminInfo }) => {
            */
           .then(res => {
             /**
-             * Recursive function to calculate the new Merkel root
+             * Calculate the new Merkel root
              */
             let txHashes = res.data.insert_bloxx_transaction.returning.map(tx => tx.txHash);
-            txHashes.reverse();
-            const merkler = (txHashes) => {
-              if (txHashes.length === 1) return hash(txHashes[0]);
-              let temp = [];
-              while (txHashes.length !== 0) {
-                if (txHashes.length > 1) {
-                  const first = txHashes.pop();
-                  const second = txHashes.pop();
-                  temp.push(hash(first + second));
-                }
-                if (txHashes.length === 1) temp.push(hash(txHashes.pop()))
-              }
-              return merkler(temp);
-            }
-            const merkel = merkler(txHashes);
-
+            const merkel = merkle(txHashes);
 
             /**
              * Create the Genesis block data
@@ -174,9 +160,9 @@ const TransferCoinModal = ({ adminInfo }) => {
               ":" +
               blockData.merkleRoot +
               ":" +
-              blockData.timestamp +
-              ":" +
               blockData.difficulty +
+              ":" +
+              blockData.timestamp +
               ":" +
               nonce);
 

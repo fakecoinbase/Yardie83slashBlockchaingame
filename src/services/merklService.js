@@ -1,23 +1,22 @@
 import hash from "./hasherService";
 
-const merklService = (i1, i2, i3, i4) => {
-
-  if (i1 != null && i2 != null && i3 != null && i4 != null) {
-    let first = hash(i1 + i2);
-    let second = hash(i3 + i4);
-    return hash(first + second);
-  } else if (i1 != null && i2 != null && i3 != null) {
-    let first = hash(i1 + i2);
-    let second = hash(i3);
-    return hash(first + second);
-  } else if (i1 != null && i2 != null) {
-    let first = hash(i1 + i2);
-    return first;
-  } else if (i1 != null) {
-    let first = hash(i1);
-    return first;
+const merkle = (txHashes) => {
+  if (txHashes.length === 0) return "";
+  if (txHashes.length === 1) {
+    return hash(txHashes[0])
   }
-  return "Error! Check inputs";
-};
+  let temp = [];
+  while (txHashes.length !== 0) {
+    if (txHashes.length > 1) {
+      const first = txHashes.pop();
+      const second = txHashes.pop();
+      temp.push(hash(first + second));
+    }
+    if (txHashes.length === 1) {
+      temp.push(hash(txHashes.pop()))
+    }
+  }
+  return merkle(temp);
+}
 
-export default merklService;
+export default merkle;
