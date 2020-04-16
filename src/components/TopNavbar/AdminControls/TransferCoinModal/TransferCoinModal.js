@@ -78,10 +78,10 @@ const TransferCoinModal = ({ adminInfo }) => {
     // blockHashbyBlockNumberQuery({ variables: 0 });
     if (selectedNodes.length > 0) {
       const transactions = [];
-
+      const timestamp = ((Date.now() / 1000) | 0).toString();
       selectedNodes.forEach(selectedNode => {
         const signature = sign(
-          adminInfo.address.id.concat(":".concat(selectedNode.address.concat(":".concat(amountToSend.toString())))),
+          adminInfo.address.id.concat(":".concat(selectedNode.address.concat(":".concat(amountToSend.toString().concat(':'.concat(timestamp)))))),
           adminInfo.privateKey
         );
         const txHash = hash(
@@ -92,6 +92,7 @@ const TransferCoinModal = ({ adminInfo }) => {
           outputAddress: selectedNode.address.id,
           value: amountToSend <= 0 ? 0 : amountToSend,
           signature: signature,
+          timestamp: timestamp,
           txHash: txHash,
           address: {
             data: {

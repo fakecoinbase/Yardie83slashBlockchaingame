@@ -7,6 +7,7 @@ import useBlock, { BlockType } from '../../../../customHooks/useBlock';
 import useSelectedTransactions from '../../../../customHooks/useSelectedTransactions';
 import { useInsertBlockMutation } from '../../../../generated/graphql';
 import useTimer from '../../../../customHooks/useTimer/useTimer';
+import useNextCoinbaseTransaction from '../../../../customHooks/useNextCoinbaseTransaction';
 
 const Publish = () => {
 	const [block, , resetBlock]: [
@@ -18,6 +19,7 @@ const Publish = () => {
 	const [insertBlock] = useInsertBlockMutation();
 	const [, setIsTimerActive]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useTimer();
 	const [toast, setToast] = useState<React.ReactNode | null>();
+	const [, setNextCoinbaseTransaction] = useNextCoinbaseTransaction();
 
 	useEffect(() => {
 		let interval = setInterval(() => {}, 10000);
@@ -40,11 +42,11 @@ const Publish = () => {
 				merkleRoot: block.merkleRoot,
 				nonce: block.nonce,
 				previousBlockHash: block.previousBlockHash,
-				block_transactions: block.block_transactions,
-			},
+				block_transactions: block.block_transactions
+			}
 		})
 			.then(
-				(success) => {
+				success => {
 					setToast(
 						<Alert success emphasized style={{ width: '350px' }} onDismiss={() => setToast(null)}>
 							Block published
@@ -53,8 +55,9 @@ const Publish = () => {
 					setIsTimerActive(true);
 					resetBlock();
 					setSelectedTransactions([]);
+					setNextCoinbaseTransaction();
 				},
-				(rejected) => {
+				rejected => {
 					setToast(
 						<Alert warning style={{ width: '350px' }} emphasized onDismiss={() => setToast(null)}>
 							Check the block data again
@@ -62,7 +65,7 @@ const Publish = () => {
 					);
 				}
 			)
-			.catch((error) => {
+			.catch(error => {
 				setToast(
 					<Alert danger emphasized prefix={false} style={{ width: '350px' }} onDismiss={() => setToast(null)}>
 						Could not publish block
@@ -78,7 +81,7 @@ const Publish = () => {
 					display: 'flex',
 					justifyContent: 'center',
 					paddingBottom: '10px',
-					paddingTop: '10px',
+					paddingTop: '10px'
 				}}>
 				<div
 					style={{ display: 'flex', flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>

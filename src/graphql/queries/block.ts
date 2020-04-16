@@ -17,7 +17,12 @@ query block($blockHash: String) {
           outputAddress
           signature
           value
+          timestamp
+          text
           txHash
+          address{
+            nodePublicKey
+          }
           addressByInputaddress {
             nodePublicKey
           }

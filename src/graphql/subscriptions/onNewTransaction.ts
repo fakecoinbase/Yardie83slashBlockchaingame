@@ -9,6 +9,8 @@ const NEW_TRANSACTION_ADDED = gql`
             txHash
             value
             blockHash
+            timestamp
+            text
             addressByInputaddress{
                 nodePublicKey
             }

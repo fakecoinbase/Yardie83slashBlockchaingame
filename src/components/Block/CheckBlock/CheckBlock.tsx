@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Table } from 'rendition';
 import Title from '../../util/Title/Title';
 import LabeledInput from '../../util/LabeledInput/LabeledInput';
-import useSelectedBlock from '../../../customHooks/useSelectedBlock/useSelectedBlock';
+import useSelectedBlock from '../../../customHooks/useSelectedBlock';
 import { BlockQuery } from '../../../generated/graphql';
 import { FaRegCopy } from 'react-icons/fa';
 import useDataToCheck from '../../../customHooks/useDataToCheck';
 import CheckSignature from '../../CheckSignature';
 import Confirm from './Confirm/Confirm';
 import CheckHeader from './CheckHeader';
+import useUserInfo from '../../../customHooks/useUserInfo';
 
 export type SelectedBlock = {
 	blockNumber: number | null;
@@ -26,6 +27,11 @@ type Transaction = {
 	outputAddress: string;
 	signature: string;
 	value: number;
+	text: string;
+	timestamp: string;
+	address:{
+		nodePublicKey:string;
+	}
 	addressByInputaddress: {
 		nodePublicKey: string;
 	};
@@ -41,6 +47,7 @@ const CheckBlock = ({ admin }: any) => {
 	const [selectedBlock]: [BlockQuery] = useSelectedBlock();
 	const [dataToShow, setDataToShow] = useState();
 	const [, setDataToCheck] = useDataToCheck();
+	const [userInfo] = useUserInfo();
 	const [block, setBlock] = useState<SelectedBlock>({
 		blockNumber: 0,
 		previousBlockHash: '',
@@ -61,10 +68,15 @@ const CheckBlock = ({ admin }: any) => {
 					transaction.inputAddress = 'null';
 				}
 				transaction.pubKey =
-					transaction.addressByInputaddress === null ? '' : transaction.addressByInputaddress.nodePublicKey;
+					transaction.text === 'coinbase' ? transaction.address.nodePublicKey : transaction.addressByInputaddress.nodePublicKey;
+				const input = transaction.text === 'coinbase' ? '0' : transaction.inputAddress;
 				transaction.dataToCheck = {
-					signedData: transaction.inputAddress.concat(
-						':'.concat(transaction.outputAddress.concat(':'.concat(transaction.value.toString())))
+					signedData: input.concat(
+						':'.concat(
+							transaction.outputAddress.concat(
+								':'.concat(transaction.value.toString().concat(':'.concat(transaction.timestamp)))
+							)
+						)
 					),
 					pubKey: transaction.pubKey,
 					signature: transaction.signature,

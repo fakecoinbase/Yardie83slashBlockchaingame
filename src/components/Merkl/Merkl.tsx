@@ -6,10 +6,10 @@ import LabeledInput from '../util/LabeledInput';
 import merkle from '../../services/merklService';
 
 const Merkl = () => {
-	const [input1, setInput1] = useState<string | null | undefined>(null);
-	const [input2, setInput2] = useState<string | null | undefined>(null);
-	const [input3, setInput3] = useState<string | null | undefined>(null);
-	const [input4, setInput4] = useState<string | null | undefined>(null);
+	const [input1, setInput1] = useState<string | undefined>('');
+	const [input2, setInput2] = useState<string | undefined>('');
+	const [input3, setInput3] = useState<string | undefined>('');
+	const [input4, setInput4] = useState<string | undefined>('');
 	const [output, setOutput] = useState<string | undefined>('');
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,10 +21,10 @@ const Merkl = () => {
 
 	const onMerkl = () => {
 		let txHashes = [];
-		if (input1 !== null && input1 !== '') txHashes.push(input1);
-		if (input2 !== null && input2 !== '') txHashes.push(input2);
-		if (input3 !== null && input3 !== '') txHashes.push(input3);
-		if (input4 !== null && input4 !== '') txHashes.push(input4);
+		if (input1 !== '') txHashes.push(input1);
+		if (input2 !== '') txHashes.push(input2);
+		if (input3 !== '') txHashes.push(input3);
+		if (input4 !== '') txHashes.push(input4);
 		const output = merkle(txHashes);
 		setOutput(output);
 	};

@@ -982,6 +982,7 @@ export type Bloxx_Transaction = {
   outputAddress: Scalars['String'],
   signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
+  timestamp?: Maybe<Scalars['String']>,
   txHash: Scalars['String'],
   value: Scalars['Int'],
 };
@@ -1072,6 +1073,7 @@ export type Bloxx_Transaction_Bool_Exp = {
   outputAddress?: Maybe<String_Comparison_Exp>,
   signature?: Maybe<String_Comparison_Exp>,
   text?: Maybe<String_Comparison_Exp>,
+  timestamp?: Maybe<String_Comparison_Exp>,
   txHash?: Maybe<String_Comparison_Exp>,
   value?: Maybe<Int_Comparison_Exp>,
 };
@@ -1095,6 +1097,7 @@ export type Bloxx_Transaction_Insert_Input = {
   outputAddress?: Maybe<Scalars['String']>,
   signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
+  timestamp?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
 };
@@ -1106,6 +1109,7 @@ export type Bloxx_Transaction_Max_Fields = {
   outputAddress?: Maybe<Scalars['String']>,
   signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
+  timestamp?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
 };
@@ -1116,6 +1120,7 @@ export type Bloxx_Transaction_Max_Order_By = {
   outputAddress?: Maybe<Order_By>,
   signature?: Maybe<Order_By>,
   text?: Maybe<Order_By>,
+  timestamp?: Maybe<Order_By>,
   txHash?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
@@ -1127,6 +1132,7 @@ export type Bloxx_Transaction_Min_Fields = {
   outputAddress?: Maybe<Scalars['String']>,
   signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
+  timestamp?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
 };
@@ -1137,6 +1143,7 @@ export type Bloxx_Transaction_Min_Order_By = {
   outputAddress?: Maybe<Order_By>,
   signature?: Maybe<Order_By>,
   text?: Maybe<Order_By>,
+  timestamp?: Maybe<Order_By>,
   txHash?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
@@ -1168,6 +1175,7 @@ export type Bloxx_Transaction_Order_By = {
   outputAddress?: Maybe<Order_By>,
   signature?: Maybe<Order_By>,
   text?: Maybe<Order_By>,
+  timestamp?: Maybe<Order_By>,
   txHash?: Maybe<Order_By>,
   value?: Maybe<Order_By>,
 };
@@ -1178,6 +1186,7 @@ export enum Bloxx_Transaction_Select_Column {
   OutputAddress = 'outputAddress',
   Signature = 'signature',
   Text = 'text',
+  Timestamp = 'timestamp',
   TxHash = 'txHash',
   Value = 'value'
 }
@@ -1188,6 +1197,7 @@ export type Bloxx_Transaction_Set_Input = {
   outputAddress?: Maybe<Scalars['String']>,
   signature?: Maybe<Scalars['String']>,
   text?: Maybe<Scalars['String']>,
+  timestamp?: Maybe<Scalars['String']>,
   txHash?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
 };
@@ -1234,6 +1244,7 @@ export enum Bloxx_Transaction_Update_Column {
   OutputAddress = 'outputAddress',
   Signature = 'signature',
   Text = 'text',
+  Timestamp = 'timestamp',
   TxHash = 'txHash',
   Value = 'value'
 }
@@ -2009,8 +2020,10 @@ export type InsertTransactionMutationVariables = {
   inputAddress?: Maybe<Scalars['String']>,
   outputAddress?: Maybe<Scalars['String']>,
   value?: Maybe<Scalars['Int']>,
+  text?: Maybe<Scalars['String']>,
   signature?: Maybe<Scalars['String']>,
-  txHash?: Maybe<Scalars['String']>
+  txHash?: Maybe<Scalars['String']>,
+  timestamp?: Maybe<Scalars['String']>
 };
 
 
@@ -2021,7 +2034,7 @@ export type InsertTransactionMutation = (
     & Pick<Bloxx_Transaction_Mutation_Response, 'affected_rows'>
     & { returning: Array<(
       { __typename?: 'bloxx_transaction' }
-      & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value'>
+      & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value' | 'text'>
     )> }
   )> }
 );
@@ -2173,8 +2186,11 @@ export type BlockQuery = (
       { __typename?: 'bloxx_block_transaction' }
       & { transaction: (
         { __typename?: 'bloxx_transaction' }
-        & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'value' | 'txHash'>
-        & { addressByInputaddress: Maybe<(
+        & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'value' | 'timestamp' | 'text' | 'txHash'>
+        & { address: (
+          { __typename?: 'bloxx_address' }
+          & Pick<Bloxx_Address, 'nodePublicKey'>
+        ), addressByInputaddress: Maybe<(
           { __typename?: 'bloxx_address' }
           & Pick<Bloxx_Address, 'nodePublicKey'>
         )> }
@@ -2270,7 +2286,7 @@ export type OnNewTransactionAddedSubscription = (
   { __typename?: 'subscription_root' }
   & { bloxx_transaction: Array<(
     { __typename?: 'bloxx_transaction' }
-    & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value' | 'blockHash'>
+    & Pick<Bloxx_Transaction, 'inputAddress' | 'outputAddress' | 'signature' | 'txHash' | 'value' | 'blockHash' | 'timestamp' | 'text'>
     & { addressByInputaddress: Maybe<(
       { __typename?: 'bloxx_address' }
       & Pick<Bloxx_Address, 'nodePublicKey'>
@@ -2426,8 +2442,8 @@ export type InsertNodeMutationHookResult = ReturnType<typeof useInsertNodeMutati
 export type InsertNodeMutationResult = ApolloReactCommon.MutationResult<InsertNodeMutation>;
 export type InsertNodeMutationOptions = ApolloReactCommon.BaseMutationOptions<InsertNodeMutation, InsertNodeMutationVariables>;
 export const InsertTransactionDocument = gql`
-    mutation insertTransaction($inputAddress: String, $outputAddress: String, $value: Int, $signature: String, $txHash: String) {
-  insert_bloxx_transaction(objects: {inputAddress: $inputAddress, outputAddress: $outputAddress, value: $value, signature: $signature, txHash: $txHash}) {
+    mutation insertTransaction($inputAddress: String, $outputAddress: String, $value: Int, $text: String, $signature: String, $txHash: String, $timestamp: String) {
+  insert_bloxx_transaction(objects: {inputAddress: $inputAddress, outputAddress: $outputAddress, value: $value, text: $text, signature: $signature, txHash: $txHash, timestamp: $timestamp}) {
     affected_rows
     returning {
       inputAddress
@@ -2435,6 +2451,7 @@ export const InsertTransactionDocument = gql`
       signature
       txHash
       value
+      text
     }
   }
 }
@@ -2457,8 +2474,10 @@ export type InsertTransactionMutationFn = ApolloReactCommon.MutationFunction<Ins
  *      inputAddress: // value for 'inputAddress'
  *      outputAddress: // value for 'outputAddress'
  *      value: // value for 'value'
+ *      text: // value for 'text'
  *      signature: // value for 'signature'
  *      txHash: // value for 'txHash'
+ *      timestamp: // value for 'timestamp'
  *   },
  * });
  */
@@ -2779,7 +2798,12 @@ export const BlockDocument = gql`
         outputAddress
         signature
         value
+        timestamp
+        text
         txHash
+        address {
+          nodePublicKey
+        }
         addressByInputaddress {
           nodePublicKey
         }
@@ -3018,6 +3042,8 @@ export const OnNewTransactionAddedDocument = gql`
     txHash
     value
     blockHash
+    timestamp
+    text
     addressByInputaddress {
       nodePublicKey
     }

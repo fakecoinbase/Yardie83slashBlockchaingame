@@ -2220,6 +2220,16 @@
             "defaultValue": null
           },
           {
+            "name": "timestamp",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "txHash",
             "description": "",
             "type": {
@@ -2292,6 +2302,16 @@
           },
           {
             "name": "text",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "timestamp",
             "description": "",
             "type": {
               "kind": "ENUM",
@@ -3227,6 +3247,16 @@
           },
           {
             "name": "text",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "timestamp",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
@@ -4682,6 +4712,12 @@
             "deprecationReason": null
           },
           {
+            "name": "timestamp",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "txHash",
             "description": "",
             "isDeprecated": false,
@@ -4784,6 +4820,16 @@
           },
           {
             "name": "text",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "timestamp",
             "description": "",
             "type": {
               "kind": "ENUM",
@@ -5294,6 +5340,18 @@
           },
           {
             "name": "text",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "timestamp",
             "description": "",
             "args": [],
             "type": {
@@ -6297,6 +6355,18 @@
             "deprecationReason": null
           },
           {
+            "name": "timestamp",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "txHash",
             "description": "",
             "args": [],
@@ -6381,6 +6451,18 @@
           },
           {
             "name": "text",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "timestamp",
             "description": "",
             "args": [],
             "type": {
@@ -9983,6 +10065,16 @@
             "defaultValue": null
           },
           {
+            "name": "timestamp",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "txHash",
             "description": "",
             "type": {
@@ -10421,6 +10513,12 @@
           },
           {
             "name": "text",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "timestamp",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
@@ -11256,6 +11354,16 @@
           },
           {
             "name": "text",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "timestamp",
             "description": "",
             "type": {
               "kind": "SCALAR",

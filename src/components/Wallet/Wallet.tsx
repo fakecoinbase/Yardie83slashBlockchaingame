@@ -13,6 +13,8 @@ const Wallet = () => {
 	const { data } = useAddressSubscription();
 	const [canBroadcast, setCanBroadcast] = useState(false);
 	const [fields, setFields] = useState({ to: '', amount: '', signature: '', txHash: '' });
+	const [timestamp, setTimestamp] = useState<string>('');
+	const [timer, setTimer] = useState<string>('');
 	const [insertTransactionMutation] = useInsertTransactionMutation();
 	const [, setDataToSign]: [string, React.Dispatch<React.SetStateAction<string>>] = useDataToSign();
 	const [, setDataToHash]: [string, React.Dispatch<React.SetStateAction<string>>] = useDataToHash();
@@ -20,7 +22,7 @@ const Wallet = () => {
 	useEffect(() => {
 		let currentUser = undefined;
 		if (data) {
-			currentUser = data!.bloxx_address.find((address) => address.id === userInfo.address.id);
+			currentUser = data!.bloxx_address.find(address => address.id === userInfo.address.id);
 		}
 		if (currentUser) {
 			const amount = currentUser!.balance!;
@@ -29,8 +31,13 @@ const Wallet = () => {
 	}, [data]);
 
 	const copyToSign = () => {
-		if (fields !== undefined)
-			setDataToSign(userInfo.address.id.concat(':'.concat(fields.to.concat(':'.concat(fields.amount)))));
+		if (fields !== undefined) {
+			const time = ((Date.now() / 1000) | 0).toString();
+			setTimestamp(time);
+			setDataToSign(
+				userInfo.address.id.concat(':'.concat(fields.to.concat(':'.concat(fields.amount.concat(':'.concat(time))))))
+			);
+		}
 	};
 
 	const copyToHasher = () => {
@@ -56,16 +63,18 @@ const Wallet = () => {
 				value: parseInt(fields.amount),
 				signature: fields.signature,
 				txHash: fields.txHash,
-			},
+				timestamp: timestamp
+			}
 		})
 			.then(clear)
-			.catch((error) => {
+			.catch(error => {
 				console.debug(error);
 			});
 	};
 
 	const clear = () => {
 		setFields({ to: '', amount: '', signature: '', txHash: '' });
+		setTimestamp('');
 	};
 
 	//TODO Improve validation to check for right input format.
@@ -82,6 +91,12 @@ const Wallet = () => {
 		</div>
 	);
 
+	useEffect(() => {
+		setInterval(() => {
+			setTimer(((Date.now() / 1000) | 0).toString());
+		}, 1000);
+	}, [setTimer]);
+
 	return (
 		<>
 			<Title title='Wallet' subTitle={subTitle}></Title>
@@ -89,12 +104,9 @@ const Wallet = () => {
 				<Heading.h6 style={{ fontFamily: 'Source Sans Pro', color: '#4D4F5C', paddingTop: '5px' }}>
 					Send Coins:
 				</Heading.h6>
-				<LabeledInput placeholder={'To Address'} onChange={(e) => onChange('to', e.target.value)} value={fields.to} />
-				<LabeledInput
-					placeholder={'Amount'}
-					onChange={(e) => onChange('amount', e.target.value)}
-					value={fields.amount}
-				/>
+				<LabeledInput placeholder={'To Address'} onChange={e => onChange('to', e.target.value)} value={fields.to} />
+				<LabeledInput placeholder={'Amount'} onChange={e => onChange('amount', e.target.value)} value={fields.amount} />
+				<LabeledInput placeholder={timer} readOnly value={timestamp} />
 				<div style={{ paddingBottom: '20px' }}>
 					<Button onClick={copyToSign} variant='contained' color='primary' size='small' style={{ width: '100%' }}>
 						Copy to Sign
@@ -103,7 +115,7 @@ const Wallet = () => {
 				<div style={{ clear: 'both', height: '10px' }} />
 				<LabeledInput
 					placeholder={'Signature'}
-					onChange={(e) => onChange('signature', e.target.value)}
+					onChange={e => onChange('signature', e.target.value)}
 					value={fields.signature}
 				/>
 				<div style={{ paddingBottom: '20px' }}>
@@ -114,7 +126,7 @@ const Wallet = () => {
 				<div style={{ clear: 'both', height: '10px' }} />
 				<LabeledInput
 					placeholder={'Transaction Hash'}
-					onChange={(e) => onChange('txHash', e.target.value)}
+					onChange={e => onChange('txHash', e.target.value)}
 					value={fields.txHash}
 				/>
 

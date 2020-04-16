@@ -5,15 +5,19 @@ mutation insertTransaction(
   $inputAddress: String, 
   $outputAddress: String, 
   $value: Int, 
+  $text: String,
   $signature: String, 
-  $txHash: String
+  $txHash: String,
+  $timestamp: String
   ) {
     insert_bloxx_transaction(objects: {
     inputAddress: $inputAddress, 
     outputAddress: $outputAddress, 
     value: $value, 
+    text: $text,
     signature: $signature, 
-    txHash: $txHash
+    txHash: $txHash,
+    timestamp: $timestamp
     }) {
       affected_rows
       returning {
@@ -22,6 +26,7 @@ mutation insertTransaction(
         signature
         txHash
         value
+        text
       }
     }
   }`;

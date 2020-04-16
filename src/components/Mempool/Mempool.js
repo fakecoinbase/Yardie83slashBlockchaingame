@@ -22,17 +22,17 @@ const Mempool = () => {
     if (data !== undefined) {
       // Add the pubKey key/value to the transactions in the mempool
       data.bloxx_transaction.forEach(transaction => {
-        if (transaction.signature !== "coinbase") {
-          transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
-          transaction.dataToCheck = {
-            signedData: (transaction.inputAddress.concat(":".concat(transaction.outputAddress.concat(":".concat(transaction.value))))),
-            pubKey: transaction.pubKey,
-            signature: transaction.signature
-          }
+        transaction.pubKey = transaction.addressByInputaddress.nodePublicKey;
+        const input = transaction.text === 'coinbase' ? '0' : transaction.inputAddress
+        transaction.dataToCheck = {
+          signedData: (input.concat(":".concat(transaction.outputAddress.concat(":".concat(transaction.value).concat(':'.concat(transaction.timestamp)))))),
+          pubKey: transaction.pubKey,
+          signature: transaction.signature,
+          text: transaction.text
         }
       });
       // Filter out transactions that have been definitely assigned to a confirmed block
-      const unconfirmedTransactions = data.bloxx_transaction.filter(transaction => transaction.blockHash === null && transaction.signature !== "coinbase");
+      const unconfirmedTransactions = data.bloxx_transaction.filter(transaction => transaction.blockHash === null && transaction.text !== "coinbase");
       // Show the remaining transactions
       setDataToShow(unconfirmedTransactions.reverse());
     }
