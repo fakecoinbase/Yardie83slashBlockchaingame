@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Modal, Provider, Box, Table, Flex, Txt, Input } from "rendition";
+import { Container, Modal, Provider, Box, Table, Flex, Txt, Input, Alert } from "rendition";
 import { Button } from "@material-ui/core";
 import useAdminModal from "../../../../customHooks/useAdminModal";
 import { sign } from "../../../../services/signatureService";
@@ -23,30 +23,32 @@ const TransferCoinModal = ({ adminInfo }) => {
   const { data: newNodeSubscriptionData, loading } = useOnNewNodeAddedSubscription();
   const [nodes, setNodes] = useState([]);
   const [selectedNodes, setSelectedNodes] = useState([]);
-  const [amountToSend, setAmountToSend] = useState(0);
+  const [amountToSet, setamountToSet] = useState(0);
   const [insertAdminTransactionsMutation, { loading: insertAdminTransactionMutationLoading }] = useInsertAdminTransactionsMutation();
   const [insertBlock, { loading: insertBlockLoading }] = useInsertBlockMutation();
   const [coinsSent, setCoinsSent] = useState(false);
   const [isSendCoinsButtonDisabled, setIsSendCoinsButtonDisabled] = useState(false);
 
-  // const [blockHashbyBlockNumberQuery, { data: blockHashQueryData }] = useBlockHashByBlocknumberLazyQuery({ fetchPolicy: "network-only" });
-
-  // useEffect(() => {
-  //   blockHashbyBlockNumberQuery({ variables: 0 });
-  // }, []);
-
   useEffect(() => {
     if (newNodeSubscriptionData) {
       let _nodes = [];
+
       newNodeSubscriptionData.bloxx_node.forEach(node => {
         if (
           node.publicKey !== "undefined" &&
           typeof node.addresses[0] !== "undefined" &&
           node.addresses[0].balance !== null
         ) {
+
+          let amountToSend = 0;
+          if (!isSendCoinsButtonDisabled) {
+            nodes.forEach(localNode => { if (localNode.address === node.addresses[0].id) amountToSend = localNode.amountToSend })
+          }
+
           _nodes.push({
             address: node.addresses[0].id,
             balance: node.addresses[0].balance,
+            amountToSend: amountToSend,
             nodePublicKey: node.addresses[0].nodePublicKey
           });
         }
@@ -54,21 +56,21 @@ const TransferCoinModal = ({ adminInfo }) => {
           setIsSendCoinsButtonDisabled(true);
         }
       });
+
       setNodes(_nodes);
     }
   }, [newNodeSubscriptionData]);
 
-  const columns = [
-    {
-      field: "address",
-      label: "Node Address"
-    },
-    {
-      field: "balance",
-      label: "Amount",
-      sortable: true
-    }
-  ];
+  const setIntialCoins = () => {
+    selectedNodes.forEach((selectedNode) => {
+      setNodes((previousNodes) => previousNodes.map((previousNode) => {
+        if (previousNode.address === selectedNode.address) {
+          previousNode.amountToSend = amountToSet
+        }
+        return previousNode
+      }))
+    })
+  }
 
   /**
    * Transfers the intials coins from the admin node to each of the selected user nodes.
@@ -76,29 +78,29 @@ const TransferCoinModal = ({ adminInfo }) => {
    */
   const transferCoins = () => {
     // blockHashbyBlockNumberQuery({ variables: 0 });
-    if (selectedNodes.length > 0) {
+    if (nodes.length > 0) {
       const transactions = [];
       const timestamp = ((Date.now() / 1000) | 0).toString();
-      selectedNodes.forEach(selectedNode => {
+      nodes.forEach(_node => {
         const signature = sign(
-          adminInfo.address.id.concat(":".concat(selectedNode.address.concat(":".concat(amountToSend.toString().concat(':'.concat(timestamp)))))),
+          adminInfo.address.id.concat(":".concat(_node.address.concat(":".concat(_node.amountToSend.toString().concat(':'.concat(timestamp)))))),
           adminInfo.privateKey
         );
         const txHash = hash(
-          selectedNode.address.concat(":".concat(amountToSend.toString().concat(":".concat(signature))))
+          _node.address.concat(":".concat(_node.amountToSend.toString().concat(":".concat(signature))))
         );
         transactions.push({
           inputAddress: adminInfo.address.id,
-          outputAddress: selectedNode.address.id,
-          value: amountToSend <= 0 ? 0 : amountToSend,
+          outputAddress: _node.address.id,
+          value: _node.amountToSend <= 0 ? 0 : _node.amountToSend,
           signature: signature,
           timestamp: timestamp,
           txHash: txHash,
           address: {
             data: {
-              id: selectedNode.address,
-              nodePublicKey: nodes.find(node => node.address === selectedNode.address).nodePublicKey,
-              balance: amountToSend
+              id: _node.address,
+              nodePublicKey: nodes.find(node => node.address === _node.address).nodePublicKey,
+              balance: _node.amountToSend
             },
             on_conflict: {
               constraint: Bloxx_Address_Constraint.AddressAddressidKey,
@@ -214,6 +216,22 @@ const TransferCoinModal = ({ adminInfo }) => {
     }
   };
 
+  const columns = [
+    {
+      field: "address",
+      label: "Node Address"
+    },
+    {
+      field: "amountToSend",
+      label: "Coins to transfer",
+    },
+    {
+      field: "balance",
+      label: "Current Coins",
+      sortable: true
+    }
+  ];
+
   return (
     <Modal
       title={"Transfer coins"}
@@ -225,40 +243,45 @@ const TransferCoinModal = ({ adminInfo }) => {
       <Provider>
         <Box m={3}>
           {loading && <LoadingIndicator />}
-          {(newNodeSubscriptionData !== undefined || loading) && (
+          {(newNodeSubscriptionData !== undefined && !loading) && (
             <>
-              <Flex m={3} alignItems={"center"}>
-                <Box pr={3}>
-                  <Txt>Send:</Txt>
-                </Box>
-                <Box pr={3}>
-                  <Input width={100} type={"number"} min={0} onChange={e => setAmountToSend(parseInt(e.target.value))} />
-                </Box>
-                <Box pr={3}>
-                  <Txt>coins to</Txt>
-                </Box>
-                <Box pr={3}>
-                  <Txt bold>{selectedNodes.length}</Txt>
-                </Box>
-                <Box pr={3}>
-                  <Txt>nodes</Txt>
-                </Box>
-                <Box pr={3}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    disabled={isSendCoinsButtonDisabled}
-                    onClick={transferCoins}
-                    style={{ marginRight: "10px" }}
-                  >
-                    Send Coins
-                  </Button>
-                </Box>
-              </Flex>
+              {(!isSendCoinsButtonDisabled && !coinsSent) &&
+                <Flex m={3} alignItems={"center"}>
+                  <Box pr={3}>
+                    <Input width={100} type={"number"} min={0} onChange={e => setamountToSet(parseInt(e.target.value))} />
+                  </Box>
+                  <Box pr={3}>
+                    <Txt>coins to</Txt>
+                  </Box>
+                  <Box pr={3}>
+                    <Txt bold>{selectedNodes.length}</Txt>
+                  </Box>
+                  <Box pr={3}>
+                    <Txt>nodes</Txt>
+                  </Box>
+                  <Flex flexDirection="row">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      onClick={setIntialCoins}
+                      style={{ marginRight: "10px" }}
+                    >
+                      Set
+                    </Button>
+                  </Flex>
+                </Flex>}
+              {(isSendCoinsButtonDisabled && coinsSent) &&
+                <Container m={3}>
+                  <Alert success emphasized>
+                    <Txt>Coins were transferred!</Txt>
+                  </Alert>
+                </Container>}
               {(isSendCoinsButtonDisabled && !coinsSent) &&
                 <Container m={3}>
-                  <Txt color={'red'}>Coins have already been transferred for this game session. Reset the game to send coins again.</Txt>
+                  <Alert info emphasized>
+                    <Txt>Coins have already been transferred for this game session. Reset the game to send coins again.</Txt>
+                  </Alert>
                 </Container>}
               {(insertBlockLoading || insertAdminTransactionMutationLoading) ?
                 <LoadingIndicator />
@@ -268,8 +291,29 @@ const TransferCoinModal = ({ adminInfo }) => {
                   data={nodes}
                   // use adress for rowKey; because it is unique
                   rowKey="address"
-                  onCheck={selectedNodes => setSelectedNodes(selectedNodes)}
+                  onCheck={(isSendCoinsButtonDisabled) ? false : selectedNodes => setSelectedNodes(selectedNodes)}
                 />}
+              {(!isSendCoinsButtonDisabled && !coinsSent) &&
+                <>
+                  <Flex justifyContent={"flex-end"} mt={3}>
+                    <Button
+                      variant="contained"
+                      color="default"
+                      size="small"
+                      onClick={transferCoins}
+                      style={{ marginRight: "10px" }}
+                    >
+                      Transfer Coins
+                  </Button>
+                  </Flex>
+                  <Box mt={3} pr={3} mb={3}>
+                    <Container m={3}>
+                      <Alert info emphasized>
+                        <Txt>Sending coins will generate the Genesis block and no more changes will be possible.</Txt>
+                      </Alert>
+                    </Container>
+                  </Box>
+                </>}
             </>
           )}
         </Box>
