@@ -7,6 +7,7 @@ import useUserInfo, { UserType } from '../../customHooks/useUserInfo/useUserInfo
 import { useInsertTransactionMutation, useAddressSubscription } from '../../generated/graphql';
 import useDataToSign from '../../customHooks/useDataToSign';
 import useDataToHash from '../../customHooks/useDataToHash';
+import walletIcon from '../../../src/assets/img/wallet.svg'
 
 const Wallet = () => {
 	const [userInfo, setUserInfo]: [UserType, React.Dispatch<React.SetStateAction<UserType>>] = useUserInfo();
@@ -99,7 +100,7 @@ const Wallet = () => {
 
 	return (
 		<>
-			<Title title='Wallet' subTitle={subTitle}></Title>
+			<Title icon={walletIcon} title='Wallet' subTitle={subTitle}></Title>
 			<div style={{ paddingLeft: '10px', paddingRight: '10px' }}>
 				<Heading.h6 style={{ fontFamily: 'Source Sans Pro', color: '#4D4F5C', paddingTop: '5px' }}>
 					Send Coins:

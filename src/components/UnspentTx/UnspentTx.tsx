@@ -51,7 +51,7 @@ const UnspentTx = () => {
 
 	return (
 		<>
-			<Title title='Unspent Transactions (UTXO)'></Title>
+			<Title title='Unspent Transactions'></Title>
 			<Provider>
 				<Box m={3}>
 					<Table columns={columns} data={nodes}  />

@@ -3,6 +3,7 @@ import Title from "../util/Title/Title";
 import NodeList from "./NodeList/NodeList";
 import { useOnNewNodeAddedSubscription } from "../../generated/graphql";
 import useUserInfo, { UserType } from "../../customHooks/useUserInfo/useUserInfo";
+import nodesIcon from '../../../src/assets/img/nodes.svg'
 
 const Nodes = () => {
   const [nodes, setNodes] = useState<Array<Object>>([]);
@@ -33,7 +34,7 @@ const Nodes = () => {
 
   return (
     <>
-      <Title title="Available Nodes" subTitle={"Total: " + nodes.length}></Title>
+      <Title icon={nodesIcon} title="Nodes" subTitle={"Total: " + nodes.length}></Title>
       <NodeList nodes={nodes}></NodeList>
     </>
   );

@@ -5,6 +5,7 @@ import Title from '../util/Title/Title';
 import Button from '@material-ui/core/Button';
 import hash from '../../services/hasherService';
 import useDataToHash from '../../customHooks/useDataToHash';
+import hasherIcon from '../../../src/assets/img/hash.svg'
 
 const Hasher = () => {
 	const [input, setInput] = useState<string | undefined>('');
@@ -34,7 +35,7 @@ const Hasher = () => {
 
 	return (
 		<>
-			<Title title='Hasher' />
+			<Title icon={hasherIcon} title='Hasher' />
 			<div style={{ paddingLeft: '5px', paddingRight: '5px' }}>
 				<div style={{ width: '100%', paddingBottom: '10px' }}>
 					<div style={{ float: 'right', width: '100%' }}>

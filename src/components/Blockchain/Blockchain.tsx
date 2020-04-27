@@ -5,8 +5,10 @@ import OpenWithIcon from '@material-ui/icons/OpenWith';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import { useOnBlockAddedSubscription, Bloxx_Block, useBlockLazyQuery } from '../../generated/graphql';
 import useSelectedBlock from '../../customHooks/useSelectedBlock/useSelectedBlock';
-import { Heading } from 'rendition';
 import useBlockchainModal from '../../customHooks/useBlockchainModal/useBlockchainModal';
+import Title from '../util/Title/Title';
+import blockchainIcon from '../../../src/assets/img/blockchain.svg';
+import { Flex } from 'rendition';
 
 const Blockchain = ({ admin }: any) => {
 	const { data: blockSubscriptionData } = useOnBlockAddedSubscription();
@@ -111,17 +113,20 @@ const Blockchain = ({ admin }: any) => {
 					display: 'flex',
 					flex: 1,
 					alignItems: 'center',
+					justifyContent: 'space-between',
 					height: '35px',
 				}}>
-				{!admin && (
-					<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleShowBlockchainModal}>
-						<OpenWithIcon />
+				<Title icon={blockchainIcon} title={'Blockchain'} />
+				<Flex justifyContent={'flex-end'} flexDirection={'row'}>
+					{!admin && (
+						<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleShowBlockchainModal}>
+							<OpenWithIcon />
+						</IconButton>
+					)}
+					<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleResetTree}>
+						<RotateLeftIcon />
 					</IconButton>
-				)}
-				<IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleResetTree}>
-					<RotateLeftIcon />
-				</IconButton>
-				<Heading.h5 style={{ display: 'inline-block', boxSizing: 'border-box' }}>Blockchain</Heading.h5>
+				</Flex>
 			</div>
 			{treeData !== undefined && !resetting && (
 				<Tree

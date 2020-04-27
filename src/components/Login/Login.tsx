@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Heading, Container, Provider, Flex, Button, Input, Txt } from 'rendition';
 
-import Logo from '../../assets/img/logo192.png';
+import Logo from '../../assets/img/blockchainsymbol.svg';
 import useLoginPage from '../../customHooks/useLoginPage';
 import { useAdminLoginLazyQuery, useUserLoginLazyQuery } from '../../generated/graphql';
 
@@ -60,7 +60,7 @@ const Login = ({ admin }: { admin?: boolean }) => {
 				<Heading.h1>Welcome to the BloxxGame</Heading.h1>
 				<Flex flexDirection='column' alignItems='center'>
 					<div style={{ paddingTop: '15px', paddingRight: '20px' }}>
-						<img alt='' src={Logo} />
+						<img alt='' src={Logo} height={300} width={300} />
 					</div>
 					<Container pt={3} pb={3}>
 						<Heading.h4>Password</Heading.h4>

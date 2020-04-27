@@ -4,6 +4,7 @@ import Title from '../util/Title/Title';
 import Button from '@material-ui/core/Button';
 import LabeledInput from '../util/LabeledInput';
 import merkle from '../../services/merklService';
+import merklerootIcon from '../../assets/img/merkleroot.svg'
 
 const Merkl = () => {
 	const [input1, setInput1] = useState<string | undefined>('');
@@ -39,7 +40,7 @@ const Merkl = () => {
 
 	return (
 		<>
-			<Title title='Merkle' />
+			<Title icon={merklerootIcon} title='Merkle' />
 			<div style={{ paddingLeft: '5px', paddingRight: '5px' }}>
 				<div style={{ margin: 'auto', width: '100%' }}>
 					<div style={{ float: 'right', width: '100%' }}>

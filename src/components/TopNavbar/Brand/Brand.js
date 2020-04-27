@@ -1,12 +1,12 @@
 import React from "react";
 import { GoLink } from "react-icons/go";
 
-import Logo from "../../../assets/img/logo192.png";
+import Logo from "../../../assets/img/blockchainsymbol.svg";
 
 const Brand = (
-  <div style={{ display: "flex", justifyContent: "center", padding: "0px" }}>
-    <div style={{ paddingTop: "15px", paddingRight: "20px" }}>
-      <img alt="" src={Logo} width={40} height={40} />
+  <div style={{ display: "flex", padding: "0px" }}>
+    <div style={{ paddingRight: "20px" }}>
+      <img alt="" src={Logo} width={60} height={60}  />
     </div>
     <h1>
       {" "}

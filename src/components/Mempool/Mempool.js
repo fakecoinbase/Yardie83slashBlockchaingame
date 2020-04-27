@@ -8,6 +8,7 @@ import useMempoolModal from '../../customHooks/useMempoolModal'
 import useSelectedTransactions from "../../customHooks/useSelectedTransactions";
 import { useOnNewTransactionAddedSubscription } from "../../generated/graphql";
 import useDataToCheck from "../../customHooks/useDataToCheck";
+import mempoolIcon from '../../../src/assets/img/mempool.svg'
 
 const Mempool = () => {
 
@@ -131,13 +132,13 @@ const Mempool = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', flex: 1, alignItems: 'center' }}>
+      <div style={{ display: 'flex', flex: 1, justifyContent: 'space-between' }}>
+        <Title icon={mempoolIcon} title="Mempool"></Title>
         {showMempoolModal == null &&
           <IconButton style={{ borderRadius: '0px' }} size='small' onClick={handleShowMempoolModal}>
             <OpenWithIcon />
           </IconButton>
         }
-        <Title title="Mempool"></Title>
       </div>
       <Provider>
         <Box m={3}>
