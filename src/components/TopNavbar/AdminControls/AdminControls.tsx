@@ -16,7 +16,7 @@ const AdminControls = () => {
 	};
 
 	return (
-		<Navbar brand={Brand} style={{ height: '70px' }}>
+		<Navbar brand={Brand} style={{  background: "#282828", height: '70px' }}>
 			<Button variant='contained' color='primary' size='small' onClick={onClick} style={{ marginRight: '10px' }}>
 				Transfer Coins
 			</Button>
