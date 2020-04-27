@@ -85,8 +85,6 @@ const Transactions = () => {
 
 	useEffect(() => {
 		if (nextCoinbaseTransaction !== undefined && nextCoinbaseTransaction !== null) {
-			console.log('Transaction To Show', transactionsToShow);
-			console.log('nextCoinbaseTransaction', nextCoinbaseTransaction);
 			const isCoinbaseTxInList = transactionsToShow.some(
 				(transaction) => transaction.txHash === nextCoinbaseTransaction.txHash
 			);

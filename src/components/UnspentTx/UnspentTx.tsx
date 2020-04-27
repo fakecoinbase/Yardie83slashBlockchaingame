@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {} from './UnspentTxStyles.js';
 import { Provider, Box, Table, TableColumn } from 'rendition';
 import Title from '../util/Title/Title';
 import { useAddressSubscription } from '../../generated/graphql';
+import utxIcon from '../../assets/img/unspenttransactions.svg'
 
 const UnspentTx = () => {
 	const [nodes, setNodes] = useState<Array<Object>>([]);
@@ -51,7 +51,7 @@ const UnspentTx = () => {
 
 	return (
 		<>
-			<Title title='Unspent Transactions'></Title>
+			<Title icon={utxIcon} title='Unspent Transactions'></Title>
 			<Provider>
 				<Box m={3}>
 					<Table columns={columns} data={nodes}  />
